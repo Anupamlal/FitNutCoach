@@ -27,6 +27,9 @@ struct RootTabView: View {
             ProfileView()
                 .tabItem { Label("Profile", systemImage: "person.fill") }
         }
+        .background {
+            Color.white
+        }
     }
 }
 
