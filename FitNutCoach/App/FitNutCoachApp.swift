@@ -13,7 +13,7 @@ struct FitNutCoachApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootTabView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

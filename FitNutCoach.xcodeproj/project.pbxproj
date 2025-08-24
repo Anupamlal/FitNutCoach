@@ -6,6 +6,25 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		97BF11552E5A33BF005FBA95 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97BF114C2E5A33BF005FBA95 /* Preview Assets.xcassets */; };
+		97BF11562E5A33BF005FBA95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97BF114E2E5A33BF005FBA95 /* Assets.xcassets */; };
+		97BF11582E5A33BF005FBA95 /* FitNutCoach.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 97BF11502E5A33BF005FBA95 /* FitNutCoach.xcdatamodeld */; };
+		97BF11592E5A33BF005FBA95 /* FitNutCoachApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF11512E5A33BF005FBA95 /* FitNutCoachApp.swift */; };
+		97BF115D2E5A33C3005FBA95 /* FitNutCoachTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF115B2E5A33C3005FBA95 /* FitNutCoachTests.swift */; };
+		97BF11612E5A33C6005FBA95 /* FitNutCoachUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF115E2E5A33C6005FBA95 /* FitNutCoachUITests.swift */; };
+		97BF11622E5A33C6005FBA95 /* FitNutCoachUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF115F2E5A33C6005FBA95 /* FitNutCoachUITestsLaunchTests.swift */; };
+		97BF11662E5A3496005FBA95 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF11652E5A3491005FBA95 /* PersistenceController.swift */; };
+		97BF11712E5A35A8005FBA95 /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF11702E5A35A8005FBA95 /* RootTabView.swift */; };
+		97BF11732E5A35D4005FBA95 /* AppSpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF11722E5A35D4005FBA95 /* AppSpacing.swift */; };
+		97BF11752E5A3691005FBA95 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF11742E5A3691005FBA95 /* AppEnvironment.swift */; };
+		97BF117E2E5AB055005FBA95 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF117C2E5AB055005FBA95 /* HomeView.swift */; };
+		97BF118C2E5AB106005FBA95 /* WorkoutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF118B2E5AB106005FBA95 /* WorkoutsView.swift */; };
+		97BF118F2E5AB126005FBA95 /* RecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF118E2E5AB126005FBA95 /* RecipesView.swift */; };
+		97BF11912E5AB131005FBA95 /* TrendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF11902E5AB131005FBA95 /* TrendsView.swift */; };
+		97BF11932E5AB140005FBA95 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF11922E5AB140005FBA95 /* ProfileView.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		97BF11302E5A3246005FBA95 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,25 +46,23 @@
 		97BF111A2E5A3244005FBA95 /* FitNutCoach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitNutCoach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97BF112F2E5A3246005FBA95 /* FitNutCoachTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitNutCoachTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		97BF11392E5A3246005FBA95 /* FitNutCoachUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitNutCoachUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		97BF114C2E5A33BF005FBA95 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		97BF114E2E5A33BF005FBA95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		97BF11512E5A33BF005FBA95 /* FitNutCoachApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitNutCoachApp.swift; sourceTree = "<group>"; };
+		97BF11542E5A33BF005FBA95 /* FitNutCoach.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FitNutCoach.xcdatamodel; sourceTree = "<group>"; };
+		97BF115B2E5A33C3005FBA95 /* FitNutCoachTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitNutCoachTests.swift; sourceTree = "<group>"; };
+		97BF115E2E5A33C6005FBA95 /* FitNutCoachUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitNutCoachUITests.swift; sourceTree = "<group>"; };
+		97BF115F2E5A33C6005FBA95 /* FitNutCoachUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitNutCoachUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		97BF11652E5A3491005FBA95 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		97BF11702E5A35A8005FBA95 /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
+		97BF11722E5A35D4005FBA95 /* AppSpacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSpacing.swift; sourceTree = "<group>"; };
+		97BF11742E5A3691005FBA95 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
+		97BF117C2E5AB055005FBA95 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		97BF118B2E5AB106005FBA95 /* WorkoutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsView.swift; sourceTree = "<group>"; };
+		97BF118E2E5AB126005FBA95 /* RecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesView.swift; sourceTree = "<group>"; };
+		97BF11902E5AB131005FBA95 /* TrendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsView.swift; sourceTree = "<group>"; };
+		97BF11922E5AB140005FBA95 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		97BF111C2E5A3244005FBA95 /* FitNutCoach */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = FitNutCoach;
-			sourceTree = "<group>";
-		};
-		97BF11322E5A3246005FBA95 /* FitNutCoachTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = FitNutCoachTests;
-			sourceTree = "<group>";
-		};
-		97BF113C2E5A3246005FBA95 /* FitNutCoachUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = FitNutCoachUITests;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		97BF11172E5A3244005FBA95 /* Frameworks */ = {
@@ -75,9 +92,9 @@
 		97BF11112E5A3244005FBA95 = {
 			isa = PBXGroup;
 			children = (
-				97BF111C2E5A3244005FBA95 /* FitNutCoach */,
-				97BF11322E5A3246005FBA95 /* FitNutCoachTests */,
-				97BF113C2E5A3246005FBA95 /* FitNutCoachUITests */,
+				97BF11532E5A33BF005FBA95 /* FitNutCoach */,
+				97BF115C2E5A33C3005FBA95 /* FitNutCoachTests */,
+				97BF11602E5A33C6005FBA95 /* FitNutCoachUITests */,
 				97BF111B2E5A3244005FBA95 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +107,219 @@
 				97BF11392E5A3246005FBA95 /* FitNutCoachUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		97BF114D2E5A33BF005FBA95 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				97BF114C2E5A33BF005FBA95 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		97BF11532E5A33BF005FBA95 /* FitNutCoach */ = {
+			isa = PBXGroup;
+			children = (
+				97BF11502E5A33BF005FBA95 /* FitNutCoach.xcdatamodeld */,
+				97BF116E2E5A3535005FBA95 /* Resources */,
+				97BF11632E5A3423005FBA95 /* App */,
+				97BF11672E5A34C2005FBA95 /* Core */,
+				97BF116B2E5A3514005FBA95 /* DataStore */,
+				97BF116C2E5A351E005FBA95 /* Services */,
+				97BF116D2E5A3525005FBA95 /* Features */,
+			);
+			path = FitNutCoach;
+			sourceTree = "<group>";
+		};
+		97BF115C2E5A33C3005FBA95 /* FitNutCoachTests */ = {
+			isa = PBXGroup;
+			children = (
+				97BF115B2E5A33C3005FBA95 /* FitNutCoachTests.swift */,
+			);
+			path = FitNutCoachTests;
+			sourceTree = "<group>";
+		};
+		97BF11602E5A33C6005FBA95 /* FitNutCoachUITests */ = {
+			isa = PBXGroup;
+			children = (
+				97BF115E2E5A33C6005FBA95 /* FitNutCoachUITests.swift */,
+				97BF115F2E5A33C6005FBA95 /* FitNutCoachUITestsLaunchTests.swift */,
+			);
+			path = FitNutCoachUITests;
+			sourceTree = "<group>";
+		};
+		97BF11632E5A3423005FBA95 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				97BF11642E5A343B005FBA95 /* Persistence */,
+				97BF11512E5A33BF005FBA95 /* FitNutCoachApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		97BF11642E5A343B005FBA95 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				97BF11652E5A3491005FBA95 /* PersistenceController.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		97BF11672E5A34C2005FBA95 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				97BF11682E5A34D6005FBA95 /* DesignKit */,
+				97BF11692E5A34DF005FBA95 /* Utilities */,
+				97BF116A2E5A34F4005FBA95 /* Environment */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		97BF11682E5A34D6005FBA95 /* DesignKit */ = {
+			isa = PBXGroup;
+			children = (
+				97BF11722E5A35D4005FBA95 /* AppSpacing.swift */,
+			);
+			path = DesignKit;
+			sourceTree = "<group>";
+		};
+		97BF11692E5A34DF005FBA95 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		97BF116A2E5A34F4005FBA95 /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				97BF11742E5A3691005FBA95 /* AppEnvironment.swift */,
+			);
+			path = Environment;
+			sourceTree = "<group>";
+		};
+		97BF116B2E5A3514005FBA95 /* DataStore */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataStore;
+			sourceTree = "<group>";
+		};
+		97BF116C2E5A351E005FBA95 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		97BF116D2E5A3525005FBA95 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				97BF11762E5A3750005FBA95 /* RootTab */,
+				97BF116F2E5A3596005FBA95 /* Home */,
+				97BF117F2E5AB061005FBA95 /* Workout */,
+				97BF11892E5AB0D2005FBA95 /* Recipe */,
+				97BF11862E5AB0A0005FBA95 /* Trends */,
+				97BF11882E5AB0A0005FBA95 /* Profile */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		97BF116E2E5A3535005FBA95 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				97BF114E2E5A33BF005FBA95 /* Assets.xcassets */,
+				97BF114D2E5A33BF005FBA95 /* Preview Content */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		97BF116F2E5A3596005FBA95 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				97BF117D2E5AB055005FBA95 /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		97BF11762E5A3750005FBA95 /* RootTab */ = {
+			isa = PBXGroup;
+			children = (
+				97BF11702E5A35A8005FBA95 /* RootTabView.swift */,
+			);
+			path = RootTab;
+			sourceTree = "<group>";
+		};
+		97BF117D2E5AB055005FBA95 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				97BF117C2E5AB055005FBA95 /* HomeView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		97BF117F2E5AB061005FBA95 /* Workout */ = {
+			isa = PBXGroup;
+			children = (
+				97BF11802E5AB072005FBA95 /* View */,
+			);
+			path = Workout;
+			sourceTree = "<group>";
+		};
+		97BF11802E5AB072005FBA95 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				97BF118B2E5AB106005FBA95 /* WorkoutsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		97BF11852E5AB0A0005FBA95 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				97BF11902E5AB131005FBA95 /* TrendsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		97BF11862E5AB0A0005FBA95 /* Trends */ = {
+			isa = PBXGroup;
+			children = (
+				97BF11852E5AB0A0005FBA95 /* View */,
+			);
+			path = Trends;
+			sourceTree = "<group>";
+		};
+		97BF11872E5AB0A0005FBA95 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				97BF11922E5AB140005FBA95 /* ProfileView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		97BF11882E5AB0A0005FBA95 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				97BF11872E5AB0A0005FBA95 /* View */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		97BF11892E5AB0D2005FBA95 /* Recipe */ = {
+			isa = PBXGroup;
+			children = (
+				97BF118D2E5AB122005FBA95 /* View */,
+			);
+			path = Recipe;
+			sourceTree = "<group>";
+		};
+		97BF118D2E5AB122005FBA95 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				97BF118E2E5AB126005FBA95 /* RecipesView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -106,9 +336,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				97BF111C2E5A3244005FBA95 /* FitNutCoach */,
 			);
 			name = FitNutCoach;
 			packageProductDependencies = (
@@ -130,9 +357,6 @@
 			dependencies = (
 				97BF11312E5A3246005FBA95 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				97BF11322E5A3246005FBA95 /* FitNutCoachTests */,
-			);
 			name = FitNutCoachTests;
 			packageProductDependencies = (
 			);
@@ -152,9 +376,6 @@
 			);
 			dependencies = (
 				97BF113B2E5A3246005FBA95 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				97BF113C2E5A3246005FBA95 /* FitNutCoachUITests */,
 			);
 			name = FitNutCoachUITests;
 			packageProductDependencies = (
@@ -212,6 +433,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97BF11552E5A33BF005FBA95 /* Preview Assets.xcassets in Resources */,
+				97BF11562E5A33BF005FBA95 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +459,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97BF11662E5A3496005FBA95 /* PersistenceController.swift in Sources */,
+				97BF117E2E5AB055005FBA95 /* HomeView.swift in Sources */,
+				97BF118F2E5AB126005FBA95 /* RecipesView.swift in Sources */,
+				97BF11732E5A35D4005FBA95 /* AppSpacing.swift in Sources */,
+				97BF11582E5A33BF005FBA95 /* FitNutCoach.xcdatamodeld in Sources */,
+				97BF11932E5AB140005FBA95 /* ProfileView.swift in Sources */,
+				97BF11712E5A35A8005FBA95 /* RootTabView.swift in Sources */,
+				97BF11912E5AB131005FBA95 /* TrendsView.swift in Sources */,
+				97BF11592E5A33BF005FBA95 /* FitNutCoachApp.swift in Sources */,
+				97BF118C2E5AB106005FBA95 /* WorkoutsView.swift in Sources */,
+				97BF11752E5A3691005FBA95 /* AppEnvironment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +477,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97BF115D2E5A33C3005FBA95 /* FitNutCoachTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,6 +485,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97BF11612E5A33C6005FBA95 /* FitNutCoachUITests.swift in Sources */,
+				97BF11622E5A33C6005FBA95 /* FitNutCoachUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,7 +632,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"FitNutCoach/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"FitNutCoach/Resources/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -423,7 +660,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"FitNutCoach/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"FitNutCoach/Resources/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -552,6 +789,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		97BF11502E5A33BF005FBA95 /* FitNutCoach.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				97BF11542E5A33BF005FBA95 /* FitNutCoach.xcdatamodel */,
+			);
+			currentVersion = 97BF11542E5A33BF005FBA95 /* FitNutCoach.xcdatamodel */;
+			path = FitNutCoach.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 97BF11122E5A3244005FBA95 /* Project object */;
 }
