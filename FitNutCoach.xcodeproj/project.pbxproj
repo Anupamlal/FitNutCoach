@@ -23,6 +23,15 @@
 		97BF118F2E5AB126005FBA95 /* RecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF118E2E5AB126005FBA95 /* RecipesView.swift */; };
 		97BF11912E5AB131005FBA95 /* TrendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF11902E5AB131005FBA95 /* TrendsView.swift */; };
 		97BF11932E5AB140005FBA95 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF11922E5AB140005FBA95 /* ProfileView.swift */; };
+		97BF11982E5AB9D5005FBA95 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF11972E5AB9D5005FBA95 /* HomeViewModel.swift */; };
+		97BF119B2E5ABA38005FBA95 /* AppTexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF119A2E5ABA38005FBA95 /* AppTexts.swift */; };
+		97BF119D2E5ADBF5005FBA95 /* ProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF119C2E5ADBF5005FBA95 /* ProgressRing.swift */; };
+		97BF119F2E5AE421005FBA95 /* ProgressRingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF119E2E5AE421005FBA95 /* ProgressRingsView.swift */; };
+		97BF11A32E5AE45F005FBA95 /* ProgressRingCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF11A22E5AE45F005FBA95 /* ProgressRingCellView.swift */; };
+		97BF11A62E5AE87F005FBA95 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF11A52E5AE87F005FBA95 /* AppColors.swift */; };
+		97BF11AA2E5AEE83005FBA95 /* FNButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF11A92E5AEE83005FBA95 /* FNButton.swift */; };
+		97BF11AE2E5B140E005FBA95 /* NutritionSnapshotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF11AD2E5B140E005FBA95 /* NutritionSnapshotView.swift */; };
+		97BF11B22E5B30A6005FBA95 /* QuickRecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF11B12E5B30A6005FBA95 /* QuickRecipesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +71,15 @@
 		97BF118E2E5AB126005FBA95 /* RecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesView.swift; sourceTree = "<group>"; };
 		97BF11902E5AB131005FBA95 /* TrendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsView.swift; sourceTree = "<group>"; };
 		97BF11922E5AB140005FBA95 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		97BF11972E5AB9D5005FBA95 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		97BF119A2E5ABA38005FBA95 /* AppTexts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTexts.swift; sourceTree = "<group>"; };
+		97BF119C2E5ADBF5005FBA95 /* ProgressRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRing.swift; sourceTree = "<group>"; };
+		97BF119E2E5AE421005FBA95 /* ProgressRingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRingsView.swift; sourceTree = "<group>"; };
+		97BF11A22E5AE45F005FBA95 /* ProgressRingCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRingCellView.swift; sourceTree = "<group>"; };
+		97BF11A52E5AE87F005FBA95 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		97BF11A92E5AEE83005FBA95 /* FNButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FNButton.swift; sourceTree = "<group>"; };
+		97BF11AD2E5B140E005FBA95 /* NutritionSnapshotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionSnapshotView.swift; sourceTree = "<group>"; };
+		97BF11B12E5B30A6005FBA95 /* QuickRecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickRecipesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,7 +196,9 @@
 		97BF11682E5A34D6005FBA95 /* DesignKit */ = {
 			isa = PBXGroup;
 			children = (
+				97BF119C2E5ADBF5005FBA95 /* ProgressRing.swift */,
 				97BF11722E5A35D4005FBA95 /* AppSpacing.swift */,
+				97BF11A92E5AEE83005FBA95 /* FNButton.swift */,
 			);
 			path = DesignKit;
 			sourceTree = "<group>";
@@ -186,6 +206,8 @@
 		97BF11692E5A34DF005FBA95 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				97BF11A42E5AE879005FBA95 /* AppColors */,
+				97BF11992E5ABA0F005FBA95 /* AppTexts */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -237,6 +259,7 @@
 		97BF116F2E5A3596005FBA95 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				97BF11942E5AB9B0005FBA95 /* ViewModel */,
 				97BF117D2E5AB055005FBA95 /* View */,
 			);
 			path = Home;
@@ -254,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				97BF117C2E5AB055005FBA95 /* HomeView.swift */,
+				97BF11A12E5AE445005FBA95 /* Cells */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -320,6 +344,41 @@
 				97BF118E2E5AB126005FBA95 /* RecipesView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		97BF11942E5AB9B0005FBA95 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				97BF11972E5AB9D5005FBA95 /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		97BF11992E5ABA0F005FBA95 /* AppTexts */ = {
+			isa = PBXGroup;
+			children = (
+				97BF119A2E5ABA38005FBA95 /* AppTexts.swift */,
+			);
+			path = AppTexts;
+			sourceTree = "<group>";
+		};
+		97BF11A12E5AE445005FBA95 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				97BF119E2E5AE421005FBA95 /* ProgressRingsView.swift */,
+				97BF11A22E5AE45F005FBA95 /* ProgressRingCellView.swift */,
+				97BF11AD2E5B140E005FBA95 /* NutritionSnapshotView.swift */,
+				97BF11B12E5B30A6005FBA95 /* QuickRecipesView.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		97BF11A42E5AE879005FBA95 /* AppColors */ = {
+			isa = PBXGroup;
+			children = (
+				97BF11A52E5AE87F005FBA95 /* AppColors.swift */,
+			);
+			path = AppColors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -459,15 +518,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97BF119F2E5AE421005FBA95 /* ProgressRingsView.swift in Sources */,
+				97BF11AA2E5AEE83005FBA95 /* FNButton.swift in Sources */,
+				97BF119B2E5ABA38005FBA95 /* AppTexts.swift in Sources */,
 				97BF11662E5A3496005FBA95 /* PersistenceController.swift in Sources */,
+				97BF11B22E5B30A6005FBA95 /* QuickRecipesView.swift in Sources */,
 				97BF117E2E5AB055005FBA95 /* HomeView.swift in Sources */,
 				97BF118F2E5AB126005FBA95 /* RecipesView.swift in Sources */,
+				97BF11A32E5AE45F005FBA95 /* ProgressRingCellView.swift in Sources */,
+				97BF119D2E5ADBF5005FBA95 /* ProgressRing.swift in Sources */,
 				97BF11732E5A35D4005FBA95 /* AppSpacing.swift in Sources */,
 				97BF11582E5A33BF005FBA95 /* FitNutCoach.xcdatamodeld in Sources */,
 				97BF11932E5AB140005FBA95 /* ProfileView.swift in Sources */,
 				97BF11712E5A35A8005FBA95 /* RootTabView.swift in Sources */,
+				97BF11A62E5AE87F005FBA95 /* AppColors.swift in Sources */,
+				97BF11982E5AB9D5005FBA95 /* HomeViewModel.swift in Sources */,
 				97BF11912E5AB131005FBA95 /* TrendsView.swift in Sources */,
 				97BF11592E5A33BF005FBA95 /* FitNutCoachApp.swift in Sources */,
+				97BF11AE2E5B140E005FBA95 /* NutritionSnapshotView.swift in Sources */,
 				97BF118C2E5AB106005FBA95 /* WorkoutsView.swift in Sources */,
 				97BF11752E5A3691005FBA95 /* AppEnvironment.swift in Sources */,
 			);
