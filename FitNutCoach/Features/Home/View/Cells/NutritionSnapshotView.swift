@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct NutritionSnapshotView: View {
+    
+    let profileModel: ProfileModel
+    
     var body: some View {
         Card {
             HStack() {
@@ -16,7 +19,7 @@ struct NutritionSnapshotView: View {
                     Text(AppTexts.proteinText)
                         .font(.system(size: 13, weight: .medium))
                     
-                    Text("60 / 120 g")
+                    Text("60 / \(profileModel.proteinTarget.intValue()) g")
                         .font(.system(size: 16, weight: .semibold))
                 }
                 
@@ -25,7 +28,7 @@ struct NutritionSnapshotView: View {
                 VStack(spacing: AppSpacing.xs) {
                     Text(AppTexts.carbsText)
                         .font(.system(size: 13, weight: .medium))
-                    Text("150 / 120 g")
+                    Text("150 / \(profileModel.carbTarget.intValue()) g")
                         .font(.system(size: 16, weight: .semibold))
                 }
                 
@@ -33,7 +36,7 @@ struct NutritionSnapshotView: View {
                 VStack(spacing: AppSpacing.xs) {
                     Text(AppTexts.fatText)
                         .font(.system(size: 13, weight: .medium))
-                    Text("40 / 70 g")
+                    Text("40 / \(profileModel.fatTarget.intValue()) g")
                         .font(.system(size: 16, weight: .semibold))
                 }
             }
@@ -43,5 +46,5 @@ struct NutritionSnapshotView: View {
 }
 
 #Preview {
-    NutritionSnapshotView()
+    NutritionSnapshotView(profileModel: ProfileModel())
 }

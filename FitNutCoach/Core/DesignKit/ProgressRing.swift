@@ -41,9 +41,6 @@ struct ProgressRing: View {
         GeometryReader { geo in
             let size = min(geo.size.width, geo.size.height)
             let radius = size / 2
-            let startAngle: Angle = .degrees(-90)
-            let endAngle: Angle = .degrees(clockwise ? (Double(animatedProgress) * 360 - 90)
-                                                     : (-Double(animatedProgress) * 360 - 90))
 
             ZStack {
                 // Track
@@ -74,15 +71,12 @@ struct ProgressRing: View {
             .onAppear {
                 animatedProgress = progress
             }
-            .onChange(of: value) { _ in
+            .onChange(of: value, { oldVal, newValue in
                 animatedProgress = progress
-            }
-            .onChange(of: total) { _ in
+            })
+            .onChange(of: total, { oldVal, newValue in
                 animatedProgress = progress
-            }
-            .accessibilityElement(children: .ignore)
-            .accessibilityLabel(Text("Progress"))
-            .accessibilityValue(Text("\(Int((Double(progress) * 100).rounded())) percent"))
+            })
         }
         .aspectRatio(1, contentMode: .fit)
     }

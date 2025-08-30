@@ -10,10 +10,17 @@ import SwiftUI
 @main
 struct FitNutCoachApp: App {
     let persistenceController = PersistenceController.shared
-
+    
+    private let profileManager: ProfileManager
+    
+    init() {
+        let container = PersistenceController.shared.container
+        self.profileManager = ProfileManager(container: container)
+    }
+    
     var body: some Scene {
         WindowGroup {
-            RootTabView()
+            RootTabView(profileManager: profileManager)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ProgressRingCellView: View {
     
-    @State var currentProgressValue: Double = 0
-    @State var totalValue: Double = 0
-    @State var currentRingType: ProgressRingType = .steps
+    let currentProgressValue: Double
+    let totalValue: Double
+    let currentRingType: ProgressRingType
     
     var body: some View {
         VStack(spacing: AppSpacing.xs) {
@@ -97,9 +97,9 @@ struct ProgressRingCellView: View {
     private func getSubTitleText() -> String {
         switch currentRingType {
         case .calories:
-            return "\(Int(totalValue)) \(AppTexts.kcalText)"
+            return "\(totalValue.intValue()) \(AppTexts.kcalText)"
         case .steps:
-            return "/ \(Int(totalValue))"
+            return "/ \(totalValue.intValue())"
         case .waterIntake:
             return "/ \(totalValue) \(AppTexts.litreText)"
         }
@@ -117,7 +117,7 @@ struct ProgressRingCellView: View {
     }
     
     private func getTitleText() -> String {
-        return currentRingType == .waterIntake ? "\(currentProgressValue)" : "\(Int(currentProgressValue))"
+        return currentRingType == .waterIntake ? "\(currentProgressValue)" : "\(currentProgressValue.intValue())"
     }
 }
 

@@ -14,17 +14,20 @@ enum ProgressRingType {
 }
 
 struct ProgressRingsView: View {
+    
+    let profileModel: ProfileModel
+    
     var body: some View {
         Card {
             HStack() {
                 
-                ProgressRingCellView(currentProgressValue: 1350, totalValue: 2000, currentRingType: .calories)
+                ProgressRingCellView(currentProgressValue: 1350, totalValue: profileModel.calorieTarget, currentRingType: .calories)
                 Spacer()
 
-                ProgressRingCellView(currentProgressValue: 7500, totalValue: 10000, currentRingType: .steps)
+                ProgressRingCellView(currentProgressValue: 7500, totalValue: Double(profileModel.stepTarget), currentRingType: .steps)
                 Spacer()
 
-                ProgressRingCellView(currentProgressValue: 1.0, totalValue: 4.0, currentRingType: .waterIntake)
+                ProgressRingCellView(currentProgressValue: 1.0, totalValue: profileModel.waterTargetLiters, currentRingType: .waterIntake)
                                 
             }
             .padding(.horizontal, 20)
@@ -33,5 +36,5 @@ struct ProgressRingsView: View {
 }
 
 #Preview {
-    ProgressRingsView()
+    ProgressRingsView(profileModel: ProfileModel())
 }

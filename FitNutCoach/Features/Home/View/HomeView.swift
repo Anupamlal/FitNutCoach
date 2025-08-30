@@ -10,7 +10,11 @@ import SwiftUI
 struct HomeView: View {
     
     //MARK: - Variables
-    var homeViewModel = HomeViewModel()
+    @StateObject private var homeViewModel: HomeViewModel
+    
+    init(profileManager: ProfileManager) {
+        _homeViewModel = StateObject(wrappedValue: HomeViewModel(profileManager: profileManager)) 
+    }
     
     var body: some View {
         ZStack {
@@ -19,7 +23,7 @@ struct HomeView: View {
             
             VStack(spacing: AppSpacing.l) {
                 HStack {
-                    Text("\(AppTexts.hiText) \(homeViewModel.loggedInUserName) 👋")
+                    Text("\(AppTexts.hiText) \(homeViewModel.profileModel.name) 👋")
                         .font(.system(size: 28, weight: .semibold))
                         .foregroundStyle(Color.textPrimary)
                     
@@ -35,7 +39,7 @@ struct HomeView: View {
                         }
                 }
                 
-                ProgressRingsView()
+                ProgressRingsView(profileModel: homeViewModel.profileModel)
                 
                 HStack{
                     FNButton(buttonTitle: AppTexts.logMealText, backgroundEnable: true) {
@@ -47,7 +51,7 @@ struct HomeView: View {
                     }
                 }
                 
-                NutritionSnapshotView()
+                NutritionSnapshotView(profileModel: homeViewModel.profileModel)
                 
                 Card {
                     HStack(spacing: AppSpacing.xs) {
@@ -101,6 +105,7 @@ struct HomeView: View {
                         }
                         
                     }
+                    .scrollIndicators(.hidden)
                     
                 }
                 
@@ -108,9 +113,12 @@ struct HomeView: View {
             }
             .padding(.all)
         }
+        .onFirstAppear {
+            homeViewModel.onAppear()
+        }
     }
 }
 
 #Preview {
-    HomeView()
+    HomeView(profileManager: ProfileManager(container: PersistenceController.shared.container))
 }

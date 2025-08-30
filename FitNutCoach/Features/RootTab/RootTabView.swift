@@ -10,9 +10,11 @@ import SwiftUI
 
 struct RootTabView: View {
     
+    var profileManager: ProfileManager
+    
     var body: some View {
         TabView {
-            HomeView()
+            HomeView(profileManager: profileManager)
                 .tabItem { Label("Home", systemImage: "house.fill") }
 
             WorkoutsView()
@@ -31,8 +33,4 @@ struct RootTabView: View {
             Color.white
         }
     }
-}
-
-#Preview {
-    RootTabView()
 }
