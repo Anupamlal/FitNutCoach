@@ -20,4 +20,14 @@ class AppTexts {
     static let nextMealIdeasText = "Next Meal Ideas"
     static let nWorkoutsThisWeekText = "%@ workouts this week"
     static let keepItUpText = "Keep it up 💪"
+    static let noWorkoutsYetText = "No workouts yet!"
+    static let startItTodayText = "Start it today!"
+    
+    static let logWaterIntakeText = "Log Water Intake"
+    static let trackYourHyrdrationText = "Track your hydration for today"
+    static let twoFiftyMLText = "+250 ml"
+    static let saveText = "Save"
+    static let cancelText = "Cancel"
+    
+    
 }

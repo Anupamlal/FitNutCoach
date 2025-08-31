@@ -13,6 +13,7 @@ class HomeViewModel: ObservableObject {
     @Published var profileModel = ProfileModel()
     @Published var dailyActivityModel = DailyActivityModel()
     @Published var numberOfWorkoutDays = 3
+    @Published var openWaterIntakeView = false
     
     private let profileManager: ProfileManager
     private let dailyActivityManager: DailyActivityManager
@@ -47,5 +48,9 @@ class HomeViewModel: ObservableObject {
                 self?.numberOfWorkoutDays = dailyActivityModel.workouts?.count ?? 0
             }
             .store(in: &cancellable)
+    }
+    
+    func getDailyActivityManager() -> DailyActivityManager {
+        return self.dailyActivityManager
     }
 }

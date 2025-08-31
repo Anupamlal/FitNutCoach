@@ -20,6 +20,7 @@
 		9780BD7A2E630545005227E4 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780BD792E630545005227E4 /* ProfileManager.swift */; };
 		979C16D12E6468E100322BB8 /* MealManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979C16D02E6468E100322BB8 /* MealManager.swift */; };
 		979C16D32E64803600322BB8 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979C16D22E64802E00322BB8 /* WorkoutManager.swift */; };
+		979C16D82E648F1D00322BB8 /* LogWaterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979C16D72E648F1D00322BB8 /* LogWaterView.swift */; };
 		97BF11552E5A33BF005FBA95 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97BF114C2E5A33BF005FBA95 /* Preview Assets.xcassets */; };
 		97BF11562E5A33BF005FBA95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97BF114E2E5A33BF005FBA95 /* Assets.xcassets */; };
 		97BF11582E5A33BF005FBA95 /* FitNutCoach.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 97BF11502E5A33BF005FBA95 /* FitNutCoach.xcdatamodeld */; };
@@ -78,6 +79,7 @@
 		9780BD792E630545005227E4 /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
 		979C16D02E6468E100322BB8 /* MealManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealManager.swift; sourceTree = "<group>"; };
 		979C16D22E64802E00322BB8 /* WorkoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
+		979C16D72E648F1D00322BB8 /* LogWaterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogWaterView.swift; sourceTree = "<group>"; };
 		97BF111A2E5A3244005FBA95 /* FitNutCoach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitNutCoach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97BF112F2E5A3246005FBA95 /* FitNutCoachTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitNutCoachTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		97BF11392E5A3246005FBA95 /* FitNutCoachUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitNutCoachUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,16 +188,25 @@
 			isa = PBXGroup;
 			children = (
 				97BF116F2E5A3596005FBA95 /* Home */,
-				979C16D52E6486BE00322BB8 /* WaterLog */,
+				979C16D52E6486BE00322BB8 /* LogWater */,
 			);
 			path = HomeTab;
 			sourceTree = "<group>";
 		};
-		979C16D52E6486BE00322BB8 /* WaterLog */ = {
+		979C16D52E6486BE00322BB8 /* LogWater */ = {
 			isa = PBXGroup;
 			children = (
+				979C16D62E648F0200322BB8 /* View */,
 			);
-			path = WaterLog;
+			path = LogWater;
+			sourceTree = "<group>";
+		};
+		979C16D62E648F0200322BB8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				979C16D72E648F1D00322BB8 /* LogWaterView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		97BF11112E5A3244005FBA95 = {
@@ -640,6 +651,7 @@
 				9773569D2E635552007ED640 /* DailyActivityManager.swift in Sources */,
 				97BF11912E5AB131005FBA95 /* TrendsView.swift in Sources */,
 				979C16D32E64803600322BB8 /* WorkoutManager.swift in Sources */,
+				979C16D82E648F1D00322BB8 /* LogWaterView.swift in Sources */,
 				97BF11592E5A33BF005FBA95 /* FitNutCoachApp.swift in Sources */,
 				977356952E631982007ED640 /* ProfileModel.swift in Sources */,
 				977356982E6334DD007ED640 /* Double+Extension.swift in Sources */,

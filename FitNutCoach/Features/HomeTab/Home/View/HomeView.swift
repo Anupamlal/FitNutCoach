@@ -41,8 +41,10 @@ struct HomeView: View {
                 
                 ProgressRingsView(
                     profileModel: homeViewModel.profileModel,
-                    dailyActivityModel: homeViewModel.dailyActivityModel
-                )
+                    dailyActivityModel: homeViewModel.dailyActivityModel, waterIntakeTapCallback: {
+                        homeViewModel.openWaterIntakeView = true
+                    })
+                
                 
                 HStack{
                     FNButton(buttonTitle: AppTexts.logMealText, backgroundEnable: true) {
@@ -79,11 +81,11 @@ struct HomeView: View {
                             
                         }else {
                             VStack(alignment: .leading, spacing: 5) {
-                                Text("No workouts yet!")
+                                Text(AppTexts.noWorkoutsYetText)
                                     .font(.system(size: 15, weight: .semibold))
                                     .foregroundStyle(Color.textPrimary)
                                 
-                                Text("Start today!")
+                                Text(AppTexts.startItTodayText)
                                     .font(.system(size: 15, weight: .medium))
                                     .foregroundStyle(Color.textSecondary)
                             }
@@ -136,5 +138,15 @@ struct HomeView: View {
         .onFirstAppear {
             homeViewModel.onAppear()
         }
+        .sheet(isPresented: $homeViewModel.openWaterIntakeView) {
+            LogWaterView(totalWaterTarget: homeViewModel.profileModel.waterTargetLiters, dailyactvityManager: self.homeViewModel.getDailyActivityManager())
+                .presentationDragIndicator(.visible)
+                .presentationDetents([.medium])
+                
+        }
     }
+}
+
+#Preview {
+    HomeView(profileManager: ProfileManager(container: PersistenceController.shared.container), dailyActivityManager: DailyActivityManager(container: PersistenceController.shared.container))
 }

@@ -43,7 +43,9 @@ struct DailyActivityModel: Codable {
     }
     
     init() {
-        self.init(id: UUID(), activeEnergy: 0, calories: 0, carbs: 0, date: nil, exerciseMinutes: 0, fat: 0, protein: 0, sleepMinutes: 0, steps: 0, updatedAt: nil, waterLiters: 0, meals: nil, workouts: nil)
+        let start = Calendar.current.startOfDay(for: Date())
+        
+        self.init(id: UUID(), activeEnergy: 0, calories: 0, carbs: 0, date: start, exerciseMinutes: 0, fat: 0, protein: 0, sleepMinutes: 0, steps: 0, updatedAt: nil, waterLiters: 0, meals: nil, workouts: nil)
     }
     
     init(dailyActivity: DailyActivity) {

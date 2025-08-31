@@ -17,6 +17,7 @@ struct ProgressRingsView: View {
     
     let profileModel: ProfileModel
     let dailyActivityModel: DailyActivityModel
+    var waterIntakeTapCallback:(()->Void)?
     
     var body: some View {
         Card {
@@ -29,6 +30,11 @@ struct ProgressRingsView: View {
                 Spacer()
 
                 ProgressRingCellView(currentProgressValue: dailyActivityModel.waterLiters, totalValue: profileModel.waterTargetLiters, currentRingType: .waterIntake)
+                    .onTapGesture {
+                        if let waterIntakeTapCallback = waterIntakeTapCallback {
+                            waterIntakeTapCallback()
+                        }
+                    }
                                 
             }
             .padding(.horizontal, 20)

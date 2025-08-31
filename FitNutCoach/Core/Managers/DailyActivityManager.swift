@@ -61,11 +61,14 @@ class DailyActivityManager: ObservableObject {
         return nil
     }
     
-    func loadTodayData() async {
-        let date = Date()
-        if let dailyActivity = await self.loadData(date: date) {
+    func loadTodayData() async {        
+        if let dailyActivity = await self.loadData(date: Date()) {
             let dailyActivityModel = DailyActivityModel(dailyActivity: dailyActivity)
             self.publishDailyActivity(dailyActivityModel)
+            
+        }else {
+            let dailyActivityModel = DailyActivityModel()
+            _ = await self.addNewOrUpdateData(dailyActivityModel)
         }
     }
     
@@ -75,6 +78,7 @@ class DailyActivityManager: ObservableObject {
         }
         
         dailyActivity.waterLiters += amount
+        dailyActivity.updatedAt = Date()
         _ = await self.addNewOrUpdateData(DailyActivityModel(dailyActivity: dailyActivity))
     }
     
@@ -84,6 +88,7 @@ class DailyActivityManager: ObservableObject {
         }
         
         dailyActivity.steps += Int32(amount)
+        dailyActivity.updatedAt = Date()
         _ = await self.addNewOrUpdateData(DailyActivityModel(dailyActivity: dailyActivity))
     }
     
