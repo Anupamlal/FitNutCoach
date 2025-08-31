@@ -12,7 +12,6 @@ import CoreData
 class ProfileManager: ObservableObject, BaseManagerDelegate {
     typealias T = ProfileModel
     
-    var container: NSPersistentContainer
     var viewContext: NSManagedObjectContext
     var bgContext: NSManagedObjectContext
     private let profileSubject = CurrentValueSubject<ProfileModel, Never>(ProfileModel())
@@ -22,7 +21,6 @@ class ProfileManager: ObservableObject, BaseManagerDelegate {
     }
     
     init(container: NSPersistentContainer) {
-        self.container = container
         self.viewContext = container.viewContext
         self.bgContext = container.newBackgroundContext()
         self.bgContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy

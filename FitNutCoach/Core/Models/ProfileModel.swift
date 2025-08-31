@@ -93,4 +93,12 @@ struct ProfileModel: Codable {
         userProfile.waterTargetLiters = waterTargetLiters
         userProfile.weightKg = weightKg
     }
+    
+    func getProfileName() -> String {
+        let nameArray = name.split(separator: " ")
+        if nameArray.count > 0 {
+            return String(nameArray[0])
+        }
+        return ""
+    }
 }

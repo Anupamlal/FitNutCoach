@@ -12,7 +12,7 @@ struct DailyActivityModel: Codable {
     
     let id: UUID?
     let activeEnergy: Double
-    let calories: Int16
+    let calories: Double
     let carbs: Double
     let date: Date?
     let exerciseMinutes: Int16
@@ -25,7 +25,7 @@ struct DailyActivityModel: Codable {
     var meals: [MealModel]?
     var workouts: [WorkoutModel]?
     
-    init(id: UUID?, activeEnergy: Double, calories: Int16, carbs: Double, date: Date?, exerciseMinutes: Int16, fat: Double, protein: Double, sleepMinutes: Int16, steps: Int32, updatedAt: Date?, waterLiters: Double, meals: [MealModel]?, workouts: [WorkoutModel]?) {
+    init(id: UUID?, activeEnergy: Double, calories: Double, carbs: Double, date: Date?, exerciseMinutes: Int16, fat: Double, protein: Double, sleepMinutes: Int16, steps: Int32, updatedAt: Date?, waterLiters: Double, meals: [MealModel]?, workouts: [WorkoutModel]?) {
         self.id = id
         self.activeEnergy = activeEnergy
         self.calories = calories

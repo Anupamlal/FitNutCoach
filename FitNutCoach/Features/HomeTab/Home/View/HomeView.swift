@@ -12,8 +12,8 @@ struct HomeView: View {
     //MARK: - Variables
     @StateObject private var homeViewModel: HomeViewModel
     
-    init(profileManager: ProfileManager) {
-        _homeViewModel = StateObject(wrappedValue: HomeViewModel(profileManager: profileManager)) 
+    init(profileManager: ProfileManager, dailyActivityManager: DailyActivityManager) {
+        _homeViewModel = StateObject(wrappedValue: HomeViewModel(profileManager: profileManager, dailyActivityManager: dailyActivityManager))
     }
     
     var body: some View {
@@ -23,7 +23,7 @@ struct HomeView: View {
             
             VStack(spacing: AppSpacing.l) {
                 HStack {
-                    Text("\(AppTexts.hiText) \(homeViewModel.profileModel.name) 👋")
+                    Text("\(AppTexts.hiText) \(homeViewModel.profileModel.getProfileName()) 👋")
                         .font(.system(size: 28, weight: .semibold))
                         .foregroundStyle(Color.textPrimary)
                     
@@ -39,7 +39,10 @@ struct HomeView: View {
                         }
                 }
                 
-                ProgressRingsView(profileModel: homeViewModel.profileModel)
+                ProgressRingsView(
+                    profileModel: homeViewModel.profileModel,
+                    dailyActivityModel: homeViewModel.dailyActivityModel
+                )
                 
                 HStack{
                     FNButton(buttonTitle: AppTexts.logMealText, backgroundEnable: true) {
@@ -51,7 +54,10 @@ struct HomeView: View {
                     }
                 }
                 
-                NutritionSnapshotView(profileModel: homeViewModel.profileModel)
+                NutritionSnapshotView(
+                    profileModel: homeViewModel.profileModel,
+                    dailyActivityModel: homeViewModel.dailyActivityModel
+                )
                 
                 Card {
                     HStack(spacing: AppSpacing.xs) {
@@ -59,16 +65,30 @@ struct HomeView: View {
                             .resizable()
                             .frame(width: 50, height: 50)
                         
-                        VStack(alignment: .leading, spacing: 5) {
-                            Text(String(format: AppTexts.nWorkoutsThisWeekText, "\(homeViewModel.numberOfWorkoutDays)"))
-                                .font(.system(size: 15, weight: .semibold))
-                                .foregroundStyle(Color.textPrimary)
+                        if (homeViewModel.numberOfWorkoutDays > 0) {
+                            VStack(alignment: .leading, spacing: 5) {
+                                Text(String(format: AppTexts.nWorkoutsThisWeekText, "\(homeViewModel.numberOfWorkoutDays)"))
+                                    .font(.system(size: 15, weight: .semibold))
+                                    .foregroundStyle(Color.textPrimary)
+                                
+                                Text(AppTexts.keepItUpText)
+                                    .font(.system(size: 15, weight: .medium))
+                                    .foregroundStyle(Color.textSecondary)
+                            }
+                            .padding(.leading, 3)
                             
-                            Text(AppTexts.keepItUpText)
-                                .font(.system(size: 15, weight: .medium))
-                                .foregroundStyle(Color.textSecondary)
+                        }else {
+                            VStack(alignment: .leading, spacing: 5) {
+                                Text("No workouts yet!")
+                                    .font(.system(size: 15, weight: .semibold))
+                                    .foregroundStyle(Color.textPrimary)
+                                
+                                Text("Start today!")
+                                    .font(.system(size: 15, weight: .medium))
+                                    .foregroundStyle(Color.textSecondary)
+                            }
+                            .padding(.leading, 3)
                         }
-                        .padding(.leading, 3)
                         
                         Spacer()
                         
@@ -117,8 +137,4 @@ struct HomeView: View {
             homeViewModel.onAppear()
         }
     }
-}
-
-#Preview {
-    HomeView(profileManager: ProfileManager(container: PersistenceController.shared.container))
 }

@@ -10,6 +10,7 @@ import SwiftUI
 struct NutritionSnapshotView: View {
     
     let profileModel: ProfileModel
+    let dailyActivityModel: DailyActivityModel
     
     var body: some View {
         Card {
@@ -19,7 +20,7 @@ struct NutritionSnapshotView: View {
                     Text(AppTexts.proteinText)
                         .font(.system(size: 13, weight: .medium))
                     
-                    Text("60 / \(profileModel.proteinTarget.intValue()) g")
+                    Text("\(dailyActivityModel.protein.intValue()) / \(profileModel.proteinTarget.intValue()) g")
                         .font(.system(size: 16, weight: .semibold))
                 }
                 
@@ -28,7 +29,7 @@ struct NutritionSnapshotView: View {
                 VStack(spacing: AppSpacing.xs) {
                     Text(AppTexts.carbsText)
                         .font(.system(size: 13, weight: .medium))
-                    Text("150 / \(profileModel.carbTarget.intValue()) g")
+                    Text("\(dailyActivityModel.carbs.intValue()) / \(profileModel.carbTarget.intValue()) g")
                         .font(.system(size: 16, weight: .semibold))
                 }
                 
@@ -36,7 +37,7 @@ struct NutritionSnapshotView: View {
                 VStack(spacing: AppSpacing.xs) {
                     Text(AppTexts.fatText)
                         .font(.system(size: 13, weight: .medium))
-                    Text("40 / \(profileModel.fatTarget.intValue()) g")
+                    Text("\(dailyActivityModel.fat.intValue()) / \(profileModel.fatTarget.intValue()) g")
                         .font(.system(size: 16, weight: .semibold))
                 }
             }
@@ -46,5 +47,5 @@ struct NutritionSnapshotView: View {
 }
 
 #Preview {
-    NutritionSnapshotView(profileModel: ProfileModel())
+    NutritionSnapshotView(profileModel: ProfileModel(), dailyActivityModel: DailyActivityModel())
 }

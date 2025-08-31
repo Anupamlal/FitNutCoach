@@ -9,11 +9,8 @@ import SwiftUI
 import Combine
 import CoreData
 
-class DailyActivityManager: ObservableObject, BaseManagerDelegate {
-    
-    typealias T = DailyActivityModel
-    
-    var container: NSPersistentContainer
+class DailyActivityManager: ObservableObject {
+        
     var viewContext: NSManagedObjectContext
     var bgContext: NSManagedObjectContext
     private let dailyActivitySubject = CurrentValueSubject<DailyActivityModel, Never>(DailyActivityModel())
@@ -23,7 +20,6 @@ class DailyActivityManager: ObservableObject, BaseManagerDelegate {
     }
     
     init(container: NSPersistentContainer) {
-        self.container = container
         self.viewContext = container.viewContext
         self.bgContext = container.newBackgroundContext()
         self.bgContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
@@ -39,11 +35,11 @@ class DailyActivityManager: ObservableObject, BaseManagerDelegate {
                 try self.bgContext.save()
             }
             catch {
-                print("Error caused during saving Userprofile", error.localizedDescription)
+                print("Error caused during saving DailyActivity", error.localizedDescription)
             }
         }
         
-        self.dailyActivitySubject.send(newData)
+        self.publishDailyActivity(newData)
         return true
     }
     
@@ -51,16 +47,48 @@ class DailyActivityManager: ObservableObject, BaseManagerDelegate {
         return true
     }
     
-    func loadData() async {
+    func loadData(date: Date) async -> DailyActivity? {
         let fetchRequest = DailyActivity.fetchRequest()
+        let start = Calendar.current.startOfDay(for: date)
         
+        fetchRequest.predicate = NSPredicate(format: "date == %@", start as NSDate)
         fetchRequest.fetchLimit = 1
         
         if let dailyActivity = try? viewContext.fetch(fetchRequest).first {
+            return dailyActivity
+        }
+        
+        return nil
+    }
+    
+    func loadTodayData() async {
+        let date = Date()
+        if let dailyActivity = await self.loadData(date: date) {
             let dailyActivityModel = DailyActivityModel(dailyActivity: dailyActivity)
-            dailyActivitySubject.send(dailyActivityModel)
+            self.publishDailyActivity(dailyActivityModel)
         }
     }
     
+    func addWatersIntake(_ amount: Double) async {
+        guard let dailyActivity = await self.loadData(date: Date()) else {
+            return
+        }
+        
+        dailyActivity.waterLiters += amount
+        _ = await self.addNewOrUpdateData(DailyActivityModel(dailyActivity: dailyActivity))
+    }
+    
+    func addSteps(_ amount: Int) async {
+        guard let dailyActivity = await self.loadData(date: Date()) else {
+            return
+        }
+        
+        dailyActivity.steps += Int32(amount)
+        _ = await self.addNewOrUpdateData(DailyActivityModel(dailyActivity: dailyActivity))
+    }
+    
+    func publishDailyActivity(_ dailyActivityModel: DailyActivityModel) {
+        self.dailyActivitySubject.send(dailyActivityModel)
+    }
 
 }

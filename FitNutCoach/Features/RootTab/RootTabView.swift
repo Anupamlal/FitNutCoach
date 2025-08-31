@@ -11,10 +11,12 @@ import SwiftUI
 struct RootTabView: View {
     
     var profileManager: ProfileManager
+    var dailyActivityManager: DailyActivityManager
+
     
     var body: some View {
         TabView {
-            HomeView(profileManager: profileManager)
+            HomeView(profileManager: profileManager, dailyActivityManager: dailyActivityManager)
                 .tabItem { Label("Home", systemImage: "house.fill") }
 
             WorkoutsView()

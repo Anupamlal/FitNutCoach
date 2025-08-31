@@ -13,11 +13,9 @@ protocol BaseManagerDelegate {
     associatedtype T: Codable
     
     var managerPublisher: AnyPublisher<T, Never> {get}
-    var container: NSPersistentContainer {get set}
     var viewContext: NSManagedObjectContext {get set}
     var bgContext: NSManagedObjectContext {get set}
     
     func addNewOrUpdateData(_ newData: T) async -> Bool
     func deleteData(_ deleteData: T) async -> Bool
-    func loadData() async
 }

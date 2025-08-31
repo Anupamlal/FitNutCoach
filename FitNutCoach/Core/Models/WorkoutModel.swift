@@ -13,7 +13,7 @@ struct WorkoutModel: Codable {
     let avgHR: Int16
     let date: Date?
     let distanceKm: Double
-    let durationMin: Double
+    let durationMin: Int16
     let endDate: Date?
     let kcal: Double
     let maxHR: Int16
@@ -23,7 +23,7 @@ struct WorkoutModel: Codable {
     let type: String?
     var workoutSets: [WorkoutSetModel]?
     
-    init(id: UUID?, avgHR: Int16, date: Date?, distanceKm: Double, durationMin: Double, endDate: Date?, kcal: Double, maxHR: Int16, notes: String?, rpe: Int16, source: String?, type: String?, workoutSets: [WorkoutSetModel]?) {
+    init(id: UUID?, avgHR: Int16, date: Date?, distanceKm: Double, durationMin: Int16, endDate: Date?, kcal: Double, maxHR: Int16, notes: String?, rpe: Int16, source: String?, type: String?, workoutSets: [WorkoutSetModel]?) {
         self.id = id
         self.avgHR = avgHR
         self.date = date
