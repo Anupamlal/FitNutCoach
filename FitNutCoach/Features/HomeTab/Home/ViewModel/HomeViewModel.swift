@@ -14,6 +14,8 @@ class HomeViewModel: ObservableObject {
     @Published var dailyActivityModel = DailyActivityModel()
     @Published var numberOfWorkoutDays = 3
     @Published var openWaterIntakeView = false
+    @Published var openLogMealView = false
+    @Published var openLogWorkoutView = false
     
     private let profileManager: ProfileManager
     private let dailyActivityManager: DailyActivityManager

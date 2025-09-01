@@ -11,6 +11,7 @@ struct HomeView: View {
     
     //MARK: - Variables
     @StateObject private var homeViewModel: HomeViewModel
+    @EnvironmentObject private var rootTabViewModel: RootTabViewModel
     
     init(profileManager: ProfileManager, dailyActivityManager: DailyActivityManager) {
         _homeViewModel = StateObject(wrappedValue: HomeViewModel(profileManager: profileManager, dailyActivityManager: dailyActivityManager))
@@ -48,11 +49,11 @@ struct HomeView: View {
                 
                 HStack{
                     FNButton(buttonTitle: AppTexts.logMealText, backgroundEnable: true) {
-                        
+                        self.homeViewModel.openLogMealView = true
                     }
                     
                     FNButton(buttonTitle: AppTexts.startWorkoutText, backgroundEnable: false) {
-                        
+                        rootTabViewModel.currentTab = .workouts
                     }
                 }
                 
@@ -143,6 +144,9 @@ struct HomeView: View {
                 .presentationDragIndicator(.visible)
                 .presentationDetents([.medium])
                 
+        }
+        .fullScreenCover(isPresented: $homeViewModel.openLogMealView) {
+            LogMealView()
         }
     }
 }

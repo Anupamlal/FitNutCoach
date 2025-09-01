@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		974AFC342E660E91003302BB /* LogMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974AFC332E660E91003302BB /* LogMealView.swift */; };
+		974AFC382E660FEC003302BB /* RootTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974AFC372E660FEC003302BB /* RootTabViewModel.swift */; };
 		977356952E631982007ED640 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977356942E631982007ED640 /* ProfileModel.swift */; };
 		977356982E6334DD007ED640 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977356972E6334D8007ED640 /* Double+Extension.swift */; };
 		9773569B2E634C3E007ED640 /* OnFirstAppearViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9773569A2E634C3E007ED640 /* OnFirstAppearViewModifier.swift */; };
@@ -66,6 +68,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		974AFC332E660E91003302BB /* LogMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMealView.swift; sourceTree = "<group>"; };
+		974AFC372E660FEC003302BB /* RootTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabViewModel.swift; sourceTree = "<group>"; };
 		977356942E631982007ED640 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		977356972E6334D8007ED640 /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 		9773569A2E634C3E007ED640 /* OnFirstAppearViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnFirstAppearViewModifier.swift; sourceTree = "<group>"; };
@@ -135,6 +139,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		974AFC312E660E79003302BB /* LogMeal */ = {
+			isa = PBXGroup;
+			children = (
+				974AFC322E660E85003302BB /* View */,
+			);
+			path = LogMeal;
+			sourceTree = "<group>";
+		};
+		974AFC322E660E85003302BB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				974AFC332E660E91003302BB /* LogMealView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		974AFC352E660FCA003302BB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				97BF11702E5A35A8005FBA95 /* RootTabView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		974AFC362E660FCF003302BB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				974AFC372E660FEC003302BB /* RootTabViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		977356962E6334D0007ED640 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +225,7 @@
 			children = (
 				97BF116F2E5A3596005FBA95 /* Home */,
 				979C16D52E6486BE00322BB8 /* LogWater */,
+				974AFC312E660E79003302BB /* LogMeal */,
 			);
 			path = HomeTab;
 			sourceTree = "<group>";
@@ -374,7 +411,8 @@
 		97BF11762E5A3750005FBA95 /* RootTab */ = {
 			isa = PBXGroup;
 			children = (
-				97BF11702E5A35A8005FBA95 /* RootTabView.swift */,
+				974AFC362E660FCF003302BB /* ViewModel */,
+				974AFC352E660FCA003302BB /* View */,
 			);
 			path = RootTab;
 			sourceTree = "<group>";
@@ -644,6 +682,7 @@
 				97BF11582E5A33BF005FBA95 /* FitNutCoach.xcdatamodeld in Sources */,
 				977356A52E6364E6007ED640 /* FoodItemModel.swift in Sources */,
 				977356A32E63649C007ED640 /* WorkoutModel.swift in Sources */,
+				974AFC382E660FEC003302BB /* RootTabViewModel.swift in Sources */,
 				97BF11932E5AB140005FBA95 /* ProfileView.swift in Sources */,
 				97BF11712E5A35A8005FBA95 /* RootTabView.swift in Sources */,
 				97BF11A62E5AE87F005FBA95 /* AppColors.swift in Sources */,
@@ -653,6 +692,7 @@
 				979C16D32E64803600322BB8 /* WorkoutManager.swift in Sources */,
 				979C16D82E648F1D00322BB8 /* LogWaterView.swift in Sources */,
 				97BF11592E5A33BF005FBA95 /* FitNutCoachApp.swift in Sources */,
+				974AFC342E660E91003302BB /* LogMealView.swift in Sources */,
 				977356952E631982007ED640 /* ProfileModel.swift in Sources */,
 				977356982E6334DD007ED640 /* Double+Extension.swift in Sources */,
 				97BF11AE2E5B140E005FBA95 /* NutritionSnapshotView.swift in Sources */,
@@ -818,9 +858,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FitNutCoach/Resources/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = L9KJU4573S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -828,13 +871,16 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.anupam.FitNutCoach;
+				PRODUCT_BUNDLE_IDENTIFIER = com.photoratapp.photorat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Generic Development Profile";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -846,9 +892,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FitNutCoach/Resources/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = L9KJU4573S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -856,13 +905,16 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.anupam.FitNutCoach;
+				PRODUCT_BUNDLE_IDENTIFIER = com.photoratapp.photorat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Generic Development Profile";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
