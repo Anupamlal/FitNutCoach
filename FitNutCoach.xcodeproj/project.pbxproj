@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		974AFC342E660E91003302BB /* LogMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974AFC332E660E91003302BB /* LogMealView.swift */; };
+		974AFC342E660E91003302BB /* LogMealOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974AFC332E660E91003302BB /* LogMealOptionsView.swift */; };
 		974AFC382E660FEC003302BB /* RootTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974AFC372E660FEC003302BB /* RootTabViewModel.swift */; };
 		977356952E631982007ED640 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977356942E631982007ED640 /* ProfileModel.swift */; };
 		977356982E6334DD007ED640 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977356972E6334D8007ED640 /* Double+Extension.swift */; };
@@ -18,6 +18,8 @@
 		977356A32E63649C007ED640 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977356A22E636498007ED640 /* WorkoutModel.swift */; };
 		977356A52E6364E6007ED640 /* FoodItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977356A42E6364E3007ED640 /* FoodItemModel.swift */; };
 		977356A72E63654F007ED640 /* WorkoutSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977356A62E63654A007ED640 /* WorkoutSetModel.swift */; };
+		9778FCDC2E6AF99600A3EF0C /* LogMealOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9778FCDB2E6AF99600A3EF0C /* LogMealOptionView.swift */; };
+		9778FCE32E6B07CE00A3EF0C /* BarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9778FCE22E6B07CE00A3EF0C /* BarcodeView.swift */; };
 		9780BD782E63024D005227E4 /* BaseManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780BD772E63024D005227E4 /* BaseManagerDelegate.swift */; };
 		9780BD7A2E630545005227E4 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780BD792E630545005227E4 /* ProfileManager.swift */; };
 		979C16D12E6468E100322BB8 /* MealManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979C16D02E6468E100322BB8 /* MealManager.swift */; };
@@ -48,6 +50,12 @@
 		97BF11AA2E5AEE83005FBA95 /* FNButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF11A92E5AEE83005FBA95 /* FNButton.swift */; };
 		97BF11AE2E5B140E005FBA95 /* NutritionSnapshotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF11AD2E5B140E005FBA95 /* NutritionSnapshotView.swift */; };
 		97BF11B22E5B30A6005FBA95 /* QuickRecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF11B12E5B30A6005FBA95 /* QuickRecipesView.swift */; };
+		97C44E0E2E6C797E00FC0757 /* CustomBackButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C44E0D2E6C797E00FC0757 /* CustomBackButtonModifier.swift */; };
+		97D9A8572E6CA5E2008C5725 /* BarcodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D9A8562E6CA5E2008C5725 /* BarcodeScannerView.swift */; };
+		97ED16452E6DBF3100DFF623 /* BarcodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ED16442E6DBF3100DFF623 /* BarcodeViewModel.swift */; };
+		97ED16472E6DE3F400DFF623 /* BarcodeManualEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ED16462E6DE3F400DFF623 /* BarcodeManualEntryView.swift */; };
+		97ED16492E6DE61100DFF623 /* FNTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ED16482E6DE61100DFF623 /* FNTextField.swift */; };
+		97ED164D2E6DF51500DFF623 /* ReviewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ED164C2E6DF51500DFF623 /* ReviewItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +76,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		974AFC332E660E91003302BB /* LogMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMealView.swift; sourceTree = "<group>"; };
+		974AFC332E660E91003302BB /* LogMealOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMealOptionsView.swift; sourceTree = "<group>"; };
 		974AFC372E660FEC003302BB /* RootTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabViewModel.swift; sourceTree = "<group>"; };
 		977356942E631982007ED640 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		977356972E6334D8007ED640 /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
@@ -79,6 +87,8 @@
 		977356A22E636498007ED640 /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
 		977356A42E6364E3007ED640 /* FoodItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemModel.swift; sourceTree = "<group>"; };
 		977356A62E63654A007ED640 /* WorkoutSetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSetModel.swift; sourceTree = "<group>"; };
+		9778FCDB2E6AF99600A3EF0C /* LogMealOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMealOptionView.swift; sourceTree = "<group>"; };
+		9778FCE22E6B07CE00A3EF0C /* BarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeView.swift; sourceTree = "<group>"; };
 		9780BD772E63024D005227E4 /* BaseManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseManagerDelegate.swift; sourceTree = "<group>"; };
 		9780BD792E630545005227E4 /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
 		979C16D02E6468E100322BB8 /* MealManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealManager.swift; sourceTree = "<group>"; };
@@ -112,6 +122,12 @@
 		97BF11A92E5AEE83005FBA95 /* FNButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FNButton.swift; sourceTree = "<group>"; };
 		97BF11AD2E5B140E005FBA95 /* NutritionSnapshotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionSnapshotView.swift; sourceTree = "<group>"; };
 		97BF11B12E5B30A6005FBA95 /* QuickRecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickRecipesView.swift; sourceTree = "<group>"; };
+		97C44E0D2E6C797E00FC0757 /* CustomBackButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackButtonModifier.swift; sourceTree = "<group>"; };
+		97D9A8562E6CA5E2008C5725 /* BarcodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerView.swift; sourceTree = "<group>"; };
+		97ED16442E6DBF3100DFF623 /* BarcodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeViewModel.swift; sourceTree = "<group>"; };
+		97ED16462E6DE3F400DFF623 /* BarcodeManualEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeManualEntryView.swift; sourceTree = "<group>"; };
+		97ED16482E6DE61100DFF623 /* FNTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FNTextField.swift; sourceTree = "<group>"; };
+		97ED164C2E6DF51500DFF623 /* ReviewItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +158,9 @@
 		974AFC312E660E79003302BB /* LogMeal */ = {
 			isa = PBXGroup;
 			children = (
-				974AFC322E660E85003302BB /* View */,
+				9778FCDD2E6AFBEC00A3EF0C /* LogMealOptionsView */,
+				9778FCDE2E6B079600A3EF0C /* BarcodeView */,
+				97ED164A2E6DF47300DFF623 /* ReviewItemView */,
 			);
 			path = LogMeal;
 			sourceTree = "<group>";
@@ -150,7 +168,8 @@
 		974AFC322E660E85003302BB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				974AFC332E660E91003302BB /* LogMealView.swift */,
+				9778FCDA2E6AF97F00A3EF0C /* Cells */,
+				974AFC332E660E91003302BB /* LogMealOptionsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -182,9 +201,44 @@
 		977356992E634C2C007ED640 /* ViewModifiers */ = {
 			isa = PBXGroup;
 			children = (
+				97C44E0D2E6C797E00FC0757 /* CustomBackButtonModifier.swift */,
 				9773569A2E634C3E007ED640 /* OnFirstAppearViewModifier.swift */,
 			);
 			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
+		9778FCDA2E6AF97F00A3EF0C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				9778FCDB2E6AF99600A3EF0C /* LogMealOptionView.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		9778FCDD2E6AFBEC00A3EF0C /* LogMealOptionsView */ = {
+			isa = PBXGroup;
+			children = (
+				974AFC322E660E85003302BB /* View */,
+			);
+			path = LogMealOptionsView;
+			sourceTree = "<group>";
+		};
+		9778FCDE2E6B079600A3EF0C /* BarcodeView */ = {
+			isa = PBXGroup;
+			children = (
+				97ED16432E6DB2E300DFF623 /* BarcodeViewModel */,
+				9778FCDF2E6B07AA00A3EF0C /* View */,
+			);
+			path = BarcodeView;
+			sourceTree = "<group>";
+		};
+		9778FCDF2E6B07AA00A3EF0C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9778FCE22E6B07CE00A3EF0C /* BarcodeView.swift */,
+				97ED16462E6DE3F400DFF623 /* BarcodeManualEntryView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		9780BD752E6301F2005227E4 /* Managers */ = {
@@ -340,6 +394,7 @@
 				97BF119C2E5ADBF5005FBA95 /* ProgressRing.swift */,
 				97BF11722E5A35D4005FBA95 /* AppSpacing.swift */,
 				97BF11A92E5AEE83005FBA95 /* FNButton.swift */,
+				97ED16482E6DE61100DFF623 /* FNTextField.swift */,
 			);
 			path = DesignKit;
 			sourceTree = "<group>";
@@ -347,6 +402,7 @@
 		97BF11692E5A34DF005FBA95 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				97ED16412E6DB2B300DFF623 /* HelperViews */,
 				977356992E634C2C007ED640 /* ViewModifiers */,
 				977356962E6334D0007ED640 /* Extensions */,
 				97BF11A42E5AE879005FBA95 /* AppColors */,
@@ -525,6 +581,38 @@
 			path = AppColors;
 			sourceTree = "<group>";
 		};
+		97ED16412E6DB2B300DFF623 /* HelperViews */ = {
+			isa = PBXGroup;
+			children = (
+				97D9A8562E6CA5E2008C5725 /* BarcodeScannerView.swift */,
+			);
+			path = HelperViews;
+			sourceTree = "<group>";
+		};
+		97ED16432E6DB2E300DFF623 /* BarcodeViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				97ED16442E6DBF3100DFF623 /* BarcodeViewModel.swift */,
+			);
+			path = BarcodeViewModel;
+			sourceTree = "<group>";
+		};
+		97ED164A2E6DF47300DFF623 /* ReviewItemView */ = {
+			isa = PBXGroup;
+			children = (
+				97ED164B2E6DF48B00DFF623 /* View */,
+			);
+			path = ReviewItemView;
+			sourceTree = "<group>";
+		};
+		97ED164B2E6DF48B00DFF623 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				97ED164C2E6DF51500DFF623 /* ReviewItemView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -662,16 +750,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97C44E0E2E6C797E00FC0757 /* CustomBackButtonModifier.swift in Sources */,
 				979C16D12E6468E100322BB8 /* MealManager.swift in Sources */,
 				9773569F2E63620E007ED640 /* DailyActivityModel.swift in Sources */,
+				97D9A8572E6CA5E2008C5725 /* BarcodeScannerView.swift in Sources */,
 				977356A72E63654F007ED640 /* WorkoutSetModel.swift in Sources */,
+				97ED16492E6DE61100DFF623 /* FNTextField.swift in Sources */,
 				97BF119F2E5AE421005FBA95 /* ProgressRingsView.swift in Sources */,
 				9773569B2E634C3E007ED640 /* OnFirstAppearViewModifier.swift in Sources */,
+				97ED16452E6DBF3100DFF623 /* BarcodeViewModel.swift in Sources */,
+				9778FCE32E6B07CE00A3EF0C /* BarcodeView.swift in Sources */,
+				9778FCDC2E6AF99600A3EF0C /* LogMealOptionView.swift in Sources */,
+				97ED16472E6DE3F400DFF623 /* BarcodeManualEntryView.swift in Sources */,
 				97BF11AA2E5AEE83005FBA95 /* FNButton.swift in Sources */,
 				97BF119B2E5ABA38005FBA95 /* AppTexts.swift in Sources */,
 				9780BD7A2E630545005227E4 /* ProfileManager.swift in Sources */,
 				97BF11662E5A3496005FBA95 /* PersistenceController.swift in Sources */,
 				97BF11B22E5B30A6005FBA95 /* QuickRecipesView.swift in Sources */,
+				97ED164D2E6DF51500DFF623 /* ReviewItemView.swift in Sources */,
 				9780BD782E63024D005227E4 /* BaseManagerDelegate.swift in Sources */,
 				977356A12E636359007ED640 /* MealModel.swift in Sources */,
 				97BF117E2E5AB055005FBA95 /* HomeView.swift in Sources */,
@@ -692,7 +788,7 @@
 				979C16D32E64803600322BB8 /* WorkoutManager.swift in Sources */,
 				979C16D82E648F1D00322BB8 /* LogWaterView.swift in Sources */,
 				97BF11592E5A33BF005FBA95 /* FitNutCoachApp.swift in Sources */,
-				974AFC342E660E91003302BB /* LogMealView.swift in Sources */,
+				974AFC342E660E91003302BB /* LogMealOptionsView.swift in Sources */,
 				977356952E631982007ED640 /* ProfileModel.swift in Sources */,
 				977356982E6334DD007ED640 /* Double+Extension.swift in Sources */,
 				97BF11AE2E5B140E005FBA95 /* NutritionSnapshotView.swift in Sources */,
@@ -858,14 +954,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FitNutCoach/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = L9KJU4573S;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2M6M6BW775;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs camera to detect barcode, images to log meal";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -877,10 +974,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.photoratapp.photorat;
+				PRODUCT_BUNDLE_IDENTIFIER = a.export.FitNutCoach;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Generic Development Profile";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = a;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -892,14 +989,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FitNutCoach/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = L9KJU4573S;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 2M6M6BW775;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs camera to detect barcode, images to log meal";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -911,10 +1009,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.photoratapp.photorat;
+				PRODUCT_BUNDLE_IDENTIFIER = a.export.FitNutCoach;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Generic Development Profile";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = a;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

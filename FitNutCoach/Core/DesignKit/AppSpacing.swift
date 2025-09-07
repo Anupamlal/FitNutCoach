@@ -20,10 +20,12 @@ struct Card<Content: View>: View {
     let content: () -> Content
     let shadowEnable: Bool
     let backgroundColor: Color
-    init(shadowEnable: Bool = false, backgroundColor: Color = .white, @ViewBuilder content: @escaping () -> Content) {
+    let borderEnable: Bool
+    init(shadowEnable: Bool = false, backgroundColor: Color = .white, borderEnable: Bool = false, @ViewBuilder content: @escaping () -> Content) {
         self.content = content
         self.shadowEnable = shadowEnable
         self.backgroundColor = backgroundColor
+        self.borderEnable = borderEnable
     }
     var body: some View {
         VStack(alignment: .leading, spacing: AppSpacing.s) {
@@ -33,5 +35,9 @@ struct Card<Content: View>: View {
         .background(backgroundColor)
         .cornerRadius(16)
         .shadow(radius: shadowEnable ? 2 : 0, y: shadowEnable ? 1 : 0)
+        .overlay(
+            RoundedRectangle(cornerRadius: 16)
+                .stroke(borderEnable ? Color.gray.opacity(0.2) : Color.clear, lineWidth: borderEnable ? 1 : 0)
+        )
     }
 }

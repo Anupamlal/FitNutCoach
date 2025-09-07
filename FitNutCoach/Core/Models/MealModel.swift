@@ -14,7 +14,7 @@ enum MealType: String, Codable {
 }
 
 enum MealSourceType: String, Codable {
-    case manual, photo, text
+    case manual, photo, barcode
 }
 
 struct MealModel: Codable {

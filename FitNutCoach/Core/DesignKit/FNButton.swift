@@ -14,6 +14,7 @@ struct FNButton: View {
     var backgroundColor: Color = .primaryAccent
     var isEnabled: Bool = true
     var isShadowEnable: Bool = false
+    var buttonIconName: String? = nil
     var buttonAction:(()->())
     
     var body: some View {
@@ -38,10 +39,20 @@ struct FNButton: View {
             }else {
                 RoundedRectangle(cornerRadius: 14)
                     .stroke(isEnabled ? backgroundColor : backgroundColor.opacity(0.5))
+                    .background(Color.white.clipShape(RoundedRectangle(cornerRadius: 14)))
                     .overlay {
-                        Text(buttonTitle)
-                            .font(.system(size: 16, weight: .semibold))
-                            .foregroundStyle(isEnabled ? backgroundColor : backgroundColor.opacity(0.5))
+                        HStack {
+                            
+                            if let buttonIconName = buttonIconName {
+                                Image(systemName: buttonIconName)
+                                    .renderingMode(.template)
+                                    .foregroundStyle(backgroundColor)
+                            }
+                            
+                            Text(buttonTitle)
+                                .font(.system(size: 16, weight: .semibold))
+                                .foregroundStyle(isEnabled ? backgroundColor : backgroundColor.opacity(0.5))
+                        }
                     }
             }
             

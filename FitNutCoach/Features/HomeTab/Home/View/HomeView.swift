@@ -145,8 +145,15 @@ struct HomeView: View {
                 .presentationDetents([.medium])
                 
         }
-        .fullScreenCover(isPresented: $homeViewModel.openLogMealView) {
-            LogMealView()
+        .sheet(isPresented: $homeViewModel.openLogMealView) {
+            LogMealOptionsView(logMealCallback: { selectMealType in
+                self.homeViewModel.setLogMealOption(selectedOption: selectMealType)
+            })
+            .presentationDragIndicator(.visible)
+            .presentationDetents([.medium])
+        }
+        .fullScreenCover(isPresented: $homeViewModel.openBarcodeScanner) {
+            BarcodeView()
         }
     }
 }

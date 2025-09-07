@@ -20,6 +20,9 @@ class AppColors {
     static let waterProgressColor: Color = Color(hex: 0x0EA5E9)
     static let waterTotalColor: Color = Color(hex: 0xDBEAFE)
     static let waterOverTargetColor: Color = Color(hex: 0x22C55E)
+    
+    static let barcodeReaderColor: Color = Color(hex: 0xF59E0B)
+    static let manualReaderColor: Color = Color(hex: 0x10B981)
 }
 
 extension Color {

@@ -29,5 +29,19 @@ class AppTexts {
     static let saveText = "Save"
     static let cancelText = "Cancel"
     
+    static let chooseMealOptionText = "Choose how you want to log your meal"
+    static let snapAPhotoText = "Snap a Photo"
+    static let useAItoDetectFoodsText = "Use AI to detect foods"
+    static let scanABarCodeText = "Scan a Barcode"
+    static let foodViaBarcodeText = "Find foods via barcode"
+    static let addManuallyText = "Add Manually"
+    static let searchOrCreateFoodText = "Search or create your food"
+    
+    static let alignThebarcodeText = "Align the barcode within the frame"
+    static let enterBarcodeManuallyText = "Enter Barcode Manually"
+    static let enterBarcodeText = "Enter barcode"
+    static let confirmText = "Confirm"
+    
+    
     
 }
