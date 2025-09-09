@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		972E9E522E70A063009FD7F1 /* ReviewItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9E512E70A063009FD7F1 /* ReviewItemViewModel.swift */; };
+		972E9E582E70B3BE009FD7F1 /* BarcodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9E572E70B3BE009FD7F1 /* BarcodeModel.swift */; };
+		972E9E5A2E70B7B3009FD7F1 /* FNActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9E592E70B7B3009FD7F1 /* FNActivityIndicator.swift */; };
+		972E9E5C2E70BD7E009FD7F1 /* FoodCatalogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9E5B2E70BD7E009FD7F1 /* FoodCatalogItem.swift */; };
 		974AFC342E660E91003302BB /* LogMealOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974AFC332E660E91003302BB /* LogMealOptionsView.swift */; };
 		974AFC382E660FEC003302BB /* RootTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974AFC372E660FEC003302BB /* RootTabViewModel.swift */; };
 		977356952E631982007ED640 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977356942E631982007ED640 /* ProfileModel.swift */; };
@@ -56,6 +60,7 @@
 		97ED16472E6DE3F400DFF623 /* BarcodeManualEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ED16462E6DE3F400DFF623 /* BarcodeManualEntryView.swift */; };
 		97ED16492E6DE61100DFF623 /* FNTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ED16482E6DE61100DFF623 /* FNTextField.swift */; };
 		97ED164D2E6DF51500DFF623 /* ReviewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ED164C2E6DF51500DFF623 /* ReviewItemView.swift */; };
+		97ED164F2E6DF6D400DFF623 /* URLSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ED164E2E6DF6D400DFF623 /* URLSessionManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +81,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		972E9E512E70A063009FD7F1 /* ReviewItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewItemViewModel.swift; sourceTree = "<group>"; };
+		972E9E572E70B3BE009FD7F1 /* BarcodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeModel.swift; sourceTree = "<group>"; };
+		972E9E592E70B7B3009FD7F1 /* FNActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FNActivityIndicator.swift; sourceTree = "<group>"; };
+		972E9E5B2E70BD7E009FD7F1 /* FoodCatalogItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCatalogItem.swift; sourceTree = "<group>"; };
 		974AFC332E660E91003302BB /* LogMealOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMealOptionsView.swift; sourceTree = "<group>"; };
 		974AFC372E660FEC003302BB /* RootTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabViewModel.swift; sourceTree = "<group>"; };
 		977356942E631982007ED640 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
@@ -128,7 +137,16 @@
 		97ED16462E6DE3F400DFF623 /* BarcodeManualEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeManualEntryView.swift; sourceTree = "<group>"; };
 		97ED16482E6DE61100DFF623 /* FNTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FNTextField.swift; sourceTree = "<group>"; };
 		97ED164C2E6DF51500DFF623 /* ReviewItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewItemView.swift; sourceTree = "<group>"; };
+		97ED164E2E6DF6D400DFF623 /* URLSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		972E9E532E70A1C9009FD7F1 /* APIS */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = APIS;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		97BF11172E5A3244005FBA95 /* Frameworks */ = {
@@ -155,6 +173,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		972E9E502E70A04F009FD7F1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				972E9E512E70A063009FD7F1 /* ReviewItemViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		972E9E562E70B3BA009FD7F1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				972E9E572E70B3BE009FD7F1 /* BarcodeModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		974AFC312E660E79003302BB /* LogMeal */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,6 +278,7 @@
 		9780BD752E6301F2005227E4 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				97ED164E2E6DF6D400DFF623 /* URLSessionManager.swift */,
 				9780BD762E63022B005227E4 /* ManagerProtocol */,
 				9780BD792E630545005227E4 /* ProfileManager.swift */,
 				9773569C2E635552007ED640 /* DailyActivityManager.swift */,
@@ -270,6 +305,7 @@
 				977356A42E6364E3007ED640 /* FoodItemModel.swift */,
 				977356A22E636498007ED640 /* WorkoutModel.swift */,
 				977356A62E63654A007ED640 /* WorkoutSetModel.swift */,
+				972E9E5B2E70BD7E009FD7F1 /* FoodCatalogItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -380,7 +416,6 @@
 			isa = PBXGroup;
 			children = (
 				9780BD7B2E63057E005227E4 /* Models */,
-				9780BD752E6301F2005227E4 /* Managers */,
 				97BF11682E5A34D6005FBA95 /* DesignKit */,
 				97BF11692E5A34DF005FBA95 /* Utilities */,
 				97BF116A2E5A34F4005FBA95 /* Environment */,
@@ -391,6 +426,7 @@
 		97BF11682E5A34D6005FBA95 /* DesignKit */ = {
 			isa = PBXGroup;
 			children = (
+				972E9E592E70B7B3009FD7F1 /* FNActivityIndicator.swift */,
 				97BF119C2E5ADBF5005FBA95 /* ProgressRing.swift */,
 				97BF11722E5A35D4005FBA95 /* AppSpacing.swift */,
 				97BF11A92E5AEE83005FBA95 /* FNButton.swift */,
@@ -422,6 +458,7 @@
 		97BF116B2E5A3514005FBA95 /* DataStore */ = {
 			isa = PBXGroup;
 			children = (
+				9780BD752E6301F2005227E4 /* Managers */,
 			);
 			path = DataStore;
 			sourceTree = "<group>";
@@ -429,6 +466,7 @@
 		97BF116C2E5A351E005FBA95 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				972E9E532E70A1C9009FD7F1 /* APIS */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -600,6 +638,8 @@
 		97ED164A2E6DF47300DFF623 /* ReviewItemView */ = {
 			isa = PBXGroup;
 			children = (
+				972E9E562E70B3BA009FD7F1 /* Model */,
+				972E9E502E70A04F009FD7F1 /* ViewModel */,
 				97ED164B2E6DF48B00DFF623 /* View */,
 			);
 			path = ReviewItemView;
@@ -627,6 +667,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				972E9E532E70A1C9009FD7F1 /* APIS */,
 			);
 			name = FitNutCoach;
 			packageProductDependencies = (
@@ -759,6 +802,7 @@
 				97BF119F2E5AE421005FBA95 /* ProgressRingsView.swift in Sources */,
 				9773569B2E634C3E007ED640 /* OnFirstAppearViewModifier.swift in Sources */,
 				97ED16452E6DBF3100DFF623 /* BarcodeViewModel.swift in Sources */,
+				972E9E522E70A063009FD7F1 /* ReviewItemViewModel.swift in Sources */,
 				9778FCE32E6B07CE00A3EF0C /* BarcodeView.swift in Sources */,
 				9778FCDC2E6AF99600A3EF0C /* LogMealOptionView.swift in Sources */,
 				97ED16472E6DE3F400DFF623 /* BarcodeManualEntryView.swift in Sources */,
@@ -771,6 +815,7 @@
 				9780BD782E63024D005227E4 /* BaseManagerDelegate.swift in Sources */,
 				977356A12E636359007ED640 /* MealModel.swift in Sources */,
 				97BF117E2E5AB055005FBA95 /* HomeView.swift in Sources */,
+				972E9E5C2E70BD7E009FD7F1 /* FoodCatalogItem.swift in Sources */,
 				97BF118F2E5AB126005FBA95 /* RecipesView.swift in Sources */,
 				97BF11A32E5AE45F005FBA95 /* ProgressRingCellView.swift in Sources */,
 				97BF119D2E5ADBF5005FBA95 /* ProgressRing.swift in Sources */,
@@ -783,6 +828,8 @@
 				97BF11712E5A35A8005FBA95 /* RootTabView.swift in Sources */,
 				97BF11A62E5AE87F005FBA95 /* AppColors.swift in Sources */,
 				97BF11982E5AB9D5005FBA95 /* HomeViewModel.swift in Sources */,
+				972E9E5A2E70B7B3009FD7F1 /* FNActivityIndicator.swift in Sources */,
+				97ED164F2E6DF6D400DFF623 /* URLSessionManager.swift in Sources */,
 				9773569D2E635552007ED640 /* DailyActivityManager.swift in Sources */,
 				97BF11912E5AB131005FBA95 /* TrendsView.swift in Sources */,
 				979C16D32E64803600322BB8 /* WorkoutManager.swift in Sources */,
@@ -793,6 +840,7 @@
 				977356982E6334DD007ED640 /* Double+Extension.swift in Sources */,
 				97BF11AE2E5B140E005FBA95 /* NutritionSnapshotView.swift in Sources */,
 				97BF118C2E5AB106005FBA95 /* WorkoutsView.swift in Sources */,
+				972E9E582E70B3BE009FD7F1 /* BarcodeModel.swift in Sources */,
 				97BF11752E5A3691005FBA95 /* AppEnvironment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

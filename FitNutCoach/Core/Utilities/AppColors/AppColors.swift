@@ -23,6 +23,8 @@ class AppColors {
     
     static let barcodeReaderColor: Color = Color(hex: 0xF59E0B)
     static let manualReaderColor: Color = Color(hex: 0x10B981)
+    
+    static let foodCardBGColor: Color = Color(hex: 0xF3F4F6)
 }
 
 extension Color {

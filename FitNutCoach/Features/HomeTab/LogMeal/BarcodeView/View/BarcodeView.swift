@@ -76,10 +76,7 @@ struct BarcodeView: View {
             .sheet(isPresented: $barcodeViewModel.isBarcodeDetected, onDismiss: {
                 barcodeViewModel.isSessionRunning = true
             }) {
-                VStack {
-                    Text("Barcode Detected")
-                    Text(self.barcodeViewModel.barcodeValue)
-                }
+                ReviewItemView(barcode: self.barcodeViewModel.barcodeValue)
             }
             .sheet(isPresented: $barcodeViewModel.isManualEntryOpen) {
                 BarcodeManualEntryView(code: $barcodeViewModel.barcodeValue){

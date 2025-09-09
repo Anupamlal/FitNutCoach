@@ -29,7 +29,7 @@ struct CustomBackButtonModifier: ViewModifier {
                 ToolbarItem(placement: .principal) {
                     VStack {
                         Text(navigationTitle)
-                            .font(.system(.title3))
+                            .font(.system(size: 18, weight: .medium))
                             .foregroundStyle(backButtonTint)
                         
                         if let navigationSubTitle = navigationSubTitle {
