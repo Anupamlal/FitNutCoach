@@ -25,8 +25,9 @@ struct ProfileModel: Codable {
     var stepTarget: Int32
     var waterTargetLiters: Double
     var weightKg: Double
+    var heightCm: Double
     
-    init(allergies: String? = nil, calorieTarget: Double, carbTarget: Double, createdAt: Date? = nil, dietType: DietType, dob: Date? = nil, fatTarget: Double, id: UUID? = nil, name: String, proteinTarget: Double, stepTarget: Int32, waterTargetLiters: Double, weightKg: Double) {
+    init(allergies: String? = nil, calorieTarget: Double, carbTarget: Double, createdAt: Date? = nil, dietType: DietType, dob: Date? = nil, fatTarget: Double, id: UUID? = nil, name: String, proteinTarget: Double, stepTarget: Int32, waterTargetLiters: Double, weightKg: Double, heightCm: Double) {
         self.allergies = allergies
         self.calorieTarget = calorieTarget
         self.carbTarget = carbTarget
@@ -40,6 +41,7 @@ struct ProfileModel: Codable {
         self.stepTarget = stepTarget
         self.waterTargetLiters = waterTargetLiters
         self.weightKg = weightKg
+        self.heightCm = heightCm
     }
     
     init() {
@@ -56,7 +58,8 @@ struct ProfileModel: Codable {
             proteinTarget: 0,
             stepTarget: 0,
             waterTargetLiters: 0,
-            weightKg: 0
+            weightKg: 0,
+            heightCm: 0
         )
     }
     
@@ -74,7 +77,8 @@ struct ProfileModel: Codable {
             proteinTarget: userProfile.proteinTarget,
             stepTarget: userProfile.stepTarget,
             waterTargetLiters: userProfile.waterTargetLiters,
-            weightKg: userProfile.weightKg
+            weightKg: userProfile.weightKg,
+            heightCm: userProfile.heightCm
         )
     }
     
@@ -92,6 +96,7 @@ struct ProfileModel: Codable {
         userProfile.stepTarget = stepTarget
         userProfile.waterTargetLiters = waterTargetLiters
         userProfile.weightKg = weightKg
+        userProfile.heightCm = heightCm
     }
     
     func getProfileName() -> String {

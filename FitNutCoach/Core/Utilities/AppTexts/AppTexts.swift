@@ -9,6 +9,8 @@ import UIKit
 
 class AppTexts {
 
+    static let appName = "FitNutCoach"
+    
     static let hiText = "Hi"
     static let kcalText = "kcal"
     static let litreText = "L"

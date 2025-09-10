@@ -1,6 +1,6 @@
 //
 //  FNActivityIndicator.swift
-//  PennyPlanner
+//  FitNutCoach
 //
 //  Created by Anupam Kumar Lal on 13/07/24.
 //

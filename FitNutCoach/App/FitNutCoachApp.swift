@@ -10,20 +10,33 @@ import SwiftUI
 @main
 struct FitNutCoachApp: App {
     let persistenceController = PersistenceController.shared
-    
-    private let profileManager: ProfileManager
-    private let dailyActivityManager: DailyActivityManager
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @StateObject private var appRootManager: AppRootManager
     
     init() {
         let container = PersistenceController.shared.container
-        self.profileManager = ProfileManager(container: container)
-        self.dailyActivityManager = DailyActivityManager(container: container)
+        _appRootManager = StateObject(wrappedValue: AppRootManager(container: container))
     }
     
     var body: some Scene {
         WindowGroup {
-            RootTabView(profileManager: profileManager, dailyActivityManager: dailyActivityManager)
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            switch self.appRootManager.currentAppRoot {
+                
+            case .splash:
+                SplashView()
+                
+            case .login:
+                LoginView()
+                
+            case .profile:
+                ProfileSetupView(profileManager: appRootManager.profileManager)
+                
+            case .tabview:
+                RootTabView(profileManager: appRootManager.profileManager, dailyActivityManager: appRootManager.dailyActivityManager)
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            }
         }
+        .environmentObject(appRootManager)
+
     }
 }
