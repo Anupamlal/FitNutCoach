@@ -9,7 +9,7 @@ import SwiftUI
 import CoreData
 
 struct WorkoutModel: Codable {
-    let id: UUID?
+    let id: String?
     let avgHR: Int16
     let date: Date?
     let distanceKm: Double
@@ -23,7 +23,7 @@ struct WorkoutModel: Codable {
     let type: String?
     var workoutSets: [WorkoutSetModel]?
     
-    init(id: UUID?, avgHR: Int16, date: Date?, distanceKm: Double, durationMin: Int16, endDate: Date?, kcal: Double, maxHR: Int16, notes: String?, rpe: Int16, source: String?, type: String?, workoutSets: [WorkoutSetModel]?) {
+    init(id: String?, avgHR: Int16, date: Date?, distanceKm: Double, durationMin: Int16, endDate: Date?, kcal: Double, maxHR: Int16, notes: String?, rpe: Int16, source: String?, type: String?, workoutSets: [WorkoutSetModel]?) {
         self.id = id
         self.avgHR = avgHR
         self.date = date
@@ -40,7 +40,7 @@ struct WorkoutModel: Codable {
     }
     
     init() {
-        self.init(id: UUID(), avgHR: 0, date: nil, distanceKm: 0, durationMin: 0, endDate: nil, kcal: 0, maxHR: 0, notes: nil, rpe: 0, source: nil, type: nil, workoutSets: nil)
+        self.init(id: UUID().uuidString, avgHR: 0, date: nil, distanceKm: 0, durationMin: 0, endDate: nil, kcal: 0, maxHR: 0, notes: nil, rpe: 0, source: nil, type: nil, workoutSets: nil)
     }
     
     init(workout: Workout) {

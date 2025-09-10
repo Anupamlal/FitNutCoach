@@ -10,14 +10,13 @@
 		972E9E522E70A063009FD7F1 /* ReviewItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9E512E70A063009FD7F1 /* ReviewItemViewModel.swift */; };
 		972E9E582E70B3BE009FD7F1 /* BarcodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9E572E70B3BE009FD7F1 /* BarcodeModel.swift */; };
 		972E9E5A2E70B7B3009FD7F1 /* FNActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9E592E70B7B3009FD7F1 /* FNActivityIndicator.swift */; };
-		972E9E5C2E70BD7E009FD7F1 /* FoodCatalogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9E5B2E70BD7E009FD7F1 /* FoodCatalogItem.swift */; };
+		972E9E5C2E70BD7E009FD7F1 /* FoodCatalogItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9E5B2E70BD7E009FD7F1 /* FoodCatalogItemModel.swift */; };
 		972E9E5E2E7170AF009FD7F1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 972E9E5D2E7170AF009FD7F1 /* GoogleService-Info.plist */; };
 		972E9E612E7170E8009FD7F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9E5F2E7170E8009FD7F1 /* AppDelegate.swift */; };
 		972E9E642E7173A5009FD7F1 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 972E9E632E7173A5009FD7F1 /* FirebaseAuth */; };
 		972E9E662E7173A5009FD7F1 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 972E9E652E7173A5009FD7F1 /* FirebaseCore */; };
 		972E9E682E7173A5009FD7F1 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 972E9E672E7173A5009FD7F1 /* FirebaseDatabase */; };
 		972E9E6A2E7173A5009FD7F1 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 972E9E692E7173A5009FD7F1 /* FirebaseFirestore */; };
-		972E9E6C2E7177A0009FD7F1 /* UserDefaultConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9E6B2E7177A0009FD7F1 /* UserDefaultConstant.swift */; };
 		972E9E702E717CAF009FD7F1 /* AppRootManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9E6F2E717CAF009FD7F1 /* AppRootManager.swift */; };
 		972E9E742E717D14009FD7F1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9E732E717D14009FD7F1 /* LoginView.swift */; };
 		972E9E772E718E65009FD7F1 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 972E9E762E718E65009FD7F1 /* GoogleSignIn */; };
@@ -27,10 +26,13 @@
 		972E9E862E719659009FD7F1 /* ProfileSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9E852E719659009FD7F1 /* ProfileSetupView.swift */; };
 		972E9E8A2E719696009FD7F1 /* ProfileSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9E892E719696009FD7F1 /* ProfileSetupViewModel.swift */; };
 		972E9E8D2E71A268009FD7F1 /* ProfileFBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9E8C2E71A268009FD7F1 /* ProfileFBHelper.swift */; };
-		972E9E952E71A344009FD7F1 /* FirebaseConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9E932E71A344009FD7F1 /* FirebaseConstant.swift */; };
+		972E9E952E71A344009FD7F1 /* FirebaseKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9E932E71A344009FD7F1 /* FirebaseKey.swift */; };
 		972E9E972E71A35D009FD7F1 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9E962E71A35D009FD7F1 /* String+Extension.swift */; };
 		972E9E9A2E71A434009FD7F1 /* DispatchQueue+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9E992E71A434009FD7F1 /* DispatchQueue+Extension.swift */; };
 		972E9E9B2E71A434009FD7F1 /* Codable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9E982E71A434009FD7F1 /* Codable+Extension.swift */; };
+		972E9E9D2E71E26C009FD7F1 /* FoodCatalogFBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9E9C2E71E26C009FD7F1 /* FoodCatalogFBHelper.swift */; };
+		972E9E9F2E71E6B1009FD7F1 /* FoodCatalogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9E9E2E71E6B1009FD7F1 /* FoodCatalogManager.swift */; };
+		972E9EA32E720B27009FD7F1 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9EA22E720B27009FD7F1 /* UserDefaultManager.swift */; };
 		974AFC342E660E91003302BB /* LogMealOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974AFC332E660E91003302BB /* LogMealOptionsView.swift */; };
 		974AFC382E660FEC003302BB /* RootTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974AFC372E660FEC003302BB /* RootTabViewModel.swift */; };
 		977356952E631982007ED640 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977356942E631982007ED640 /* ProfileModel.swift */; };
@@ -104,10 +106,9 @@
 		972E9E512E70A063009FD7F1 /* ReviewItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewItemViewModel.swift; sourceTree = "<group>"; };
 		972E9E572E70B3BE009FD7F1 /* BarcodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeModel.swift; sourceTree = "<group>"; };
 		972E9E592E70B7B3009FD7F1 /* FNActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FNActivityIndicator.swift; sourceTree = "<group>"; };
-		972E9E5B2E70BD7E009FD7F1 /* FoodCatalogItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCatalogItem.swift; sourceTree = "<group>"; };
+		972E9E5B2E70BD7E009FD7F1 /* FoodCatalogItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCatalogItemModel.swift; sourceTree = "<group>"; };
 		972E9E5D2E7170AF009FD7F1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		972E9E5F2E7170E8009FD7F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		972E9E6B2E7177A0009FD7F1 /* UserDefaultConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultConstant.swift; sourceTree = "<group>"; };
 		972E9E6F2E717CAF009FD7F1 /* AppRootManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootManager.swift; sourceTree = "<group>"; };
 		972E9E732E717D14009FD7F1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		972E9E7C2E718E82009FD7F1 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -116,10 +117,13 @@
 		972E9E852E719659009FD7F1 /* ProfileSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetupView.swift; sourceTree = "<group>"; };
 		972E9E892E719696009FD7F1 /* ProfileSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetupViewModel.swift; sourceTree = "<group>"; };
 		972E9E8C2E71A268009FD7F1 /* ProfileFBHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFBHelper.swift; sourceTree = "<group>"; };
-		972E9E932E71A344009FD7F1 /* FirebaseConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstant.swift; sourceTree = "<group>"; };
+		972E9E932E71A344009FD7F1 /* FirebaseKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseKey.swift; sourceTree = "<group>"; };
 		972E9E962E71A35D009FD7F1 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		972E9E982E71A434009FD7F1 /* Codable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extension.swift"; sourceTree = "<group>"; };
 		972E9E992E71A434009FD7F1 /* DispatchQueue+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Extension.swift"; sourceTree = "<group>"; };
+		972E9E9C2E71E26C009FD7F1 /* FoodCatalogFBHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCatalogFBHelper.swift; sourceTree = "<group>"; };
+		972E9E9E2E71E6B1009FD7F1 /* FoodCatalogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCatalogManager.swift; sourceTree = "<group>"; };
+		972E9EA22E720B27009FD7F1 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		974AFC332E660E91003302BB /* LogMealOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMealOptionsView.swift; sourceTree = "<group>"; };
 		974AFC372E660FEC003302BB /* RootTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabViewModel.swift; sourceTree = "<group>"; };
 		977356942E631982007ED640 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
@@ -238,14 +242,6 @@
 			path = AppDelegate;
 			sourceTree = "<group>";
 		};
-		972E9E6D2E7177A6009FD7F1 /* UserDefaultConstant */ = {
-			isa = PBXGroup;
-			children = (
-				972E9E6B2E7177A0009FD7F1 /* UserDefaultConstant.swift */,
-			);
-			path = UserDefaultConstant;
-			sourceTree = "<group>";
-		};
 		972E9E6E2E717C94009FD7F1 /* AppRootManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -325,6 +321,7 @@
 			isa = PBXGroup;
 			children = (
 				972E9E8C2E71A268009FD7F1 /* ProfileFBHelper.swift */,
+				972E9E9C2E71E26C009FD7F1 /* FoodCatalogFBHelper.swift */,
 			);
 			path = FirebaseHelper;
 			sourceTree = "<group>";
@@ -332,7 +329,7 @@
 		972E9E942E71A344009FD7F1 /* FirebaseKey */ = {
 			isa = PBXGroup;
 			children = (
-				972E9E932E71A344009FD7F1 /* FirebaseConstant.swift */,
+				972E9E932E71A344009FD7F1 /* FirebaseKey.swift */,
 			);
 			path = FirebaseKey;
 			sourceTree = "<group>";
@@ -435,6 +432,8 @@
 				9773569C2E635552007ED640 /* DailyActivityManager.swift */,
 				979C16D02E6468E100322BB8 /* MealManager.swift */,
 				979C16D22E64802E00322BB8 /* WorkoutManager.swift */,
+				972E9E9E2E71E6B1009FD7F1 /* FoodCatalogManager.swift */,
+				972E9EA22E720B27009FD7F1 /* UserDefaultManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -456,7 +455,7 @@
 				977356A42E6364E3007ED640 /* FoodItemModel.swift */,
 				977356A22E636498007ED640 /* WorkoutModel.swift */,
 				977356A62E63654A007ED640 /* WorkoutSetModel.swift */,
-				972E9E5B2E70BD7E009FD7F1 /* FoodCatalogItem.swift */,
+				972E9E5B2E70BD7E009FD7F1 /* FoodCatalogItemModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -593,7 +592,6 @@
 			isa = PBXGroup;
 			children = (
 				972E9E942E71A344009FD7F1 /* FirebaseKey */,
-				972E9E6D2E7177A6009FD7F1 /* UserDefaultConstant */,
 				97ED16412E6DB2B300DFF623 /* HelperViews */,
 				977356992E634C2C007ED640 /* ViewModifiers */,
 				977356962E6334D0007ED640 /* Extensions */,
@@ -977,11 +975,11 @@
 				9773569B2E634C3E007ED640 /* OnFirstAppearViewModifier.swift in Sources */,
 				97ED16452E6DBF3100DFF623 /* BarcodeViewModel.swift in Sources */,
 				972E9E522E70A063009FD7F1 /* ReviewItemViewModel.swift in Sources */,
-				972E9E6C2E7177A0009FD7F1 /* UserDefaultConstant.swift in Sources */,
 				9778FCE32E6B07CE00A3EF0C /* BarcodeView.swift in Sources */,
 				972E9E7D2E718E82009FD7F1 /* LoginViewModel.swift in Sources */,
 				972E9E8A2E719696009FD7F1 /* ProfileSetupViewModel.swift in Sources */,
 				9778FCDC2E6AF99600A3EF0C /* LogMealOptionView.swift in Sources */,
+				972E9EA32E720B27009FD7F1 /* UserDefaultManager.swift in Sources */,
 				97ED16472E6DE3F400DFF623 /* BarcodeManualEntryView.swift in Sources */,
 				97BF11AA2E5AEE83005FBA95 /* FNButton.swift in Sources */,
 				97BF119B2E5ABA38005FBA95 /* AppTexts.swift in Sources */,
@@ -993,7 +991,7 @@
 				9780BD782E63024D005227E4 /* BaseManagerDelegate.swift in Sources */,
 				977356A12E636359007ED640 /* MealModel.swift in Sources */,
 				97BF117E2E5AB055005FBA95 /* HomeView.swift in Sources */,
-				972E9E5C2E70BD7E009FD7F1 /* FoodCatalogItem.swift in Sources */,
+				972E9E5C2E70BD7E009FD7F1 /* FoodCatalogItemModel.swift in Sources */,
 				97BF118F2E5AB126005FBA95 /* RecipesView.swift in Sources */,
 				97BF11A32E5AE45F005FBA95 /* ProgressRingCellView.swift in Sources */,
 				97BF119D2E5ADBF5005FBA95 /* ProgressRing.swift in Sources */,
@@ -1009,10 +1007,12 @@
 				97BF11982E5AB9D5005FBA95 /* HomeViewModel.swift in Sources */,
 				972E9E5A2E70B7B3009FD7F1 /* FNActivityIndicator.swift in Sources */,
 				97ED164F2E6DF6D400DFF623 /* URLSessionManager.swift in Sources */,
+				972E9E9F2E71E6B1009FD7F1 /* FoodCatalogManager.swift in Sources */,
 				972E9E812E71944C009FD7F1 /* SplashView.swift in Sources */,
 				972E9E8D2E71A268009FD7F1 /* ProfileFBHelper.swift in Sources */,
+				972E9E9D2E71E26C009FD7F1 /* FoodCatalogFBHelper.swift in Sources */,
 				9773569D2E635552007ED640 /* DailyActivityManager.swift in Sources */,
-				972E9E952E71A344009FD7F1 /* FirebaseConstant.swift in Sources */,
+				972E9E952E71A344009FD7F1 /* FirebaseKey.swift in Sources */,
 				97BF11912E5AB131005FBA95 /* TrendsView.swift in Sources */,
 				979C16D32E64803600322BB8 /* WorkoutManager.swift in Sources */,
 				972E9E862E719659009FD7F1 /* ProfileSetupView.swift in Sources */,

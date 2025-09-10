@@ -6,10 +6,45 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+import GoogleSignIn
 
 struct ProfileView: View {
+    
+    @EnvironmentObject var appRootManager: AppRootManager
+    
     var body: some View {
-        Text("Profile").padding()
+        NavigationView {
+            VStack{
+                FNButton(buttonTitle: "Logout", backgroundEnable: true) {
+                    self.doLogoutAndGoToLogin()
+                }
+            }
+            .padding(.horizontal, 24)
+            .withoutBackButton(withTitle: "Profile")
+    
+        }
+    }
+    
+    func doLogoutAndGoToLogin() {
+        if logout() {
+            DispatchQueue.main.runInMainThread {
+                self.appRootManager.currentAppRoot = .login
+            }
+        }
+    }
+    
+    func logout() -> Bool {
+        
+        GIDSignIn.sharedInstance.signOut()
+        do {
+            try Auth.auth().signOut()
+            return true
+            
+        }catch {
+            print(error)
+        }
+        return false
     }
 }
 

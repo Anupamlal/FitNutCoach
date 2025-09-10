@@ -10,6 +10,7 @@ import SwiftUI
 struct BarcodeView: View {
     
     @StateObject var barcodeViewModel = BarcodeViewModel()
+    @EnvironmentObject private var appRootManager: AppRootManager
     
     var body: some View {
         
@@ -84,6 +85,9 @@ struct BarcodeView: View {
                 }
                 .presentationDetents([.medium])
                 .presentationDragIndicator(.visible)
+            }
+            .onFirstAppear {
+                barcodeViewModel.loadAllFoodCatalogData(foodCatalogManager: self.appRootManager.foodCatalogManager)
             }
         }
         

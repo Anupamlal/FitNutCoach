@@ -18,7 +18,7 @@ enum MealSourceType: String, Codable {
 }
 
 struct MealModel: Codable {
-    let id: UUID?
+    let id: String?
     let aiConfidence: Double
     let createdAt: Date?
     let date: Date?
@@ -29,7 +29,7 @@ struct MealModel: Codable {
     let updatedAt: Date?
     var foodItems: [FoodItemModel]?
     
-    init(id: UUID?, aiConfidence: Double, createdAt: Date?, date: Date?, mealType: MealType?, notes: String?, photoId: String?, mealSource: MealSourceType?, updatedAt: Date?, foodItems: [FoodItemModel]?) {
+    init(id: String?, aiConfidence: Double, createdAt: Date?, date: Date?, mealType: MealType?, notes: String?, photoId: String?, mealSource: MealSourceType?, updatedAt: Date?, foodItems: [FoodItemModel]?) {
         self.id = id
         self.aiConfidence = aiConfidence
         self.createdAt = createdAt
@@ -43,7 +43,7 @@ struct MealModel: Codable {
     }
     
     init() {
-        self.init(id: UUID(), aiConfidence: 0, createdAt: nil, date: nil, mealType: nil, notes: nil, photoId: nil, mealSource: nil, updatedAt: nil, foodItems: nil)
+        self.init(id: UUID().uuidString, aiConfidence: 0, createdAt: nil, date: nil, mealType: nil, notes: nil, photoId: nil, mealSource: nil, updatedAt: nil, foodItems: nil)
     }
     
     init(meal: Meal) {

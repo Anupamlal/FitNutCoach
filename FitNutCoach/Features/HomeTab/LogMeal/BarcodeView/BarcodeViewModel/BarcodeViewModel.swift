@@ -13,4 +13,11 @@ class BarcodeViewModel: ObservableObject {
     @Published var barcodeValue: String = ""
     @Published var isSessionRunning: Bool = true
     @Published var isManualEntryOpen: Bool = false
+    
+    func loadAllFoodCatalogData(foodCatalogManager: FoodCatalogManager) {
+        Task {
+            _ = await foodCatalogManager.loadAllFoodCatalogFromServer()
+            await foodCatalogManager.loadData()
+        }
+    }
 }

@@ -20,9 +20,11 @@ class AppRootManager: ObservableObject {
     @Published var currentAppRoot: AppRootType = .splash
     let profileManager: ProfileManager
     let dailyActivityManager: DailyActivityManager
+    let foodCatalogManager: FoodCatalogManager
     
     init(container: NSPersistentContainer) {
         self.profileManager = ProfileManager(container: container)
         self.dailyActivityManager = DailyActivityManager(container: container)
+        self.foodCatalogManager = FoodCatalogManager(container: container)
     }
 }

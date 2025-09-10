@@ -10,6 +10,8 @@ import SwiftUI
 struct ReviewItemView: View {
     
     @StateObject var reviewItemViewModel: ReviewItemViewModel
+    @EnvironmentObject private var appRootManager: AppRootManager
+    
     
     init(barcode: String? = nil) {
         _reviewItemViewModel = .init(wrappedValue: .init(barcode: barcode))
@@ -164,10 +166,8 @@ struct ReviewItemView: View {
                 }
                 
             }
-            .onAppear(perform: {
-                Task {
-                    reviewItemViewModel.fetchDetailsForBarcodeItem()
-                }
+            .onFirstAppear(perform: {
+                reviewItemViewModel.setUpFoodCatalogManager(foodCatalogManager: appRootManager.foodCatalogManager)
             })
             .withCustomBackButton(withTitle: "Confirm Food")
         }

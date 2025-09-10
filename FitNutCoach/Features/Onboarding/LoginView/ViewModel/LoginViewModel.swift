@@ -69,14 +69,19 @@ class LoginViewModel: ObservableObject {
         return rootViewController
     }
     
-    func getNextAppRoot() async -> AppRootType {
+    func getNextAppRoot(appRootManager: AppRootManager) async -> AppRootType {
         
-        let profileModel = await ProfileFBHelper.getUserProfile()
+        if UserDefaultManager.isProfileSetupDone() {
+            return .tabview
+        }
+        
+        let profileModel = await appRootManager.profileManager.loadProfileFromServer()
         
         if profileModel == nil {
             return .profile
         }
         
+        UserDefaultManager.saveProfileSetupDone(true)
         return .tabview
     }
 }

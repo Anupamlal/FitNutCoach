@@ -30,9 +30,9 @@ extension AppDelegate {
     
     func unAuthOldUser(){
         
-        if UserDefaults.standard.value(forKey: UserDefaultConstant.isNewUser) == nil {
+        if UserDefaults.standard.value(forKey: UserDefaultManager.isNewUser) == nil {
             
-            UserDefaults.standard.set(true, forKey: UserDefaultConstant.isNewUser)
+            UserDefaults.standard.set(true, forKey: UserDefaultManager.isNewUser)
             
             do {
                 try Auth.auth().signOut()

@@ -9,13 +9,13 @@ import SwiftUI
 
 struct WorkoutSetModel: Codable {
     let exercise: String?
-    let id: UUID?
+    let id: String?
     let reps: Int16
     let rpe: Int16
     let setIndex: Int16
     let weight: Double
     
-    init(exercise: String?, id: UUID?, reps: Int16, rpe: Int16, setIndex: Int16, weight: Double) {
+    init(exercise: String?, id: String?, reps: Int16, rpe: Int16, setIndex: Int16, weight: Double) {
         self.exercise = exercise
         self.id = id
         self.reps = reps
@@ -25,7 +25,7 @@ struct WorkoutSetModel: Codable {
     }
     
     init() {
-        self.init(exercise: nil, id: UUID(), reps: 0, rpe: 0, setIndex: 0, weight: 0)
+        self.init(exercise: nil, id: UUID().uuidString, reps: 0, rpe: 0, setIndex: 0, weight: 0)
     }
     
     init(workoutSet: WorkoutSet) {

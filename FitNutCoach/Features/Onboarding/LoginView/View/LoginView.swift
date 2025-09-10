@@ -53,7 +53,7 @@ struct LoginView: View {
             if isSuccess {
                     
                 Task {
-                    let root = await loginViewModel.getNextAppRoot()
+                    let root = await loginViewModel.getNextAppRoot(appRootManager: self.appRootManager)
                     
                     DispatchQueue.main.async {
                         self.appRootManager.currentAppRoot = root

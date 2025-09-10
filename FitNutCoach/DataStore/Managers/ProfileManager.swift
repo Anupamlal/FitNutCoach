@@ -48,7 +48,7 @@ class ProfileManager: ObservableObject, BaseManagerDelegate {
         return false
     }
 
-    func loadData() async {
+    func loadData() async  {
         let fetchRequest = UserProfile.fetchRequest()
         
         fetchRequest.fetchLimit = 1
@@ -57,6 +57,17 @@ class ProfileManager: ObservableObject, BaseManagerDelegate {
             let profileModel = ProfileModel(userProfile: userProfile)
             profileSubject.send(profileModel)
         }
+    }
+    
+    func loadProfileFromServer() async -> ProfileModel? {
+        
+        if let profileModel = await ProfileFBHelper.getUserProfile() {
+            _ = await self.addNewOrUpdateData(profileModel)
+            
+            return profileModel
+        }
+        
+        return nil
     }
 
 }

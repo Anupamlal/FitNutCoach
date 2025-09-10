@@ -10,4 +10,5 @@ import SwiftUI
 class FirebaseKey {
     static let users = "Users"
     static let userInfo = "UserInfo"
+    static let foodCatalog = "FoodCatalog"
 }

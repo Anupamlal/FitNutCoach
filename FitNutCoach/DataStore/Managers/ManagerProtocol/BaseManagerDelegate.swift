@@ -18,4 +18,5 @@ protocol BaseManagerDelegate {
     
     func addNewOrUpdateData(_ newData: T) async -> Bool
     func deleteData(_ deleteData: T) async -> Bool
+    func loadData() async
 }

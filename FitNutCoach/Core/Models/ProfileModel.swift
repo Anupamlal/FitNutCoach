@@ -12,7 +12,7 @@ enum DietType: String, Codable {
 }
 
 struct ProfileModel: Codable {
-    var id: UUID? = UUID()
+    var id: String?
     var name: String
     var allergies: String?
     var calorieTarget: Double
@@ -27,7 +27,7 @@ struct ProfileModel: Codable {
     var weightKg: Double
     var heightCm: Double
     
-    init(allergies: String? = nil, calorieTarget: Double, carbTarget: Double, createdAt: Date? = nil, dietType: DietType, dob: Date? = nil, fatTarget: Double, id: UUID? = nil, name: String, proteinTarget: Double, stepTarget: Int32, waterTargetLiters: Double, weightKg: Double, heightCm: Double) {
+    init(allergies: String? = nil, calorieTarget: Double, carbTarget: Double, createdAt: Date? = nil, dietType: DietType, dob: Date? = nil, fatTarget: Double, id: String?, name: String, proteinTarget: Double, stepTarget: Int32, waterTargetLiters: Double, weightKg: Double, heightCm: Double) {
         self.allergies = allergies
         self.calorieTarget = calorieTarget
         self.carbTarget = carbTarget
@@ -53,7 +53,7 @@ struct ProfileModel: Codable {
             dietType: .veg,
             dob: Date(),
             fatTarget: 0,
-            id: UUID(),
+            id: UUID().uuidString,
             name: "",
             proteinTarget: 0,
             stepTarget: 0,

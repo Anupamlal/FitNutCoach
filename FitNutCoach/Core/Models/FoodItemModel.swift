@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FoodItemModel: Codable {
-    let id: UUID?
+    let id: String?
     let brand: String?
     let calories: Double
     let carbs: Double
@@ -22,7 +22,7 @@ struct FoodItemModel: Codable {
     let servingUnit: String?
     let tags: String?
     
-    init(id: UUID?, brand: String?, calories: Double, carbs: Double, confidence: Double, fat: Double, foodRefId: String?, name: String?, notes: String?, protein: Double, servingSize: Double, servingUnit: String?, tags: String?) {
+    init(id: String?, brand: String?, calories: Double, carbs: Double, confidence: Double, fat: Double, foodRefId: String?, name: String?, notes: String?, protein: Double, servingSize: Double, servingUnit: String?, tags: String?) {
         self.id = id
         self.brand = brand
         self.calories = calories
@@ -39,7 +39,7 @@ struct FoodItemModel: Codable {
     }
     
     init() {
-        self.init(id: UUID(), brand: nil, calories: 0, carbs: 0, confidence: 0, fat: 0, foodRefId: nil, name: nil, notes: nil, protein: 0, servingSize: 0, servingUnit: nil, tags: nil)
+        self.init(id: UUID().uuidString, brand: nil, calories: 0, carbs: 0, confidence: 0, fat: 0, foodRefId: nil, name: nil, notes: nil, protein: 0, servingSize: 0, servingUnit: nil, tags: nil)
     }
 
     init(foodItem: FoodItem) {

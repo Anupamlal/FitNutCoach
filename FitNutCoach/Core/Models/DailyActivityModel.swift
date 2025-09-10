@@ -10,7 +10,7 @@ import CoreData
 
 struct DailyActivityModel: Codable {
     
-    let id: UUID?
+    let id: String?
     let activeEnergy: Double
     let calories: Double
     let carbs: Double
@@ -25,7 +25,7 @@ struct DailyActivityModel: Codable {
     var meals: [MealModel]?
     var workouts: [WorkoutModel]?
     
-    init(id: UUID?, activeEnergy: Double, calories: Double, carbs: Double, date: Date?, exerciseMinutes: Int16, fat: Double, protein: Double, sleepMinutes: Int16, steps: Int32, updatedAt: Date?, waterLiters: Double, meals: [MealModel]?, workouts: [WorkoutModel]?) {
+    init(id: String?, activeEnergy: Double, calories: Double, carbs: Double, date: Date?, exerciseMinutes: Int16, fat: Double, protein: Double, sleepMinutes: Int16, steps: Int32, updatedAt: Date?, waterLiters: Double, meals: [MealModel]?, workouts: [WorkoutModel]?) {
         self.id = id
         self.activeEnergy = activeEnergy
         self.calories = calories
@@ -45,7 +45,7 @@ struct DailyActivityModel: Codable {
     init() {
         let start = Calendar.current.startOfDay(for: Date())
         
-        self.init(id: UUID(), activeEnergy: 0, calories: 0, carbs: 0, date: start, exerciseMinutes: 0, fat: 0, protein: 0, sleepMinutes: 0, steps: 0, updatedAt: nil, waterLiters: 0, meals: nil, workouts: nil)
+        self.init(id: UUID().uuidString, activeEnergy: 0, calories: 0, carbs: 0, date: start, exerciseMinutes: 0, fat: 0, protein: 0, sleepMinutes: 0, steps: 0, updatedAt: nil, waterLiters: 0, meals: nil, workouts: nil)
     }
     
     init(dailyActivity: DailyActivity) {
