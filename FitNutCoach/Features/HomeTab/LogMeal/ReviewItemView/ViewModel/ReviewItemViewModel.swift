@@ -10,8 +10,15 @@ import Combine
 
 class ReviewItemViewModel: ObservableObject {
 
-    @Published var reviewItem: FoodCatalogItemModel?
+    @Published var reviewItem: FoodItemModel?
     @Published var isLoading: Bool = false
+    @Published var imageUrl: String?
+    @Published var numberOfServing: Int = 1
+    @Published var servingSize: Double = 0
+    @Published var totalCalories: Double = 0
+    @Published var totalProtien: Double = 0
+    @Published var totalCarbs: Double = 0
+    @Published var totalFat: Double = 0
     
     private let sessionManager: URLSessionManager = URLSessionManager()
     private var cancellables: Set<AnyCancellable> = []
@@ -39,10 +46,8 @@ class ReviewItemViewModel: ObservableObject {
         print("fetchDetailsForBarcodeItem gets called")
         
         if let foodCatalogItem = await foodCatalogManager?.searchFoodWithBarcode(barcode) {
-            DispatchQueue.main.runInMainThread {
-                self.isLoading = false
-                self.reviewItem = foodCatalogItem
-            }
+            doWorkAfterFetchingFoodCatalogItem(foodCatalogItem: foodCatalogItem)
+            return
         }
         
         sessionManager.request(urlString: String(format: APIName.barcodeScannerAPI.rawValue, barcode))
@@ -75,9 +80,23 @@ class ReviewItemViewModel: ObservableObject {
     private func saveFoodCatalog(foodCatalogItem: FoodCatalogItemModel) async {
         _ = await foodCatalogManager?.saveFoodCatalogItem(foodCatalogItem)
 
+        doWorkAfterFetchingFoodCatalogItem(foodCatalogItem: foodCatalogItem)
+    }
+    
+    func doWorkAfterFetchingFoodCatalogItem(foodCatalogItem: FoodCatalogItemModel) {
         DispatchQueue.main.runInMainThread {
             self.isLoading = false
-            self.reviewItem = foodCatalogItem
+            self.reviewItem = FoodItemModel(foodCatalogItem: foodCatalogItem)
+            self.imageUrl = foodCatalogItem.imageUrl
+            self.updateMacrosForServing()
         }
+    }
+    
+    func updateMacrosForServing() {
+        self.servingSize = (self.reviewItem?.servingSize ?? 0) * Double(numberOfServing)
+        self.totalCalories = (self.reviewItem?.calories ?? 0) * Double(numberOfServing)
+        self.totalCarbs = (self.reviewItem?.carbs ?? 0) * Double(numberOfServing)
+        self.totalProtien = (self.reviewItem?.protein ?? 0) * Double(numberOfServing)
+        self.totalFat = (self.reviewItem?.fat ?? 0) * Double(numberOfServing)
     }
 }

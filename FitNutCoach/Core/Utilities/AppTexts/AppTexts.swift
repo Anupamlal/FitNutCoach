@@ -19,6 +19,7 @@ class AppTexts {
     static let proteinText = "Protein"
     static let carbsText = "Carbs"
     static let fatText = "Fat"
+    static let caloriesText = "Calories"
     static let nextMealIdeasText = "Next Meal Ideas"
     static let nWorkoutsThisWeekText = "%@ workouts this week"
     static let keepItUpText = "Keep it up 💪"

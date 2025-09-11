@@ -10,15 +10,15 @@ import SwiftUI
 struct FoodItemModel: Codable {
     let id: String?
     let brand: String?
-    let calories: Double
-    let carbs: Double
+    var calories: Double
+    var carbs: Double
     let confidence: Double
-    let fat: Double
+    var fat: Double
     let foodRefId: String?
     let name: String?
     let notes: String?
-    let protein: Double
-    let servingSize: Double
+    var protein: Double
+    var servingSize: Double
     let servingUnit: String?
     let tags: String?
     
@@ -58,6 +58,56 @@ struct FoodItemModel: Codable {
         self.tags = foodItem.tags
     }
     
+    init(foodCatalogItem: FoodCatalogItemModel) {
+        
+        /*
+         
+         koi v chiz 100g se kam hai to sare macros total weight ke hain, aur agar 100 >= to macros 100gm ke hain
+         
+         */
+        
+        let servingSize = foodCatalogItem.servingSize
+        let totalSize = foodCatalogItem.totalSize
+        
+        var totalCalorieInOnServing = 0.0
+        var totalProtienInOnServing = 0.0
+        var totalCarbsInOnServing = 0.0
+        var totalFatInOnServing = 0.0
+        
+        if (totalSize ?? 0) < 100 && servingSize == totalSize {
+            totalCalorieInOnServing = foodCatalogItem.caloriesPer100G ?? 0
+            totalProtienInOnServing = foodCatalogItem.proteinPer100G ?? 0
+            totalCarbsInOnServing = foodCatalogItem.carbsPer100G ?? 0
+            totalFatInOnServing = foodCatalogItem.fatPer100G ?? 0
+            
+        }else {
+            
+            let ratio: Double = (servingSize ?? 0)/100
+            
+            totalCalorieInOnServing = (foodCatalogItem.caloriesPer100G ?? 0) * ratio
+            totalProtienInOnServing = (foodCatalogItem.proteinPer100G ?? 0) * ratio
+            totalCarbsInOnServing = (foodCatalogItem.carbsPer100G ?? 0) * ratio
+            totalFatInOnServing = (foodCatalogItem.fatPer100G ?? 0) * ratio
+            
+        }
+        
+        self.id = foodCatalogItem.id
+        self.brand = foodCatalogItem.brand
+        self.confidence = foodCatalogItem.confidence
+        self.foodRefId = nil
+        self.name = foodCatalogItem.name
+        self.notes = nil
+        self.servingSize = foodCatalogItem.servingSize ?? 0
+        self.servingUnit = foodCatalogItem.servingSizeUnit ?? ""
+        self.tags = nil
+        
+        self.calories = totalCalorieInOnServing
+        self.protein = totalProtienInOnServing
+        self.carbs = totalCarbsInOnServing
+        self.fat = totalFatInOnServing
+        
+    }
+    
     func fillFoodItem(foodItem: FoodItem) {
         foodItem.id = self.id
         foodItem.brand = self.brand
@@ -72,5 +122,20 @@ struct FoodItemModel: Codable {
         foodItem.servingSize = self.servingSize
         foodItem.servingUnit = self.servingUnit
         foodItem.tags = self.tags
+    }
+    
+    func getProtienPercentageInTotalCalorie() -> String {
+        let fatPercent = (self.protein / self.calories) * 100
+        return "\(Int(fatPercent))%"
+    }
+    
+    func getCarbsPercentageInTotalCalorie() -> String {
+        let fatPercent = (self.carbs / self.calories) * 100
+        return "\(Int(fatPercent))%"
+    }
+    
+    func getFatPercentageInTotalCalorie() -> String {
+        let fatPercent = (self.fat / self.calories) * 100
+        return "\(Int(fatPercent))%"
     }
 }
