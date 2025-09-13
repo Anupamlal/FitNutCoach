@@ -18,123 +18,139 @@ struct HomeView: View {
     }
     
     var body: some View {
-        ZStack {
-            Color.background
-                .ignoresSafeArea()
-            
-            VStack(spacing: AppSpacing.l) {
-                HStack {
-                    Text("\(AppTexts.hiText) \(homeViewModel.profileModel.getProfileName()) 👋")
-                        .font(.system(size: 28, weight: .semibold))
-                        .foregroundStyle(Color.textPrimary)
-                    
-                    Spacer()
-                    
-                    Text("☀️ 28°C Sunny")
-                        .font(.system(size: 14, weight: .medium))
-                        .foregroundStyle(Color.textSecondary)
-                        .padding(.all, 8)
-                        .background {
-                            RoundedRectangle(cornerRadius: 12)
-                                .foregroundStyle(Color.divider)
-                        }
-                }
+        NavigationStack {
+            ZStack {
+                Color.background
+                    .ignoresSafeArea()
                 
-                ProgressRingsView(
-                    profileModel: homeViewModel.profileModel,
-                    dailyActivityModel: homeViewModel.dailyActivityModel, waterIntakeTapCallback: {
-                        homeViewModel.openWaterIntakeView = true
-                    })
-                
-                
-                HStack{
-                    FNButton(buttonTitle: AppTexts.logMealText, backgroundEnable: true) {
-                        self.homeViewModel.openLogMealView = true
-                    }
-                    
-                    FNButton(buttonTitle: AppTexts.startWorkoutText, backgroundEnable: false) {
-                        rootTabViewModel.currentTab = .workouts
-                    }
-                }
-                
-                NutritionSnapshotView(
-                    profileModel: homeViewModel.profileModel,
-                    dailyActivityModel: homeViewModel.dailyActivityModel
-                )
-                
-                Card {
-                    HStack(spacing: AppSpacing.xs) {
-                        Image("activityMonitor")
-                            .resizable()
-                            .frame(width: 50, height: 50)
-                        
-                        if (homeViewModel.numberOfWorkoutDays > 0) {
-                            VStack(alignment: .leading, spacing: 5) {
-                                Text(String(format: AppTexts.nWorkoutsThisWeekText, "\(homeViewModel.numberOfWorkoutDays)"))
-                                    .font(.system(size: 15, weight: .semibold))
-                                    .foregroundStyle(Color.textPrimary)
-                                
-                                Text(AppTexts.keepItUpText)
-                                    .font(.system(size: 15, weight: .medium))
-                                    .foregroundStyle(Color.textSecondary)
-                            }
-                            .padding(.leading, 3)
-                            
-                        }else {
-                            VStack(alignment: .leading, spacing: 5) {
-                                Text(AppTexts.noWorkoutsYetText)
-                                    .font(.system(size: 15, weight: .semibold))
-                                    .foregroundStyle(Color.textPrimary)
-                                
-                                Text(AppTexts.startItTodayText)
-                                    .font(.system(size: 15, weight: .medium))
-                                    .foregroundStyle(Color.textSecondary)
-                            }
-                            .padding(.leading, 3)
-                        }
-                        
-                        Spacer()
-                        
-                        Image(systemName: "chevron.right")
-                    }
-                }
-                .onTapGesture {
-                    
-                }
-                
-                Card(backgroundColor: AppColors.waterTotalColor) {
-                    HStack{
-                        Image("bulbImage")
-                            .resizable()
-                            .frame(width: 40, height: 40)
-                        
-                        Text("Hot today - hydrate more and shift workout to AM")
-                            .font(.system(size: 15, weight: .medium))
+                VStack(spacing: AppSpacing.l) {
+                    HStack {
+                        Text("\(AppTexts.hiText) \(homeViewModel.profileModel.getProfileName()) 👋")
+                            .font(.system(size: 28, weight: .semibold))
                             .foregroundStyle(Color.textPrimary)
                         
                         Spacer()
-                    }
-                }
-                
-                VStack(alignment: .leading) {
-                    Text(AppTexts.nextMealIdeasText)
-                        .font(.system(size: 20, weight: .semibold))
-                    
-                    ScrollView(.horizontal) {
-                        HStack(spacing: AppSpacing.m) {
-                            ForEach(0..<10, id: \.self) { _ in
-                                QuickRecipesView()
+                        
+                        Text("☀️ 28°C Sunny")
+                            .font(.system(size: 14, weight: .medium))
+                            .foregroundStyle(Color.textSecondary)
+                            .padding(.all, 8)
+                            .background {
+                                RoundedRectangle(cornerRadius: 12)
+                                    .foregroundStyle(Color.divider)
                             }
+                    }
+                    
+                    ProgressRingsView(
+                        profileModel: homeViewModel.profileModel,
+                        dailyActivityModel: homeViewModel.dailyActivityModel, waterIntakeTapCallback: {
+                            homeViewModel.openWaterIntakeView = true
+                        })
+                    
+                    
+                    HStack{
+                        
+                        NavigationLink {
+                            
+                            LogMealView()
+                            
+                        } label: {
+                            
+                            RoundedRectangle(cornerRadius: 14)
+                                .foregroundStyle(Color.primaryAccent)
+                                .overlay {
+                                    Text(AppTexts.logMealText)
+                                        .font(.system(size: 16, weight: .semibold))
+                                        .foregroundStyle(.white)
+                                }
+                            
                         }
+                        .frame(height: 48)
+                        
+                        FNButton(buttonTitle: AppTexts.startWorkoutText, backgroundEnable: false) {
+                            rootTabViewModel.currentTab = .workouts
+                        }
+                    }
+                    
+                    NutritionSnapshotView(
+                        profileModel: homeViewModel.profileModel,
+                        dailyActivityModel: homeViewModel.dailyActivityModel
+                    )
+                    
+                    Card {
+                        HStack(spacing: AppSpacing.xs) {
+                            Image("activityMonitor")
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                            
+                            if (homeViewModel.numberOfWorkoutDays > 0) {
+                                VStack(alignment: .leading, spacing: 5) {
+                                    Text(String(format: AppTexts.nWorkoutsThisWeekText, "\(homeViewModel.numberOfWorkoutDays)"))
+                                        .font(.system(size: 15, weight: .semibold))
+                                        .foregroundStyle(Color.textPrimary)
+                                    
+                                    Text(AppTexts.keepItUpText)
+                                        .font(.system(size: 15, weight: .medium))
+                                        .foregroundStyle(Color.textSecondary)
+                                }
+                                .padding(.leading, 3)
+                                
+                            }else {
+                                VStack(alignment: .leading, spacing: 5) {
+                                    Text(AppTexts.noWorkoutsYetText)
+                                        .font(.system(size: 15, weight: .semibold))
+                                        .foregroundStyle(Color.textPrimary)
+                                    
+                                    Text(AppTexts.startItTodayText)
+                                        .font(.system(size: 15, weight: .medium))
+                                        .foregroundStyle(Color.textSecondary)
+                                }
+                                .padding(.leading, 3)
+                            }
+                            
+                            Spacer()
+                            
+                            Image(systemName: "chevron.right")
+                        }
+                    }
+                    .onTapGesture {
                         
                     }
-                    .scrollIndicators(.hidden)
                     
+                    Card(backgroundColor: AppColors.waterTotalColor) {
+                        HStack{
+                            Image("bulbImage")
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                            
+                            Text("Hot today - hydrate more and shift workout to AM")
+                                .font(.system(size: 15, weight: .medium))
+                                .foregroundStyle(Color.textPrimary)
+                            
+                            Spacer()
+                        }
+                    }
+                    
+                    VStack(alignment: .leading) {
+                        Text(AppTexts.nextMealIdeasText)
+                            .font(.system(size: 20, weight: .semibold))
+                        
+                        ScrollView(.horizontal) {
+                            HStack(spacing: AppSpacing.m) {
+                                ForEach(0..<10, id: \.self) { _ in
+                                    QuickRecipesView()
+                                }
+                            }
+                            
+                        }
+                        .scrollIndicators(.hidden)
+                        
+                    }
+                    
+                    Spacer()
                 }
-                
-                Spacer()
+                .padding(.all)
             }
-            .padding(.all)
         }
         .onFirstAppear {
             homeViewModel.onAppear()
@@ -144,13 +160,6 @@ struct HomeView: View {
                 .presentationDragIndicator(.visible)
                 .presentationDetents([.medium])
                 
-        }
-        .sheet(isPresented: $homeViewModel.openLogMealView) {
-            LogMealOptionsView(logMealCallback: { selectMealType in
-                self.homeViewModel.setLogMealOption(selectedOption: selectMealType)
-            })
-            .presentationDragIndicator(.visible)
-            .presentationDetents([.medium])
         }
         .fullScreenCover(isPresented: $homeViewModel.openBarcodeScanner) {
             BarcodeView()

@@ -21,19 +21,25 @@ struct Card<Content: View>: View {
     let shadowEnable: Bool
     let backgroundColor: Color
     let borderEnable: Bool
-    init(shadowEnable: Bool = false, backgroundColor: Color = .white, borderEnable: Bool = false, @ViewBuilder content: @escaping () -> Content) {
+    let spacing: CGFloat
+    let padding: CGFloat
+    let cornerRadius: CGFloat
+    init(shadowEnable: Bool = false, backgroundColor: Color = .white, borderEnable: Bool = false, padding: CGFloat = AppSpacing.l, spacing: CGFloat = AppSpacing.s, cornerRadius: CGFloat = 16, @ViewBuilder content: @escaping () -> Content) {
         self.content = content
         self.shadowEnable = shadowEnable
         self.backgroundColor = backgroundColor
         self.borderEnable = borderEnable
+        self.spacing = spacing
+        self.padding = padding
+        self.cornerRadius = cornerRadius
     }
     var body: some View {
-        VStack(alignment: .leading, spacing: AppSpacing.s) {
+        VStack(alignment: .leading, spacing: spacing) {
             content()
         }
-        .padding(AppSpacing.l)
+        .padding(padding)
         .background(backgroundColor)
-        .cornerRadius(16)
+        .cornerRadius(cornerRadius)
         .shadow(radius: shadowEnable ? 2 : 0, y: shadowEnable ? 1 : 0)
         .overlay(
             RoundedRectangle(cornerRadius: 16)

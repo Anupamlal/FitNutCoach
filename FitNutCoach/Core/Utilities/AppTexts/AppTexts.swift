@@ -45,6 +45,14 @@ class AppTexts {
     static let enterBarcodeText = "Enter barcode"
     static let confirmText = "Confirm"
     
+    static let breakFastText = "Breakfast"
+    static let lunchText = "Lunch"
+    static let dinnerText = "Dinner"
+    static let snacksText = "Snacks"
     
+    static let breakFastDescriptionText = "🥖 A good day begins with breakfast — log yours now."
+    static let lunchDescriptionText = "🍚 Strong afternoons need the right lunch — add it in."
+    static let dinnerDescriptionText = "🫓 Balance your day — don’t skip dinner tracking."
+    static let snacksDescriptionText = "🍎 Smart snacking counts — record yours here."
     
 }

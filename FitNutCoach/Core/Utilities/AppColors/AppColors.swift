@@ -25,8 +25,15 @@ class AppColors {
     static let manualReaderColor: Color = Color(hex: 0x10B981)
     
     static let foodCardBGColor: Color = Color(hex: 0xF3F4F6)
+    
+    static let calorieColor = calorieProgressColor
     static let protienColor: Color = Color(hex: 0x3B82F6)
     static let carbsColor: Color = Color(hex: 0xFACC15)
+    static let fatColor = waterOverTargetColor
+    
+    static let logMealCardBGColor = AppColors.waterTotalColor
+    
+
 }
 
 extension Color {

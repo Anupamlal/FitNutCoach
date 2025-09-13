@@ -9,8 +9,21 @@
 import SwiftUI
 import CoreData
 
-enum MealType: String, Codable {
-    case breakfast, lunch, dinner, snack, other
+enum MealType: String, Codable, CaseIterable {
+    case breakfast, lunch, snack, dinner
+    
+    func getDisplayName() -> String {
+        switch self {
+        case .breakfast:
+            return AppTexts.breakFastText
+        case .lunch:
+            return AppTexts.lunchText
+        case .dinner:
+            return AppTexts.dinnerText
+        case .snack:
+            return AppTexts.snacksText
+        }
+    }
 }
 
 enum MealSourceType: String, Codable {

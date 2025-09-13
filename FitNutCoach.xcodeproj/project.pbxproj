@@ -29,6 +29,10 @@
 		972E9E9D2E71E26C009FD7F1 /* FoodCatalogFBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9E9C2E71E26C009FD7F1 /* FoodCatalogFBHelper.swift */; };
 		972E9E9F2E71E6B1009FD7F1 /* FoodCatalogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9E9E2E71E6B1009FD7F1 /* FoodCatalogManager.swift */; };
 		972E9EA32E720B27009FD7F1 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9EA22E720B27009FD7F1 /* UserDefaultManager.swift */; };
+		9741B6F32E7548BA0092763D /* LogMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9741B6F22E7548BA0092763D /* LogMealView.swift */; };
+		9741B6F62E7570B10092763D /* LogMealMacroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9741B6F52E7570B10092763D /* LogMealMacroView.swift */; };
+		9741B6F82E7584580092763D /* MealTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9741B6F72E7584580092763D /* MealTypeView.swift */; };
+		9741B6FA2E7598720092763D /* FNNavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9741B6F92E7598720092763D /* FNNavigationButton.swift */; };
 		974AFC342E660E91003302BB /* LogMealOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974AFC332E660E91003302BB /* LogMealOptionsView.swift */; };
 		974AFC382E660FEC003302BB /* RootTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974AFC372E660FEC003302BB /* RootTabViewModel.swift */; };
 		976174602E73013900A7C676 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9761745F2E73013900A7C676 /* FirebaseAuth */; };
@@ -127,6 +131,10 @@
 		972E9E9C2E71E26C009FD7F1 /* FoodCatalogFBHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCatalogFBHelper.swift; sourceTree = "<group>"; };
 		972E9E9E2E71E6B1009FD7F1 /* FoodCatalogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCatalogManager.swift; sourceTree = "<group>"; };
 		972E9EA22E720B27009FD7F1 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
+		9741B6F22E7548BA0092763D /* LogMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMealView.swift; sourceTree = "<group>"; };
+		9741B6F52E7570B10092763D /* LogMealMacroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMealMacroView.swift; sourceTree = "<group>"; };
+		9741B6F72E7584580092763D /* MealTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealTypeView.swift; sourceTree = "<group>"; };
+		9741B6F92E7598720092763D /* FNNavigationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FNNavigationButton.swift; sourceTree = "<group>"; };
 		974AFC332E660E91003302BB /* LogMealOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMealOptionsView.swift; sourceTree = "<group>"; };
 		974AFC372E660FEC003302BB /* RootTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabViewModel.swift; sourceTree = "<group>"; };
 		977356942E631982007ED640 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
@@ -345,9 +353,36 @@
 			path = FirebaseKey;
 			sourceTree = "<group>";
 		};
+		9741B6F02E7548A90092763D /* LogMealView */ = {
+			isa = PBXGroup;
+			children = (
+				9741B6F12E7548B00092763D /* View */,
+			);
+			path = LogMealView;
+			sourceTree = "<group>";
+		};
+		9741B6F12E7548B00092763D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9741B6F42E75709C0092763D /* Cells */,
+				9741B6F22E7548BA0092763D /* LogMealView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9741B6F42E75709C0092763D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				9741B6F52E7570B10092763D /* LogMealMacroView.swift */,
+				9741B6F72E7584580092763D /* MealTypeView.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		974AFC312E660E79003302BB /* LogMeal */ = {
 			isa = PBXGroup;
 			children = (
+				9741B6F02E7548A90092763D /* LogMealView */,
 				9778FCDD2E6AFBEC00A3EF0C /* LogMealOptionsView */,
 				9778FCDE2E6B079600A3EF0C /* BarcodeView */,
 				97ED164A2E6DF47300DFF623 /* ReviewItemView */,
@@ -590,6 +625,7 @@
 		97BF11682E5A34D6005FBA95 /* DesignKit */ = {
 			isa = PBXGroup;
 			children = (
+				9741B6F92E7598720092763D /* FNNavigationButton.swift */,
 				972E9E592E70B7B3009FD7F1 /* FNActivityIndicator.swift */,
 				97BF119C2E5ADBF5005FBA95 /* ProgressRing.swift */,
 				97BF11722E5A35D4005FBA95 /* AppSpacing.swift */,
@@ -996,6 +1032,7 @@
 				97BF11AA2E5AEE83005FBA95 /* FNButton.swift in Sources */,
 				97BF119B2E5ABA38005FBA95 /* AppTexts.swift in Sources */,
 				972E9E612E7170E8009FD7F1 /* AppDelegate.swift in Sources */,
+				9741B6F32E7548BA0092763D /* LogMealView.swift in Sources */,
 				9780BD7A2E630545005227E4 /* ProfileManager.swift in Sources */,
 				97BF11662E5A3496005FBA95 /* PersistenceController.swift in Sources */,
 				97BF11B22E5B30A6005FBA95 /* QuickRecipesView.swift in Sources */,
@@ -1011,6 +1048,7 @@
 				97BF11732E5A35D4005FBA95 /* AppSpacing.swift in Sources */,
 				97BF11582E5A33BF005FBA95 /* FitNutCoach.xcdatamodeld in Sources */,
 				972E9E972E71A35D009FD7F1 /* String+Extension.swift in Sources */,
+				9741B6FA2E7598720092763D /* FNNavigationButton.swift in Sources */,
 				977356A52E6364E6007ED640 /* FoodItemModel.swift in Sources */,
 				977356A32E63649C007ED640 /* WorkoutModel.swift in Sources */,
 				974AFC382E660FEC003302BB /* RootTabViewModel.swift in Sources */,
@@ -1024,11 +1062,13 @@
 				972E9E812E71944C009FD7F1 /* SplashView.swift in Sources */,
 				972E9E8D2E71A268009FD7F1 /* ProfileFBHelper.swift in Sources */,
 				972E9E9D2E71E26C009FD7F1 /* FoodCatalogFBHelper.swift in Sources */,
+				9741B6F62E7570B10092763D /* LogMealMacroView.swift in Sources */,
 				9773569D2E635552007ED640 /* DailyActivityManager.swift in Sources */,
 				972E9E952E71A344009FD7F1 /* FirebaseKey.swift in Sources */,
 				97BF11912E5AB131005FBA95 /* TrendsView.swift in Sources */,
 				979C16D32E64803600322BB8 /* WorkoutManager.swift in Sources */,
 				972E9E862E719659009FD7F1 /* ProfileSetupView.swift in Sources */,
+				9741B6F82E7584580092763D /* MealTypeView.swift in Sources */,
 				979C16D82E648F1D00322BB8 /* LogWaterView.swift in Sources */,
 				97BF11592E5A33BF005FBA95 /* FitNutCoachApp.swift in Sources */,
 				974AFC342E660E91003302BB /* LogMealOptionsView.swift in Sources */,

@@ -151,7 +151,7 @@ struct ReviewItemView: View {
                             macroName: AppTexts.caloriesText,
                             macroValue: "\(reviewItemViewModel.totalCalories.formatToOneDecimalPlaces())",
                             macroPercentageByTotal: "",
-                            cardBGColor: AppColors.calorieOverTargetColor
+                            cardBGColor: AppColors.calorieColor
                         )
                         
                         ReviewItemMacroCard(
@@ -172,7 +172,7 @@ struct ReviewItemView: View {
                             macroName: AppTexts.fatText,
                             macroValue: "\(reviewItemViewModel.totalFat.formatToOneDecimalPlaces())g",
                             macroPercentageByTotal: reviewItemViewModel.reviewItem?.getFatPercentageInTotalCalorie() ?? "",
-                            cardBGColor: AppColors.stepsProgressColor
+                            cardBGColor: AppColors.fatColor
                         )
                        
                     }
@@ -191,13 +191,13 @@ struct ReviewItemView: View {
 
                         
                         HStack(spacing: 12) {
-                            DailyGoalsCard(goalName: AppTexts.caloriesText, goalCurrentValue: 14, goalColor: AppColors.calorieOverTargetColor)
+                            DailyGoalsCard(goalName: AppTexts.caloriesText, goalCurrentValue: 14, goalColor: AppColors.calorieColor)
                             
                             DailyGoalsCard(goalName: AppTexts.proteinText, goalCurrentValue: 17, goalColor: AppColors.protienColor)
                             
                             DailyGoalsCard(goalName: AppTexts.carbsText, goalCurrentValue: 17, goalColor: AppColors.carbsColor)
                             
-                            DailyGoalsCard(goalName: AppTexts.fatText, goalCurrentValue: 17, goalColor: AppColors.stepsProgressColor)
+                            DailyGoalsCard(goalName: AppTexts.fatText, goalCurrentValue: 17, goalColor: AppColors.fatColor)
 
                         }
                         .font(.system(size: 14, weight: .regular))
