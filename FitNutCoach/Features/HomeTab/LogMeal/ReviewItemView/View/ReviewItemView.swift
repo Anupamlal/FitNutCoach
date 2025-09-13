@@ -12,228 +12,227 @@ struct ReviewItemView: View {
     @StateObject var reviewItemViewModel: ReviewItemViewModel
     @State var counter: Int = 1
     @EnvironmentObject private var appRootManager: AppRootManager
+    @Binding var isPresented: Bool
     
-    
-    init(barcode: String? = nil) {
+    init(barcode: String? = nil, isPresented: Binding<Bool>) {
         _reviewItemViewModel = .init(wrappedValue: .init(barcode: barcode))
+        _isPresented = isPresented
     }
     
     var body: some View {
-        NavigationStack {
-            ZStack {
-                VStack(spacing: 0) {
-                                        
-                    if let imageurl = reviewItemViewModel.imageUrl {
-                        Spacer()
-                            .frame(height: 10)
-                        
-                        AsyncImage(url: URL(string: imageurl)) { image in
-                            image
-                                .resizable()
-                                .scaledToFit()
-                                .clipShape(RoundedRectangle(cornerRadius: 12))
-                        } placeholder: {
-                            Image("foodPlaceholderImage")
-                                .resizable()
-                                .renderingMode(.template)
-                                .scaledToFit()
-                                .clipShape(RoundedRectangle(cornerRadius: 12))
-                                .foregroundStyle(Color.divider)
-                                .frame(width: 120, height: 120)
-                        }
-                        .frame(width: 120, height: 120)
-                    }
-                    
-                    Spacer()
-                        .frame(height: 15)
-                    
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(reviewItemViewModel.reviewItem?.name ?? "")
-                            .font(.system(size: 20, weight: .semibold))
-                            .foregroundStyle(Color.textPrimary)
-                        
-                        Text(reviewItemViewModel.reviewItem?.brand ?? "")
-                            .font(.system(size: 15, weight: .regular))
-                            .foregroundStyle(Color.textSecondary)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
+        ZStack {
+            VStack(spacing: 0) {
                 
+                if let imageurl = reviewItemViewModel.imageUrl {
+                    Spacer()
+                        .frame(height: 10)
+                    
+                    AsyncImage(url: URL(string: imageurl)) { image in
+                        image
+                            .resizable()
+                            .scaledToFit()
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                    } placeholder: {
+                        Image("foodPlaceholderImage")
+                            .resizable()
+                            .renderingMode(.template)
+                            .scaledToFit()
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                            .foregroundStyle(Color.divider)
+                            .frame(width: 120, height: 120)
+                    }
+                    .frame(width: 120, height: 120)
+                }
+                
+                Spacer()
+                    .frame(height: 15)
+                
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(reviewItemViewModel.reviewItem?.name ?? "")
+                        .font(.system(size: 20, weight: .semibold))
+                        .foregroundStyle(Color.textPrimary)
+                    
+                    Text(reviewItemViewModel.reviewItem?.brand ?? "")
+                        .font(.system(size: 15, weight: .regular))
+                        .foregroundStyle(Color.textSecondary)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                
+                
+                Spacer()
+                    .frame(height: 12)
+                
+                Divider()
+                
+                HStack {
+                    Text("Meal")
+                        .foregroundStyle(Color.textPrimary)
+                        .font(.system(size: 15, weight: .semibold))
                     
                     Spacer()
-                        .frame(height: 12)
                     
-                    Divider()
+                    Text("Breakfast")
+                        .foregroundStyle(Color.textSecondary)
+                        .font(.system(size: 15, weight: .regular))
                     
-                    HStack {
-                        Text("Meal")
-                            .foregroundStyle(Color.textPrimary)
-                            .font(.system(size: 15, weight: .semibold))
-                        
-                        Spacer()
-                        
-                        Text("Breakfast")
-                            .foregroundStyle(Color.textSecondary)
-                            .font(.system(size: 15, weight: .regular))
-
-                    }
-                    .frame(height: 48)
+                }
+                .frame(height: 48)
+                
+                Divider()
+                
+                HStack {
+                    Text("Number of Servings")
+                        .foregroundStyle(Color.textPrimary)
+                        .font(.system(size: 15, weight: .semibold))
                     
-                    Divider()
+                    Spacer()
                     
-                    HStack {
-                        Text("Number of Servings")
-                            .foregroundStyle(Color.textPrimary)
-                            .font(.system(size: 15, weight: .semibold))
-                        
-                        Spacer()
-                        
-                        HStack(spacing: 0) {
-                            Button("-") {
-                                if self.reviewItemViewModel.numberOfServing > 1 {
-                                    self.reviewItemViewModel.numberOfServing -= 1
-                                    self.reviewItemViewModel.updateMacrosForServing()
-                                }
-                            }
-                            .disabled(self.reviewItemViewModel.numberOfServing == 1)
-                            .font(.system(size: 28, weight: .regular))
-                            .foregroundStyle(Color.textSecondary)
-                            .frame(width: 36, height: 36, alignment: .center)
-                            
-                            Divider()
-                            
-                            Text("\(self.reviewItemViewModel.numberOfServing)")
-                                .font(.system(size: 16, weight: .regular))
-                                .foregroundStyle(Color.textSecondary)
-                                .frame(width: 36, alignment: .center)
-
-                            
-                            Divider()
-                            
-                            Button("+") {
-                                self.reviewItemViewModel.numberOfServing += 1
+                    HStack(spacing: 0) {
+                        Button("-") {
+                            if self.reviewItemViewModel.numberOfServing > 1 {
+                                self.reviewItemViewModel.numberOfServing -= 1
                                 self.reviewItemViewModel.updateMacrosForServing()
                             }
-                            .font(.system(size: 24, weight: .regular))
-                            .frame(width: 36, height: 36, alignment: .center)
-                            .foregroundStyle(Color.textSecondary)
                         }
-                        .frame(height: 36)
-                        .background(Color(.systemGray6))
-                        .cornerRadius(10)
-
-                    }
-                    .frame(height: 48)
-                    
-                    Divider()
-                    
-                    HStack {
-                        Text("Serving Size")
-                            .foregroundStyle(Color.textPrimary)
-                            .font(.system(size: 15, weight: .semibold))
+                        .disabled(self.reviewItemViewModel.numberOfServing == 1)
+                        .font(.system(size: 28, weight: .regular))
+                        .foregroundStyle(Color.textSecondary)
+                        .frame(width: 36, height: 36, alignment: .center)
                         
-                        Spacer()
+                        Divider()
                         
-                        Text("\(self.reviewItemViewModel.servingSize.formatToOneDecimalPlaces())g")
+                        Text("\(self.reviewItemViewModel.numberOfServing)")
+                            .font(.system(size: 16, weight: .regular))
                             .foregroundStyle(Color.textSecondary)
-                            .font(.system(size: 15, weight: .regular))
-
-                    }
-                    .frame(height: 48)
-                    
-                    Divider()
-                    
-                    Spacer()
-                        .frame(height: 12)
-                    
-                    HStack(spacing: 12){
+                            .frame(width: 36, alignment: .center)
                         
-                        ReviewItemMacroCard(
-                            macroName: AppTexts.caloriesText,
-                            macroValue: "\(reviewItemViewModel.totalCalories.formatToOneDecimalPlaces())",
-                            macroPercentageByTotal: "",
-                            cardBGColor: AppColors.calorieColor
-                        )
                         
-                        ReviewItemMacroCard(
-                            macroName: AppTexts.proteinText,
-                            macroValue: "\(reviewItemViewModel.totalProtien.formatToOneDecimalPlaces())g",
-                            macroPercentageByTotal: reviewItemViewModel.reviewItem?.getProtienPercentageInTotalCalorie() ?? "",
-                            cardBGColor: AppColors.protienColor
-                        )
+                        Divider()
                         
-                        ReviewItemMacroCard(
-                            macroName: AppTexts.carbsText,
-                            macroValue: "\(reviewItemViewModel.totalCarbs.formatToOneDecimalPlaces())g",
-                            macroPercentageByTotal: reviewItemViewModel.reviewItem?.getCarbsPercentageInTotalCalorie() ?? "",
-                            cardBGColor: AppColors.carbsColor
-                        )
-                        
-                        ReviewItemMacroCard(
-                            macroName: AppTexts.fatText,
-                            macroValue: "\(reviewItemViewModel.totalFat.formatToOneDecimalPlaces())g",
-                            macroPercentageByTotal: reviewItemViewModel.reviewItem?.getFatPercentageInTotalCalorie() ?? "",
-                            cardBGColor: AppColors.fatColor
-                        )
-                       
-                    }
-                    
-                    Spacer()
-                        .frame(height: 12)
-                    
-                    Divider()
-                    
-                    Spacer()
-                        .frame(height: 12)
-                    
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Daily Goals")
-                            .font(.system(size: 15, weight: .semibold))
-
-                        
-                        HStack(spacing: 12) {
-                            DailyGoalsCard(goalName: AppTexts.caloriesText, goalCurrentValue: 14, goalColor: AppColors.calorieColor)
-                            
-                            DailyGoalsCard(goalName: AppTexts.proteinText, goalCurrentValue: 17, goalColor: AppColors.protienColor)
-                            
-                            DailyGoalsCard(goalName: AppTexts.carbsText, goalCurrentValue: 17, goalColor: AppColors.carbsColor)
-                            
-                            DailyGoalsCard(goalName: AppTexts.fatText, goalCurrentValue: 17, goalColor: AppColors.fatColor)
-
+                        Button("+") {
+                            self.reviewItemViewModel.numberOfServing += 1
+                            self.reviewItemViewModel.updateMacrosForServing()
                         }
-                        .font(.system(size: 14, weight: .regular))
-                        
+                        .font(.system(size: 24, weight: .regular))
+                        .frame(width: 36, height: 36, alignment: .center)
+                        .foregroundStyle(Color.textSecondary)
                     }
-                    .foregroundStyle(Color.textSecondary)
-                    
-                    Spacer()
-                        .frame(height: 12)
-                                        
-                    
-                    FNButton(buttonTitle: "Confirm and Add", backgroundEnable: true) {
-                        
-                    }
-                    .padding(.top, 30)
-                    
-
-                    Spacer()
+                    .frame(height: 36)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(10)
                     
                 }
-                .padding(.horizontal, 20)
-                .padding(.vertical, 16)
+                .frame(height: 48)
                 
-                if reviewItemViewModel.isLoading {
-                    FNActivityIndicator()
+                Divider()
+                
+                HStack {
+                    Text("Serving Size")
+                        .foregroundStyle(Color.textPrimary)
+                        .font(.system(size: 15, weight: .semibold))
+                    
+                    Spacer()
+                    
+                    Text("\(self.reviewItemViewModel.servingSize.formatToOneDecimalPlaces())g")
+                        .foregroundStyle(Color.textSecondary)
+                        .font(.system(size: 15, weight: .regular))
+                    
                 }
+                .frame(height: 48)
+                
+                Divider()
+                
+                Spacer()
+                    .frame(height: 12)
+                
+                HStack(spacing: 12){
+                    
+                    ReviewItemMacroCard(
+                        macroName: AppTexts.caloriesText,
+                        macroValue: "\(reviewItemViewModel.totalCalories.formatToOneDecimalPlaces())",
+                        macroPercentageByTotal: "",
+                        cardBGColor: AppColors.calorieColor
+                    )
+                    
+                    ReviewItemMacroCard(
+                        macroName: AppTexts.proteinText,
+                        macroValue: "\(reviewItemViewModel.totalProtien.formatToOneDecimalPlaces())g",
+                        macroPercentageByTotal: reviewItemViewModel.reviewItem?.getProtienPercentageInTotalCalorie() ?? "",
+                        cardBGColor: AppColors.protienColor
+                    )
+                    
+                    ReviewItemMacroCard(
+                        macroName: AppTexts.carbsText,
+                        macroValue: "\(reviewItemViewModel.totalCarbs.formatToOneDecimalPlaces())g",
+                        macroPercentageByTotal: reviewItemViewModel.reviewItem?.getCarbsPercentageInTotalCalorie() ?? "",
+                        cardBGColor: AppColors.carbsColor
+                    )
+                    
+                    ReviewItemMacroCard(
+                        macroName: AppTexts.fatText,
+                        macroValue: "\(reviewItemViewModel.totalFat.formatToOneDecimalPlaces())g",
+                        macroPercentageByTotal: reviewItemViewModel.reviewItem?.getFatPercentageInTotalCalorie() ?? "",
+                        cardBGColor: AppColors.fatColor
+                    )
+                    
+                }
+                
+                Spacer()
+                    .frame(height: 12)
+                
+                Divider()
+                
+                Spacer()
+                    .frame(height: 12)
+                
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Daily Goals")
+                        .font(.system(size: 15, weight: .semibold))
+                    
+                    
+                    HStack(spacing: 12) {
+                        DailyGoalsCard(goalName: AppTexts.caloriesText, goalCurrentValue: 14, goalColor: AppColors.calorieColor)
+                        
+                        DailyGoalsCard(goalName: AppTexts.proteinText, goalCurrentValue: 17, goalColor: AppColors.protienColor)
+                        
+                        DailyGoalsCard(goalName: AppTexts.carbsText, goalCurrentValue: 17, goalColor: AppColors.carbsColor)
+                        
+                        DailyGoalsCard(goalName: AppTexts.fatText, goalCurrentValue: 17, goalColor: AppColors.fatColor)
+                        
+                    }
+                    .font(.system(size: 14, weight: .regular))
+                    
+                }
+                .foregroundStyle(Color.textSecondary)
+                
+                Spacer()
+                    .frame(height: 12)
+                
+                
+                FNButton(buttonTitle: "Confirm and Add", backgroundEnable: true) {
+                    isPresented = false
+                }
+                .padding(.top, 30)
+                
+                
+                Spacer()
                 
             }
-            .onFirstAppear(perform: {
-                reviewItemViewModel.setUpFoodCatalogManager(foodCatalogManager: appRootManager.foodCatalogManager)
-            })
-            .withCustomBackButton(withTitle: "Confirm Food")
+            .padding(.horizontal, 20)
+            .padding(.vertical, 16)
+            
+            if reviewItemViewModel.isLoading {
+                FNActivityIndicator()
+            }
+            
         }
+        .onFirstAppear(perform: {
+            reviewItemViewModel.setUpFoodCatalogManager(foodCatalogManager: appRootManager.foodCatalogManager)
+        })
+        .withCustomBackButton(withTitle: "Confirm Food")
     }
 }
 
 #Preview {
-    ReviewItemView()
+    ReviewItemView(isPresented: .constant(false))
 }

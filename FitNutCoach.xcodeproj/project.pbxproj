@@ -33,6 +33,7 @@
 		9741B6F62E7570B10092763D /* LogMealMacroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9741B6F52E7570B10092763D /* LogMealMacroView.swift */; };
 		9741B6F82E7584580092763D /* MealTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9741B6F72E7584580092763D /* MealTypeView.swift */; };
 		9741B6FA2E7598720092763D /* FNNavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9741B6F92E7598720092763D /* FNNavigationButton.swift */; };
+		9741B6FE2E75AD920092763D /* AddFoodItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9741B6FD2E75AD920092763D /* AddFoodItemView.swift */; };
 		974AFC342E660E91003302BB /* LogMealOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974AFC332E660E91003302BB /* LogMealOptionsView.swift */; };
 		974AFC382E660FEC003302BB /* RootTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974AFC372E660FEC003302BB /* RootTabViewModel.swift */; };
 		976174602E73013900A7C676 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9761745F2E73013900A7C676 /* FirebaseAuth */; };
@@ -135,6 +136,7 @@
 		9741B6F52E7570B10092763D /* LogMealMacroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMealMacroView.swift; sourceTree = "<group>"; };
 		9741B6F72E7584580092763D /* MealTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealTypeView.swift; sourceTree = "<group>"; };
 		9741B6F92E7598720092763D /* FNNavigationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FNNavigationButton.swift; sourceTree = "<group>"; };
+		9741B6FD2E75AD920092763D /* AddFoodItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodItemView.swift; sourceTree = "<group>"; };
 		974AFC332E660E91003302BB /* LogMealOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMealOptionsView.swift; sourceTree = "<group>"; };
 		974AFC372E660FEC003302BB /* RootTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabViewModel.swift; sourceTree = "<group>"; };
 		977356942E631982007ED640 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
@@ -379,10 +381,27 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		9741B6FB2E75AD7A0092763D /* AddFoodItemView */ = {
+			isa = PBXGroup;
+			children = (
+				9741B6FC2E75AD880092763D /* View */,
+			);
+			path = AddFoodItemView;
+			sourceTree = "<group>";
+		};
+		9741B6FC2E75AD880092763D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9741B6FD2E75AD920092763D /* AddFoodItemView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		974AFC312E660E79003302BB /* LogMeal */ = {
 			isa = PBXGroup;
 			children = (
 				9741B6F02E7548A90092763D /* LogMealView */,
+				9741B6FB2E75AD7A0092763D /* AddFoodItemView */,
 				9778FCDD2E6AFBEC00A3EF0C /* LogMealOptionsView */,
 				9778FCDE2E6B079600A3EF0C /* BarcodeView */,
 				97ED164A2E6DF47300DFF623 /* ReviewItemView */,
@@ -1011,6 +1030,7 @@
 			files = (
 				97C44E0E2E6C797E00FC0757 /* CustomBackButtonModifier.swift in Sources */,
 				979C16D12E6468E100322BB8 /* MealManager.swift in Sources */,
+				9741B6FE2E75AD920092763D /* AddFoodItemView.swift in Sources */,
 				9773569F2E63620E007ED640 /* DailyActivityModel.swift in Sources */,
 				972D8B522E733351008E3D47 /* ReviewItemMacroCard.swift in Sources */,
 				97D9A8572E6CA5E2008C5725 /* BarcodeScannerView.swift in Sources */,

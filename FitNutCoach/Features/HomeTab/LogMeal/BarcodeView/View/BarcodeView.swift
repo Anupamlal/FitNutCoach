@@ -9,12 +9,13 @@ import SwiftUI
 
 struct BarcodeView: View {
     
-    @StateObject var barcodeViewModel = BarcodeViewModel()
+    @StateObject private var barcodeViewModel = BarcodeViewModel()
     @EnvironmentObject private var appRootManager: AppRootManager
+    @Binding var isPresented: Bool
     
     var body: some View {
         
-        NavigationView {
+        NavigationStack {
             
             ScrollView {
                 ZStack{
@@ -74,11 +75,13 @@ struct BarcodeView: View {
             .scrollDisabled(true)
             .ignoresSafeArea()
             .withCustomBackButton(withTitle: AppTexts.scanABarCodeText, backButtonTint: .white, backButtonType: .close)
-            .sheet(isPresented: $barcodeViewModel.isBarcodeDetected, onDismiss: {
-                barcodeViewModel.isSessionRunning = true
-            }) {
-                ReviewItemView(barcode: self.barcodeViewModel.barcodeValue)
-            }
+            .navigationDestination(isPresented: $barcodeViewModel.isBarcodeDetected, destination: {
+                ReviewItemView(barcode: self.barcodeViewModel.barcodeValue, isPresented: $isPresented)
+                    .onDisappear {
+                        barcodeViewModel.isSessionRunning = true
+                        self.barcodeViewModel.barcodeValue = ""
+                    }
+            })
             .sheet(isPresented: $barcodeViewModel.isManualEntryOpen) {
                 BarcodeManualEntryView(code: $barcodeViewModel.barcodeValue){
                     barcodeViewModel.isBarcodeDetected = true
@@ -96,5 +99,5 @@ struct BarcodeView: View {
 }
 
 #Preview {
-    BarcodeView()
+    BarcodeView(isPresented: .constant(false))
 }

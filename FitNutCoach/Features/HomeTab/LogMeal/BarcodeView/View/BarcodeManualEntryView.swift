@@ -24,8 +24,8 @@ struct BarcodeManualEntryView: View {
                 .cornerRadius(10)
             
             FNButton(buttonTitle: AppTexts.confirmText, backgroundEnable: true, isEnabled: !(code.trimmingCharacters(in: .whitespaces).isEmpty)) {
-                onDone?()
                 self.dismiss()
+                onDone?()
             }
             
             Spacer()

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct LogMealView: View {
     
+    @State var openAddFoodView: Bool = false
+    
     var body: some View {
         
         ZStack {
@@ -51,7 +53,7 @@ struct LogMealView: View {
                     
                     ForEach(MealType.allCases, id: \.self) { mealType in
                         MealTypeView(currentMealType: mealType, foodItems: []) {
-                            
+                            openAddFoodView = true
                         }
                     }
                     
@@ -61,6 +63,9 @@ struct LogMealView: View {
             })
             .toolbarVisibility(.hidden, for: .tabBar)
             .withCustomBackButton(withTitle: AppTexts.logMealText)
+            .navigationDestination(isPresented: $openAddFoodView) {
+                AddFoodItemView()
+            }
         }
         
     }

@@ -50,22 +50,26 @@ struct HomeView: View {
                     
                     HStack{
                         
-                        NavigationLink {
-                            
+                        FNNavigationButton(buttonTitle: AppTexts.logMealText, backgroundEnable: true) {
                             LogMealView()
-                            
-                        } label: {
-                            
-                            RoundedRectangle(cornerRadius: 14)
-                                .foregroundStyle(Color.primaryAccent)
-                                .overlay {
-                                    Text(AppTexts.logMealText)
-                                        .font(.system(size: 16, weight: .semibold))
-                                        .foregroundStyle(.white)
-                                }
-                            
                         }
-                        .frame(height: 48)
+                        
+//                        NavigationLink {
+//                            
+//                            LogMealView()
+//                            
+//                        } label: {
+//                            
+//                            RoundedRectangle(cornerRadius: 14)
+//                                .foregroundStyle(Color.primaryAccent)
+//                                .overlay {
+//                                    Text(AppTexts.logMealText)
+//                                        .font(.system(size: 16, weight: .semibold))
+//                                        .foregroundStyle(.white)
+//                                }
+//                            
+//                        }
+//                        .frame(height: 48)
                         
                         FNButton(buttonTitle: AppTexts.startWorkoutText, backgroundEnable: false) {
                             rootTabViewModel.currentTab = .workouts
@@ -160,9 +164,6 @@ struct HomeView: View {
                 .presentationDragIndicator(.visible)
                 .presentationDetents([.medium])
                 
-        }
-        .fullScreenCover(isPresented: $homeViewModel.openBarcodeScanner) {
-            BarcodeView()
         }
     }
 }

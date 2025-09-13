@@ -16,10 +16,6 @@ class HomeViewModel: ObservableObject {
     @Published var openWaterIntakeView = false
     @Published var openLogWorkoutView = false
     
-    @Published var openBarcodeScanner = false
-    @Published var openCameraScanner = false
-    @Published var openManualEntry = false
-    
     private let profileManager: ProfileManager
     private let dailyActivityManager: DailyActivityManager
     private var cancellable = Set<AnyCancellable>()
@@ -57,20 +53,5 @@ class HomeViewModel: ObservableObject {
     
     func getDailyActivityManager() -> DailyActivityManager {
         return self.dailyActivityManager
-    }
-    
-    func setLogMealOption(selectedOption: MealSourceType) {
-        self.openBarcodeScanner = false
-        self.openManualEntry = false
-        self.openCameraScanner = false
-        
-        switch selectedOption {
-        case .barcode:
-            self.openBarcodeScanner = true
-        case .manual:
-            self.openManualEntry = true
-        case .photo:
-            self.openCameraScanner = true
-        }
     }
 }
