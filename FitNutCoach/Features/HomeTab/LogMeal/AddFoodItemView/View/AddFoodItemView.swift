@@ -20,6 +20,12 @@ struct AddFoodItemView: View {
         let index: Int
     }
     
+    @StateObject private var addFoodItemViewModel: AddFoodItemViewModel
+    
+    init(selectedMealType: MealType) {
+        _addFoodItemViewModel = StateObject(wrappedValue: AddFoodItemViewModel(selectedMealType: selectedMealType))
+    }
+    
     var body: some View {
         VStack {
             ScrollView {
@@ -177,7 +183,7 @@ struct AddFoodItemView: View {
         .padding(.bottom, 20)
         .withCustomBackButton(withTitle: "Add Food Item")
         .fullScreenCover(isPresented: $openBarCodeScanner) {
-            BarcodeView(isPresented: $openBarCodeScanner)
+            BarcodeView(mealType: self.addFoodItemViewModel.selectedMealType, isPresented: $openBarCodeScanner)
         }
         
     }
@@ -185,7 +191,7 @@ struct AddFoodItemView: View {
 
 #Preview {
     NavigationStack {
-        AddFoodItemView()
+        AddFoodItemView(selectedMealType: .breakfast)
 
     }
 }

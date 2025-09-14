@@ -91,10 +91,10 @@ struct FoodItemModel: Codable {
             
         }
         
-        self.id = foodCatalogItem.id
+        self.id = UUID().uuidString
         self.brand = foodCatalogItem.brand
         self.confidence = foodCatalogItem.confidence
-        self.foodRefId = nil
+        self.foodRefId = foodCatalogItem.id
         self.name = foodCatalogItem.name
         self.notes = nil
         self.servingSize = foodCatalogItem.servingSize ?? 0

@@ -9,9 +9,14 @@ import SwiftUI
 
 struct BarcodeView: View {
     
-    @StateObject private var barcodeViewModel = BarcodeViewModel()
+    @StateObject private var barcodeViewModel: BarcodeViewModel
     @EnvironmentObject private var appRootManager: AppRootManager
     @Binding var isPresented: Bool
+    
+    init(mealType: MealType, isPresented: Binding<Bool>) {
+        _barcodeViewModel = StateObject(wrappedValue: BarcodeViewModel(mealType: mealType))
+        _isPresented = isPresented
+    }
     
     var body: some View {
         
@@ -36,7 +41,6 @@ struct BarcodeView: View {
                             .ignoresSafeArea()
                         
                         VStack {
-                            
                             
                             RoundedRectangle(cornerRadius: 16)
                                 .blendMode(.destinationOut)
@@ -76,7 +80,7 @@ struct BarcodeView: View {
             .ignoresSafeArea()
             .withCustomBackButton(withTitle: AppTexts.scanABarCodeText, backButtonTint: .white, backButtonType: .close)
             .navigationDestination(isPresented: $barcodeViewModel.isBarcodeDetected, destination: {
-                ReviewItemView(barcode: self.barcodeViewModel.barcodeValue, isPresented: $isPresented)
+                ReviewItemView(barcode: self.barcodeViewModel.barcodeValue, isPresented: $isPresented, mealType: self.barcodeViewModel.mealType)
                     .onDisappear {
                         barcodeViewModel.isSessionRunning = true
                         self.barcodeViewModel.barcodeValue = ""
@@ -99,5 +103,5 @@ struct BarcodeView: View {
 }
 
 #Preview {
-    BarcodeView(isPresented: .constant(false))
+    BarcodeView(mealType: .breakfast, isPresented: .constant(false))
 }

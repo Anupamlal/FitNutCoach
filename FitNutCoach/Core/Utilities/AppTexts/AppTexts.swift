@@ -55,4 +55,11 @@ class AppTexts {
     static let dinnerDescriptionText = "🫓 Balance your day — don’t skip dinner tracking."
     static let snacksDescriptionText = "🍎 Smart snacking counts — record yours here."
     
+    static let confirmFoodText = "Confirm Food"
+    static let confirmAndAddText = "Confirm and Add"
+    static let dailyGoalsText = "Daily Goals"
+    static let servingSizeText = "Serving Size"
+    static let numberOfServingsText = "Number of Servings"
+    static let mealText = "Meal"
+    
 }

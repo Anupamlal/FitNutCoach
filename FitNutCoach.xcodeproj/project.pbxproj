@@ -83,6 +83,9 @@
 		97BF11AE2E5B140E005FBA95 /* NutritionSnapshotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF11AD2E5B140E005FBA95 /* NutritionSnapshotView.swift */; };
 		97BF11B22E5B30A6005FBA95 /* QuickRecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF11B12E5B30A6005FBA95 /* QuickRecipesView.swift */; };
 		97C44E0E2E6C797E00FC0757 /* CustomBackButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C44E0D2E6C797E00FC0757 /* CustomBackButtonModifier.swift */; };
+		97D780B52E76C155004BA2AA /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D780B42E76C151004BA2AA /* Date+Extension.swift */; };
+		97D780B82E76C91E004BA2AA /* LogMealViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D780B72E76C91E004BA2AA /* LogMealViewModel.swift */; };
+		97D780BB2E76CB6E004BA2AA /* AddFoodItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D780BA2E76CB6E004BA2AA /* AddFoodItemViewModel.swift */; };
 		97D9A8572E6CA5E2008C5725 /* BarcodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D9A8562E6CA5E2008C5725 /* BarcodeScannerView.swift */; };
 		97ED16452E6DBF3100DFF623 /* BarcodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ED16442E6DBF3100DFF623 /* BarcodeViewModel.swift */; };
 		97ED16472E6DE3F400DFF623 /* BarcodeManualEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ED16462E6DE3F400DFF623 /* BarcodeManualEntryView.swift */; };
@@ -184,6 +187,9 @@
 		97BF11AD2E5B140E005FBA95 /* NutritionSnapshotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionSnapshotView.swift; sourceTree = "<group>"; };
 		97BF11B12E5B30A6005FBA95 /* QuickRecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickRecipesView.swift; sourceTree = "<group>"; };
 		97C44E0D2E6C797E00FC0757 /* CustomBackButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackButtonModifier.swift; sourceTree = "<group>"; };
+		97D780B42E76C151004BA2AA /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		97D780B72E76C91E004BA2AA /* LogMealViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMealViewModel.swift; sourceTree = "<group>"; };
+		97D780BA2E76CB6E004BA2AA /* AddFoodItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodItemViewModel.swift; sourceTree = "<group>"; };
 		97D9A8562E6CA5E2008C5725 /* BarcodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerView.swift; sourceTree = "<group>"; };
 		97ED16442E6DBF3100DFF623 /* BarcodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeViewModel.swift; sourceTree = "<group>"; };
 		97ED16462E6DE3F400DFF623 /* BarcodeManualEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeManualEntryView.swift; sourceTree = "<group>"; };
@@ -358,7 +364,9 @@
 		9741B6F02E7548A90092763D /* LogMealView */ = {
 			isa = PBXGroup;
 			children = (
+				97D780B62E76C90E004BA2AA /* ViewModel */,
 				9741B6F12E7548B00092763D /* View */,
+				9741B6F42E75709C0092763D /* Cells */,
 			);
 			path = LogMealView;
 			sourceTree = "<group>";
@@ -366,7 +374,6 @@
 		9741B6F12E7548B00092763D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9741B6F42E75709C0092763D /* Cells */,
 				9741B6F22E7548BA0092763D /* LogMealView.swift */,
 			);
 			path = View;
@@ -384,6 +391,7 @@
 		9741B6FB2E75AD7A0092763D /* AddFoodItemView */ = {
 			isa = PBXGroup;
 			children = (
+				97D780B92E76CB5E004BA2AA /* ViewModel */,
 				9741B6FC2E75AD880092763D /* View */,
 			);
 			path = AddFoodItemView;
@@ -437,6 +445,7 @@
 		977356962E6334D0007ED640 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				97D780B42E76C151004BA2AA /* Date+Extension.swift */,
 				972E9E982E71A434009FD7F1 /* Codable+Extension.swift */,
 				972E9E992E71A434009FD7F1 /* DispatchQueue+Extension.swift */,
 				977356972E6334D8007ED640 /* Double+Extension.swift */,
@@ -843,6 +852,22 @@
 			path = AppColors;
 			sourceTree = "<group>";
 		};
+		97D780B62E76C90E004BA2AA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				97D780B72E76C91E004BA2AA /* LogMealViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		97D780B92E76CB5E004BA2AA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				97D780BA2E76CB6E004BA2AA /* AddFoodItemViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		97ED16412E6DB2B300DFF623 /* HelperViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -862,6 +887,7 @@
 		97ED164A2E6DF47300DFF623 /* ReviewItemView */ = {
 			isa = PBXGroup;
 			children = (
+				972D8B502E733335008E3D47 /* Cells */,
 				972E9E562E70B3BA009FD7F1 /* Model */,
 				972E9E502E70A04F009FD7F1 /* ViewModel */,
 				97ED164B2E6DF48B00DFF623 /* View */,
@@ -872,7 +898,6 @@
 		97ED164B2E6DF48B00DFF623 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				972D8B502E733335008E3D47 /* Cells */,
 				97ED164C2E6DF51500DFF623 /* ReviewItemView.swift */,
 			);
 			path = View;
@@ -1028,6 +1053,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97D780BB2E76CB6E004BA2AA /* AddFoodItemViewModel.swift in Sources */,
 				97C44E0E2E6C797E00FC0757 /* CustomBackButtonModifier.swift in Sources */,
 				979C16D12E6468E100322BB8 /* MealManager.swift in Sources */,
 				9741B6FE2E75AD920092763D /* AddFoodItemView.swift in Sources */,
@@ -1086,7 +1112,9 @@
 				9773569D2E635552007ED640 /* DailyActivityManager.swift in Sources */,
 				972E9E952E71A344009FD7F1 /* FirebaseKey.swift in Sources */,
 				97BF11912E5AB131005FBA95 /* TrendsView.swift in Sources */,
+				97D780B82E76C91E004BA2AA /* LogMealViewModel.swift in Sources */,
 				979C16D32E64803600322BB8 /* WorkoutManager.swift in Sources */,
+				97D780B52E76C155004BA2AA /* Date+Extension.swift in Sources */,
 				972E9E862E719659009FD7F1 /* ProfileSetupView.swift in Sources */,
 				9741B6F82E7584580092763D /* MealTypeView.swift in Sources */,
 				979C16D82E648F1D00322BB8 /* LogWaterView.swift in Sources */,

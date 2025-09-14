@@ -54,23 +54,6 @@ struct HomeView: View {
                             LogMealView()
                         }
                         
-//                        NavigationLink {
-//                            
-//                            LogMealView()
-//                            
-//                        } label: {
-//                            
-//                            RoundedRectangle(cornerRadius: 14)
-//                                .foregroundStyle(Color.primaryAccent)
-//                                .overlay {
-//                                    Text(AppTexts.logMealText)
-//                                        .font(.system(size: 16, weight: .semibold))
-//                                        .foregroundStyle(.white)
-//                                }
-//                            
-//                        }
-//                        .frame(height: 48)
-                        
                         FNButton(buttonTitle: AppTexts.startWorkoutText, backgroundEnable: false) {
                             rootTabViewModel.currentTab = .workouts
                         }

@@ -39,7 +39,7 @@ struct MealModel: Codable {
     let notes: String?
     let photoId: String?
     let mealSource: MealSourceType?
-    let updatedAt: Date?
+    var updatedAt: Date?
     var foodItems: [FoodItemModel]?
     
     init(id: String?, aiConfidence: Double, createdAt: Date?, date: Date?, mealType: MealType?, notes: String?, photoId: String?, mealSource: MealSourceType?, updatedAt: Date?, foodItems: [FoodItemModel]?) {
@@ -87,7 +87,7 @@ struct MealModel: Codable {
         meal.id = self.id
         meal.aiConfidence = self.aiConfidence
         meal.createdAt = self.createdAt
-        meal.date = self.date
+        meal.date = self.date?.getStartOfDate()
         meal.mealType = self.mealType?.rawValue
         meal.notes = self.notes
         meal.photoId = self.photoId

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LogMealView: View {
     
-    @State var openAddFoodView: Bool = false
+    @StateObject var logMealViewModel: LogMealViewModel = .init()
     
     var body: some View {
         
@@ -53,7 +53,7 @@ struct LogMealView: View {
                     
                     ForEach(MealType.allCases, id: \.self) { mealType in
                         MealTypeView(currentMealType: mealType, foodItems: []) {
-                            openAddFoodView = true
+                            logMealViewModel.openAddFoodView = (true, mealType)
                         }
                     }
                     
@@ -63,8 +63,13 @@ struct LogMealView: View {
             })
             .toolbarVisibility(.hidden, for: .tabBar)
             .withCustomBackButton(withTitle: AppTexts.logMealText)
-            .navigationDestination(isPresented: $openAddFoodView) {
-                AddFoodItemView()
+            .navigationDestination(isPresented: $logMealViewModel.openAddFoodView.0) {
+                if let mealType = self.logMealViewModel.openAddFoodView.1 {
+                    AddFoodItemView(selectedMealType: mealType)
+                        .onDisappear {
+                            self.logMealViewModel.openAddFoodView = (false, nil)
+                        }
+                }
             }
         }
         

@@ -13,6 +13,11 @@ class BarcodeViewModel: ObservableObject {
     @Published var barcodeValue: String = ""
     @Published var isSessionRunning: Bool = true
     @Published var isManualEntryOpen: Bool = false
+    @Published var mealType: MealType
+    
+    init(mealType: MealType) {
+        self.mealType = mealType
+    }
     
     func loadAllFoodCatalogData(foodCatalogManager: FoodCatalogManager) {
         Task {

@@ -14,8 +14,8 @@ struct ReviewItemView: View {
     @EnvironmentObject private var appRootManager: AppRootManager
     @Binding var isPresented: Bool
     
-    init(barcode: String? = nil, isPresented: Binding<Bool>) {
-        _reviewItemViewModel = .init(wrappedValue: .init(barcode: barcode))
+    init(barcode: String? = nil, isPresented: Binding<Bool>, mealType: MealType) {
+        _reviewItemViewModel = .init(wrappedValue: .init(barcode: barcode, mealType: mealType))
         _isPresented = isPresented
     }
     
@@ -65,13 +65,13 @@ struct ReviewItemView: View {
                 Divider()
                 
                 HStack {
-                    Text("Meal")
+                    Text(AppTexts.mealText)
                         .foregroundStyle(Color.textPrimary)
                         .font(.system(size: 15, weight: .semibold))
                     
                     Spacer()
                     
-                    Text("Breakfast")
+                    Text(reviewItemViewModel.mealType.getDisplayName())
                         .foregroundStyle(Color.textSecondary)
                         .font(.system(size: 15, weight: .regular))
                     
@@ -81,7 +81,7 @@ struct ReviewItemView: View {
                 Divider()
                 
                 HStack {
-                    Text("Number of Servings")
+                    Text(AppTexts.numberOfServingsText)
                         .foregroundStyle(Color.textPrimary)
                         .font(.system(size: 15, weight: .semibold))
                     
@@ -127,7 +127,7 @@ struct ReviewItemView: View {
                 Divider()
                 
                 HStack {
-                    Text("Serving Size")
+                    Text(AppTexts.servingSizeText)
                         .foregroundStyle(Color.textPrimary)
                         .font(.system(size: 15, weight: .semibold))
                     
@@ -186,7 +186,7 @@ struct ReviewItemView: View {
                     .frame(height: 12)
                 
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Daily Goals")
+                    Text(AppTexts.dailyGoalsText)
                         .font(.system(size: 15, weight: .semibold))
                     
                     
@@ -209,8 +209,12 @@ struct ReviewItemView: View {
                     .frame(height: 12)
                 
                 
-                FNButton(buttonTitle: "Confirm and Add", backgroundEnable: true) {
+                FNButton(buttonTitle: AppTexts.confirmAndAddText, backgroundEnable: true) {
                     isPresented = false
+                    self.reviewItemViewModel.fillUpdatedServingSizes()
+                    Task {
+                        await reviewItemViewModel.confirmFoodAndUpdate()
+                    }
                 }
                 .padding(.top, 30)
                 
@@ -227,12 +231,12 @@ struct ReviewItemView: View {
             
         }
         .onFirstAppear(perform: {
-            reviewItemViewModel.setUpFoodCatalogManager(foodCatalogManager: appRootManager.foodCatalogManager)
+            reviewItemViewModel.setUpFoodCatalogManager(foodCatalogManager: appRootManager.foodCatalogManager, dailyActivityManager: appRootManager.dailyActivityManager)
         })
-        .withCustomBackButton(withTitle: "Confirm Food")
+        .withCustomBackButton(withTitle: AppTexts.confirmFoodText)
     }
 }
 
 #Preview {
-    ReviewItemView(isPresented: .constant(false))
+    ReviewItemView(isPresented: .constant(false), mealType: .breakfast)
 }

@@ -47,14 +47,19 @@ class DailyActivityManager: ObservableObject {
         return true
     }
     
-    func loadData(date: Date) async -> DailyActivity? {
+    func loadData(date: Date, viewContextObj: NSManagedObjectContext? = nil) async -> DailyActivity? {
         let fetchRequest = DailyActivity.fetchRequest()
-        let start = Calendar.current.startOfDay(for: date)
+        let start = date.getStartOfDate()
         
         fetchRequest.predicate = NSPredicate(format: "date == %@", start as NSDate)
         fetchRequest.fetchLimit = 1
         
-        if let dailyActivity = try? viewContext.fetch(fetchRequest).first {
+        var currentViewContext = viewContextObj
+        if currentViewContext == nil {
+            currentViewContext = self.viewContext
+        }
+        
+        if let dailyActivity = try? currentViewContext?.fetch(fetchRequest).first {
             return dailyActivity
         }
         
@@ -94,6 +99,48 @@ class DailyActivityManager: ObservableObject {
     
     func publishDailyActivity(_ dailyActivityModel: DailyActivityModel) {
         self.dailyActivitySubject.send(dailyActivityModel)
+    }
+    
+    func addMeal(_ meal: MealModel) async -> Bool {
+        
+        if let date = meal.date, let dayActivity = await self.loadData(date: date, viewContextObj: self.bgContext) {
+            
+            let mealCD = Meal(context: self.bgContext)
+            
+            meal.fillMeal(meal: mealCD, context: self.bgContext)
+            mealCD.dailyActivity = dayActivity
+            
+            
+            let mealCalories = meal.foodItems?.reduce(0) { $0 + ($1.calories) }
+            let mealProtein = meal.foodItems?.reduce(0) { $0 + ($1.protein) }
+            let mealCarbs = meal.foodItems?.reduce(0) { $0 + ($1.carbs) }
+            let mealFat = meal.foodItems?.reduce(0) { $0 + ($1.fat) }
+            
+            dayActivity.calories += mealCalories ?? 0
+            dayActivity.protein += mealProtein ?? 0
+            dayActivity.carbs += mealCarbs ?? 0
+            dayActivity.fat += mealFat ?? 0
+            dayActivity.updatedAt = Date()
+            
+            await bgContext.perform {
+                
+                do {
+                    try self.bgContext.save()
+                }
+                catch {
+                    print("Error caused during saving DailyActivity", error.localizedDescription)
+                }
+            }
+            
+            let dailyActivityModel = DailyActivityModel(dailyActivity: dayActivity)
+            
+            self.publishDailyActivity(dailyActivityModel)
+            
+            return true
+            
+        }
+        
+        return false
     }
 
 }
