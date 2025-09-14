@@ -125,13 +125,13 @@ struct FoodItemModel: Codable {
     }
     
     func getProtienPercentageInTotalCalorie() -> String {
-        let fatPercent = (self.protein / self.calories) * 100
-        return "\(Int(fatPercent))%"
+        let proteinPercent = (self.protein / self.calories) * 100
+        return "\(Int(proteinPercent))%"
     }
     
     func getCarbsPercentageInTotalCalorie() -> String {
-        let fatPercent = (self.carbs / self.calories) * 100
-        return "\(Int(fatPercent))%"
+        let carbsPercent = (self.carbs / self.calories) * 100
+        return "\(Int(carbsPercent))%"
     }
     
     func getFatPercentageInTotalCalorie() -> String {

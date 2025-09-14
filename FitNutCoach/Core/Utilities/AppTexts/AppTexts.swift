@@ -63,3 +63,9 @@ class AppTexts {
     static let mealText = "Meal"
     
 }
+
+class ErrorTexts {
+    static let invalidEmailFormat = "Invalid email format"
+    static let somethingWentWrong = "Something went wrong. Please try again later."
+    static let noProductsFound = "No product found."
+}

@@ -729,6 +729,7 @@
 		97BF116F2E5A3596005FBA95 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				97BF11A12E5AE445005FBA95 /* Cells */,
 				97BF11942E5AB9B0005FBA95 /* ViewModel */,
 				97BF117D2E5AB055005FBA95 /* View */,
 			);
@@ -748,7 +749,6 @@
 			isa = PBXGroup;
 			children = (
 				97BF117C2E5AB055005FBA95 /* HomeView.swift */,
-				97BF11A12E5AE445005FBA95 /* Cells */,
 			);
 			path = View;
 			sourceTree = "<group>";

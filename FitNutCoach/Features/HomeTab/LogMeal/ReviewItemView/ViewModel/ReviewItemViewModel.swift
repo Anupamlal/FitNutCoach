@@ -20,6 +20,7 @@ class ReviewItemViewModel: ObservableObject {
     @Published var totalProtien: Double = 0
     @Published var totalCarbs: Double = 0
     @Published var totalFat: Double = 0
+    @Published var errorString: String?
     
     private let sessionManager: URLSessionManager = URLSessionManager()
     private var cancellables: Set<AnyCancellable> = []
@@ -51,15 +52,29 @@ class ReviewItemViewModel: ObservableObject {
                 
                 switch completion {
                 case .failure(let err):
+                    weakSelf.errorString = ErrorTexts.somethingWentWrong
                     weakSelf.isLoading = false
                     print("GET failed:", err)
+                    
                 case .finished:
                     print("GET finished")
                 }
             } receiveValue: {[weak self] (barcodeModel: BarcodeModel) in
                 
                 guard let weakSelf = self else { return }
-
+                
+                guard barcodeModel.product.productType?.lowercased() == "food" else {
+                    weakSelf.errorString = ErrorTexts.noProductsFound
+                    weakSelf.isLoading = false
+                    return
+                }
+                
+                guard barcodeModel.product.nutriments != nil && barcodeModel.product.servingQuantity != nil else {
+                    weakSelf.errorString = ErrorTexts.noProductsFound
+                    weakSelf.isLoading = false
+                    return
+                }
+                
                 let foodCatalogItem = FoodCatalogItemModel(barcodeModel: barcodeModel)
                 
                 Task {
