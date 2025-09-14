@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FoodItemModel: Codable {
+struct FoodItemModel: Codable, Equatable {
     let id: String?
     let brand: String?
     var calories: Double

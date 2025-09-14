@@ -27,7 +27,7 @@ enum MealType: String, Codable, CaseIterable {
 }
 
 enum MealSourceType: String, Codable {
-    case manual, photo, barcode
+    case manual, photo, barcode, search
 }
 
 struct MealModel: Codable {

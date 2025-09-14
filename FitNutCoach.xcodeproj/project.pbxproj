@@ -86,6 +86,9 @@
 		97D780B52E76C155004BA2AA /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D780B42E76C151004BA2AA /* Date+Extension.swift */; };
 		97D780B82E76C91E004BA2AA /* LogMealViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D780B72E76C91E004BA2AA /* LogMealViewModel.swift */; };
 		97D780BB2E76CB6E004BA2AA /* AddFoodItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D780BA2E76CB6E004BA2AA /* AddFoodItemViewModel.swift */; };
+		97D780BE2E76EAD6004BA2AA /* BarcodeSnapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D780BD2E76EAD6004BA2AA /* BarcodeSnapView.swift */; };
+		97D780C02E76EF3E004BA2AA /* FoodItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D780BF2E76EF3D004BA2AA /* FoodItemView.swift */; };
+		97D780C22E772BA5004BA2AA /* AddFoodSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D780C12E772BA5004BA2AA /* AddFoodSectionHeaderView.swift */; };
 		97D9A8572E6CA5E2008C5725 /* BarcodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D9A8562E6CA5E2008C5725 /* BarcodeScannerView.swift */; };
 		97ED16452E6DBF3100DFF623 /* BarcodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ED16442E6DBF3100DFF623 /* BarcodeViewModel.swift */; };
 		97ED16472E6DE3F400DFF623 /* BarcodeManualEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ED16462E6DE3F400DFF623 /* BarcodeManualEntryView.swift */; };
@@ -190,6 +193,9 @@
 		97D780B42E76C151004BA2AA /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		97D780B72E76C91E004BA2AA /* LogMealViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMealViewModel.swift; sourceTree = "<group>"; };
 		97D780BA2E76CB6E004BA2AA /* AddFoodItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodItemViewModel.swift; sourceTree = "<group>"; };
+		97D780BD2E76EAD6004BA2AA /* BarcodeSnapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeSnapView.swift; sourceTree = "<group>"; };
+		97D780BF2E76EF3D004BA2AA /* FoodItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemView.swift; sourceTree = "<group>"; };
+		97D780C12E772BA5004BA2AA /* AddFoodSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodSectionHeaderView.swift; sourceTree = "<group>"; };
 		97D9A8562E6CA5E2008C5725 /* BarcodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerView.swift; sourceTree = "<group>"; };
 		97ED16442E6DBF3100DFF623 /* BarcodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeViewModel.swift; sourceTree = "<group>"; };
 		97ED16462E6DE3F400DFF623 /* BarcodeManualEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeManualEntryView.swift; sourceTree = "<group>"; };
@@ -391,6 +397,7 @@
 		9741B6FB2E75AD7A0092763D /* AddFoodItemView */ = {
 			isa = PBXGroup;
 			children = (
+				97D780BC2E76EAC1004BA2AA /* Cells */,
 				97D780B92E76CB5E004BA2AA /* ViewModel */,
 				9741B6FC2E75AD880092763D /* View */,
 			);
@@ -868,6 +875,16 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		97D780BC2E76EAC1004BA2AA /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				97D780BD2E76EAD6004BA2AA /* BarcodeSnapView.swift */,
+				97D780BF2E76EF3D004BA2AA /* FoodItemView.swift */,
+				97D780C12E772BA5004BA2AA /* AddFoodSectionHeaderView.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		97ED16412E6DB2B300DFF623 /* HelperViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -1070,6 +1087,7 @@
 				97ED16452E6DBF3100DFF623 /* BarcodeViewModel.swift in Sources */,
 				972E9E522E70A063009FD7F1 /* ReviewItemViewModel.swift in Sources */,
 				9778FCE32E6B07CE00A3EF0C /* BarcodeView.swift in Sources */,
+				97D780C02E76EF3E004BA2AA /* FoodItemView.swift in Sources */,
 				972E9E7D2E718E82009FD7F1 /* LoginViewModel.swift in Sources */,
 				972E9E8A2E719696009FD7F1 /* ProfileSetupViewModel.swift in Sources */,
 				9778FCDC2E6AF99600A3EF0C /* LogMealOptionView.swift in Sources */,
@@ -1102,6 +1120,7 @@
 				97BF11712E5A35A8005FBA95 /* RootTabView.swift in Sources */,
 				97BF11A62E5AE87F005FBA95 /* AppColors.swift in Sources */,
 				97BF11982E5AB9D5005FBA95 /* HomeViewModel.swift in Sources */,
+				97D780BE2E76EAD6004BA2AA /* BarcodeSnapView.swift in Sources */,
 				972E9E5A2E70B7B3009FD7F1 /* FNActivityIndicator.swift in Sources */,
 				97ED164F2E6DF6D400DFF623 /* URLSessionManager.swift in Sources */,
 				972E9E9F2E71E6B1009FD7F1 /* FoodCatalogManager.swift in Sources */,
@@ -1127,6 +1146,7 @@
 				97BF118C2E5AB106005FBA95 /* WorkoutsView.swift in Sources */,
 				972E9E582E70B3BE009FD7F1 /* BarcodeModel.swift in Sources */,
 				97BF11752E5A3691005FBA95 /* AppEnvironment.swift in Sources */,
+				97D780C22E772BA5004BA2AA /* AddFoodSectionHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,183 +9,127 @@ import SwiftUI
 
 struct AddFoodItemView: View {
     
-    @State var searchText: String = ""
-    var allFoodItems: [String] = ["Pasta", "Maggie", "Dal", "Biryani", "Roti", "Naan", "Bread", "Bun", "Burger", "Pizza"]
-    
-    @State var selectedFoods = [String]()
-    @State var openBarCodeScanner = false
-    
-    struct TableKey: Hashable {
-        let section: Int
-        let index: Int
-    }
-    
     @StateObject private var addFoodItemViewModel: AddFoodItemViewModel
+    @EnvironmentObject private var appRootManager: AppRootManager
+    @Environment(\.dismiss) var dismiss
     
     init(selectedMealType: MealType) {
         _addFoodItemViewModel = StateObject(wrappedValue: AddFoodItemViewModel(selectedMealType: selectedMealType))
     }
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             ScrollView {
                 VStack(alignment: .leading, spacing: AppSpacing.m) {
                     
-                    if searchText.isEmpty {
+                    if addFoodItemViewModel.searchText.isEmpty {
                         
-                        Button {
-                            openBarCodeScanner = true
-                            
-                        } label: {
-                            Card(backgroundColor: AppColors.logMealCardBGColor) {
-                                HStack() {
-                                    VStack(alignment: .leading, spacing: AppSpacing.s){
-                                        Text(AppTexts.scanABarCodeText)
-                                            .font(.system(size: 16, weight: .medium))
-                                            .foregroundColor(Color.textPrimary)
-                                        
-                                        Text(AppTexts.foodViaBarcodeText)
-                                            .font(.system(size: 14, weight: .regular))
-                                            .foregroundColor(Color.textSecondary)
-                                    }
-                                    
-                                    Spacer()
-                                    
-                                    Image(systemName: "barcode.viewfinder")
-                                        .resizable()
-                                        .renderingMode(.template)
-                                        .frame(width: 30, height: 30)
-                                        .foregroundColor(Color.primaryAccent)
-                                    
-                                }
-                            }
+                        BarcodeSnapView {
+                            self.addFoodItemViewModel.openBarCodeScanner = true
                         }
-                        .padding(.top, AppSpacing.s)
                         
                         Spacer()
                             .frame(height: 2)
                     }
-                                    
-                    LazyVStack(alignment: .leading, spacing: 14, pinnedViews: [.sectionHeaders]) {
+                    
+                    if addFoodItemViewModel.addFoodSections.isEmpty {
+                        Text("No food item found")
+                            .foregroundStyle(.textPrimary)
+                            .font(.system(size: 14, weight: .medium))
                         
-                        Section {
-                            ForEach(allFoodItems.indices.map{TableKey(section: 0, index: $0)}, id: \.self) { pair in
-                                HStack {
-                                    VStack(alignment: .leading, spacing: 10) {
-                                        Text(allFoodItems[pair.index])
-                                            .font(.system(size: 18, weight: .semibold))
-                                            .foregroundColor(Color.textPrimary)
+                    }else {
+                        
+                        LazyVStack(alignment: .leading, spacing: 14, pinnedViews: [.sectionHeaders]) {
+                            
+                            ForEach(addFoodItemViewModel.addFoodSections, id: \.self) { currentSection in
+                                
+                                switch currentSection {
+                                case .history:
+                                    Section {
+                                        getFoodItemList(foodItems: self.addFoodItemViewModel.filteredHistoryFoods)
                                         
-                                        Text("40g")
-                                            .font(.system(size: 16, weight: .regular))
-                                            .foregroundColor(Color.textSecondary)
+                                    } header: {
+                                        AddFoodSectionHeaderView(headerName: AppTexts.historyText)
                                     }
                                     
-                                    Spacer()
+                                case .frequentlyUsed:
                                     
-                                    Text("300 kcal")
-                                        .font(.system(size: 16, weight: .regular))
-                                        .foregroundColor(Color.textSecondary)
-                                        .padding(.trailing, 8)
-                                    
-                                    Button {
-                                        withAnimation(.easeInOut) {
-                                            selectedFoods.append(allFoodItems[pair.index])
-                                        }
+                                    Section {
+                                        getFoodItemList(foodItems: self.addFoodItemViewModel.filteredFrequentlyUsedFoods)
                                         
-                                    } label: {
-                                        Image(systemName: "plus.app")
-                                            .resizable()
-                                            .renderingMode(.template)
-                                            .frame(width: 25, height: 25)
-                                            .foregroundStyle(Color.primaryAccent)
+                                    } header: {
+                                        AddFoodSectionHeaderView(headerName: AppTexts.frequentlyTrackedFoodsText)
                                     }
-
                                 }
                             }
-                        } header: {
                             
-                            HStack {
-                                Text("History")
-                                    .foregroundStyle(Color.textPrimary)
-                                    .font(.system(size: 20, weight: .semibold))
-                                Spacer()
-                            }
-                            .frame(height: 40)
-                            .background(Color.white)
                         }
-                        
-                        Spacer()
-                            .frame(height: 0)
-                        
-                        Section {
-                            ForEach(allFoodItems.indices.map{TableKey(section: 1, index: $0)}, id: \.self) { pair in
-                                HStack {
-                                    VStack(alignment: .leading, spacing: 10) {
-                                        Text(allFoodItems[pair.index])
-                                            .font(.system(size: 18, weight: .semibold))
-                                            .foregroundColor(Color.textPrimary)
-                                        
-                                        Text("40g")
-                                            .font(.system(size: 16, weight: .regular))
-                                            .foregroundColor(Color.textSecondary)
-                                    }
-                                    
-                                    Spacer()
-                                    
-                                    Text("300 kcal")
-                                        .font(.system(size: 16, weight: .regular))
-                                        .foregroundColor(Color.textSecondary)
-                                        .padding(.trailing, 8)
-                                    
-                                    Button {
-                                        
-                                        
-                                    } label: {
-                                        Image(systemName: "plus.app")
-                                            .resizable()
-                                            .renderingMode(.template)
-                                            .frame(width: 25, height: 25)
-                                            .foregroundStyle(Color.primaryAccent)
-                                    }
-
-                                }
-                            }
-                        } header: {
-                            
-                            HStack {
-                                Text("Frequently Tracked Foods")
-                                    .foregroundStyle(Color.textPrimary)
-                                    .font(.system(size: 20, weight: .semibold))
-                                Spacer()
-                            }
-                            .frame(height: 40)
-                            .background(Color.white)
-                        }
-                        
-                        
                     }
                     
                 }
-                .searchable(text: $searchText, prompt: Text("Search food item"))
+                .searchable(text: $addFoodItemViewModel.searchText, prompt: Text(AppTexts.searchFoodText))
                 .padding(.horizontal, 20)
             }
             
-            if selectedFoods.count > 0 {
-                FNButton(buttonTitle: "Add Selected Foods", backgroundEnable: true) {
+            if addFoodItemViewModel.selectedFoods.count > 0 {
+                VStack(alignment: .leading, spacing: 0) {
+                    
+                    Group {
+                        if addFoodItemViewModel.selectedFoods.count > 1 {
+                            Text("\(addFoodItemViewModel.selectedFoods.last!.name ?? "") +\(addFoodItemViewModel.selectedFoods.count - 1) more food added")
+                        }else {
+                            Text("\(addFoodItemViewModel.selectedFoods.last!.name ?? "") added")
+                        }
+                    }
+                    .lineLimit(1)
+                    .truncationMode(.middle)
+                    .frame(height: 48)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal, 20)
+                    .font(.system(size: 14, weight: .medium))
+                    .foregroundStyle(.textPrimary)
+                    .background {
+                        AppColors.logMealCardBGColor
+                    }
+                    
+                    FNButton(buttonTitle: "Log For \(self.addFoodItemViewModel.selectedMealType.getDisplayName())", backgroundEnable: true, cornerRadius: 0) {
+                        dismiss()
+                        Task {
+                            _ = await self.addFoodItemViewModel.logSelectedFood()
+                        }
+                    }
                     
                 }
-                .padding(.horizontal, 20)
-
             }
 
         }
-        .padding(.bottom, 20)
-        .withCustomBackButton(withTitle: "Add Food Item")
-        .fullScreenCover(isPresented: $openBarCodeScanner) {
-            BarcodeView(mealType: self.addFoodItemViewModel.selectedMealType, isPresented: $openBarCodeScanner)
+        .padding(.bottom, 1)
+        .withCustomBackButton(withTitle: AppTexts.addFoodItemText)
+        .fullScreenCover(isPresented: $addFoodItemViewModel.openBarCodeScanner) {
+            BarcodeView(mealType: self.addFoodItemViewModel.selectedMealType, isPresented: $addFoodItemViewModel.openBarCodeScanner)
+        }
+        .onFirstAppear {
+            self.addFoodItemViewModel.setup(appRootManager.foodCatalogManager, appRootManager.dailyActivityManager)
         }
         
+    }
+    
+    @ViewBuilder
+    func getFoodItemList(foodItems: [FoodItemModel]) -> some View {
+        
+        ForEach(foodItems, id: \.id) { foodItem in
+            FoodItemView(foodItemName: foodItem.name ?? "" , brandName: foodItem.brand, servingSize: "\(foodItem.servingSize.formatToOneDecimalPlaces())\(foodItem.servingUnit ?? "g")", totalCalories: "\(foodItem.calories.formatToOneDecimalPlaces())\(AppTexts.kcalText)", isForSelection: true) { isSelected in
+                
+                withAnimation {
+                    if isSelected {
+                        addFoodItemViewModel.selectedFoods.append(foodItem)
+                    }else {
+                        addFoodItemViewModel.selectedFoods.remove(at: addFoodItemViewModel.selectedFoods.firstIndex(of: foodItem)!)
+                    }
+                }
+                
+            }
+        }
     }
 }
 

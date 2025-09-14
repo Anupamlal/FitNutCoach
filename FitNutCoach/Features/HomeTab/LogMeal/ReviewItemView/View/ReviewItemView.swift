@@ -223,7 +223,7 @@ struct ReviewItemView: View {
                         isPresented = false
                         self.reviewItemViewModel.fillUpdatedServingSizes()
                         Task {
-                            await reviewItemViewModel.confirmFoodAndUpdate()
+                            _ = await reviewItemViewModel.confirmFoodAndUpdate()
                         }
                     }
                     .padding(.top, 30)

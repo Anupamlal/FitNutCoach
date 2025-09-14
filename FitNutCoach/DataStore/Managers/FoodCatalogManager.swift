@@ -17,12 +17,17 @@ class FoodCatalogManager: ObservableObject, BaseManagerDelegate {
     var bgContext: NSManagedObjectContext
     var container: NSPersistentContainer
     
-    private let foodCatalogeSubject = CurrentValueSubject<FoodCatalogItemModel, Never>(FoodCatalogItemModel())
+    private let foodCatalogeSingleSubject = CurrentValueSubject<FoodCatalogItemModel, Never>(FoodCatalogItemModel())
+    private let foodCatalogeSubject = CurrentValueSubject<[FoodCatalogItemModel], Never>([FoodCatalogItemModel()])
     
     private var foodWithBarcode = [String: FoodCatalogItemModel]()
     private var allFoodCatalog: [FoodCatalogItemModel] = []
     
     var managerPublisher: AnyPublisher<FoodCatalogItemModel, Never> {
+        foodCatalogeSingleSubject.eraseToAnyPublisher()
+    }
+    
+    var foodCatalogPublisher: AnyPublisher<[FoodCatalogItemModel], Never> {
         foodCatalogeSubject.eraseToAnyPublisher()
     }
     
@@ -47,9 +52,7 @@ class FoodCatalogManager: ObservableObject, BaseManagerDelegate {
                 print("Error caused during saving FoodCatalog", error.localizedDescription)
             }
         }
-        
-        self.foodCatalogeSubject.send(newData)
-        
+                
         if self.allFoodCatalog.count > 0 {
             if self.allFoodCatalog.contains(where: {$0.name != newData.name}) {
                 self.allFoodCatalog.append(newData)
@@ -68,6 +71,7 @@ class FoodCatalogManager: ObservableObject, BaseManagerDelegate {
             }
         }
         
+        foodCatalogeSubject.send(self.allFoodCatalog)
         
         return true
     }
@@ -89,6 +93,8 @@ class FoodCatalogManager: ObservableObject, BaseManagerDelegate {
                 }
             }
         }
+        
+        foodCatalogeSubject.send(self.allFoodCatalog)
     }
     
     func searchFoodWithBarcode(_ barcode: String) async -> FoodCatalogItemModel? {

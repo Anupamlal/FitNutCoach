@@ -12,6 +12,7 @@ struct MealTypeView: View {
     let currentMealType: MealType
     let foodItems: [FoodItemModel]
     var addButtonCallback: (()->Void)?
+    var menuButtonCallback: (()->Void)?
     
     var body: some View {
         Card(backgroundColor: Color.white) {
@@ -54,16 +55,25 @@ struct MealTypeView: View {
                 }
                 
                 Spacer()
-                    .frame(height: 10)
+                    .frame(height: 15)
                 
                 if foodItems.count > 0 {
+                    ForEach(foodItems, id: \.id) { item in
+                        FoodItemView(foodItemName: item.name!, brandName: item.brand, servingSize: "\(item.servingSize.formatToOneDecimalPlaces())\(item.servingUnit ?? "g")", totalCalories: "\(item.calories.formatToOneDecimalPlaces())\(AppTexts.kcalText)", isForSelection: false, onSelection: {_ in 
+                            menuButtonCallback?()
+                        })
+                        .padding(.bottom, 10)
+                    }
                     
                 }else {
                     Text(getTextForNoFoodItems())
-                        .padding(.vertical, 36)
+                        .padding(.vertical, 26)
                         .foregroundStyle(Color.textSecondary)
                         .font(.system(size: 12, weight: .regular))
                 }
+                
+                Spacer()
+                    .frame(height: 5)
             }
         }
     }

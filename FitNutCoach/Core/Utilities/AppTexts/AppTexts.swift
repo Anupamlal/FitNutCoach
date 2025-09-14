@@ -62,6 +62,11 @@ class AppTexts {
     static let numberOfServingsText = "Number of Servings"
     static let mealText = "Meal"
     
+    static let frequentlyTrackedFoodsText = "Frequently Tracked Foods"
+    static let historyText = "History"
+    static let searchFoodText = "Search food item by name"
+    static let addFoodItemText = "Add Food Item"
+    
 }
 
 class ErrorTexts {

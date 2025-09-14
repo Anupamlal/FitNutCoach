@@ -10,6 +10,7 @@ import SwiftUI
 struct LogMealView: View {
     
     @StateObject var logMealViewModel: LogMealViewModel = .init()
+    @EnvironmentObject private var appRootManager: AppRootManager
     
     var body: some View {
         
@@ -21,45 +22,46 @@ struct LogMealView: View {
                 VStack(spacing: AppSpacing.l) {
                     
                     Spacer()
-                        .frame(height: AppSpacing.l)
+                        .frame(height: AppSpacing.xs)
                     
                     Card(backgroundColor: AppColors.logMealCardBGColor, spacing: AppSpacing.l) {
                         
-                        Text("1200 / 2000 kcal")
+                        Text("\(self.logMealViewModel.dailyActivityModel?.calories.intValue() ?? 0) / \(self.logMealViewModel.dailyTotalCalories.intValue()) \(AppTexts.kcalText)")
                             .font(.system(size: 20, weight: .bold))
                             .foregroundStyle(Color.textPrimary)
                         
-                        ProgressView(value: 1200, total: 2000)
-                        
+                        ProgressView(value: self.logMealViewModel.dailyActivityModel?.calories, total: self.logMealViewModel.dailyTotalCalories)
                             .progressViewStyle(.linear)
                             .tint(AppColors.calorieProgressColor)
                         
                         
                         HStack {
                             
-                            LogMealMacroView(macroName: AppTexts.proteinText, macroValue: "63g", macroColor: AppColors.protienColor)
+                            LogMealMacroView(macroName: AppTexts.proteinText, macroValue: "\(self.logMealViewModel.dailyActivityModel?.protein.formatToOneDecimalPlaces() ?? "")g", macroColor: AppColors.protienColor)
                             
                             Spacer()
                             
-                            LogMealMacroView(macroName: AppTexts.carbsText, macroValue: "170g", macroColor: AppColors.carbsColor)
+                            LogMealMacroView(macroName: AppTexts.carbsText, macroValue: "\(self.logMealViewModel.dailyActivityModel?.carbs.formatToOneDecimalPlaces() ?? "")g", macroColor: AppColors.carbsColor)
                             
                             Spacer()
                             
-                            LogMealMacroView(macroName: AppTexts.fatText, macroValue: "90g", macroColor: AppColors.fatColor)
+                            LogMealMacroView(macroName: AppTexts.fatText, macroValue: "\(self.logMealViewModel.dailyActivityModel?.fat.formatToOneDecimalPlaces() ?? "")g", macroColor: AppColors.fatColor)
                             
                         }
                         
                     }
                     
                     ForEach(MealType.allCases, id: \.self) { mealType in
-                        MealTypeView(currentMealType: mealType, foodItems: []) {
+                        MealTypeView(currentMealType: mealType, foodItems: logMealViewModel.getFoodItemsFor(mealType: mealType)) {
                             logMealViewModel.openAddFoodView = (true, mealType)
+                        } menuButtonCallback: {
+                            // Show action sheet
                         }
                     }
                     
                     Spacer()
                 }
-                .padding(.horizontal, 24)
+                .padding(.horizontal, 18)
             })
             .toolbarVisibility(.hidden, for: .tabBar)
             .withCustomBackButton(withTitle: AppTexts.logMealText)
@@ -70,6 +72,9 @@ struct LogMealView: View {
                             self.logMealViewModel.openAddFoodView = (false, nil)
                         }
                 }
+            }
+            .onFirstAppear {
+                self.logMealViewModel.setDailyActivityManager(appRootManager.dailyActivityManager, appRootManager.profileManager)
             }
         }
         

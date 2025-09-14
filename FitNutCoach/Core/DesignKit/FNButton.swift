@@ -15,6 +15,7 @@ struct FNButton: View {
     var isEnabled: Bool = true
     var isShadowEnable: Bool = false
     var buttonIconName: String? = nil
+    var cornerRadius: CGFloat = 14
     var buttonAction:(()->())
     
     var body: some View {
@@ -27,7 +28,7 @@ struct FNButton: View {
         }, label: {
             
             if (backgroundEnable) {
-                RoundedRectangle(cornerRadius: 14)
+                RoundedRectangle(cornerRadius: cornerRadius)
                     .foregroundStyle(
                         isEnabled ? backgroundColor : backgroundColor.opacity(0.5)
                     )
@@ -37,7 +38,7 @@ struct FNButton: View {
                             .foregroundStyle(backgroundColor == Color.primaryAccent ? .white : Color.primaryAccent)
                     }
             }else {
-                RoundedRectangle(cornerRadius: 14)
+                RoundedRectangle(cornerRadius: cornerRadius)
                     .stroke(isEnabled ? backgroundColor : backgroundColor.opacity(0.5))
                     .background(Color.white.clipShape(RoundedRectangle(cornerRadius: 14)))
                     .overlay {

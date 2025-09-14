@@ -66,6 +66,8 @@ struct LogMealOptionView: View {
             
         case .manual:
             return "pencil.circle"
+        case .search:
+            return ""
         }
     }
     
@@ -79,6 +81,8 @@ struct LogMealOptionView: View {
             
         case .manual:
             return AppTexts.addManuallyText
+        case .search:
+            return ""
         }
     }
     
@@ -92,6 +96,8 @@ struct LogMealOptionView: View {
             
         case .manual:
             return AppTexts.searchOrCreateFoodText
+        case .search:
+            return ""
         }
     }
     
@@ -104,6 +110,9 @@ struct LogMealOptionView: View {
             return AppColors.barcodeReaderColor
             
         case .manual:
+            return AppColors.manualReaderColor
+            
+        case .search:
             return AppColors.manualReaderColor
         }
     }
