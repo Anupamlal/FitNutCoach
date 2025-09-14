@@ -47,6 +47,32 @@ struct Product: Codable {
         case servingQuantity = "serving_quantity"
         case servingQuantityUnit = "serving_quantity_unit"
     }
+    
+    init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(String.self, forKey: .id)
+        self.brands = try container.decodeIfPresent(String.self, forKey: .brands)
+        self.categories = try container.decodeIfPresent(String.self, forKey: .categories)
+        self.countries = try container.decodeIfPresent(String.self, forKey: .countries)
+        self.expirationDate = try container.decodeIfPresent(String.self, forKey: .expirationDate)
+        self.imageIngredientsURL = try container.decodeIfPresent(String.self, forKey: .imageIngredientsURL)
+        self.imageNutritionURL = try container.decodeIfPresent(String.self, forKey: .imageNutritionURL)
+        self.imageURL = try container.decodeIfPresent(String.self, forKey: .imageURL)
+        self.ingredientsText = try container.decodeIfPresent(String.self, forKey: .ingredientsText)
+        self.nutriments = try container.decodeIfPresent(Nutriments.self, forKey: .nutriments)
+        self.origin = try container.decodeIfPresent(String.self, forKey: .origin)
+        self.productName = try container.decodeIfPresent(String.self, forKey: .productName)
+        self.productQuantity = try container.decodeIfPresent(String.self, forKey: .productQuantity)
+        self.productQuantityUnit = try container.decodeIfPresent(String.self, forKey: .productQuantityUnit)
+        self.productType = try container.decodeIfPresent(String.self, forKey: .productType)
+        self.servingQuantityUnit = try container.decodeIfPresent(String.self, forKey: .servingQuantityUnit)
+        
+        if let servingQuantity = try container.decodeIfPresent(Double.self, forKey: .servingQuantity) {
+            self.servingQuantity = "\(servingQuantity)"
+        }else {
+            self.servingQuantity = try container.decodeIfPresent(String.self, forKey: .servingQuantity)
+        }
+    }
 }
 
 struct Nutriments : Codable {
