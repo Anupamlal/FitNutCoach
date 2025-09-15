@@ -118,7 +118,7 @@ struct AddFoodItemView: View {
     func getFoodItemList(foodItems: [FoodItemModel]) -> some View {
         
         ForEach(foodItems, id: \.id) { foodItem in
-            FoodItemView(foodItemName: foodItem.name ?? "" , brandName: foodItem.brand, servingSize: "\(foodItem.servingSize.formatToOneDecimalPlaces())\(foodItem.servingUnit ?? "g")", totalCalories: "\(foodItem.calories.formatToOneDecimalPlaces())\(AppTexts.kcalText)", isForSelection: true) { isSelected in
+            FoodItemView(foodItemName: foodItem.name ?? "" , brandName: foodItem.brand, servingSize: "\(foodItem.servingSize.formatToOneDecimalPlaces())\(foodItem.servingUnit ?? "g")", numberOfServing: foodItem.numberOfServing, totalCalories: "\(foodItem.calories.formatToOneDecimalPlaces()) \(AppTexts.kcalText)", isForSelection: true) { isSelected in
                 
                 withAnimation {
                     if isSelected {
@@ -129,6 +129,7 @@ struct AddFoodItemView: View {
                 }
                 
             }
+            .padding(.bottom, 5)
         }
     }
 }

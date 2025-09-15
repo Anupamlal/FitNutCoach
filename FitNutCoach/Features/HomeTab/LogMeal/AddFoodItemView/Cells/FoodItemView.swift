@@ -12,6 +12,7 @@ struct FoodItemView: View {
     let foodItemName: String
     let brandName: String?
     let servingSize: String
+    let numberOfServing: Int
     let totalCalories: String
     let isForSelection: Bool
     
@@ -24,8 +25,9 @@ struct FoodItemView: View {
                 Text("\(foodItemName)\(brandName != nil ? ", \(brandName!)" : "")")
                     .font(.system(size: 14, weight: .medium))
                     .foregroundColor(Color.textPrimary)
+                    .lineLimit(1)
                 
-                Text(servingSize)
+                Text("Servings: \(numberOfServing), \(servingSize)")
                     .font(.system(size: 12, weight: .regular))
                     .foregroundColor(Color.textSecondary)
             }
@@ -69,5 +71,5 @@ struct FoodItemView: View {
 }
 
 #Preview {
-    FoodItemView(foodItemName: "", brandName: nil, servingSize:"0g", totalCalories: "0kcal", isForSelection: false)
+    FoodItemView(foodItemName: "", brandName: nil, servingSize:"0g", numberOfServing: 1, totalCalories: "0kcal", isForSelection: false)
 }

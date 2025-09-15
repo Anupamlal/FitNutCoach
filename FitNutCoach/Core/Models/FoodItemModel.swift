@@ -21,8 +21,9 @@ struct FoodItemModel: Codable, Equatable {
     var servingSize: Double
     let servingUnit: String?
     let tags: String?
+    var numberOfServing: Int
     
-    init(id: String?, brand: String?, calories: Double, carbs: Double, confidence: Double, fat: Double, foodRefId: String?, name: String?, notes: String?, protein: Double, servingSize: Double, servingUnit: String?, tags: String?) {
+    init(id: String?, brand: String?, calories: Double, carbs: Double, confidence: Double, fat: Double, foodRefId: String?, name: String?, notes: String?, protein: Double, servingSize: Double, servingUnit: String?, tags: String?, numberOfServing: Int) {
         self.id = id
         self.brand = brand
         self.calories = calories
@@ -36,10 +37,11 @@ struct FoodItemModel: Codable, Equatable {
         self.servingSize = servingSize
         self.servingUnit = servingUnit
         self.tags = tags
+        self.numberOfServing = numberOfServing
     }
     
     init() {
-        self.init(id: UUID().uuidString, brand: nil, calories: 0, carbs: 0, confidence: 0, fat: 0, foodRefId: nil, name: nil, notes: nil, protein: 0, servingSize: 0, servingUnit: nil, tags: nil)
+        self.init(id: UUID().uuidString, brand: nil, calories: 0, carbs: 0, confidence: 0, fat: 0, foodRefId: nil, name: nil, notes: nil, protein: 0, servingSize: 0, servingUnit: nil, tags: nil, numberOfServing: 1)
     }
 
     init(foodItem: FoodItem) {
@@ -56,6 +58,7 @@ struct FoodItemModel: Codable, Equatable {
         self.servingSize = foodItem.servingSize
         self.servingUnit = foodItem.servingUnit
         self.tags = foodItem.tags
+        self.numberOfServing = Int(foodItem.numberOfServing)
     }
     
     init(foodCatalogItem: FoodCatalogItemModel) {
@@ -105,7 +108,7 @@ struct FoodItemModel: Codable, Equatable {
         self.protein = totalProtienInOnServing
         self.carbs = totalCarbsInOnServing
         self.fat = totalFatInOnServing
-        
+        self.numberOfServing = 1
     }
     
     func fillFoodItem(foodItem: FoodItem) {
@@ -122,6 +125,7 @@ struct FoodItemModel: Codable, Equatable {
         foodItem.servingSize = self.servingSize
         foodItem.servingUnit = self.servingUnit
         foodItem.tags = self.tags
+        foodItem.numberOfServing = Int16(self.numberOfServing)
     }
     
     func getProtienPercentageInTotalCalorie() -> String {

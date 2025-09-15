@@ -73,20 +73,8 @@ struct ReviewItemView: View {
                         .frame(height: 12)
                     
                     Divider()
-                    
-                    HStack {
-                        Text(AppTexts.mealText)
-                            .foregroundStyle(Color.textPrimary)
-                            .font(.system(size: 15, weight: .semibold))
-                        
-                        Spacer()
-                        
-                        Text(reviewItemViewModel.mealType.getDisplayName())
-                            .foregroundStyle(Color.textSecondary)
-                            .font(.system(size: 15, weight: .regular))
-                        
-                    }
-                    .frame(height: 48)
+                                        
+                    FNKeyValueView(keyName: AppTexts.mealText, valueName: reviewItemViewModel.mealType.getDisplayName())
                     
                     Divider()
                     
@@ -97,59 +85,17 @@ struct ReviewItemView: View {
                         
                         Spacer()
                         
-                        HStack(spacing: 0) {
-                            Button("-") {
-                                if self.reviewItemViewModel.numberOfServing > 1 {
-                                    self.reviewItemViewModel.numberOfServing -= 1
-                                    self.reviewItemViewModel.updateMacrosForServing()
-                                }
-                            }
-                            .disabled(self.reviewItemViewModel.numberOfServing == 1)
-                            .font(.system(size: 28, weight: .regular))
-                            .foregroundStyle(Color.textSecondary)
-                            .frame(width: 36, height: 36, alignment: .center)
-                            
-                            Divider()
-                            
-                            Text("\(self.reviewItemViewModel.numberOfServing)")
-                                .font(.system(size: 16, weight: .regular))
-                                .foregroundStyle(Color.textSecondary)
-                                .frame(width: 36, alignment: .center)
-                            
-                            
-                            Divider()
-                            
-                            Button("+") {
-                                self.reviewItemViewModel.numberOfServing += 1
-                                self.reviewItemViewModel.updateMacrosForServing()
-                            }
-                            .font(.system(size: 24, weight: .regular))
-                            .frame(width: 36, height: 36, alignment: .center)
-                            .foregroundStyle(Color.textSecondary)
+                        FNStepper(counter: $reviewItemViewModel.numberOfServing) {
+                            self.reviewItemViewModel.updateMacrosForServing()
                         }
-                        .frame(height: 36)
-                        .background(Color(.systemGray6))
-                        .cornerRadius(10)
                         
                     }
                     .frame(height: 48)
                     
                     Divider()
                     
-                    HStack {
-                        Text(AppTexts.servingSizeText)
-                            .foregroundStyle(Color.textPrimary)
-                            .font(.system(size: 15, weight: .semibold))
-                        
-                        Spacer()
-                        
-                        Text("\(self.reviewItemViewModel.servingSize.formatToOneDecimalPlaces())g")
-                            .foregroundStyle(Color.textSecondary)
-                            .font(.system(size: 15, weight: .regular))
-                        
-                    }
-                    .frame(height: 48)
-                    
+                    FNKeyValueView(keyName: AppTexts.servingSizeText, valueName: "\(self.reviewItemViewModel.servingSize.formatToOneDecimalPlaces())\(self.reviewItemViewModel.reviewItem?.servingUnit ?? "g")")
+                                            
                     Divider()
                     
                     Spacer()

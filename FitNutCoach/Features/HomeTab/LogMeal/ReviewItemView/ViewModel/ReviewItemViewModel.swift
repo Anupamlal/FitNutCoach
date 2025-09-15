@@ -97,6 +97,7 @@ class ReviewItemViewModel: ObservableObject {
             self.reviewItem = FoodItemModel(foodCatalogItem: foodCatalogItem)
             self.imageUrl = foodCatalogItem.imageUrl
             self.updateMacrosForServing()
+            self.numberOfServing = self.reviewItem?.numberOfServing ?? 1
         }
     }
     
@@ -127,6 +128,7 @@ class ReviewItemViewModel: ObservableObject {
         self.reviewItem?.carbs = self.totalCarbs
         self.reviewItem?.protein = self.totalProtien
         self.reviewItem?.fat = self.totalFat
+        self.reviewItem?.numberOfServing = numberOfServing
     }
     
     func confirmFoodAndUpdate() async -> Bool {

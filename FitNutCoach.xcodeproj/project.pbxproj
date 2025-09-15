@@ -95,6 +95,9 @@
 		97ED16492E6DE61100DFF623 /* FNTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ED16482E6DE61100DFF623 /* FNTextField.swift */; };
 		97ED164D2E6DF51500DFF623 /* ReviewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ED164C2E6DF51500DFF623 /* ReviewItemView.swift */; };
 		97ED164F2E6DF6D400DFF623 /* URLSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ED164E2E6DF6D400DFF623 /* URLSessionManager.swift */; };
+		97FD3D162E78800A0068BE69 /* FNStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FD3D152E78800A0068BE69 /* FNStepper.swift */; };
+		97FD3D182E7881040068BE69 /* FNKeyValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FD3D172E7881040068BE69 /* FNKeyValueView.swift */; };
+		97FD3D1A2E789F180068BE69 /* FoodHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FD3D192E789F150068BE69 /* FoodHistoryManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -202,6 +205,9 @@
 		97ED16482E6DE61100DFF623 /* FNTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FNTextField.swift; sourceTree = "<group>"; };
 		97ED164C2E6DF51500DFF623 /* ReviewItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewItemView.swift; sourceTree = "<group>"; };
 		97ED164E2E6DF6D400DFF623 /* URLSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionManager.swift; sourceTree = "<group>"; };
+		97FD3D152E78800A0068BE69 /* FNStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FNStepper.swift; sourceTree = "<group>"; };
+		97FD3D172E7881040068BE69 /* FNKeyValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FNKeyValueView.swift; sourceTree = "<group>"; };
+		97FD3D192E789F150068BE69 /* FoodHistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodHistoryManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -514,6 +520,7 @@
 				979C16D02E6468E100322BB8 /* MealManager.swift */,
 				979C16D22E64802E00322BB8 /* WorkoutManager.swift */,
 				972E9E9E2E71E6B1009FD7F1 /* FoodCatalogManager.swift */,
+				97FD3D192E789F150068BE69 /* FoodHistoryManager.swift */,
 				972E9EA22E720B27009FD7F1 /* UserDefaultManager.swift */,
 			);
 			path = Managers;
@@ -666,6 +673,8 @@
 				97BF11722E5A35D4005FBA95 /* AppSpacing.swift */,
 				97BF11A92E5AEE83005FBA95 /* FNButton.swift */,
 				97ED16482E6DE61100DFF623 /* FNTextField.swift */,
+				97FD3D152E78800A0068BE69 /* FNStepper.swift */,
+				97FD3D172E7881040068BE69 /* FNKeyValueView.swift */,
 			);
 			path = DesignKit;
 			sourceTree = "<group>";
@@ -1126,6 +1135,7 @@
 				972E9E9F2E71E6B1009FD7F1 /* FoodCatalogManager.swift in Sources */,
 				972E9E812E71944C009FD7F1 /* SplashView.swift in Sources */,
 				972E9E8D2E71A268009FD7F1 /* ProfileFBHelper.swift in Sources */,
+				97FD3D1A2E789F180068BE69 /* FoodHistoryManager.swift in Sources */,
 				972E9E9D2E71E26C009FD7F1 /* FoodCatalogFBHelper.swift in Sources */,
 				9741B6F62E7570B10092763D /* LogMealMacroView.swift in Sources */,
 				9773569D2E635552007ED640 /* DailyActivityManager.swift in Sources */,
@@ -1141,9 +1151,11 @@
 				974AFC342E660E91003302BB /* LogMealOptionsView.swift in Sources */,
 				977356952E631982007ED640 /* ProfileModel.swift in Sources */,
 				977356982E6334DD007ED640 /* Double+Extension.swift in Sources */,
+				97FD3D182E7881040068BE69 /* FNKeyValueView.swift in Sources */,
 				972E9E742E717D14009FD7F1 /* LoginView.swift in Sources */,
 				97BF11AE2E5B140E005FBA95 /* NutritionSnapshotView.swift in Sources */,
 				97BF118C2E5AB106005FBA95 /* WorkoutsView.swift in Sources */,
+				97FD3D162E78800A0068BE69 /* FNStepper.swift in Sources */,
 				972E9E582E70B3BE009FD7F1 /* BarcodeModel.swift in Sources */,
 				97BF11752E5A3691005FBA95 /* AppEnvironment.swift in Sources */,
 				97D780C22E772BA5004BA2AA /* AddFoodSectionHeaderView.swift in Sources */,

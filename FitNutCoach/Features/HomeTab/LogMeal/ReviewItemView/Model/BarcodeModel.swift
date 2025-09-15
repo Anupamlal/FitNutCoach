@@ -29,7 +29,7 @@ struct Product: Codable {
     let ingredientsText: String?
     let nutriments: Nutriments?
     let origin, productName, productQuantity, productQuantityUnit: String?
-    let productType, servingQuantity, servingQuantityUnit: String?
+    var productType, servingQuantity, servingQuantityUnit: String?
     
     enum CodingKeys: String, CodingKey {
         case id = "_id"
@@ -71,6 +71,12 @@ struct Product: Codable {
             self.servingQuantity = "\(servingQuantity)"
         }else {
             self.servingQuantity = try container.decodeIfPresent(String.self, forKey: .servingQuantity)
+        }
+        
+        if let servingQuantityUnit = try container.decodeIfPresent(String.self, forKey: .servingQuantity) {
+            self.servingQuantityUnit = servingQuantityUnit
+        }else {
+            self.servingQuantity = productQuantityUnit
         }
     }
 }
