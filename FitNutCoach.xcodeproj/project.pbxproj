@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9719AFC32E79E83300C468D5 /* GenericFRC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719AFC22E79E83200C468D5 /* GenericFRC.swift */; };
 		972D8B522E733351008E3D47 /* ReviewItemMacroCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972D8B512E733351008E3D47 /* ReviewItemMacroCard.swift */; };
 		972D8B542E73438D008E3D47 /* DailyGoalsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972D8B532E73438D008E3D47 /* DailyGoalsCard.swift */; };
 		972E9E522E70A063009FD7F1 /* ReviewItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9E512E70A063009FD7F1 /* ReviewItemViewModel.swift */; };
@@ -118,6 +119,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9719AFC22E79E83200C468D5 /* GenericFRC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericFRC.swift; sourceTree = "<group>"; };
 		972D8B512E733351008E3D47 /* ReviewItemMacroCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewItemMacroCard.swift; sourceTree = "<group>"; };
 		972D8B532E73438D008E3D47 /* DailyGoalsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyGoalsCard.swift; sourceTree = "<group>"; };
 		972E9E512E70A063009FD7F1 /* ReviewItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewItemViewModel.swift; sourceTree = "<group>"; };
@@ -513,6 +515,7 @@
 		9780BD752E6301F2005227E4 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				9719AFC22E79E83200C468D5 /* GenericFRC.swift */,
 				97ED164E2E6DF6D400DFF623 /* URLSessionManager.swift */,
 				9780BD762E63022B005227E4 /* ManagerProtocol */,
 				9780BD792E630545005227E4 /* ProfileManager.swift */,
@@ -1088,6 +1091,7 @@
 				97D9A8572E6CA5E2008C5725 /* BarcodeScannerView.swift in Sources */,
 				977356A72E63654F007ED640 /* WorkoutSetModel.swift in Sources */,
 				97ED16492E6DE61100DFF623 /* FNTextField.swift in Sources */,
+				9719AFC32E79E83300C468D5 /* GenericFRC.swift in Sources */,
 				972E9E702E717CAF009FD7F1 /* AppRootManager.swift in Sources */,
 				972E9E9A2E71A434009FD7F1 /* DispatchQueue+Extension.swift in Sources */,
 				972E9E9B2E71A434009FD7F1 /* Codable+Extension.swift in Sources */,

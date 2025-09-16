@@ -33,7 +33,7 @@ struct AddFoodItemView: View {
                     }
                     
                     if addFoodItemViewModel.addFoodSections.isEmpty {
-                        Text("No food item found")
+                        Text(addFoodItemViewModel.searchText.isEmpty ? "No history found" : "No food item found")
                             .foregroundStyle(.textPrimary)
                             .font(.system(size: 14, weight: .medium))
                         
@@ -109,7 +109,7 @@ struct AddFoodItemView: View {
             BarcodeView(mealType: self.addFoodItemViewModel.selectedMealType, isPresented: $addFoodItemViewModel.openBarCodeScanner)
         }
         .onFirstAppear {
-            self.addFoodItemViewModel.setup(appRootManager.foodCatalogManager, appRootManager.dailyActivityManager)
+            self.addFoodItemViewModel.setup(appRootManager.dailyActivityManager)
         }
         
     }
@@ -117,7 +117,7 @@ struct AddFoodItemView: View {
     @ViewBuilder
     func getFoodItemList(foodItems: [FoodItemModel]) -> some View {
         
-        ForEach(foodItems, id: \.id) { foodItem in
+        ForEach(foodItems, id: \.self) { foodItem in
             FoodItemView(foodItemName: foodItem.name ?? "" , brandName: foodItem.brand, servingSize: "\(foodItem.servingSize.formatToOneDecimalPlaces())\(foodItem.servingUnit ?? "g")", numberOfServing: foodItem.numberOfServing, totalCalories: "\(foodItem.calories.formatToOneDecimalPlaces()) \(AppTexts.kcalText)", isForSelection: true) { isSelected in
                 
                 withAnimation {

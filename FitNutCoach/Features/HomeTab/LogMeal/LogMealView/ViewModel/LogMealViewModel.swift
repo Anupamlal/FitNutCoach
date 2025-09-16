@@ -25,11 +25,6 @@ class LogMealViewModel: ObservableObject {
     }
     
     private func loadData() {
-        Task {
-            await self.profileManager?.loadData()
-            await self.dailyActivityManager?.loadTodayData()
-        }
-        
         self.profileManager?.managerPublisher
             .receive(on: DispatchQueue.main)
             .sink {[weak self] profileModel in

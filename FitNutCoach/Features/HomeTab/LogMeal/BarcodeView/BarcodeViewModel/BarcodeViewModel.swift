@@ -18,11 +18,4 @@ class BarcodeViewModel: ObservableObject {
     init(mealType: MealType) {
         self.mealType = mealType
     }
-    
-    func loadAllFoodCatalogData(foodCatalogManager: FoodCatalogManager) {
-        Task {
-            _ = await foodCatalogManager.loadAllFoodCatalogFromServer()
-            await foodCatalogManager.loadData()
-        }
-    }
 }

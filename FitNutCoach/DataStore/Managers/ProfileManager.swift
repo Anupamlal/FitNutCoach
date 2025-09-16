@@ -48,7 +48,7 @@ class ProfileManager: ObservableObject, BaseManagerDelegate {
         return false
     }
 
-    func loadData() async  {
+    func loadData() async -> Bool{
         let fetchRequest = UserProfile.fetchRequest()
         
         fetchRequest.fetchLimit = 1
@@ -56,7 +56,10 @@ class ProfileManager: ObservableObject, BaseManagerDelegate {
         if let userProfile = try? viewContext.fetch(fetchRequest).first {
             let profileModel = ProfileModel(userProfile: userProfile)
             profileSubject.send(profileModel)
+            return true
         }
+        
+        return false
     }
     
     func loadProfileFromServer() async -> ProfileModel? {

@@ -12,6 +12,7 @@ struct HomeView: View {
     //MARK: - Variables
     @StateObject private var homeViewModel: HomeViewModel
     @EnvironmentObject private var rootTabViewModel: RootTabViewModel
+    @EnvironmentObject private var appRootManager: AppRootManager
     
     init(profileManager: ProfileManager, dailyActivityManager: DailyActivityManager) {
         _homeViewModel = StateObject(wrappedValue: HomeViewModel(profileManager: profileManager, dailyActivityManager: dailyActivityManager))
@@ -140,7 +141,7 @@ struct HomeView: View {
             }
         }
         .onFirstAppear {
-            homeViewModel.onAppear()
+            homeViewModel.onAppear(foodCatalogManager: appRootManager.foodCatalogManager)
         }
         .sheet(isPresented: $homeViewModel.openWaterIntakeView) {
             LogWaterView(totalWaterTarget: homeViewModel.profileModel.waterTargetLiters, dailyactvityManager: self.homeViewModel.getDailyActivityManager())

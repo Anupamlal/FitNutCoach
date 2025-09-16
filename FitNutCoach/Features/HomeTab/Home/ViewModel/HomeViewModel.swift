@@ -29,10 +29,16 @@ class HomeViewModel: ObservableObject {
         self.cancellable.removeAll()
     }
     
-    func onAppear() {
+    func onAppear(foodCatalogManager: FoodCatalogManager) {
         Task {
-            await self.profileManager.loadData()
-            await self.dailyActivityManager.loadTodayData()
+            async let profileManagerLoaded = self.profileManager.loadData()
+            async let dailyActivityManagerLoaded = self.dailyActivityManager.loadTodayData()
+            async let foodCatalogLoadedFromServer = foodCatalogManager.loadAllFoodCatalogFromServer()
+            
+            let allProcessDone = await [profileManagerLoaded, dailyActivityManagerLoaded, foodCatalogLoadedFromServer]
+            
+            print("All Process Done \(allProcessDone)")
+            _ = await foodCatalogManager.loadData()
         }
         
         self.profileManager.managerPublisher

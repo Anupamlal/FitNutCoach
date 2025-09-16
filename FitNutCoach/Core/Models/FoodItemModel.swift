@@ -7,14 +7,16 @@
 
 import SwiftUI
 
-struct FoodItemModel: Codable, Equatable {
+struct FoodItemModel: Codable, Equatable, Hashable {
     let id: String?
     let brand: String?
     var calories: Double
     var carbs: Double
     let confidence: Double
+    let createdAt: Date?
     var fat: Double
     let foodRefId: String?
+    let imageUrl: String?
     let name: String?
     let notes: String?
     var protein: Double
@@ -23,14 +25,16 @@ struct FoodItemModel: Codable, Equatable {
     let tags: String?
     var numberOfServing: Int
     
-    init(id: String?, brand: String?, calories: Double, carbs: Double, confidence: Double, fat: Double, foodRefId: String?, name: String?, notes: String?, protein: Double, servingSize: Double, servingUnit: String?, tags: String?, numberOfServing: Int) {
+    init(id: String?, brand: String?, calories: Double, carbs: Double, confidence: Double, createdAt: Date?, fat: Double, foodRefId: String?, imageUrl: String?, name: String?, notes: String?, protein: Double, servingSize: Double, servingUnit: String?, tags: String?, numberOfServing: Int) {
         self.id = id
         self.brand = brand
         self.calories = calories
         self.carbs = carbs
         self.confidence = confidence
+        self.createdAt = createdAt
         self.fat = fat
         self.foodRefId = foodRefId
+        self.imageUrl = imageUrl
         self.name = name
         self.notes = notes
         self.protein = protein
@@ -41,17 +45,19 @@ struct FoodItemModel: Codable, Equatable {
     }
     
     init() {
-        self.init(id: UUID().uuidString, brand: nil, calories: 0, carbs: 0, confidence: 0, fat: 0, foodRefId: nil, name: nil, notes: nil, protein: 0, servingSize: 0, servingUnit: nil, tags: nil, numberOfServing: 1)
+        self.init(id: UUID().uuidString, brand: nil, calories: 0, carbs: 0, confidence: 0, createdAt: Date().getStartOfDate(), fat: 0, foodRefId: nil, imageUrl: nil, name: nil, notes: nil, protein: 0, servingSize: 0, servingUnit: nil, tags: nil, numberOfServing: 1)
     }
 
-    init(foodItem: FoodItem) {
-        self.id = foodItem.id
+    init(foodItem: FoodItem, isRequiredNewId: Bool = false) {
+        self.id = isRequiredNewId ? UUID().uuidString : foodItem.id
         self.brand = foodItem.brand
         self.calories = foodItem.calories
         self.carbs = foodItem.carbs
         self.confidence = foodItem.confidence
+        self.createdAt = isRequiredNewId ? Date().getStartOfDate() : foodItem.createdAt
         self.fat = foodItem.fat
         self.foodRefId = foodItem.foodRefId
+        self.imageUrl = foodItem.imageUrl
         self.name = foodItem.name
         self.notes = foodItem.notes
         self.protein = foodItem.protein
@@ -97,7 +103,9 @@ struct FoodItemModel: Codable, Equatable {
         self.id = UUID().uuidString
         self.brand = foodCatalogItem.brand
         self.confidence = foodCatalogItem.confidence
+        self.createdAt = Date().getStartOfDate()
         self.foodRefId = foodCatalogItem.id
+        self.imageUrl = foodCatalogItem.imageUrl
         self.name = foodCatalogItem.name
         self.notes = nil
         self.servingSize = foodCatalogItem.servingSize ?? 0
@@ -117,8 +125,10 @@ struct FoodItemModel: Codable, Equatable {
         foodItem.calories = self.calories
         foodItem.carbs = self.carbs
         foodItem.confidence = self.confidence
+        foodItem.createdAt = self.createdAt
         foodItem.fat = self.fat
         foodItem.foodRefId = self.foodRefId
+        foodItem.imageUrl = self.imageUrl
         foodItem.name = self.name
         foodItem.notes = self.notes
         foodItem.protein = self.protein

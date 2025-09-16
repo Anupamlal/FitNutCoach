@@ -81,7 +81,7 @@ class FoodCatalogManager: ObservableObject, BaseManagerDelegate {
 
     }
     
-    func loadData() async {
+    func loadData() async -> Bool {
         let fetchRequest = FoodCatalogItem.fetchRequest()
                 
         if let foodCatalogs: [FoodCatalogItem] = try? viewContext.fetch(fetchRequest) {
@@ -95,6 +95,8 @@ class FoodCatalogManager: ObservableObject, BaseManagerDelegate {
         }
         
         foodCatalogeSubject.send(self.allFoodCatalog)
+        
+        return true
     }
     
     func searchFoodWithBarcode(_ barcode: String) async -> FoodCatalogItemModel? {

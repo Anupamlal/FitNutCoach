@@ -66,7 +66,7 @@ class DailyActivityManager: ObservableObject {
         return nil
     }
     
-    func loadTodayData() async {        
+    func loadTodayData() async -> Bool{
         if let dailyActivity = await self.loadData(date: Date()) {
             let dailyActivityModel = DailyActivityModel(dailyActivity: dailyActivity)
             self.publishDailyActivity(dailyActivityModel)
@@ -75,6 +75,9 @@ class DailyActivityManager: ObservableObject {
             let dailyActivityModel = DailyActivityModel()
             _ = await self.addNewOrUpdateData(dailyActivityModel)
         }
+        
+        return true
+        
     }
     
     func addWatersIntake(_ amount: Double) async {
@@ -111,10 +114,10 @@ class DailyActivityManager: ObservableObject {
             mealCD.dailyActivity = dayActivity
             
             
-            let mealCalories = meal.foodItems?.reduce(0) { $0 + ($1.calories) }
-            let mealProtein = meal.foodItems?.reduce(0) { $0 + ($1.protein) }
-            let mealCarbs = meal.foodItems?.reduce(0) { $0 + ($1.carbs) }
-            let mealFat = meal.foodItems?.reduce(0) { $0 + ($1.fat) }
+            let mealCalories = meal.foodItems?.last?.calories
+            let mealProtein = meal.foodItems?.last?.protein
+            let mealCarbs = meal.foodItems?.last?.carbs
+            let mealFat = meal.foodItems?.last?.fat
             
             dayActivity.calories += mealCalories ?? 0
             dayActivity.protein += mealProtein ?? 0

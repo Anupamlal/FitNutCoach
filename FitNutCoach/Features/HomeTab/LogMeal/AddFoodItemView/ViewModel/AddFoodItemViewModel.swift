@@ -19,7 +19,7 @@ class AddFoodItemViewModel: ObservableObject {
     @Published var openBarCodeScanner: Bool = false
     @Published var searchText: String = ""{
         didSet {
-            setUpFoodCatalogUsingSearchText()
+            setUpFoodItemsUsingSearchText()
         }
     }
     @Published var selectedFoods = [FoodItemModel]()
@@ -29,43 +29,62 @@ class AddFoodItemViewModel: ObservableObject {
     
     private var historyFoodItems: [FoodItemModel] = []
     private var frequentlyUsedFoodItems: [FoodItemModel] = []
-
-    private var foodCatalogManager: FoodCatalogManager?
     private var dailyActivityManager: DailyActivityManager?
+    private var foodHistoryManager: FoodHistoryManager?
+    
     private var cancellables: Set<AnyCancellable> = []
     
     init(selectedMealType: MealType) {
         self.selectedMealType = selectedMealType
     }
     
-    func setup(_ foodCatalogManager: FoodCatalogManager, _ dailyActivityManager: DailyActivityManager) {
-        self.foodCatalogManager = foodCatalogManager
+    func setup(_ dailyActivityManager: DailyActivityManager) {
         self.dailyActivityManager = dailyActivityManager
         fetchAllFoodItems()
     }
     
     private func fetchAllFoodItems() {
-        guard let foodCatalogManager = foodCatalogManager else { return }
-        
-        Task {
-            await foodCatalogManager.loadData()
+        guard let viewContext = dailyActivityManager?.viewContext else {
+            return
         }
         
-        self.foodCatalogManager?.foodCatalogPublisher
+        self.foodHistoryManager = FoodHistoryManager(context: viewContext)
+        
+        self.foodHistoryManager?.foodHistoryPublisher
             .receive(on: DispatchQueue.main)
-            .sink {[weak self] allFoodCatalogs in
-                self?.frequentlyUsedFoodItems = allFoodCatalogs.map{FoodItemModel(foodCatalogItem: $0)}
-                self?.setUpFoodCatalogUsingSearchText()
-            }
+            .sink(receiveCompletion: { [weak self] completion in
+                guard let _ = self else {return}
+                
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    print("Error: \(error)")
+                }
+            }, receiveValue: { [weak self] (historyFoodItems, frequentFoodItems) in
+                
+                guard let weakSelf = self else {return}
+                
+                weakSelf.historyFoodItems = historyFoodItems
+                weakSelf.frequentlyUsedFoodItems = frequentFoodItems
+                weakSelf.setUpFoodItemsUsingSearchText()
+            })
             .store(in: &cancellables)
         
     }
     
-    func setUpFoodCatalogUsingSearchText() {
+    func setUpFoodItemsUsingSearchText() {
         guard searchText.isEmpty == false else {
-            self.addFoodSections = [.history, .frequentlyUsed]
-            self.filteredHistoryFoods = self.historyFoodItems
-            self.filteredFrequentlyUsedFoods = self.frequentlyUsedFoodItems
+            self.addFoodSections = []
+            if self.historyFoodItems.count > 0 {
+                self.addFoodSections.append(.history)
+                self.filteredHistoryFoods = self.historyFoodItems
+            }
+            
+            if self.frequentlyUsedFoodItems.count > 0 {
+                self.addFoodSections.append(.frequentlyUsed)
+                self.filteredFrequentlyUsedFoods = self.frequentlyUsedFoodItems
+            }
             return
         }
         
@@ -86,16 +105,16 @@ class AddFoodItemViewModel: ObservableObject {
     
     func logSelectedFood() async -> Bool {
     
-        guard let viewContext = foodCatalogManager?.viewContext else {
+        guard let viewContext = dailyActivityManager?.viewContext else {
             return false
         }
         
-        var mealSourceType: MealSourceType = searchText.isEmpty ? .manual : .search
+        let mealSourceType: MealSourceType = searchText.isEmpty ? .manual : .search
         
         var currentMeal = await MealManager.getMealFor(date: Date(), mealType: self.selectedMealType, viewContext: viewContext)
         
         if currentMeal == nil {
-            currentMeal = MealModel(id: UUID().uuidString, aiConfidence: 1, createdAt: Date(), date: Date(), mealType: self.selectedMealType, notes: nil, photoId: nil, mealSource: mealSourceType, updatedAt: Date(), foodItems: self.selectedFoods)
+            currentMeal = MealModel(id: UUID().uuidString, aiConfidence: 1, createdAt: Date(), date: Date().getStartOfDate(), mealType: self.selectedMealType, notes: nil, photoId: nil, mealSource: mealSourceType, updatedAt: Date(), foodItems: self.selectedFoods)
             
         }else {
             currentMeal?.updatedAt = Date()
