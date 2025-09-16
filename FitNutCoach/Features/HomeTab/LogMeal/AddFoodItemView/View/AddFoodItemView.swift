@@ -18,48 +18,115 @@ struct AddFoodItemView: View {
     }
     
     var body: some View {
-        VStack(spacing: 0) {
-            ScrollView {
-                VStack(alignment: .leading, spacing: AppSpacing.m) {
-                    
-                    if addFoodItemViewModel.searchText.isEmpty {
-                        
-                        BarcodeSnapView {
-                            self.addFoodItemViewModel.openBarCodeScanner = true
+        ZStack {
+            
+            if !addFoodItemViewModel.searchText.isEmpty {
+                
+                if !addFoodItemViewModel.filteredFoodItems.isEmpty {
+                    List(addFoodItemViewModel.filteredFoodItems, id: \.self) { foodItem in
+                        Button {
+                            
+                        } label: {
+                            HStack {
+                                Text(foodItem.name ?? "")
+                                    .font(.system(size: 16, weight: .medium))
+                                    .foregroundStyle(Color.textPrimary)
+                                
+                                Spacer()
+                                
+                                Image(systemName: "chevron.right")
+                                    .renderingMode(.template)
+                                    .foregroundStyle(Color.primaryAccent)
+                            }
                         }
-                        
-                        Spacer()
-                            .frame(height: 2)
+
+                    }
+                    .listStyle(PlainListStyle())
+                    
+                }else {
+                    Text("No food item found")
+                        .foregroundStyle(.textPrimary)
+                        .font(.system(size: 14, weight: .medium))
+                }
+                
+            }else {
+                VStack(spacing: 0) {
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: AppSpacing.m) {
+                            
+                            if addFoodItemViewModel.searchText.isEmpty {
+                                
+                                BarcodeSnapView {
+                                    self.addFoodItemViewModel.openBarCodeScanner = true
+                                }
+                                
+                                Spacer()
+                                    .frame(height: 2)
+                            }
+                            
+                            if addFoodItemViewModel.addFoodSections.isEmpty {
+                                Text("No history found")
+                                    .foregroundStyle(.textPrimary)
+                                    .font(.system(size: 14, weight: .medium))
+                                
+                            }else {
+                                
+                                LazyVStack(alignment: .leading, spacing: 14, pinnedViews: [.sectionHeaders]) {
+                                    
+                                    ForEach(addFoodItemViewModel.addFoodSections, id: \.self) { currentSection in
+                                        
+                                        switch currentSection {
+                                        case .history:
+                                            Section {
+                                                getFoodItemList(foodItems: self.addFoodItemViewModel.historyFoodItems)
+                                                
+                                            } header: {
+                                                AddFoodSectionHeaderView(headerName: AppTexts.historyText)
+                                            }
+                                            
+                                        case .frequentlyUsed:
+                                            
+                                            Section {
+                                                getFoodItemList(foodItems: self.addFoodItemViewModel.frequentlyUsedFoodItems)
+                                                
+                                            } header: {
+                                                AddFoodSectionHeaderView(headerName: AppTexts.frequentlyTrackedFoodsText)
+                                            }
+                                        }
+                                    }
+                                    
+                                }
+                            }
+                            
+                        }
+                        .padding(.horizontal, 20)
                     }
                     
-                    if addFoodItemViewModel.addFoodSections.isEmpty {
-                        Text(addFoodItemViewModel.searchText.isEmpty ? "No history found" : "No food item found")
-                            .foregroundStyle(.textPrimary)
-                            .font(.system(size: 14, weight: .medium))
-                        
-                    }else {
-                        
-                        LazyVStack(alignment: .leading, spacing: 14, pinnedViews: [.sectionHeaders]) {
+                    if addFoodItemViewModel.selectedFoods.count > 0 {
+                        VStack(alignment: .leading, spacing: 0) {
                             
-                            ForEach(addFoodItemViewModel.addFoodSections, id: \.self) { currentSection in
-                                
-                                switch currentSection {
-                                case .history:
-                                    Section {
-                                        getFoodItemList(foodItems: self.addFoodItemViewModel.filteredHistoryFoods)
-                                        
-                                    } header: {
-                                        AddFoodSectionHeaderView(headerName: AppTexts.historyText)
-                                    }
-                                    
-                                case .frequentlyUsed:
-                                    
-                                    Section {
-                                        getFoodItemList(foodItems: self.addFoodItemViewModel.filteredFrequentlyUsedFoods)
-                                        
-                                    } header: {
-                                        AddFoodSectionHeaderView(headerName: AppTexts.frequentlyTrackedFoodsText)
-                                    }
+                            Group {
+                                if addFoodItemViewModel.selectedFoods.count > 1 {
+                                    Text("\(addFoodItemViewModel.selectedFoods.last!.name ?? "") +\(addFoodItemViewModel.selectedFoods.count - 1) more food added")
+                                }else {
+                                    Text("\(addFoodItemViewModel.selectedFoods.last!.name ?? "") added")
+                                }
+                            }
+                            .lineLimit(1)
+                            .truncationMode(.middle)
+                            .frame(height: 48)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.horizontal, 20)
+                            .font(.system(size: 14, weight: .medium))
+                            .foregroundStyle(.textPrimary)
+                            .background {
+                                AppColors.logMealCardBGColor
+                            }
+                            
+                            FNButton(buttonTitle: "Log For \(self.addFoodItemViewModel.selectedMealType.getDisplayName())", backgroundEnable: true, cornerRadius: 0) {
+                                dismiss()
+                                Task {
+                                    _ = await self.addFoodItemViewModel.logSelectedFood()
                                 }
                             }
                             
@@ -67,51 +134,17 @@ struct AddFoodItemView: View {
                     }
                     
                 }
-                .searchable(text: $addFoodItemViewModel.searchText, prompt: Text(AppTexts.searchFoodText))
-                .padding(.horizontal, 20)
             }
-            
-            if addFoodItemViewModel.selectedFoods.count > 0 {
-                VStack(alignment: .leading, spacing: 0) {
-                    
-                    Group {
-                        if addFoodItemViewModel.selectedFoods.count > 1 {
-                            Text("\(addFoodItemViewModel.selectedFoods.last!.name ?? "") +\(addFoodItemViewModel.selectedFoods.count - 1) more food added")
-                        }else {
-                            Text("\(addFoodItemViewModel.selectedFoods.last!.name ?? "") added")
-                        }
-                    }
-                    .lineLimit(1)
-                    .truncationMode(.middle)
-                    .frame(height: 48)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal, 20)
-                    .font(.system(size: 14, weight: .medium))
-                    .foregroundStyle(.textPrimary)
-                    .background {
-                        AppColors.logMealCardBGColor
-                    }
-                    
-                    FNButton(buttonTitle: "Log For \(self.addFoodItemViewModel.selectedMealType.getDisplayName())", backgroundEnable: true, cornerRadius: 0) {
-                        dismiss()
-                        Task {
-                            _ = await self.addFoodItemViewModel.logSelectedFood()
-                        }
-                    }
-                    
-                }
-            }
-
         }
         .padding(.bottom, 1)
+        .searchable(text: $addFoodItemViewModel.searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text(AppTexts.searchFoodText))
         .withCustomBackButton(withTitle: AppTexts.addFoodItemText)
         .fullScreenCover(isPresented: $addFoodItemViewModel.openBarCodeScanner) {
             BarcodeView(mealType: self.addFoodItemViewModel.selectedMealType, isPresented: $addFoodItemViewModel.openBarCodeScanner)
         }
         .onFirstAppear {
-            self.addFoodItemViewModel.setup(appRootManager.dailyActivityManager)
+            self.addFoodItemViewModel.setup(appRootManager.dailyActivityManager, appRootManager.foodCatalogManager)
         }
-        
     }
     
     @ViewBuilder

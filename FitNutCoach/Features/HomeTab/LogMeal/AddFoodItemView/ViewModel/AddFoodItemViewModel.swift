@@ -23,14 +23,15 @@ class AddFoodItemViewModel: ObservableObject {
         }
     }
     @Published var selectedFoods = [FoodItemModel]()
-    @Published var addFoodSections: [AddFoodSectionType] = [.history, .frequentlyUsed]
-    @Published var filteredHistoryFoods: [FoodItemModel] = []
-    @Published var filteredFrequentlyUsedFoods: [FoodItemModel] = []
+    @Published var addFoodSections: [AddFoodSectionType] = []
+    @Published var historyFoodItems: [FoodItemModel] = []
+    @Published var frequentlyUsedFoodItems: [FoodItemModel] = []
+    @Published var filteredFoodItems: [FoodItemModel] = []
     
-    private var historyFoodItems: [FoodItemModel] = []
-    private var frequentlyUsedFoodItems: [FoodItemModel] = []
     private var dailyActivityManager: DailyActivityManager?
     private var foodHistoryManager: FoodHistoryManager?
+    private var foodCatalogManager: FoodCatalogManager?
+    private var allCatalogFoodItems: [FoodItemModel] = []
     
     private var cancellables: Set<AnyCancellable> = []
     
@@ -38,9 +39,11 @@ class AddFoodItemViewModel: ObservableObject {
         self.selectedMealType = selectedMealType
     }
     
-    func setup(_ dailyActivityManager: DailyActivityManager) {
+    func setup(_ dailyActivityManager: DailyActivityManager, _ foodCatalogManager: FoodCatalogManager) {
         self.dailyActivityManager = dailyActivityManager
+        self.foodCatalogManager = foodCatalogManager
         fetchAllFoodItems()
+        fetchAllCatalogFoodItems()
     }
     
     private func fetchAllFoodItems() {
@@ -67,40 +70,41 @@ class AddFoodItemViewModel: ObservableObject {
                 
                 weakSelf.historyFoodItems = historyFoodItems
                 weakSelf.frequentlyUsedFoodItems = frequentFoodItems
-                weakSelf.setUpFoodItemsUsingSearchText()
+                weakSelf.setUpFoodItems(historyFoodItems: historyFoodItems, frequentlyUsedFoodItems: frequentFoodItems)
             })
             .store(in: &cancellables)
         
     }
     
+    private func setUpFoodItems(historyFoodItems: [FoodItemModel], frequentlyUsedFoodItems: [FoodItemModel]) {
+        self.addFoodSections = []
+        if self.historyFoodItems.count > 0 {
+            self.addFoodSections.append(.history)
+            self.historyFoodItems = historyFoodItems
+        }
+        
+        if self.frequentlyUsedFoodItems.count > 0 {
+            self.addFoodSections.append(.frequentlyUsed)
+            self.frequentlyUsedFoodItems = frequentlyUsedFoodItems
+        }
+    }
+    
+    private func fetchAllCatalogFoodItems() {
+        self.foodCatalogManager?.foodCatalogPublisher
+            .sink { [weak self] allFoodCatalogModels in
+                guard let weakSelf = self else {return}
+                weakSelf.allCatalogFoodItems = allFoodCatalogModels.map{FoodItemModel(foodCatalogItem: $0)}
+            }
+            .store(in: &cancellables)
+    }
+    
     func setUpFoodItemsUsingSearchText() {
         guard searchText.isEmpty == false else {
-            self.addFoodSections = []
-            if self.historyFoodItems.count > 0 {
-                self.addFoodSections.append(.history)
-                self.filteredHistoryFoods = self.historyFoodItems
-            }
-            
-            if self.frequentlyUsedFoodItems.count > 0 {
-                self.addFoodSections.append(.frequentlyUsed)
-                self.filteredFrequentlyUsedFoods = self.frequentlyUsedFoodItems
-            }
+            self.filteredFoodItems.removeAll()
             return
         }
         
-        let historyFoodItems = self.historyFoodItems.filter{$0.name?.localizedCaseInsensitiveContains(searchText) ?? false}
-        let frequentlyUsedFoodItems = self.frequentlyUsedFoodItems.filter{$0.name?.localizedCaseInsensitiveContains(searchText) ?? false}
-        
-        self.addFoodSections = []
-        if historyFoodItems.count > 0{
-            self.addFoodSections.append(.history)
-            self.filteredHistoryFoods = historyFoodItems
-        }
-        
-        if frequentlyUsedFoodItems.count > 0{
-            self.addFoodSections.append(.frequentlyUsed)
-            self.filteredFrequentlyUsedFoods = frequentlyUsedFoodItems
-        }
+        self.filteredFoodItems = self.allCatalogFoodItems.filter{$0.name?.localizedCaseInsensitiveContains(searchText) ?? false}
     }
     
     func logSelectedFood() async -> Bool {
