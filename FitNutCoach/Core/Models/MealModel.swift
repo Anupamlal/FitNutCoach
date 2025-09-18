@@ -30,6 +30,10 @@ enum MealSourceType: String, Codable {
     case manual, photo, barcode, search
 }
 
+enum MeasurementUnit: String, Codable {
+    case piece, cup, large, slice, bowl, tsp
+}
+
 struct MealModel: Codable {
     let id: String?
     let aiConfidence: Double

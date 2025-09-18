@@ -56,8 +56,13 @@ class FoodCatalogFBHelper {
             print(snapshot)
             
             snapshot.documents.forEach { document in
-                if let foodCatalogItemModel = try? document.data(as: FoodCatalogItemModel.self) {
+                
+                do {
+                    let foodCatalogItemModel = try document.data(as: FoodCatalogItemModel.self)
                     foodCatalogItems.append(foodCatalogItemModel)
+                    
+                }catch {
+                    print("Error occured for parsing document \(error)")
                 }
             }
             

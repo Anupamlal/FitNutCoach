@@ -19,12 +19,13 @@ struct FoodCatalogItemModel: Codable {
     let foodSourceType: MealSourceType
     let barcode: String?
     let imageUrl: String?
+    let measurementUnit: MeasurementUnit?
     let totalSize: Double?
     let servingSize: Double?
     let totalSizeUnit: String?
     let servingSizeUnit: String?
     
-    init(id: String?, brand: String?, caloriesPer100G: Double, carbsPer100G: Double, confidence: Double, fatPer100G: Double, name: String?, proteinPer100G: Double, totalSize: Double, servingSize: Double, foodSourceType: MealSourceType, barcode: String?, imageUrl: String?, totalSizeUnit: String?, servingSizeUnit: String?) {
+    init(id: String?, brand: String?, caloriesPer100G: Double, carbsPer100G: Double, confidence: Double, fatPer100G: Double, name: String?, proteinPer100G: Double, totalSize: Double, servingSize: Double, foodSourceType: MealSourceType, barcode: String?, imageUrl: String?, measurementUnit: String?, totalSizeUnit: String?, servingSizeUnit: String?) {
         self.id = id
         self.brand = brand
         self.caloriesPer100G = caloriesPer100G
@@ -37,13 +38,14 @@ struct FoodCatalogItemModel: Codable {
         self.servingSize = servingSize
         self.foodSourceType = foodSourceType
         self.barcode = barcode
+        self.measurementUnit = MeasurementUnit(rawValue: measurementUnit ?? "")
         self.imageUrl = imageUrl
         self.totalSizeUnit = totalSizeUnit
         self.servingSizeUnit = servingSizeUnit
     }
     
     init() {
-        self.init(id: UUID().uuidString, brand: nil, caloriesPer100G: 0, carbsPer100G: 0, confidence: 0, fatPer100G: 0, name: nil, proteinPer100G: 0, totalSize: 0, servingSize: 0, foodSourceType: .manual, barcode: nil, imageUrl: nil, totalSizeUnit: nil, servingSizeUnit: nil)
+        self.init(id: UUID().uuidString, brand: nil, caloriesPer100G: 0, carbsPer100G: 0, confidence: 0, fatPer100G: 0, name: nil, proteinPer100G: 0, totalSize: 0, servingSize: 0, foodSourceType: .manual, barcode: nil, imageUrl: nil, measurementUnit: nil, totalSizeUnit: nil, servingSizeUnit: nil)
     }
     
     init(barcodeModel: BarcodeModel) {
@@ -87,7 +89,8 @@ struct FoodCatalogItemModel: Codable {
         }
         
         self.totalSizeUnit = barcodeModel.product.productQuantityUnit
-        self.servingSizeUnit =  barcodeModel.product.servingQuantityUnit
+        self.servingSizeUnit = barcodeModel.product.servingQuantityUnit
+        self.measurementUnit = nil
     }
     
     init(foodCatalogItem: FoodCatalogItem) {
@@ -101,6 +104,7 @@ struct FoodCatalogItemModel: Codable {
         self.proteinPer100G = foodCatalogItem.proteinPer100G
         self.foodSourceType = MealSourceType(rawValue: foodCatalogItem.foodSourceType ?? MealSourceType.manual.rawValue) ?? .manual
         self.barcode = foodCatalogItem.barcode
+        self.measurementUnit = MeasurementUnit(rawValue: foodCatalogItem.measurementUnit ?? "")
         self.imageUrl = foodCatalogItem.imageUrl
         self.servingSize = foodCatalogItem.servingSize
         self.totalSize = foodCatalogItem.totalSize
@@ -115,6 +119,7 @@ struct FoodCatalogItemModel: Codable {
         foodCatalogItem.carbsPer100G = self.carbsPer100G ?? 0
         foodCatalogItem.confidence = self.confidence
         foodCatalogItem.fatPer100G = self.fatPer100G ?? 0
+        foodCatalogItem.measurementUnit = self.measurementUnit?.rawValue
         foodCatalogItem.name = self.name
         foodCatalogItem.proteinPer100G = self.proteinPer100G ?? 0
         foodCatalogItem.foodSourceType = self.foodSourceType.rawValue

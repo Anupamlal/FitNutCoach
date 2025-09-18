@@ -65,18 +65,17 @@ struct Product: Codable {
         self.productQuantity = try container.decodeIfPresent(String.self, forKey: .productQuantity)
         self.productQuantityUnit = try container.decodeIfPresent(String.self, forKey: .productQuantityUnit)
         self.productType = try container.decodeIfPresent(String.self, forKey: .productType)
-        self.servingQuantityUnit = try container.decodeIfPresent(String.self, forKey: .servingQuantityUnit)
         
-        if let servingQuantity = try container.decodeIfPresent(Double.self, forKey: .servingQuantity) {
+        if let servingQuantity = try? container.decodeIfPresent(Double.self, forKey: .servingQuantity) {
             self.servingQuantity = "\(servingQuantity)"
         }else {
             self.servingQuantity = try container.decodeIfPresent(String.self, forKey: .servingQuantity)
         }
         
-        if let servingQuantityUnit = try container.decodeIfPresent(String.self, forKey: .servingQuantity) {
+        if let servingQuantityUnit = try container.decodeIfPresent(String.self, forKey: .servingQuantityUnit) {
             self.servingQuantityUnit = servingQuantityUnit
         }else {
-            self.servingQuantity = productQuantityUnit
+            self.servingQuantityUnit = productQuantityUnit
         }
     }
 }
