@@ -30,7 +30,9 @@ struct LogMealView: View {
                             .font(.system(size: 20, weight: .bold))
                             .foregroundStyle(Color.textPrimary)
                         
-                        ProgressView(value: self.logMealViewModel.dailyActivityModel?.calories, total: self.logMealViewModel.dailyTotalCalories)
+                        ProgressView(
+                            value:
+                                self.logMealViewModel.dailyActivityModel?.calories ?? 0 < self.logMealViewModel.dailyTotalCalories ? self.logMealViewModel.dailyActivityModel?.calories : self.logMealViewModel.dailyTotalCalories, total: self.logMealViewModel.dailyTotalCalories)
                             .progressViewStyle(.linear)
                             .tint(AppColors.calorieProgressColor)
                         

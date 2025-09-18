@@ -114,15 +114,15 @@ class DailyActivityManager: ObservableObject {
             mealCD.dailyActivity = dayActivity
             
             
-            let mealCalories = meal.foodItems?.last?.calories
-            let mealProtein = meal.foodItems?.last?.protein
-            let mealCarbs = meal.foodItems?.last?.carbs
-            let mealFat = meal.foodItems?.last?.fat
+            let totalCalories = meal.foodItems?.reduce(0, {$0+$1.calories})
+            let totalProtien = meal.foodItems?.reduce(0, {$0+$1.protein})
+            let totalCarbs = meal.foodItems?.reduce(0, {$0+$1.carbs})
+            let totalFat = meal.foodItems?.reduce(0, {$0+$1.fat})
             
-            dayActivity.calories += mealCalories ?? 0
-            dayActivity.protein += mealProtein ?? 0
-            dayActivity.carbs += mealCarbs ?? 0
-            dayActivity.fat += mealFat ?? 0
+            dayActivity.calories = totalCalories ?? 0
+            dayActivity.protein = totalProtien ?? 0
+            dayActivity.carbs = totalCarbs ?? 0
+            dayActivity.fat = totalFat ?? 0
             dayActivity.updatedAt = Date()
             
             await bgContext.perform {

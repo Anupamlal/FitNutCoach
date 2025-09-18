@@ -14,8 +14,8 @@ class FoodHistoryManager {
     private let frcWrapper: GenericFRC<FoodItem>
     private let context: NSManagedObjectContext
     private let cutOffDays = 30
-    private let recentLimit = 15
-    private let frequentLimit = 15
+    private let recentLimit = 10
+    private let frequentLimit = 20
     
     private var cancellables = Set<AnyCancellable>()
     private let foodHistorySubject = CurrentValueSubject<([FoodItemModel], [FoodItemModel]), Never>(([FoodItemModel()],[FoodItemModel()]))

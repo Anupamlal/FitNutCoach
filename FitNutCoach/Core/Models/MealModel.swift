@@ -75,7 +75,10 @@ struct MealModel: Codable {
         self.updatedAt = meal.updatedAt
         
         if let foodItems = meal.foodItems as? Set<FoodItem> {
-            for foodItem in foodItems {
+            
+            let foodItemsArr = Array(foodItems).sorted { ($0.createdAt ?? Date()) < ($1.createdAt ?? Date()) }
+            
+            for foodItem in foodItemsArr {
                 if self.foodItems == nil {
                     self.foodItems = []
                 }

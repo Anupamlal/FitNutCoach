@@ -47,7 +47,7 @@ struct FoodItemModel: Codable, Equatable, Hashable {
     }
     
     init() {
-        self.init(id: UUID().uuidString, brand: nil, calories: 0, carbs: 0, confidence: 0, createdAt: Date().getStartOfDate(), fat: 0, foodRefId: nil, imageUrl: nil, measurementUnit: nil, name: nil, notes: nil, protein: 0, servingSize: 0, servingUnit: nil, tags: nil, numberOfServing: 1)
+        self.init(id: UUID().uuidString, brand: nil, calories: 0, carbs: 0, confidence: 0, createdAt: Date(), fat: 0, foodRefId: nil, imageUrl: nil, measurementUnit: nil, name: nil, notes: nil, protein: 0, servingSize: 0, servingUnit: nil, tags: nil, numberOfServing: 1)
     }
 
     init(foodItem: FoodItem, isRequiredNewId: Bool = false) {
@@ -56,7 +56,7 @@ struct FoodItemModel: Codable, Equatable, Hashable {
         self.calories = foodItem.calories
         self.carbs = foodItem.carbs
         self.confidence = foodItem.confidence
-        self.createdAt = isRequiredNewId ? Date().getStartOfDate() : foodItem.createdAt
+        self.createdAt = isRequiredNewId ? Date() : foodItem.createdAt
         self.fat = foodItem.fat
         self.foodRefId = foodItem.foodRefId
         self.imageUrl = foodItem.imageUrl
@@ -106,7 +106,7 @@ struct FoodItemModel: Codable, Equatable, Hashable {
         self.id = UUID().uuidString
         self.brand = foodCatalogItem.brand
         self.confidence = foodCatalogItem.confidence
-        self.createdAt = Date().getStartOfDate()
+        self.createdAt = Date()
         self.foodRefId = foodCatalogItem.id
         self.measurementUnit = foodCatalogItem.measurementUnit
         self.imageUrl = foodCatalogItem.imageUrl
