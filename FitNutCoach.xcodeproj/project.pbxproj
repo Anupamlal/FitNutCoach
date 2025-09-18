@@ -91,6 +91,8 @@
 		97D780C02E76EF3E004BA2AA /* FoodItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D780BF2E76EF3D004BA2AA /* FoodItemView.swift */; };
 		97D780C22E772BA5004BA2AA /* AddFoodSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D780C12E772BA5004BA2AA /* AddFoodSectionHeaderView.swift */; };
 		97D9A8572E6CA5E2008C5725 /* BarcodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D9A8562E6CA5E2008C5725 /* BarcodeScannerView.swift */; };
+		97E4E5A92E7C757800A099FB /* ImageFileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E4E5A82E7C757800A099FB /* ImageFileCache.swift */; };
+		97E4E5AB2E7C759300A099FB /* FNCachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E4E5AA2E7C759300A099FB /* FNCachedAsyncImage.swift */; };
 		97ED16452E6DBF3100DFF623 /* BarcodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ED16442E6DBF3100DFF623 /* BarcodeViewModel.swift */; };
 		97ED16472E6DE3F400DFF623 /* BarcodeManualEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ED16462E6DE3F400DFF623 /* BarcodeManualEntryView.swift */; };
 		97ED16492E6DE61100DFF623 /* FNTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ED16482E6DE61100DFF623 /* FNTextField.swift */; };
@@ -202,6 +204,8 @@
 		97D780BF2E76EF3D004BA2AA /* FoodItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemView.swift; sourceTree = "<group>"; };
 		97D780C12E772BA5004BA2AA /* AddFoodSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodSectionHeaderView.swift; sourceTree = "<group>"; };
 		97D9A8562E6CA5E2008C5725 /* BarcodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerView.swift; sourceTree = "<group>"; };
+		97E4E5A82E7C757800A099FB /* ImageFileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileCache.swift; sourceTree = "<group>"; };
+		97E4E5AA2E7C759300A099FB /* FNCachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FNCachedAsyncImage.swift; sourceTree = "<group>"; };
 		97ED16442E6DBF3100DFF623 /* BarcodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeViewModel.swift; sourceTree = "<group>"; };
 		97ED16462E6DE3F400DFF623 /* BarcodeManualEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeManualEntryView.swift; sourceTree = "<group>"; };
 		97ED16482E6DE61100DFF623 /* FNTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FNTextField.swift; sourceTree = "<group>"; };
@@ -515,6 +519,7 @@
 		9780BD752E6301F2005227E4 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				97E4E5A82E7C757800A099FB /* ImageFileCache.swift */,
 				9719AFC22E79E83200C468D5 /* GenericFRC.swift */,
 				97ED164E2E6DF6D400DFF623 /* URLSessionManager.swift */,
 				9780BD762E63022B005227E4 /* ManagerProtocol */,
@@ -670,6 +675,7 @@
 		97BF11682E5A34D6005FBA95 /* DesignKit */ = {
 			isa = PBXGroup;
 			children = (
+				97E4E5AA2E7C759300A099FB /* FNCachedAsyncImage.swift */,
 				9741B6F92E7598720092763D /* FNNavigationButton.swift */,
 				972E9E592E70B7B3009FD7F1 /* FNActivityIndicator.swift */,
 				97BF119C2E5ADBF5005FBA95 /* ProgressRing.swift */,
@@ -1091,6 +1097,7 @@
 				97D9A8572E6CA5E2008C5725 /* BarcodeScannerView.swift in Sources */,
 				977356A72E63654F007ED640 /* WorkoutSetModel.swift in Sources */,
 				97ED16492E6DE61100DFF623 /* FNTextField.swift in Sources */,
+				97E4E5A92E7C757800A099FB /* ImageFileCache.swift in Sources */,
 				9719AFC32E79E83300C468D5 /* GenericFRC.swift in Sources */,
 				972E9E702E717CAF009FD7F1 /* AppRootManager.swift in Sources */,
 				972E9E9A2E71A434009FD7F1 /* DispatchQueue+Extension.swift in Sources */,
@@ -1162,6 +1169,7 @@
 				97FD3D162E78800A0068BE69 /* FNStepper.swift in Sources */,
 				972E9E582E70B3BE009FD7F1 /* BarcodeModel.swift in Sources */,
 				97BF11752E5A3691005FBA95 /* AppEnvironment.swift in Sources */,
+				97E4E5AB2E7C759300A099FB /* FNCachedAsyncImage.swift in Sources */,
 				97D780C22E772BA5004BA2AA /* AddFoodSectionHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

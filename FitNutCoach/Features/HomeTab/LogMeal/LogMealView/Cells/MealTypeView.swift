@@ -59,7 +59,7 @@ struct MealTypeView: View {
                 
                 if foodItems.count > 0 {
                     ForEach(foodItems, id: \.id) { item in
-                        FoodItemView(foodItemName: item.name!, brandName: item.brand, servingSize: "\(item.servingSize.formatToOneDecimalPlaces())\(item.servingUnit ?? "g")", numberOfServing: item.numberOfServing, totalCalories: "\(item.calories.formatToOneDecimalPlaces()) \(AppTexts.kcalText)", isForSelection: false, onSelection: {_ in 
+                        FoodItemView(foodItemName: item.name!, brandName: item.brand, servingSize: "\(item.servingSize.formatToOneDecimalPlaces())\(item.servingUnit ?? "g")", numberOfServing: item.numberOfServing, totalCalories: "\(item.calories.formatToOneDecimalPlaces()) \(AppTexts.kcalText)", isForSelection: false, measurementUnit: item.measurementUnit?.rawValue, onSelection: {_ in 
                             menuButtonCallback?()
                         })
                         .padding(.bottom, 10)

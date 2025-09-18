@@ -15,6 +15,7 @@ struct FoodItemView: View {
     let numberOfServing: Int
     let totalCalories: String
     let isForSelection: Bool
+    let measurementUnit: String?
     
     @State private var isSelected: Bool = false
     var onSelection: ((Bool) -> Void)?
@@ -27,7 +28,7 @@ struct FoodItemView: View {
                     .foregroundColor(Color.textPrimary)
                     .lineLimit(1)
                 
-                Text("Servings: \(numberOfServing), \(servingSize)")
+                Text("\(numberOfServing) \(measurementUnit ?? AppTexts.servings), \(servingSize)")
                     .font(.system(size: 12, weight: .regular))
                     .foregroundColor(Color.textSecondary)
             }
@@ -71,5 +72,5 @@ struct FoodItemView: View {
 }
 
 #Preview {
-    FoodItemView(foodItemName: "", brandName: nil, servingSize:"0g", numberOfServing: 1, totalCalories: "0kcal", isForSelection: false)
+    FoodItemView(foodItemName: "", brandName: nil, servingSize:"0g", numberOfServing: 1, totalCalories: "0kcal", isForSelection: false, measurementUnit: "")
 }

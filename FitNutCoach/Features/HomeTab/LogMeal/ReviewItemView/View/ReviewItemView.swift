@@ -37,12 +37,7 @@ struct ReviewItemView: View {
                         Spacer()
                             .frame(height: 10)
                         
-                        AsyncImage(url: URL(string: imageurl)) { image in
-                            image
-                                .resizable()
-                                .scaledToFit()
-                                .clipShape(RoundedRectangle(cornerRadius: 12))
-                        } placeholder: {
+                        FNCachedAsyncImage(url: URL(string: imageurl), contentMode: .fit) {
                             Image("foodPlaceholderImage")
                                 .resizable()
                                 .renderingMode(.template)
@@ -52,6 +47,7 @@ struct ReviewItemView: View {
                                 .frame(width: 120, height: 120)
                         }
                         .frame(width: 120, height: 120)
+                        
                     }
                     
                     Spacer()

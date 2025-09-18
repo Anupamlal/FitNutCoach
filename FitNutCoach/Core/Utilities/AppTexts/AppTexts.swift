@@ -66,6 +66,7 @@ class AppTexts {
     static let historyText = "History"
     static let searchFoodText = "Search food item by name"
     static let addFoodItemText = "Add Food Item"
+    static let servings = "servings"
     
 }
 
