@@ -11,7 +11,7 @@ struct AddFoodItemView: View {
     
     @StateObject private var addFoodItemViewModel: AddFoodItemViewModel
     @EnvironmentObject private var appRootManager: AppRootManager
-    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var homeNavRouter: Router<HomeRouter>
     
     init(selectedMealType: MealType) {
         _addFoodItemViewModel = StateObject(wrappedValue: AddFoodItemViewModel(selectedMealType: selectedMealType))
@@ -23,28 +23,15 @@ struct AddFoodItemView: View {
             if !addFoodItemViewModel.searchText.isEmpty {
                 
                 if !addFoodItemViewModel.filteredFoodItems.isEmpty {
-                    List(addFoodItemViewModel.filteredFoodItems, id: \.self) { foodItem in
-                        Button {
-                            
-                        } label: {
-                            HStack {
-                                Text(foodItem.name ?? "")
-                                    .font(.system(size: 16, weight: .medium))
-                                    .foregroundStyle(Color.textPrimary)
-                                
-                                Spacer()
-                                
-                                Image(systemName: "chevron.right")
-                                    .renderingMode(.template)
-                                    .foregroundStyle(Color.primaryAccent)
-                            }
-                        }
-
+                    
+                    SearchResultView(searchFoodItems: addFoodItemViewModel.filteredFoodItems) { selectedFoodItem in
+                        addFoodItemViewModel.searchText = ""
+                        addFoodItemViewModel.isSearchPresented = false
+                        homeNavRouter.navigate(to: .reviewFoodItem(ReviewItemConfig(barcode: nil, mealType: addFoodItemViewModel.selectedMealType, foodItem: selectedFoodItem)))
                     }
-                    .listStyle(PlainListStyle())
                     
                 }else {
-                    Text("No food item found")
+                    Text(AppTexts.noFoodItemFoundText)
                         .foregroundStyle(.textPrimary)
                         .font(.system(size: 14, weight: .medium))
                 }
@@ -65,9 +52,10 @@ struct AddFoodItemView: View {
                             }
                             
                             if addFoodItemViewModel.addFoodSections.isEmpty {
-                                Text("No history found")
+                                Text(AppTexts.noHistoryFoundText)
                                     .foregroundStyle(.textPrimary)
                                     .font(.system(size: 14, weight: .medium))
+                                    .frame(maxWidth: .infinity, alignment: .center)
                                 
                             }else {
                                 
@@ -107,9 +95,9 @@ struct AddFoodItemView: View {
                             
                             Group {
                                 if addFoodItemViewModel.selectedFoods.count > 1 {
-                                    Text("\(addFoodItemViewModel.selectedFoods.last!.name ?? "") +\(addFoodItemViewModel.selectedFoods.count - 1) more food added")
+                                    Text(String(format: AppTexts.someMoreFoodAddedText, "\(addFoodItemViewModel.selectedFoods.last!.name ?? "") +\(addFoodItemViewModel.selectedFoods.count - 1)"))
                                 }else {
-                                    Text("\(addFoodItemViewModel.selectedFoods.last!.name ?? "") added")
+                                    Text("\(addFoodItemViewModel.selectedFoods.last!.name ?? "") \(AppTexts.addedText)")
                                 }
                             }
                             .lineLimit(1)
@@ -123,8 +111,8 @@ struct AddFoodItemView: View {
                                 AppColors.logMealCardBGColor
                             }
                             
-                            FNButton(buttonTitle: "Log For \(self.addFoodItemViewModel.selectedMealType.getDisplayName())", backgroundEnable: true, cornerRadius: 0) {
-                                dismiss()
+                            FNButton(buttonTitle: String(format: AppTexts.logForText, self.addFoodItemViewModel.selectedMealType.getDisplayName()), backgroundEnable: true, cornerRadius: 0) {
+                                homeNavRouter.navigateBack()
                                 Task {
                                     _ = await self.addFoodItemViewModel.logSelectedFood()
                                 }
@@ -137,10 +125,14 @@ struct AddFoodItemView: View {
             }
         }
         .padding(.bottom, 1)
-        .searchable(text: $addFoodItemViewModel.searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text(AppTexts.searchFoodText))
+        .searchable(text: $addFoodItemViewModel.searchText, isPresented: $addFoodItemViewModel.isSearchPresented, placement: .navigationBarDrawer(displayMode: .always), prompt: Text(AppTexts.searchFoodText))
+        
         .withCustomBackButton(withTitle: AppTexts.addFoodItemText)
         .fullScreenCover(isPresented: $addFoodItemViewModel.openBarCodeScanner) {
-            BarcodeView(mealType: self.addFoodItemViewModel.selectedMealType, isPresented: $addFoodItemViewModel.openBarCodeScanner)
+            BarcodeView(mealType: self.addFoodItemViewModel.selectedMealType) {
+                addFoodItemViewModel.openBarCodeScanner = false
+                homeNavRouter.navigateBack()
+            }
         }
         .onFirstAppear {
             self.addFoodItemViewModel.setup(appRootManager.dailyActivityManager, appRootManager.foodCatalogManager)

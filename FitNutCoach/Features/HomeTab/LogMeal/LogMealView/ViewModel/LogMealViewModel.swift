@@ -10,7 +10,6 @@ import Combine
 
 class LogMealViewModel: ObservableObject {
 
-    @Published var openAddFoodView: (Bool, MealType?) = (false, .breakfast)
     @Published var dailyTotalCalories: Double = 0
     @Published var dailyActivityModel: DailyActivityModel?
     

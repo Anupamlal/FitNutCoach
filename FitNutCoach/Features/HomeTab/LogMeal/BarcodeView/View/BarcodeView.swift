@@ -10,11 +10,12 @@ import SwiftUI
 struct BarcodeView: View {
     
     @StateObject private var barcodeViewModel: BarcodeViewModel
-    @Binding var isPresented: Bool
     
-    init(mealType: MealType, isPresented: Binding<Bool>) {
+    var successCallback: (() -> Void)?
+    
+    init(mealType: MealType, successCallback: (() -> Void)? = nil) {
         _barcodeViewModel = StateObject(wrappedValue: BarcodeViewModel(mealType: mealType))
-        _isPresented = isPresented
+        self.successCallback = successCallback
     }
     
     var body: some View {
@@ -79,7 +80,7 @@ struct BarcodeView: View {
             .ignoresSafeArea()
             .withCustomBackButton(withTitle: AppTexts.scanABarCodeText, backButtonTint: .white, backButtonType: .close)
             .navigationDestination(isPresented: $barcodeViewModel.isBarcodeDetected, destination: {
-                ReviewItemView(barcode: self.barcodeViewModel.barcodeValue, isPresented: $isPresented, mealType: self.barcodeViewModel.mealType)
+                ReviewItemView(reviewItemConfig: ReviewItemConfig(barcode: self.barcodeViewModel.barcodeValue, mealType: self.barcodeViewModel.mealType), successCallback: self.successCallback)
                     .onDisappear {
                         barcodeViewModel.isSessionRunning = true
                         self.barcodeViewModel.barcodeValue = ""
@@ -99,5 +100,5 @@ struct BarcodeView: View {
 }
 
 #Preview {
-    BarcodeView(mealType: .breakfast, isPresented: .constant(false))
+    BarcodeView(mealType: .breakfast)
 }

@@ -113,16 +113,27 @@ class DailyActivityManager: ObservableObject {
             meal.fillMeal(meal: mealCD, context: self.bgContext)
             mealCD.dailyActivity = dayActivity
             
+            var totalCalories: Double = 0
+            var totalProtien: Double = 0
+            var totalCarbs: Double = 0
+            var totalFat: Double = 0
             
-            let totalCalories = meal.foodItems?.reduce(0, {$0+$1.calories})
-            let totalProtien = meal.foodItems?.reduce(0, {$0+$1.protein})
-            let totalCarbs = meal.foodItems?.reduce(0, {$0+$1.carbs})
-            let totalFat = meal.foodItems?.reduce(0, {$0+$1.fat})
+            if let mealItems = dayActivity.meals as? Set<Meal>, let mealItemsArray = Array(mealItems) as? [Meal] {
+                for mealItem in mealItemsArray {
+                    
+                    if let foodItems = mealItem.foodItems as? Set<FoodItem>, let foodItemsArray = Array(foodItems) as? [FoodItem] {
+                        totalCalories += foodItemsArray.reduce(0, {$0+$1.calories})
+                        totalProtien += foodItemsArray.reduce(0, {$0+$1.protein})
+                        totalCarbs += foodItemsArray.reduce(0, {$0+$1.carbs})
+                        totalFat += foodItemsArray.reduce(0, {$0+$1.fat})
+                    }
+                }
+            }
             
-            dayActivity.calories = totalCalories ?? 0
-            dayActivity.protein = totalProtien ?? 0
-            dayActivity.carbs = totalCarbs ?? 0
-            dayActivity.fat = totalFat ?? 0
+            dayActivity.calories = totalCalories
+            dayActivity.protein = totalProtien
+            dayActivity.carbs = totalCarbs
+            dayActivity.fat = totalFat
             dayActivity.updatedAt = Date()
             
             await bgContext.perform {

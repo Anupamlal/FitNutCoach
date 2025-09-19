@@ -12,6 +12,8 @@ import GoogleSignIn
 struct ProfileView: View {
     
     @EnvironmentObject var appRootManager: AppRootManager
+    @EnvironmentObject var homeNavRouter: Router<HomeRouter>
+
     
     var body: some View {
         NavigationView {

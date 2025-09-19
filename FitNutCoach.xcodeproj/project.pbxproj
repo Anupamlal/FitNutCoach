@@ -35,8 +35,9 @@
 		9741B6F82E7584580092763D /* MealTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9741B6F72E7584580092763D /* MealTypeView.swift */; };
 		9741B6FA2E7598720092763D /* FNNavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9741B6F92E7598720092763D /* FNNavigationButton.swift */; };
 		9741B6FE2E75AD920092763D /* AddFoodItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9741B6FD2E75AD920092763D /* AddFoodItemView.swift */; };
-		974AFC342E660E91003302BB /* LogMealOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974AFC332E660E91003302BB /* LogMealOptionsView.swift */; };
 		974AFC382E660FEC003302BB /* RootTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974AFC372E660FEC003302BB /* RootTabViewModel.swift */; };
+		975D87182E7D567800265F5C /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975D87172E7D567800265F5C /* Router.swift */; };
+		975D871B2E7D57AE00265F5C /* Router+Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975D871A2E7D57AE00265F5C /* Router+Home.swift */; };
 		976174602E73013900A7C676 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9761745F2E73013900A7C676 /* FirebaseAuth */; };
 		976174622E73013900A7C676 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 976174612E73013900A7C676 /* FirebaseCore */; };
 		976174642E73013900A7C676 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 976174632E73013900A7C676 /* FirebaseDatabase */; };
@@ -51,7 +52,6 @@
 		977356A32E63649C007ED640 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977356A22E636498007ED640 /* WorkoutModel.swift */; };
 		977356A52E6364E6007ED640 /* FoodItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977356A42E6364E3007ED640 /* FoodItemModel.swift */; };
 		977356A72E63654F007ED640 /* WorkoutSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977356A62E63654A007ED640 /* WorkoutSetModel.swift */; };
-		9778FCDC2E6AF99600A3EF0C /* LogMealOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9778FCDB2E6AF99600A3EF0C /* LogMealOptionView.swift */; };
 		9778FCE32E6B07CE00A3EF0C /* BarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9778FCE22E6B07CE00A3EF0C /* BarcodeView.swift */; };
 		9780BD782E63024D005227E4 /* BaseManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780BD772E63024D005227E4 /* BaseManagerDelegate.swift */; };
 		9780BD7A2E630545005227E4 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780BD792E630545005227E4 /* ProfileManager.swift */; };
@@ -93,6 +93,7 @@
 		97D9A8572E6CA5E2008C5725 /* BarcodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D9A8562E6CA5E2008C5725 /* BarcodeScannerView.swift */; };
 		97E4E5A92E7C757800A099FB /* ImageFileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E4E5A82E7C757800A099FB /* ImageFileCache.swift */; };
 		97E4E5AB2E7C759300A099FB /* FNCachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E4E5AA2E7C759300A099FB /* FNCachedAsyncImage.swift */; };
+		97E4E5AE2E7C8F5B00A099FB /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E4E5AD2E7C8F5B00A099FB /* SearchResultView.swift */; };
 		97ED16452E6DBF3100DFF623 /* BarcodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ED16442E6DBF3100DFF623 /* BarcodeViewModel.swift */; };
 		97ED16472E6DE3F400DFF623 /* BarcodeManualEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ED16462E6DE3F400DFF623 /* BarcodeManualEntryView.swift */; };
 		97ED16492E6DE61100DFF623 /* FNTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ED16482E6DE61100DFF623 /* FNTextField.swift */; };
@@ -150,8 +151,9 @@
 		9741B6F72E7584580092763D /* MealTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealTypeView.swift; sourceTree = "<group>"; };
 		9741B6F92E7598720092763D /* FNNavigationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FNNavigationButton.swift; sourceTree = "<group>"; };
 		9741B6FD2E75AD920092763D /* AddFoodItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodItemView.swift; sourceTree = "<group>"; };
-		974AFC332E660E91003302BB /* LogMealOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMealOptionsView.swift; sourceTree = "<group>"; };
 		974AFC372E660FEC003302BB /* RootTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabViewModel.swift; sourceTree = "<group>"; };
+		975D87172E7D567800265F5C /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		975D871A2E7D57AE00265F5C /* Router+Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Router+Home.swift"; sourceTree = "<group>"; };
 		977356942E631982007ED640 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		977356972E6334D8007ED640 /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 		9773569A2E634C3E007ED640 /* OnFirstAppearViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnFirstAppearViewModifier.swift; sourceTree = "<group>"; };
@@ -161,7 +163,6 @@
 		977356A22E636498007ED640 /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
 		977356A42E6364E3007ED640 /* FoodItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemModel.swift; sourceTree = "<group>"; };
 		977356A62E63654A007ED640 /* WorkoutSetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSetModel.swift; sourceTree = "<group>"; };
-		9778FCDB2E6AF99600A3EF0C /* LogMealOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMealOptionView.swift; sourceTree = "<group>"; };
 		9778FCE22E6B07CE00A3EF0C /* BarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeView.swift; sourceTree = "<group>"; };
 		9780BD772E63024D005227E4 /* BaseManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseManagerDelegate.swift; sourceTree = "<group>"; };
 		9780BD792E630545005227E4 /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
@@ -206,6 +207,7 @@
 		97D9A8562E6CA5E2008C5725 /* BarcodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerView.swift; sourceTree = "<group>"; };
 		97E4E5A82E7C757800A099FB /* ImageFileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFileCache.swift; sourceTree = "<group>"; };
 		97E4E5AA2E7C759300A099FB /* FNCachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FNCachedAsyncImage.swift; sourceTree = "<group>"; };
+		97E4E5AD2E7C8F5B00A099FB /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
 		97ED16442E6DBF3100DFF623 /* BarcodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeViewModel.swift; sourceTree = "<group>"; };
 		97ED16462E6DE3F400DFF623 /* BarcodeManualEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeManualEntryView.swift; sourceTree = "<group>"; };
 		97ED16482E6DE61100DFF623 /* FNTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FNTextField.swift; sourceTree = "<group>"; };
@@ -382,9 +384,9 @@
 		9741B6F02E7548A90092763D /* LogMealView */ = {
 			isa = PBXGroup;
 			children = (
+				9741B6F42E75709C0092763D /* Cells */,
 				97D780B62E76C90E004BA2AA /* ViewModel */,
 				9741B6F12E7548B00092763D /* View */,
-				9741B6F42E75709C0092763D /* Cells */,
 			);
 			path = LogMealView;
 			sourceTree = "<group>";
@@ -409,6 +411,7 @@
 		9741B6FB2E75AD7A0092763D /* AddFoodItemView */ = {
 			isa = PBXGroup;
 			children = (
+				97E4E5AC2E7C8F2F00A099FB /* SupportingView */,
 				97D780BC2E76EAC1004BA2AA /* Cells */,
 				97D780B92E76CB5E004BA2AA /* ViewModel */,
 				9741B6FC2E75AD880092763D /* View */,
@@ -429,20 +432,10 @@
 			children = (
 				9741B6F02E7548A90092763D /* LogMealView */,
 				9741B6FB2E75AD7A0092763D /* AddFoodItemView */,
-				9778FCDD2E6AFBEC00A3EF0C /* LogMealOptionsView */,
 				9778FCDE2E6B079600A3EF0C /* BarcodeView */,
 				97ED164A2E6DF47300DFF623 /* ReviewItemView */,
 			);
 			path = LogMeal;
-			sourceTree = "<group>";
-		};
-		974AFC322E660E85003302BB /* View */ = {
-			isa = PBXGroup;
-			children = (
-				9778FCDA2E6AF97F00A3EF0C /* Cells */,
-				974AFC332E660E91003302BB /* LogMealOptionsView.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		974AFC352E660FCA003302BB /* View */ = {
@@ -459,6 +452,22 @@
 				974AFC372E660FEC003302BB /* RootTabViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		975D87162E7D565E00265F5C /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				975D87172E7D567800265F5C /* Router.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		975D87192E7D579E00265F5C /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				975D871A2E7D57AE00265F5C /* Router+Home.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		977356962E6334D0007ED640 /* Extensions */ = {
@@ -480,22 +489,6 @@
 				9773569A2E634C3E007ED640 /* OnFirstAppearViewModifier.swift */,
 			);
 			path = ViewModifiers;
-			sourceTree = "<group>";
-		};
-		9778FCDA2E6AF97F00A3EF0C /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				9778FCDB2E6AF99600A3EF0C /* LogMealOptionView.swift */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
-		9778FCDD2E6AFBEC00A3EF0C /* LogMealOptionsView */ = {
-			isa = PBXGroup;
-			children = (
-				974AFC322E660E85003302BB /* View */,
-			);
-			path = LogMealOptionsView;
 			sourceTree = "<group>";
 		};
 		9778FCDE2E6B079600A3EF0C /* BarcodeView */ = {
@@ -559,6 +552,7 @@
 		979C16D42E6486B100322BB8 /* HomeTab */ = {
 			isa = PBXGroup;
 			children = (
+				975D87192E7D579E00265F5C /* Router */,
 				97BF116F2E5A3596005FBA95 /* Home */,
 				979C16D52E6486BE00322BB8 /* LogWater */,
 				974AFC312E660E79003302BB /* LogMeal */,
@@ -729,6 +723,7 @@
 		97BF116D2E5A3525005FBA95 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				975D87162E7D565E00265F5C /* Router */,
 				972E9E802E71944C009FD7F1 /* Splash */,
 				972E9E712E717CF2009FD7F1 /* Onboarding */,
 				97BF11762E5A3750005FBA95 /* RootTab */,
@@ -901,6 +896,14 @@
 				97D780C12E772BA5004BA2AA /* AddFoodSectionHeaderView.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		97E4E5AC2E7C8F2F00A099FB /* SupportingView */ = {
+			isa = PBXGroup;
+			children = (
+				97E4E5AD2E7C8F5B00A099FB /* SearchResultView.swift */,
+			);
+			path = SupportingView;
 			sourceTree = "<group>";
 		};
 		97ED16412E6DB2B300DFF623 /* HelperViews */ = {
@@ -1109,14 +1112,16 @@
 				9778FCE32E6B07CE00A3EF0C /* BarcodeView.swift in Sources */,
 				97D780C02E76EF3E004BA2AA /* FoodItemView.swift in Sources */,
 				972E9E7D2E718E82009FD7F1 /* LoginViewModel.swift in Sources */,
+				975D871B2E7D57AE00265F5C /* Router+Home.swift in Sources */,
 				972E9E8A2E719696009FD7F1 /* ProfileSetupViewModel.swift in Sources */,
-				9778FCDC2E6AF99600A3EF0C /* LogMealOptionView.swift in Sources */,
 				972E9EA32E720B27009FD7F1 /* UserDefaultManager.swift in Sources */,
 				97ED16472E6DE3F400DFF623 /* BarcodeManualEntryView.swift in Sources */,
 				97BF11AA2E5AEE83005FBA95 /* FNButton.swift in Sources */,
 				97BF119B2E5ABA38005FBA95 /* AppTexts.swift in Sources */,
 				972E9E612E7170E8009FD7F1 /* AppDelegate.swift in Sources */,
 				9741B6F32E7548BA0092763D /* LogMealView.swift in Sources */,
+				97E4E5AE2E7C8F5B00A099FB /* SearchResultView.swift in Sources */,
+				975D87182E7D567800265F5C /* Router.swift in Sources */,
 				9780BD7A2E630545005227E4 /* ProfileManager.swift in Sources */,
 				97BF11662E5A3496005FBA95 /* PersistenceController.swift in Sources */,
 				97BF11B22E5B30A6005FBA95 /* QuickRecipesView.swift in Sources */,
@@ -1159,7 +1164,6 @@
 				9741B6F82E7584580092763D /* MealTypeView.swift in Sources */,
 				979C16D82E648F1D00322BB8 /* LogWaterView.swift in Sources */,
 				97BF11592E5A33BF005FBA95 /* FitNutCoachApp.swift in Sources */,
-				974AFC342E660E91003302BB /* LogMealOptionsView.swift in Sources */,
 				977356952E631982007ED640 /* ProfileModel.swift in Sources */,
 				977356982E6334DD007ED640 /* Double+Extension.swift in Sources */,
 				97FD3D182E7881040068BE69 /* FNKeyValueView.swift in Sources */,

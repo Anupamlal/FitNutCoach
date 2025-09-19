@@ -11,6 +11,7 @@ struct LogMealView: View {
     
     @StateObject var logMealViewModel: LogMealViewModel = .init()
     @EnvironmentObject private var appRootManager: AppRootManager
+    @EnvironmentObject var homeNavRouter: Router<HomeRouter>
     
     var body: some View {
         
@@ -55,7 +56,7 @@ struct LogMealView: View {
                     
                     ForEach(MealType.allCases, id: \.self) { mealType in
                         MealTypeView(currentMealType: mealType, foodItems: logMealViewModel.getFoodItemsFor(mealType: mealType)) {
-                            logMealViewModel.openAddFoodView = (true, mealType)
+                            self.homeNavRouter.navigate(to: .addFoodItem(selectedMealType: mealType))
                         } menuButtonCallback: {
                             // Show action sheet
                         }
@@ -67,14 +68,6 @@ struct LogMealView: View {
             })
             .toolbarVisibility(.hidden, for: .tabBar)
             .withCustomBackButton(withTitle: AppTexts.logMealText)
-            .navigationDestination(isPresented: $logMealViewModel.openAddFoodView.0) {
-                if let mealType = self.logMealViewModel.openAddFoodView.1 {
-                    AddFoodItemView(selectedMealType: mealType)
-                        .onDisappear {
-                            self.logMealViewModel.openAddFoodView = (false, nil)
-                        }
-                }
-            }
             .onFirstAppear {
                 self.logMealViewModel.setDailyActivityManager(appRootManager.dailyActivityManager, appRootManager.profileManager)
             }

@@ -13,13 +13,14 @@ struct HomeView: View {
     @StateObject private var homeViewModel: HomeViewModel
     @EnvironmentObject private var rootTabViewModel: RootTabViewModel
     @EnvironmentObject private var appRootManager: AppRootManager
+    @ObservedObject private var homeNavRouter = Router<HomeRouter>()
     
     init(profileManager: ProfileManager, dailyActivityManager: DailyActivityManager) {
         _homeViewModel = StateObject(wrappedValue: HomeViewModel(profileManager: profileManager, dailyActivityManager: dailyActivityManager))
     }
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $homeNavRouter.navigationPath) {
             ZStack {
                 Color.background
                     .ignoresSafeArea()
@@ -51,8 +52,8 @@ struct HomeView: View {
                     
                     HStack{
                         
-                        FNNavigationButton(buttonTitle: AppTexts.logMealText, backgroundEnable: true) {
-                            LogMealView()
+                        FNButton(buttonTitle: AppTexts.logMealText, backgroundEnable: true) {
+                            homeNavRouter.navigate(to: .logMeal)
                         }
                         
                         FNButton(buttonTitle: AppTexts.startWorkoutText, backgroundEnable: false) {
@@ -139,6 +140,9 @@ struct HomeView: View {
                 }
                 .padding(.all)
             }
+            .navigationDestination(for: HomeRouter.self) { homeRouter in
+                self.homeNavRouter.destination(for: homeRouter)
+            }
         }
         .onFirstAppear {
             homeViewModel.onAppear(foodCatalogManager: appRootManager.foodCatalogManager)
@@ -147,8 +151,8 @@ struct HomeView: View {
             LogWaterView(totalWaterTarget: homeViewModel.profileModel.waterTargetLiters, dailyactvityManager: self.homeViewModel.getDailyActivityManager())
                 .presentationDragIndicator(.visible)
                 .presentationDetents([.medium])
-                
         }
+        .environmentObject(homeNavRouter)
     }
 }
 

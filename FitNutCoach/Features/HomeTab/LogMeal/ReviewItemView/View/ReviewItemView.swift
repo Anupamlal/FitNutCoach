@@ -7,16 +7,29 @@
 
 import SwiftUI
 
+struct ReviewItemConfig: Hashable {
+    let barcode: String?
+    let mealType: MealType
+    let foodItem: FoodItemModel?
+    
+    init(barcode: String? = nil, mealType: MealType, foodItem: FoodItemModel? = nil) {
+        self.barcode = barcode
+        self.mealType = mealType
+        self.foodItem = foodItem
+    }
+}
+
 struct ReviewItemView: View {
     
     @StateObject var reviewItemViewModel: ReviewItemViewModel
-    @State var counter: Int = 1
     @EnvironmentObject private var appRootManager: AppRootManager
-    @Binding var isPresented: Bool
+    @EnvironmentObject var homeNavRouter: Router<HomeRouter>
     
-    init(barcode: String? = nil, isPresented: Binding<Bool>, mealType: MealType) {
-        _reviewItemViewModel = .init(wrappedValue: .init(barcode: barcode, mealType: mealType))
-        _isPresented = isPresented
+    var successCallback: (() -> Void)?
+    
+    init(reviewItemConfig: ReviewItemConfig, successCallback: (() -> Void)? = nil) {
+        _reviewItemViewModel = .init(wrappedValue: .init(barcode: reviewItemConfig.barcode, mealType: reviewItemConfig.mealType, foodItem: reviewItemConfig.foodItem))
+        self.successCallback = successCallback
     }
     
     var body: some View {
@@ -58,9 +71,11 @@ struct ReviewItemView: View {
                             .font(.system(size: 20, weight: .semibold))
                             .foregroundStyle(Color.textPrimary)
                         
-                        Text(reviewItemViewModel.reviewItem?.brand ?? "")
-                            .font(.system(size: 15, weight: .regular))
-                            .foregroundStyle(Color.textSecondary)
+                        if let brand = reviewItemViewModel.reviewItem?.brand {
+                            Text(brand)
+                                .font(.system(size: 15, weight: .regular))
+                                .foregroundStyle(Color.textSecondary)
+                        }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     
@@ -91,6 +106,11 @@ struct ReviewItemView: View {
                     Divider()
                     
                     FNKeyValueView(keyName: AppTexts.servingSizeText, valueName: "\(self.reviewItemViewModel.servingSize.formatToOneDecimalPlaces())\(self.reviewItemViewModel.reviewItem?.servingUnit ?? "g")")
+                    
+                    if let measurementUnit = self.reviewItemViewModel.reviewItem?.measurementUnit {
+                        Divider()
+                        FNKeyValueView(keyName: AppTexts.measurementUnitText, valueName: measurementUnit.rawValue)
+                    }
                                             
                     Divider()
                     
@@ -162,7 +182,11 @@ struct ReviewItemView: View {
                     
                     
                     FNButton(buttonTitle: AppTexts.confirmAndAddText, backgroundEnable: true) {
-                        isPresented = false
+                        if let successCallback = self.successCallback {
+                            successCallback()
+                        }else {
+                            homeNavRouter.navigateBackTo(kTh: 2)
+                        }
                         self.reviewItemViewModel.fillUpdatedServingSizes()
                         Task {
                             _ = await reviewItemViewModel.confirmFoodAndUpdate()
@@ -187,5 +211,5 @@ struct ReviewItemView: View {
 }
 
 #Preview {
-    ReviewItemView(isPresented: .constant(false), mealType: .breakfast)
+    ReviewItemView(reviewItemConfig: ReviewItemConfig(mealType: .breakfast))
 }

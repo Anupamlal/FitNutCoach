@@ -9,7 +9,7 @@
 import SwiftUI
 import CoreData
 
-enum MealType: String, Codable, CaseIterable {
+enum MealType: String, Codable, CaseIterable, Hashable {
     case breakfast, lunch, snack, dinner
     
     func getDisplayName() -> String {

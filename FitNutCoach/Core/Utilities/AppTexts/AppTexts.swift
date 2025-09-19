@@ -59,6 +59,7 @@ class AppTexts {
     static let confirmAndAddText = "Confirm and Add"
     static let dailyGoalsText = "Daily Goals"
     static let servingSizeText = "Serving Size"
+    static let measurementUnitText = "Measurement Unit"
     static let numberOfServingsText = "Number of Servings"
     static let mealText = "Meal"
     
@@ -67,6 +68,12 @@ class AppTexts {
     static let searchFoodText = "Search food item by name"
     static let addFoodItemText = "Add Food Item"
     static let servings = "servings"
+    
+    static let noFoodItemFoundText = "No food item found"
+    static let noHistoryFoundText = "No history found"
+    static let someMoreFoodAddedText = "%@ more food added"
+    static let addedText = "added"
+    static let logForText = "Log For %@"
     
 }
 

@@ -30,9 +30,14 @@ class ReviewItemViewModel: ObservableObject {
     let mealType: MealType
     var barcode: String?
     
-    init(barcode: String? = nil, mealType: MealType) {
+    init(barcode: String? = nil, mealType: MealType, foodItem: FoodItemModel? = nil) {
         self.barcode = barcode
         self.mealType = mealType
+        if let foodItem = foodItem {
+            self.reviewItem = foodItem
+            self.imageUrl = foodItem.imageUrl
+            updateMacrosForServing()
+        }
     }
     
     private func fetchDetailsForBarcodeItem(barcode: String) async {

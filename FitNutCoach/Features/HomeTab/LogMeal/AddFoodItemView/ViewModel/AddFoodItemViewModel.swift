@@ -17,6 +17,7 @@ class AddFoodItemViewModel: ObservableObject {
 
     let selectedMealType: MealType
     @Published var openBarCodeScanner: Bool = false
+    @Published var isSearchPresented: Bool = false
     @Published var searchText: String = ""{
         didSet {
             setUpFoodItemsUsingSearchText()
