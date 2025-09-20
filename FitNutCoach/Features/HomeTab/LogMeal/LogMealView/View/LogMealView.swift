@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct LogMealView: View {
     
@@ -15,7 +16,7 @@ struct LogMealView: View {
     
     var body: some View {
         
-        ZStack {
+        ZStack(alignment: .bottomTrailing) {
             Color.background
                 .ignoresSafeArea()
             
@@ -63,6 +64,7 @@ struct LogMealView: View {
                     }
                     
                     Spacer()
+                        .padding(.bottom, 70)
                 }
                 .padding(.horizontal, 18)
             })
@@ -71,8 +73,34 @@ struct LogMealView: View {
             .onFirstAppear {
                 self.logMealViewModel.setDailyActivityManager(appRootManager.dailyActivityManager, appRootManager.profileManager)
             }
+            
+            FNFAB(fabName: AppTexts.snapText, fabImage: "camera.fill") {
+                logMealViewModel.openGallery = true
+            }
+            .padding(.trailing, 20)
+            .padding(.bottom, 20)
         }
-        
+        .padding(.bottom, 1)
+        .photosPicker(isPresented: $logMealViewModel.openGallery, selection: $logMealViewModel.photoPickerItem, matching: .images, preferredItemEncoding: .automatic)
+        .onChange(of: logMealViewModel.photoPickerItem) { oldValue, newValue in
+            if newValue != nil {
+                Task {
+                    if let data = try? await newValue?.loadTransferable(type: Data.self),
+                       let uiImage = UIImage(data: data) {
+                        logMealViewModel.photoPickerItem = nil
+                        logMealViewModel.selectedImage = uiImage
+                        logMealViewModel.openImageDetectionFlow = true
+                    }
+                }
+            }
+        }
+        .fullScreenCover(isPresented: $logMealViewModel.openImageDetectionFlow, onDismiss: {
+            logMealViewModel.selectedImage = nil
+        }) {
+            if let selectedImage = logMealViewModel.selectedImage {
+                ImageDetectionView(selectedImage: selectedImage)
+            }
+        }
     }
 }
 

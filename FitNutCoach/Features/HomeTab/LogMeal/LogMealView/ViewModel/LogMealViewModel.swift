@@ -5,13 +5,19 @@
 //  Created by Anupam Kumar Lal on 14/09/25.
 //
 
-import UIKit
+import SwiftUI
 import Combine
+import PhotosUI
 
 class LogMealViewModel: ObservableObject {
 
     @Published var dailyTotalCalories: Double = 0
     @Published var dailyActivityModel: DailyActivityModel?
+    @Published var openGallery: Bool = false
+    @Published var photoPickerItem: PhotosPickerItem?
+    @Published var openImageDetectionFlow: Bool = false
+
+    var selectedImage: UIImage?
     
     private var dailyActivityManager: DailyActivityManager?
     private var profileManager: ProfileManager?

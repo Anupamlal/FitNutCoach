@@ -1,0 +1,54 @@
+//
+//  ImageDetectionView.swift
+//  FitNutCoach
+//
+//  Created by Anupam Kumar Lal on 19/09/25.
+//
+
+import SwiftUI
+
+struct ImageDetectionView: View {
+    
+    let selectedImage: UIImage
+    
+    var body: some View {
+        
+        NavigationStack {
+            
+            ZStack{
+                Color.black
+                
+                Image(uiImage: selectedImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .blur(radius: 5)
+                
+                ProgressView {
+                    Text(AppTexts.identifyingFoodText)
+                        .font(.system(size: 18, weight: .semibold))
+                        .foregroundStyle(Color.white)
+                }
+                .tint(Color.white)
+            }
+            .edgesIgnoringSafeArea(.all)
+            .withCustomBackButton(withTitle: "", backButtonTint: .white, backButtonType: .close)
+            .onAppear {
+                detectImage()
+            }
+        }
+        
+    }
+    
+    func detectImage() {
+        Task {
+            HybridFoodDetector.shared.detectFoodUsingMLModel(self.selectedImage) {
+                
+            }
+        }
+        
+    }
+}
+
+#Preview {
+    ImageDetectionView(selectedImage: UIImage())
+}

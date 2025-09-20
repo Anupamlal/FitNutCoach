@@ -74,7 +74,9 @@ class AppTexts {
     static let someMoreFoodAddedText = "%@ more food added"
     static let addedText = "added"
     static let logForText = "Log For %@"
+    static let snapText = "Snap"
     
+    static let identifyingFoodText = "Identifying food..."
 }
 
 class ErrorTexts {
