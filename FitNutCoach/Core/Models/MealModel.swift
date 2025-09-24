@@ -31,7 +31,7 @@ enum MealSourceType: String, Codable {
 }
 
 enum MeasurementUnit: String, Codable {
-    case piece, cup, large, slice, bowl, tsp, glass
+    case piece, cup, large, slice, bowl, tsp, glass, plate
 }
 
 struct MealModel: Codable {

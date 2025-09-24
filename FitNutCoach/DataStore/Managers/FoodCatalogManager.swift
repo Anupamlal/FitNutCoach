@@ -139,6 +139,13 @@ class FoodCatalogManager: ObservableObject, BaseManagerDelegate {
         return nil
     }
     
+    func searchFoodWithSameName(_ name: String) -> FoodCatalogItemModel? {
+        
+        let foodName = name.replacingOccurrences(of: "_", with: " ").lowercased()
+        
+        return self.allFoodCatalog.first(where: {$0.name?.lowercased() == foodName})
+    }
+    
     func loadAllFoodCatalogFromServer() async -> Bool {
                 
         if let allFoodCatalog = await FoodCatalogFBHelper.getAllFoodCatalogeItem() {

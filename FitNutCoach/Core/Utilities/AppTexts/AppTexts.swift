@@ -77,6 +77,7 @@ class AppTexts {
     static let snapText = "Snap"
     
     static let identifyingFoodText = "Identifying food..."
+    static let detectedFoodsText = "Detected Foods"
 }
 
 class ErrorTexts {

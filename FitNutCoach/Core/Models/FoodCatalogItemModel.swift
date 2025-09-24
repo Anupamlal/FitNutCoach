@@ -12,7 +12,7 @@ struct FoodCatalogItemModel: Codable {
     let brand: String?
     let caloriesPer100G: Double?
     let carbsPer100G: Double?
-    let confidence: Double
+    var confidence: Double
     let fatPer100G: Double?
     let name: String?
     let proteinPer100G: Double?
@@ -110,6 +110,25 @@ struct FoodCatalogItemModel: Codable {
         self.totalSize = foodCatalogItem.totalSize
         self.totalSizeUnit = foodCatalogItem.totalSizeUnit
         self.servingSizeUnit = foodCatalogItem.servingSizeUnit
+    }
+    
+    init(aiFoodItemModel: AIFoodItemModel) {
+        self.id = aiFoodItemModel.id
+        self.brand = nil
+        self.caloriesPer100G = aiFoodItemModel.clry
+        self.carbsPer100G = aiFoodItemModel.crb
+        self.confidence = aiFoodItemModel.cnfdnc
+        self.fatPer100G = aiFoodItemModel.fat
+        self.name = aiFoodItemModel.name
+        self.proteinPer100G = aiFoodItemModel.ptn
+        self.foodSourceType = aiFoodItemModel.foodSource
+        self.barcode = nil
+        self.measurementUnit = MeasurementUnit(rawValue: aiFoodItemModel.mUnit ?? "")
+        self.imageUrl = nil
+        self.servingSize = aiFoodItemModel.quantity
+        self.totalSize = aiFoodItemModel.quantity
+        self.totalSizeUnit = "g"
+        self.servingSizeUnit = "g"
     }
     
     func fillFoodCatalogItem(foodCatalogItem: FoodCatalogItem) {

@@ -9,7 +9,12 @@ import SwiftUI
 
 struct ImageDetectionView: View {
     
-    let selectedImage: UIImage
+    @StateObject var imageDetectionViewModel: ImageDetectionViewModel
+    @EnvironmentObject var appRootManager: AppRootManager
+    
+    init(selectedImage: UIImage) {
+        _imageDetectionViewModel = StateObject(wrappedValue: ImageDetectionViewModel(selectedImage))
+    }
     
     var body: some View {
         
@@ -18,7 +23,7 @@ struct ImageDetectionView: View {
             ZStack{
                 Color.black
                 
-                Image(uiImage: selectedImage)
+                Image(uiImage: imageDetectionViewModel.selectedImage)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .blur(radius: 5)
@@ -35,17 +40,15 @@ struct ImageDetectionView: View {
             .onAppear {
                 detectImage()
             }
+            .navigationDestination(isPresented: $imageDetectionViewModel.openReviewDetectFoodItemsView) {
+                ReviewDetectedItemView(selectedItemImage: imageDetectionViewModel.selectedImage, detectedFoodItems: imageDetectionViewModel.detectedFoods)
+            }
         }
         
     }
     
     func detectImage() {
-        Task {
-            HybridFoodDetector.shared.detectFoodUsingMLModel(self.selectedImage) {
-                
-            }
-        }
-        
+        self.imageDetectionViewModel.loadFoodCatalogManager(appRootManager.foodCatalogManager)
     }
 }
 

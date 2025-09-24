@@ -10,6 +10,8 @@ import SwiftUI
 struct FNStepper: View {
     
     @Binding var counter: Int
+    var sizeOfEachVertical: CGFloat = 36
+    var isEnabled: Bool = true
     var stepperCallback: (() -> Void)?
     
     var body: some View {
@@ -21,16 +23,16 @@ struct FNStepper: View {
                 }
             }
             .disabled(self.counter == 1)
-            .font(.system(size: 28, weight: .regular))
+            .font(.system(size: getPlusMinusFontSize(), weight: .regular))
             .foregroundStyle(Color.textSecondary)
-            .frame(width: 36, height: 36, alignment: .center)
+            .frame(width: sizeOfEachVertical, height: sizeOfEachVertical, alignment: .center)
             
             Divider()
             
             Text("\(self.counter)")
-                .font(.system(size: 16, weight: .regular))
+                .font(.system(size: getCounterFontSize(), weight: .regular))
                 .foregroundStyle(Color.textSecondary)
-                .frame(width: 36, alignment: .center)
+                .frame(width: sizeOfEachVertical, alignment: .center)
             
             
             Divider()
@@ -39,16 +41,29 @@ struct FNStepper: View {
                 self.counter += 1
                 stepperCallback?()
             }
-            .font(.system(size: 24, weight: .regular))
-            .frame(width: 36, height: 36, alignment: .center)
+            .font(.system(size: getPlusMinusFontSize(), weight: .regular))
+            .frame(width: sizeOfEachVertical, height: sizeOfEachVertical, alignment: .center)
             .foregroundStyle(Color.textSecondary)
+            .disabled(!isEnabled)
         }
-        .frame(height: 36)
+        .frame(height: sizeOfEachVertical)
         .background(Color(.systemGray6))
-        .cornerRadius(10)
+        .cornerRadius(getCornerRadius())
+    }
+    
+    private func getCornerRadius() -> CGFloat {
+        return sizeOfEachVertical * (10/36)
+    }
+    
+    private func getPlusMinusFontSize() -> CGFloat {
+        return sizeOfEachVertical * (28/36)
+    }
+    
+    private func getCounterFontSize() -> CGFloat {
+        return sizeOfEachVertical * (16/36)
     }
 }
 
 #Preview {
-    FNStepper(counter: .constant(0))
+    FNStepper(counter: .constant(1))
 }
