@@ -75,30 +75,35 @@ struct LogMealView: View {
             }
             
             FNFAB(fabName: AppTexts.snapText, fabImage: "camera.fill") {
-                logMealViewModel.openGallery = true
+                logMealViewModel.openBottomSheetForImageSelection = true
             }
             .padding(.trailing, 20)
             .padding(.bottom, 20)
         }
         .padding(.bottom, 1)
-        .photosPicker(isPresented: $logMealViewModel.openGallery, selection: $logMealViewModel.photoPickerItem, matching: .images, preferredItemEncoding: .automatic)
-        .onChange(of: logMealViewModel.photoPickerItem) { oldValue, newValue in
-            if newValue != nil {
-                Task {
-                    if let data = try? await newValue?.loadTransferable(type: Data.self),
-                       let uiImage = UIImage(data: data) {
-                        logMealViewModel.photoPickerItem = nil
-                        logMealViewModel.selectedImage = uiImage
-                        logMealViewModel.openImageDetectionFlow = true
-                    }
-                }
-            }
-        }
         .fullScreenCover(isPresented: $logMealViewModel.openImageDetectionFlow, onDismiss: {
             logMealViewModel.selectedImage = nil
         }) {
             if let selectedImage = logMealViewModel.selectedImage {
-                ImageDetectionView(selectedImage: selectedImage)
+                ImageDetectionView(selectedImage: selectedImage) { detectedFoods in
+                    homeNavRouter.navigate(to: .reviewImageDetection(ReviewDetectedItemConfig(selectedItemImage: selectedImage, detectedFoodItems: detectedFoods)))
+                }
+            }
+        }
+        .sheet(isPresented: $logMealViewModel.openBottomSheetForImageSelection) {
+            PictureSelectorView { selectedType in
+                logMealViewModel.imageSelectionType = selectedType
+                logMealViewModel.openImageSelectionView = true
+            }
+            .menuIndicator(.visible)
+            .presentationDetents([.fraction(0.3)])
+        }
+        .fullScreenCover(isPresented: $logMealViewModel.openImageSelectionView) {
+            FNPhotoPickerView(selectedImage: $logMealViewModel.selectedImage, sourceType: logMealViewModel.imageSelectionType == .camera ? .camera : .photoLibrary)
+        }
+        .onChange(of: self.logMealViewModel.selectedImage) { oldValue, newValue in
+            if oldValue != newValue && newValue != nil {
+                logMealViewModel.openImageDetectionFlow = true
             }
         }
     }

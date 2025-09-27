@@ -69,6 +69,8 @@
 		9778FCE32E6B07CE00A3EF0C /* BarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9778FCE22E6B07CE00A3EF0C /* BarcodeView.swift */; };
 		9780BD782E63024D005227E4 /* BaseManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780BD772E63024D005227E4 /* BaseManagerDelegate.swift */; };
 		9780BD7A2E630545005227E4 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780BD792E630545005227E4 /* ProfileManager.swift */; };
+		978CD81A2E8849070034A3C0 /* PictureSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978CD8192E8849070034A3C0 /* PictureSelectorView.swift */; };
+		978CD81D2E8865CB0034A3C0 /* FNPhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978CD81B2E8865CB0034A3C0 /* FNPhotoPickerView.swift */; };
 		979C16D12E6468E100322BB8 /* MealManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979C16D02E6468E100322BB8 /* MealManager.swift */; };
 		979C16D32E64803600322BB8 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979C16D22E64802E00322BB8 /* WorkoutManager.swift */; };
 		979C16D82E648F1D00322BB8 /* LogWaterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979C16D72E648F1D00322BB8 /* LogWaterView.swift */; };
@@ -192,6 +194,8 @@
 		9778FCE22E6B07CE00A3EF0C /* BarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeView.swift; sourceTree = "<group>"; };
 		9780BD772E63024D005227E4 /* BaseManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseManagerDelegate.swift; sourceTree = "<group>"; };
 		9780BD792E630545005227E4 /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
+		978CD8192E8849070034A3C0 /* PictureSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureSelectorView.swift; sourceTree = "<group>"; };
+		978CD81B2E8865CB0034A3C0 /* FNPhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FNPhotoPickerView.swift; sourceTree = "<group>"; };
 		979C16D02E6468E100322BB8 /* MealManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealManager.swift; sourceTree = "<group>"; };
 		979C16D22E64802E00322BB8 /* WorkoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
 		979C16D72E648F1D00322BB8 /* LogWaterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogWaterView.swift; sourceTree = "<group>"; };
@@ -279,6 +283,7 @@
 		9705CAB92E7DBD9000AE7F79 /* AdapterViews */ = {
 			isa = PBXGroup;
 			children = (
+				978CD81C2E8865CB0034A3C0 /* PhotoPickerView */,
 			);
 			path = AdapterViews;
 			sourceTree = "<group>";
@@ -483,6 +488,7 @@
 		974AFC312E660E79003302BB /* LogMeal */ = {
 			isa = PBXGroup;
 			children = (
+				978CD8182E8848EA0034A3C0 /* PictureSelectorView */,
 				9741B6F02E7548A90092763D /* LogMealView */,
 				9741B6FB2E75AD7A0092763D /* AddFoodItemView */,
 				9778FCDE2E6B079600A3EF0C /* BarcodeView */,
@@ -640,6 +646,22 @@
 				9751F5022E7FE348001681DE /* AIFoodItemModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		978CD8182E8848EA0034A3C0 /* PictureSelectorView */ = {
+			isa = PBXGroup;
+			children = (
+				978CD8192E8849070034A3C0 /* PictureSelectorView.swift */,
+			);
+			path = PictureSelectorView;
+			sourceTree = "<group>";
+		};
+		978CD81C2E8865CB0034A3C0 /* PhotoPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				978CD81B2E8865CB0034A3C0 /* FNPhotoPickerView.swift */,
+			);
+			path = PhotoPickerView;
 			sourceTree = "<group>";
 		};
 		979C16D42E6486B100322BB8 /* HomeTab */ = {
@@ -1265,6 +1287,7 @@
 				97E4E5A92E7C757800A099FB /* ImageFileCache.swift in Sources */,
 				9719AFC32E79E83300C468D5 /* GenericFRC.swift in Sources */,
 				972E9E702E717CAF009FD7F1 /* AppRootManager.swift in Sources */,
+				978CD81D2E8865CB0034A3C0 /* FNPhotoPickerView.swift in Sources */,
 				972E9E9A2E71A434009FD7F1 /* DispatchQueue+Extension.swift in Sources */,
 				972E9E9B2E71A434009FD7F1 /* Codable+Extension.swift in Sources */,
 				97BF119F2E5AE421005FBA95 /* ProgressRingsView.swift in Sources */,
@@ -1278,6 +1301,7 @@
 				975D871B2E7D57AE00265F5C /* Router+Home.swift in Sources */,
 				972E9E8A2E719696009FD7F1 /* ProfileSetupViewModel.swift in Sources */,
 				972E9EA32E720B27009FD7F1 /* UserDefaultManager.swift in Sources */,
+				978CD81A2E8849070034A3C0 /* PictureSelectorView.swift in Sources */,
 				97ED16472E6DE3F400DFF623 /* BarcodeManualEntryView.swift in Sources */,
 				97BF11AA2E5AEE83005FBA95 /* FNButton.swift in Sources */,
 				97BF119B2E5ABA38005FBA95 /* AppTexts.swift in Sources */,

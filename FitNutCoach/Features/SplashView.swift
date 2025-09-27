@@ -17,7 +17,7 @@ struct SplashView: View {
             Color.primaryAccent
             
             Text(AppTexts.appName)
-                .font(.system(size: AppSpacing.xl, weight: .bold))
+                .font(.system(size: 36, weight: .bold))
                 .foregroundStyle(Color.white)
             
         }

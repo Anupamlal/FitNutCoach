@@ -12,12 +12,18 @@ import CoreML
 class FoodDetectorManager {
     
     //MARK: - Constants
-    private let foodDetectorFBManager: FoodDetectorFBManager
+    private var foodDetectorFBManager: FoodDetectorFBManager?
     private var completionHandler: (([String], [Double]) -> Void)?
     
     //MARK: - Init Method
     init() {
         self.foodDetectorFBManager = FoodDetectorFBManager()
+    }
+    
+    deinit {
+        self.completionHandler = nil
+        self.foodDetectorFBManager = nil
+        print("FoodDetectorManager deinit")
     }
     
     lazy var detectionRequest: VNCoreMLRequest = {
@@ -46,10 +52,11 @@ class FoodDetectorManager {
         let orientation = CGImagePropertyOrientation(rawValue: UInt32(uiImage.imageOrientation.rawValue))
         guard let ciimage = CIImage(image: uiImage) else { return }
         
-        DispatchQueue.global(qos: .userInitiated).async {
+        DispatchQueue.global(qos: .userInitiated).async {[weak self] in
+            guard let weakSelf = self else {return}
             let handler = VNImageRequestHandler(ciImage: ciimage, orientation: orientation!)
             do {
-                try handler.perform([self.detectionRequest])
+                try handler.perform([weakSelf.detectionRequest])
             }
             catch {
                 print("failed to perform detection with error \(error)")
@@ -68,8 +75,6 @@ class FoodDetectorManager {
         let allConfidenceLogits: [Double] = topFiveOutputs.map{Double($0.confidence)}
         let allConfidence = self.softmax(allConfidenceLogits)
         
-        print("allIdentifers: \(allIdentifers)")
-        print("allConfidence: \(allConfidence)")
         if let completionHandler = self.completionHandler {
             completionHandler(allIdentifers, allConfidence)
         }
@@ -84,20 +89,23 @@ class FoodDetectorManager {
     
     /// Image Detection using AI
     private func getFoodFromGeminiAI(image: UIImage) async -> [FoodCatalogItemModel] {
+        guard let foodDetectorFBManager = self.foodDetectorFBManager else {
+            return []
+        }
+        
         return await foodDetectorFBManager.getFoodItems(image: image)
     }
         
     //MARK: - Internal Methods
     func detectFood(foodCatalogManager: FoodCatalogManager, image: UIImage, completion: @escaping ([FoodItemModel]) -> Void) {
         
-        self.getFoodFromMLModel(image: image) { names, confidences in
+        self.getFoodFromMLModel(image: image) {[weak self] names, confidences in
+            
+            guard let weakSelf = self else { return }
             
             var allFoodModel: [FoodItemModel] = []
             
             for (index, name) in names.enumerated() {
-                
-                print("Food detected: \(name)")
-                print("Food detected: \(confidences[index])")
                 
                 if var foodCatalogModel = foodCatalogManager.searchFoodWithSameName(name) {
                     foodCatalogModel.confidence = Double(confidences[index])
@@ -106,6 +114,7 @@ class FoodDetectorManager {
             }
             
             completion(allFoodModel)
+            weakSelf.completionHandler = nil
         }
         
     }

@@ -9,37 +9,43 @@ import UIKit
 
 class ImageDetectionViewModel: ObservableObject {
 
-    private let foodDetectorManager: FoodDetectorManager
+    private var foodDetectorManager: FoodDetectorManager?
     private var foodCatalogManager: FoodCatalogManager?
-    
-    @Published var openReviewDetectFoodItemsView = false
-    
-    let selectedImage: UIImage
+        
+    var selectedImage: UIImage?
     var detectedFoods: [FoodItemModel] = []
     
-    init(foodDetectorManager: FoodDetectorManager = .init(), _ selectedImage: UIImage) {
-        self.foodDetectorManager = foodDetectorManager
+    init(_ selectedImage: UIImage) {
+        self.foodDetectorManager = .init()
         self.selectedImage = selectedImage
     }
     
-    func loadFoodCatalogManager(_ foodCatalogManager: FoodCatalogManager) {
+    deinit {
+        self.foodDetectorManager = nil
+        self.foodCatalogManager = nil
+        detectedFoods = []
+        selectedImage = nil
+        print("ImageDetectionViewModel deinit")
+    }
+    
+    func loadFoodCatalogManager(_ foodCatalogManager: FoodCatalogManager, completion: @escaping (Bool)->Void) {
         self.foodCatalogManager = foodCatalogManager
         
-        DispatchQueue.global().async {
-            self.detectAllFoods()
+        DispatchQueue.global().async {[weak self] in
+            self?.detectAllFoods(completion: completion)
         }
     }
     
-    private func detectAllFoods() {
+    private func detectAllFoods(completion: @escaping (Bool)->Void){
         
-        self.foodDetectorManager.detectFood(foodCatalogManager: self.foodCatalogManager!, image: selectedImage) {[weak self] allFoodModels in
+        self.foodDetectorManager?.detectFood(foodCatalogManager: self.foodCatalogManager!, image: selectedImage!) {[weak self] allFoodModels in
             
             guard let weakSelf = self else { return }
             weakSelf.detectedFoods = allFoodModels
             
-            DispatchQueue.main.runInMainThread {
-                weakSelf.openReviewDetectFoodItemsView = true
-            }
+            DispatchQueue.global().asyncAfter(deadline: .now() + 0.5, execute: {
+                completion(allFoodModels.count > 0)
+            })
         }
     }
 }

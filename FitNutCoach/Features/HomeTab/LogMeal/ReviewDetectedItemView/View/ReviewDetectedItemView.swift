@@ -7,12 +7,17 @@
 
 import SwiftUI
 
+struct ReviewDetectedItemConfig: Equatable, Hashable {
+    let selectedItemImage: UIImage
+    let detectedFoodItems: [FoodItemModel]
+}
+
 struct ReviewDetectedItemView: View {
     
     @StateObject var reviewDetectedItemViewModel: ReviewDetectedItemViewModel
     
-    init(selectedItemImage: UIImage, detectedFoodItems: [FoodItemModel]) {
-        _reviewDetectedItemViewModel = StateObject(wrappedValue: .init(selectedItemImage: selectedItemImage, detectedFoodItems: detectedFoodItems))
+    init(reviewDetectedItemConfig: ReviewDetectedItemConfig) {
+        _reviewDetectedItemViewModel = StateObject(wrappedValue: .init(selectedItemImage: reviewDetectedItemConfig.selectedItemImage, detectedFoodItems: reviewDetectedItemConfig.detectedFoodItems))
     }
     
     var body: some View {
@@ -87,5 +92,5 @@ struct ReviewDetectedItemView: View {
 }
 
 #Preview {
-    ReviewDetectedItemView(selectedItemImage: UIImage(), detectedFoodItems: [FoodItemModel]())
+    ReviewDetectedItemView(reviewDetectedItemConfig: ReviewDetectedItemConfig(selectedItemImage: UIImage(), detectedFoodItems: [FoodItemModel]()))
 }

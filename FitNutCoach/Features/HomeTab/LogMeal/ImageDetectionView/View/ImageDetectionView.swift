@@ -11,9 +11,13 @@ struct ImageDetectionView: View {
     
     @StateObject var imageDetectionViewModel: ImageDetectionViewModel
     @EnvironmentObject var appRootManager: AppRootManager
+    @Environment(\.dismiss) var dismiss
     
-    init(selectedImage: UIImage) {
+    var imageDetectionCallback: ((_ detectedFoods: [FoodItemModel]) -> Void)?
+    
+    init(selectedImage: UIImage, imageDetectionCallback: ((_ detectedFoods: [FoodItemModel]) -> Void)? = nil) {
         _imageDetectionViewModel = StateObject(wrappedValue: ImageDetectionViewModel(selectedImage))
+        self.imageDetectionCallback = imageDetectionCallback
     }
     
     var body: some View {
@@ -23,7 +27,7 @@ struct ImageDetectionView: View {
             ZStack{
                 Color.black
                 
-                Image(uiImage: imageDetectionViewModel.selectedImage)
+                Image(uiImage: imageDetectionViewModel.selectedImage!)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .blur(radius: 5)
@@ -37,18 +41,24 @@ struct ImageDetectionView: View {
             }
             .edgesIgnoringSafeArea(.all)
             .withCustomBackButton(withTitle: "", backButtonTint: .white, backButtonType: .close)
-            .onAppear {
+            .onFirstAppear() {
                 detectImage()
-            }
-            .navigationDestination(isPresented: $imageDetectionViewModel.openReviewDetectFoodItemsView) {
-                ReviewDetectedItemView(selectedItemImage: imageDetectionViewModel.selectedImage, detectedFoodItems: imageDetectionViewModel.detectedFoods)
             }
         }
         
     }
     
     func detectImage() {
-        self.imageDetectionViewModel.loadFoodCatalogManager(appRootManager.foodCatalogManager)
+        self.imageDetectionViewModel.loadFoodCatalogManager(appRootManager.foodCatalogManager){ result in
+            if result {
+                DispatchQueue.main.runInMainThread {
+                    imageDetectionCallback?(self.imageDetectionViewModel.detectedFoods)
+                    self.dismiss()
+                }
+            }else {
+                /// Fallback case needs to be written
+            }
+        }
     }
 }
 

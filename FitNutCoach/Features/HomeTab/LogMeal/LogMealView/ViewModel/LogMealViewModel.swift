@@ -13,15 +13,27 @@ class LogMealViewModel: ObservableObject {
 
     @Published var dailyTotalCalories: Double = 0
     @Published var dailyActivityModel: DailyActivityModel?
-    @Published var openGallery: Bool = false
-    @Published var photoPickerItem: PhotosPickerItem?
+    @Published var openBottomSheetForImageSelection: Bool = false
+    @Published var openImageSelectionView: Bool = false
     @Published var openImageDetectionFlow: Bool = false
 
     var selectedImage: UIImage?
+    var imageSelectionType: PictureSelectorType = .camera
     
     private var dailyActivityManager: DailyActivityManager?
     private var profileManager: ProfileManager?
     private var cancellable = Set<AnyCancellable>()
+    
+    deinit {
+        self.dailyActivityModel = nil
+        self.dailyActivityManager = nil
+        self.profileManager = nil
+        self.cancellable.removeAll()
+        self.cancellable = []
+        self.selectedImage = nil
+        
+        print("LogMealViewModel deinit")
+    }
     
     func setDailyActivityManager(_ dailyActivityManager: DailyActivityManager?, _ profileManager: ProfileManager?) {
         self.dailyActivityManager = dailyActivityManager

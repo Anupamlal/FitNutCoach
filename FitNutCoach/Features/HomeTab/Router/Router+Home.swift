@@ -12,6 +12,7 @@ enum HomeRouter: Hashable {
     case addFoodItem(selectedMealType: MealType)
     case reviewFoodItem(ReviewItemConfig)
     case profile
+    case reviewImageDetection(ReviewDetectedItemConfig)
 }
 
 extension Router {
@@ -31,6 +32,10 @@ extension Router {
             
         case .profile:
             ProfileView()
+            
+        case .reviewImageDetection(let reviewDetectedItemConfig):
+            ReviewDetectedItemView(reviewDetectedItemConfig: reviewDetectedItemConfig)
+            
         }
     }
 }
