@@ -89,7 +89,7 @@ struct MealTypeView: View {
         case .dinner:
             return "moon.fill"
             
-        case .snack:
+        case .snacks:
             return "cup.and.saucer.fill"
         }
     }
@@ -105,7 +105,7 @@ struct MealTypeView: View {
         case .dinner:
             return AppTexts.dinnerDescriptionText
             
-        case .snack:
+        case .snacks:
             return AppTexts.snacksDescriptionText
         }
     }
@@ -123,5 +123,5 @@ struct MealTypeView: View {
 }
 
 #Preview {
-    MealTypeView(currentMealType: .snack, foodItems: [])
+    MealTypeView(currentMealType: .snacks, foodItems: [])
 }

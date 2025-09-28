@@ -10,9 +10,9 @@ import SwiftUI
 struct DetectedItemRowView: View {
     
     @StateObject var detectedItemRowViewModel: DetectedItemRowViewModel
-    var selectedCallback: (( FoodItemModel) -> Void)?
+    var selectedCallback: ((FoodItemModel, Bool) -> Void)?
     
-    init(foodItemModel: FoodItemModel, selectedCallback: ((FoodItemModel) -> Void)? = nil) {
+    init(foodItemModel: FoodItemModel, selectedCallback: ((FoodItemModel, Bool) -> Void)? = nil) {
         _detectedItemRowViewModel = .init(wrappedValue: .init(foodItemModel: foodItemModel))
         self.selectedCallback = selectedCallback
     }
@@ -24,7 +24,7 @@ struct DetectedItemRowView: View {
                     detectedItemRowViewModel.isSelected.toggle()
                     
                     if let selectedCallback = selectedCallback {
-                        selectedCallback(detectedItemRowViewModel.foodItemModel)
+                        selectedCallback(detectedItemRowViewModel.foodItemModel, detectedItemRowViewModel.isSelected)
                     }
                 }
                 
@@ -53,12 +53,15 @@ struct DetectedItemRowView: View {
                     .font(.system(size: 12, weight: .medium))
                 
                 FNStepper(counter: $detectedItemRowViewModel.numberOfServing, sizeOfEachVertical: 26, isEnabled: detectedItemRowViewModel.isSelected) {
-                    detectedItemRowViewModel.updateMacrosForServing()
+                    detectedItemRowViewModel.fillUpdatedServingSizes()
+                    if let selectedCallback = selectedCallback {
+                        selectedCallback(detectedItemRowViewModel.foodItemModel, detectedItemRowViewModel.isSelected)
+                    }
                 }
                 
             }
         }
-        .padding(.horizontal, 24)
+        .padding(.horizontal, 20)
     }
 }
 

@@ -15,6 +15,8 @@ struct ReviewDetectedItemConfig: Equatable, Hashable {
 struct ReviewDetectedItemView: View {
     
     @StateObject var reviewDetectedItemViewModel: ReviewDetectedItemViewModel
+    @EnvironmentObject private var appRootManager: AppRootManager
+    @EnvironmentObject var homeNavRouter: Router<HomeRouter>
     
     init(reviewDetectedItemConfig: ReviewDetectedItemConfig) {
         _reviewDetectedItemViewModel = StateObject(wrappedValue: .init(selectedItemImage: reviewDetectedItemConfig.selectedItemImage, detectedFoodItems: reviewDetectedItemConfig.detectedFoodItems))
@@ -37,24 +39,60 @@ struct ReviewDetectedItemView: View {
                     Spacer()
                         .frame(height: 16)
                     
-                    Text("Select the closest food item")
-                        .font(.system(size: 18, weight: .medium))
-                        .padding(.bottom, 8)
-                        .padding(.horizontal, 24)
+                    HStack {
+                        Text(AppTexts.selectTheClosestFoodItemText)
+                            .font(.system(size: 18, weight: .medium))
+                            .padding(.bottom, 8)
+                            
+                        Spacer()
+                        
+                        Button {
+                            reviewDetectedItemViewModel.openMealTypeSelection = true
+                        } label: {
+                            HStack(spacing: 4) {
+                                Text(reviewDetectedItemViewModel.currentMealType.getDisplayName())
+                                Image(systemName: "chevron.down")
+                                    .renderingMode(.template)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 10, height: 5)
+                                    
+                            }
+                            .font(.system(size: 14, weight: .regular))
+                            .foregroundStyle(Color.textSecondary)
+                            .padding(.all, 8)
+                            .padding(.horizontal, 4)
+                            .background {
+                                RoundedRectangle(cornerRadius: 15)
+                                    .foregroundStyle(AppColors.logMealCardBGColor)
+                            }
+                        }
+                    }
+                    .padding(.horizontal, 20)
+                    
+                    Spacer()
+                        .frame(height: 10)
                     
                     ForEach(reviewDetectedItemViewModel.detectedFoodItems, id: \.self) { currentFood in
                         
-                        DetectedItemRowView(foodItemModel: currentFood, selectedCallback: { foodItemModel in
-                            if let firstIndex = reviewDetectedItemViewModel.selectedFoodItems.firstIndex(of: foodItemModel) {
-                                reviewDetectedItemViewModel.selectedFoodItems.remove(at: firstIndex)
-                            }else {
+                        DetectedItemRowView(foodItemModel: currentFood, selectedCallback: { (foodItemModel, isSelected)  in
+                            
+                            if isSelected {
+                                if let firstIndex = reviewDetectedItemViewModel.selectedFoodItems.firstIndex(where: {$0.id == foodItemModel.id}) {
+                                    reviewDetectedItemViewModel.selectedFoodItems.remove(at: firstIndex)
+                                }
                                 reviewDetectedItemViewModel.selectedFoodItems.append(foodItemModel)
+                                
+                            }else {
+                                if let firstIndex = reviewDetectedItemViewModel.selectedFoodItems.firstIndex(of: foodItemModel) {
+                                    reviewDetectedItemViewModel.selectedFoodItems.remove(at: firstIndex)
+                                }
                             }
                         })
                         .padding(.vertical, 8)
                         
                         Divider()
-                            .padding(.horizontal, 24)
+                            .padding(.horizontal, 20)
                     }
                     
                 }
@@ -62,13 +100,16 @@ struct ReviewDetectedItemView: View {
             
             VStack(spacing: 0) {
                 FNButton(buttonTitle: AppTexts.confirmText, backgroundEnable: true, isEnabled: reviewDetectedItemViewModel.shouldShowConfirmButton) {
-                    
+                    homeNavRouter.navigateBack()
+                    Task {
+                        _ = await self.reviewDetectedItemViewModel.logSelectedFood()
+                    }
                 }
                 
                 Spacer()
                     .frame(height: 10)
                 
-                Text("Not satisfied with the detection?")
+                Text(AppTexts.notSatisfiedWithTheDetectionText)
                     .font(.system(size: 12, weight: .medium))
                 
                 Spacer()
@@ -78,16 +119,24 @@ struct ReviewDetectedItemView: View {
                     
                     
                 } label: {
-                    Text("Detect with AI (10 left for today)")
+                    Text(AppTexts.detectWithAIText)
                         .font(.system(size: 12, weight: .medium))
                         .foregroundStyle(Color.primaryAccent)
                 }
 
                 
             }
-            .padding(.horizontal, 24)
+            .padding(.horizontal, 20)
         }
         .withCustomBackButton(withTitle: AppTexts.detectedFoodsText)
+        .onFirstAppear() {
+            reviewDetectedItemViewModel.setup(appRootManager.dailyActivityManager)
+        }
+        .sheet(isPresented: $reviewDetectedItemViewModel.openMealTypeSelection) {
+            SelectMealTypeBottomSheet(selectedMealType: $reviewDetectedItemViewModel.currentMealType)
+                .presentationDragIndicator(.visible)
+                .presentationDetents([.medium])
+        }
     }
 }
 

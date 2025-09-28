@@ -67,6 +67,7 @@
 		977356A52E6364E6007ED640 /* FoodItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977356A42E6364E3007ED640 /* FoodItemModel.swift */; };
 		977356A72E63654F007ED640 /* WorkoutSetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977356A62E63654A007ED640 /* WorkoutSetModel.swift */; };
 		9778FCE32E6B07CE00A3EF0C /* BarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9778FCE22E6B07CE00A3EF0C /* BarcodeView.swift */; };
+		977F2A802E8963C2005F0AB5 /* SelectMealTypeBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977F2A7F2E8963C2005F0AB5 /* SelectMealTypeBottomSheet.swift */; };
 		9780BD782E63024D005227E4 /* BaseManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780BD772E63024D005227E4 /* BaseManagerDelegate.swift */; };
 		9780BD7A2E630545005227E4 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780BD792E630545005227E4 /* ProfileManager.swift */; };
 		978CD81A2E8849070034A3C0 /* PictureSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978CD8192E8849070034A3C0 /* PictureSelectorView.swift */; };
@@ -192,6 +193,7 @@
 		977356A42E6364E3007ED640 /* FoodItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemModel.swift; sourceTree = "<group>"; };
 		977356A62E63654A007ED640 /* WorkoutSetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSetModel.swift; sourceTree = "<group>"; };
 		9778FCE22E6B07CE00A3EF0C /* BarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeView.swift; sourceTree = "<group>"; };
+		977F2A7F2E8963C2005F0AB5 /* SelectMealTypeBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMealTypeBottomSheet.swift; sourceTree = "<group>"; };
 		9780BD772E63024D005227E4 /* BaseManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseManagerDelegate.swift; sourceTree = "<group>"; };
 		9780BD792E630545005227E4 /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
 		978CD8192E8849070034A3C0 /* PictureSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureSelectorView.swift; sourceTree = "<group>"; };
@@ -495,6 +497,7 @@
 				97ED164A2E6DF47300DFF623 /* ReviewItemView */,
 				9705CABC2E7DCBEA00AE7F79 /* ImageDetectionView */,
 				9751F5042E803F50001681DE /* ReviewDetectedItemView */,
+				977F2A7D2E89639F005F0AB5 /* SelectMealTypeBottomSheet */,
 			);
 			path = LogMeal;
 			sourceTree = "<group>";
@@ -601,6 +604,22 @@
 			children = (
 				9778FCE22E6B07CE00A3EF0C /* BarcodeView.swift */,
 				97ED16462E6DE3F400DFF623 /* BarcodeManualEntryView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		977F2A7D2E89639F005F0AB5 /* SelectMealTypeBottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				977F2A7E2E8963AE005F0AB5 /* View */,
+			);
+			path = SelectMealTypeBottomSheet;
+			sourceTree = "<group>";
+		};
+		977F2A7E2E8963AE005F0AB5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				977F2A7F2E8963C2005F0AB5 /* SelectMealTypeBottomSheet.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1367,6 +1386,7 @@
 				9751F50B2E804C0F001681DE /* DetectedItemRowView.swift in Sources */,
 				97BF11AE2E5B140E005FBA95 /* NutritionSnapshotView.swift in Sources */,
 				97BF118C2E5AB106005FBA95 /* WorkoutsView.swift in Sources */,
+				977F2A802E8963C2005F0AB5 /* SelectMealTypeBottomSheet.swift in Sources */,
 				97FD3D162E78800A0068BE69 /* FNStepper.swift in Sources */,
 				972E9E582E70B3BE009FD7F1 /* BarcodeModel.swift in Sources */,
 				97BF11752E5A3691005FBA95 /* AppEnvironment.swift in Sources */,

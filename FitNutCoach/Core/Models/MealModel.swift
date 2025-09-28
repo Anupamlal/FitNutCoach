@@ -10,7 +10,7 @@ import SwiftUI
 import CoreData
 
 enum MealType: String, Codable, CaseIterable, Hashable {
-    case breakfast, lunch, snack, dinner
+    case breakfast, lunch, snacks, dinner
     
     func getDisplayName() -> String {
         switch self {
@@ -20,7 +20,7 @@ enum MealType: String, Codable, CaseIterable, Hashable {
             return AppTexts.lunchText
         case .dinner:
             return AppTexts.dinnerText
-        case .snack:
+        case .snacks:
             return AppTexts.snacksText
         }
     }

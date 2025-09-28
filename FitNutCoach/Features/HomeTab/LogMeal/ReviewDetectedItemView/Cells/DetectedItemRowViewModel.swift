@@ -23,20 +23,20 @@ class DetectedItemRowViewModel: ObservableObject {
         updateMacrosForServing()
     }
     
-    func updateMacrosForServing() {
-        self.servingSize = (self.foodItemModel.servingSize) * Double(numberOfServing)
-        self.totalCalories = (self.foodItemModel.calories) * Double(numberOfServing)
-        self.totalCarbs = (self.foodItemModel.carbs) * Double(numberOfServing)
-        self.totalProtien = (self.foodItemModel.protein) * Double(numberOfServing)
-        self.totalFat = (self.foodItemModel.fat) * Double(numberOfServing)
+    private func updateMacrosForServing() {
+        self.servingSize = self.foodItemModel.servingSize
+        self.totalCalories = self.foodItemModel.calories
+        self.totalCarbs = self.foodItemModel.carbs
+        self.totalProtien = self.foodItemModel.protein
+        self.totalFat = self.foodItemModel.fat
     }
     
     func fillUpdatedServingSizes() {
-        self.foodItemModel.servingSize = self.servingSize
-        self.foodItemModel.calories = self.totalCalories
-        self.foodItemModel.carbs = self.totalCarbs
-        self.foodItemModel.protein = self.totalProtien
-        self.foodItemModel.fat = self.totalFat
+        self.foodItemModel.servingSize = self.servingSize * Double(numberOfServing)
+        self.foodItemModel.calories = self.totalCalories * Double(numberOfServing)
+        self.foodItemModel.carbs = self.totalCarbs * Double(numberOfServing)
+        self.foodItemModel.protein = self.totalProtien * Double(numberOfServing)
+        self.foodItemModel.fat = self.totalFat * Double(numberOfServing)
         self.foodItemModel.numberOfServing = numberOfServing
     }
     
@@ -46,9 +46,9 @@ class DetectedItemRowViewModel: ObservableObject {
     
     func getSecondLineText() -> String {
         if let measurementUnit = foodItemModel.measurementUnit {
-            return "\(self.numberOfServing) \(measurementUnit.rawValue), \(self.servingSize.formatToOneDecimalPlaces())\(self.foodItemModel.servingUnit ?? "g"), \(self.totalCalories.formatToOneDecimalPlaces()) \(AppTexts.kcalText)"
+            return "\(self.numberOfServing) \(measurementUnit.rawValue), \(self.foodItemModel.servingSize.formatToOneDecimalPlaces())\(self.foodItemModel.servingUnit ?? "g"), \(self.foodItemModel.calories.formatToOneDecimalPlaces()) \(AppTexts.kcalText)"
         }else {
-            return "\(self.numberOfServing) \(AppTexts.servings), \(self.servingSize.formatToOneDecimalPlaces())\(self.foodItemModel.servingUnit ?? "g"), \(self.totalCalories.formatToOneDecimalPlaces()) \(AppTexts.kcalText)"
+            return "\(self.numberOfServing) \(AppTexts.servings), \(self.foodItemModel.servingSize.formatToOneDecimalPlaces())\(self.foodItemModel.servingUnit ?? "g"), \(self.foodItemModel.calories.formatToOneDecimalPlaces()) \(AppTexts.kcalText)"
         }
     }
 }
