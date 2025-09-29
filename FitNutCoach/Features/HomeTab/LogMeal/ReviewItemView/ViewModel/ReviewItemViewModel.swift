@@ -22,10 +22,17 @@ class ReviewItemViewModel: ObservableObject {
     @Published var totalFat: Double = 0
     @Published var errorString: String?
     
+    @Published var dailyGoalCalPercentage: Double = 0
+    @Published var dailyGoalCarbPercentage: Double = 0
+    @Published var dailyGoalProteinPercentage: Double = 0    
+    @Published var dailyGoalFatPercentage: Double = 0
+    
     private let sessionManager: URLSessionManager = URLSessionManager()
     private var cancellables: Set<AnyCancellable> = []
     private var foodCatalogManager: FoodCatalogManager?
     private var dailyActivityManager: DailyActivityManager?
+    private var profileManager: ProfileManager?
+    private var profileModel: ProfileModel?
     
     let mealType: MealType
     var barcode: String?
@@ -106,9 +113,11 @@ class ReviewItemViewModel: ObservableObject {
         }
     }
     
-    func setUpFoodCatalogManager(foodCatalogManager: FoodCatalogManager, dailyActivityManager: DailyActivityManager) {
+    func setUpFoodCatalogManager(foodCatalogManager: FoodCatalogManager, dailyActivityManager: DailyActivityManager, profileManager: ProfileManager) {
         self.foodCatalogManager = foodCatalogManager
         self.dailyActivityManager = dailyActivityManager
+        self.profileManager = profileManager
+        loadProfileData()
         
         if let barcode = self.barcode {
             self.isLoading = true
@@ -119,12 +128,44 @@ class ReviewItemViewModel: ObservableObject {
         }
     }
     
+    private func loadProfileData() {
+        self.profileManager?.managerPublisher
+            .receive(on: DispatchQueue.main)
+            .sink {[weak self] profileModel in
+                self?.profileModel = profileModel
+            }
+            .store(in: &cancellables)
+    }
+    
     func updateMacrosForServing() {
         self.servingSize = (self.reviewItem?.servingSize ?? 0) * Double(numberOfServing)
         self.totalCalories = (self.reviewItem?.calories ?? 0) * Double(numberOfServing)
         self.totalCarbs = (self.reviewItem?.carbs ?? 0) * Double(numberOfServing)
         self.totalProtien = (self.reviewItem?.protein ?? 0) * Double(numberOfServing)
         self.totalFat = (self.reviewItem?.fat ?? 0) * Double(numberOfServing)
+        self.setDailyGoalsMacrosPercentage()
+    }
+    
+    private func setDailyGoalsMacrosPercentage() {
+        guard let profile = self.profileModel else {
+            return
+        }
+        
+        if profile.calorieTarget > 0 {
+            self.dailyGoalCalPercentage = (self.totalCalories / profile.calorieTarget) * 100
+        }
+        
+        if profile.carbTarget > 0 {
+            self.dailyGoalCarbPercentage = (self.totalCarbs / profile.carbTarget) * 100
+        }
+        
+        if profile.proteinTarget > 0 {
+            self.dailyGoalProteinPercentage = (self.totalProtien / profile.proteinTarget) * 100
+        }
+        
+        if profile.fatTarget > 0 {
+            self.dailyGoalFatPercentage = (self.totalFat / profile.fatTarget) * 100
+        }
     }
     
     func fillUpdatedServingSizes() {

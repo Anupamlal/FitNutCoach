@@ -10,18 +10,18 @@ import SwiftUI
 struct DailyGoalsCard: View {
     
     let goalName: String
-    let goalCurrentValue: Int
+    let goalCurrentValue: Double
     let goalColor: Color
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(goalName)
             
-            ProgressView(value: Double(goalCurrentValue), total: 100)
+            ProgressView(value: goalCurrentValue > 100 ? 100 : goalCurrentValue, total: 100)
                 .progressViewStyle(.linear)
                 .tint(goalColor)
             
-            Text("\(goalCurrentValue)%")
+            Text("\(goalCurrentValue.formatToOneDecimalPlaces())%")
         }
     }
 }

@@ -163,13 +163,13 @@ struct ReviewItemView: View {
                         
                         
                         HStack(spacing: 12) {
-                            DailyGoalsCard(goalName: AppTexts.caloriesText, goalCurrentValue: 14, goalColor: AppColors.calorieColor)
+                            DailyGoalsCard(goalName: AppTexts.caloriesText, goalCurrentValue: reviewItemViewModel.dailyGoalCalPercentage, goalColor: AppColors.calorieColor)
                             
-                            DailyGoalsCard(goalName: AppTexts.proteinText, goalCurrentValue: 17, goalColor: AppColors.protienColor)
+                            DailyGoalsCard(goalName: AppTexts.proteinText, goalCurrentValue: reviewItemViewModel.dailyGoalProteinPercentage, goalColor: AppColors.protienColor)
                             
-                            DailyGoalsCard(goalName: AppTexts.carbsText, goalCurrentValue: 17, goalColor: AppColors.carbsColor)
+                            DailyGoalsCard(goalName: AppTexts.carbsText, goalCurrentValue: reviewItemViewModel.dailyGoalCarbPercentage, goalColor: AppColors.carbsColor)
                             
-                            DailyGoalsCard(goalName: AppTexts.fatText, goalCurrentValue: 17, goalColor: AppColors.fatColor)
+                            DailyGoalsCard(goalName: AppTexts.fatText, goalCurrentValue: reviewItemViewModel.dailyGoalFatPercentage, goalColor: AppColors.fatColor)
                             
                         }
                         .font(.system(size: 14, weight: .regular))
@@ -204,7 +204,7 @@ struct ReviewItemView: View {
             }
         }
         .onFirstAppear(perform: {
-            reviewItemViewModel.setUpFoodCatalogManager(foodCatalogManager: appRootManager.foodCatalogManager, dailyActivityManager: appRootManager.dailyActivityManager)
+            reviewItemViewModel.setUpFoodCatalogManager(foodCatalogManager: appRootManager.foodCatalogManager, dailyActivityManager: appRootManager.dailyActivityManager, profileManager: appRootManager.profileManager)
         })
         .withCustomBackButton(withTitle: AppTexts.confirmFoodText)
     }
