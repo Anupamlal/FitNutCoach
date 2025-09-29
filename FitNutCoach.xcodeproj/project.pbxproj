@@ -35,6 +35,7 @@
 		972E9E9D2E71E26C009FD7F1 /* FoodCatalogFBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9E9C2E71E26C009FD7F1 /* FoodCatalogFBHelper.swift */; };
 		972E9E9F2E71E6B1009FD7F1 /* FoodCatalogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9E9E2E71E6B1009FD7F1 /* FoodCatalogManager.swift */; };
 		972E9EA32E720B27009FD7F1 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9EA22E720B27009FD7F1 /* UserDefaultManager.swift */; };
+		9738417A2E8AF44100F6546F /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973841792E8AF44100F6546F /* AppConstants.swift */; };
 		9739C1122E841C3C005005FE /* FoodAIClassifier.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 9739C1112E841C3B005005FE /* FoodAIClassifier.mlpackage */; };
 		9741B6F32E7548BA0092763D /* LogMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9741B6F22E7548BA0092763D /* LogMealView.swift */; };
 		9741B6F62E7570B10092763D /* LogMealMacroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9741B6F52E7570B10092763D /* LogMealMacroView.swift */; };
@@ -166,6 +167,7 @@
 		972E9E9C2E71E26C009FD7F1 /* FoodCatalogFBHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCatalogFBHelper.swift; sourceTree = "<group>"; };
 		972E9E9E2E71E6B1009FD7F1 /* FoodCatalogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCatalogManager.swift; sourceTree = "<group>"; };
 		972E9EA22E720B27009FD7F1 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
+		973841792E8AF44100F6546F /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		9739C1112E841C3B005005FE /* FoodAIClassifier.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = FoodAIClassifier.mlpackage; sourceTree = "<group>"; };
 		9741B6F22E7548BA0092763D /* LogMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMealView.swift; sourceTree = "<group>"; };
 		9741B6F52E7570B10092763D /* LogMealMacroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMealMacroView.swift; sourceTree = "<group>"; };
@@ -439,6 +441,14 @@
 				972E9E932E71A344009FD7F1 /* FirebaseKey.swift */,
 			);
 			path = FirebaseKey;
+			sourceTree = "<group>";
+		};
+		973841782E8AF41700F6546F /* AppConstants */ = {
+			isa = PBXGroup;
+			children = (
+				973841792E8AF44100F6546F /* AppConstants.swift */,
+			);
+			path = AppConstants;
 			sourceTree = "<group>";
 		};
 		9741B6F02E7548A90092763D /* LogMealView */ = {
@@ -822,6 +832,7 @@
 		97BF11692E5A34DF005FBA95 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				973841782E8AF41700F6546F /* AppConstants */,
 				972E9E942E71A344009FD7F1 /* FirebaseKey */,
 				97ED16412E6DB2B300DFF623 /* HelperViews */,
 				977356992E634C2C007ED640 /* ViewModifiers */,
@@ -1312,6 +1323,7 @@
 				97BF119F2E5AE421005FBA95 /* ProgressRingsView.swift in Sources */,
 				9773569B2E634C3E007ED640 /* OnFirstAppearViewModifier.swift in Sources */,
 				97ED16452E6DBF3100DFF623 /* BarcodeViewModel.swift in Sources */,
+				9738417A2E8AF44100F6546F /* AppConstants.swift in Sources */,
 				9751F5032E7FE348001681DE /* AIFoodItemModel.swift in Sources */,
 				972E9E522E70A063009FD7F1 /* ReviewItemViewModel.swift in Sources */,
 				9778FCE32E6B07CE00A3EF0C /* BarcodeView.swift in Sources */,

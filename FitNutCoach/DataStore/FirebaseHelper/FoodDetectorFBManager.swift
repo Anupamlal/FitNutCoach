@@ -6,7 +6,9 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 import FirebaseAI
+import FirebaseDatabase
 
 final class FoodDetectorFBManager {
 
@@ -47,7 +49,7 @@ final class FoodDetectorFBManager {
         
     }
     
-    func getFoodItems(image: UIImage) async -> [FoodCatalogItemModel] {
+    func getFoodItems(image: UIImage) async -> [FoodItemModel] {
         
         guard let jsonResponse = await detectFood(image: image) else {
             return []
@@ -61,7 +63,9 @@ final class FoodDetectorFBManager {
                 let aiFoodItems = try JSONDecoder().decode([AIFoodItemModel].self, from: data)
                 print(aiFoodItems)
                 
-                return aiFoodItems.map{FoodCatalogItemModel(aiFoodItemModel: $0)}
+                await updateNumberOfAIDetection()
+                
+                return aiFoodItems.map{FoodItemModel(foodCatalogItem: FoodCatalogItemModel(aiFoodItemModel: $0))}
                 
             }catch {
                 print(error)
@@ -72,6 +76,59 @@ final class FoodDetectorFBManager {
         return []
     }
     
+    private func updateNumberOfAIDetection() async {
+        let currentAIDetectionLeft = UserDefaultManager.getAIDetectionLeftCount()
+        
+        guard let currentUserEmail = Auth.auth().currentUser?.email else {
+            return
+        }
+        
+        let currentDate = Date().getStartOfDate()
+        
+        do {
+            let _ = try await Database.database().reference().child(FirebaseKey.users)
+                .child(currentUserEmail.getEmailAsId()).child(FirebaseKey.numberOfAIDetectionLeft).updateChildValues(["\(currentDate)": currentAIDetectionLeft - 1])
+            
+            UserDefaultManager.saveAIDetectionLeftCount(currentAIDetectionLeft - 1)
+            
+            return
+            
+        }catch {
+            return
+        }
+        
+    }
+    
+    class func setAIDetectionLeftCount() async {
+        if let count = await getAIDetectionLeftCountFromServer() {
+            UserDefaultManager.saveAIDetectionLeftCount(count)
+            
+        }else {
+            UserDefaultManager.saveAIDetectionLeftCount(AppConstants.totalAIDetectionPerDayLimit)
+        }
+    }
+    
+    class private func getAIDetectionLeftCountFromServer() async -> Int? {
+        guard let currentUserEmail = Auth.auth().currentUser?.email else {
+            return nil
+        }
+        
+        let currentDate = Date().getStartOfDate()
+        
+        do {
+            let dataSnapShot = try await Database.database().reference().child(FirebaseKey.users)
+                .child(currentUserEmail.getEmailAsId()).child(FirebaseKey.numberOfAIDetectionLeft).getData()
+                        
+            if let dict = dataSnapShot.value as? [String: Int], let count = dict["\(currentDate)"] {
+                return count
+            }
+                
+            return nil
+             
+        }catch {
+            return nil
+        }
+    }
 }
 
 // UIImage helper: resize

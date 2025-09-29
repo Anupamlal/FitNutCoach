@@ -38,6 +38,8 @@ class ProfileFBHelper  {
             let profileModel = try await Database.database().reference().child(FirebaseKey.users)
                 .child(currentUserEmail.getEmailAsId()).child(FirebaseKey.userInfo).getData().data(as: ProfileModel.self)
             
+            await FoodDetectorFBManager.setAIDetectionLeftCount()
+            
             return profileModel
             
         }catch {

@@ -80,7 +80,8 @@ class AppTexts {
     static let detectedFoodsText = "Detected Foods"
     static let selectTheClosestFoodItemText = "Select the closest food item"
     static let notSatisfiedWithTheDetectionText = "Not satisfied with the detection?"
-    static let detectWithAIText = "Detect with AI (10 left for today)"
+    static let detectWithAIText = "Detect with AI (%@ left for today)"
+    static let detectedUsingAIText = "Detected using AI"
     
     static let pleaseSelectTheMealTypeText = "Please select the type of meal you want to log."
     static let selectMealTypeText = "Select Meal Type"

@@ -88,7 +88,7 @@ class FoodDetectorManager {
     }
     
     /// Image Detection using AI
-    private func getFoodFromGeminiAI(image: UIImage) async -> [FoodCatalogItemModel] {
+    private func getFoodFromGeminiAI(image: UIImage) async -> [FoodItemModel] {
         guard let foodDetectorFBManager = self.foodDetectorFBManager else {
             return []
         }
@@ -119,7 +119,7 @@ class FoodDetectorManager {
         
     }
     
-    func detectFoodDirectlyUsingAI(image: UIImage) async -> [FoodCatalogItemModel] {
+    func detectFoodDirectlyUsingAI(image: UIImage) async -> [FoodItemModel] {
         return await getFoodFromGeminiAI(image: image)
     }
     

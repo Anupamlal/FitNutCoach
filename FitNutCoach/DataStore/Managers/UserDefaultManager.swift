@@ -11,6 +11,7 @@ class UserDefaultManager {
 
     static let isNewUser = "isNewUser"
     static let profileSetupDone = "profileSetupDone"
+    static let aiDetectionLeftCount = "AIDetectionLeftCount"
     
     class func saveProfileSetupDone(_ value: Bool) {
         UserDefaults.standard.set(value, forKey: profileSetupDone)
@@ -18,5 +19,13 @@ class UserDefaultManager {
     
     class func isProfileSetupDone() -> Bool {
         return UserDefaults.standard.bool(forKey: profileSetupDone)
+    }
+    
+    class func saveAIDetectionLeftCount(_ count: Int) {
+        UserDefaults.standard.set(count, forKey: aiDetectionLeftCount)
+    }
+    
+    class func getAIDetectionLeftCount() -> Int {
+        return UserDefaults.standard.integer(forKey: aiDetectionLeftCount)
     }
 }

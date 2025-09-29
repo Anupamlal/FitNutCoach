@@ -14,7 +14,11 @@ class ReviewDetectedItemViewModel: ObservableObject {
     @Published var shouldShowConfirmButton: Bool = false
     @Published var currentMealType: MealType = .breakfast
     @Published var openMealTypeSelection: Bool = false
+    @Published var isLoading: Bool = false
+    @Published var numberOfAIDetectionLeft = 0
+    @Published var isFoodDetectedUsingAI: Bool = false
     private var dailyActivityManager: DailyActivityManager?
+    private var foodDetectorManager: FoodDetectorManager?
     
     var selectedFoodItems: [FoodItemModel] = [] {
         didSet {
@@ -25,7 +29,9 @@ class ReviewDetectedItemViewModel: ObservableObject {
     init(selectedItemImage: UIImage, detectedFoodItems: [FoodItemModel]) {
         self.selectedItemImage = selectedItemImage
         self.detectedFoodItems = detectedFoodItems
+        self.foodDetectorManager = .init()
         setCurrentMealType()
+        refreshAIDetectionLeftCount()
     }
     
     func setup(_ dailyActivityManager: DailyActivityManager) {
@@ -73,10 +79,33 @@ class ReviewDetectedItemViewModel: ObservableObject {
             return .breakfast
         case 11..<16:
             return .lunch
-        case 16..<21:
+        case 19..<24:
             return .dinner
         default:
             return .snacks
         }
+    }
+    
+    func detectWithAI() {
+        self.isLoading = true
+        Task {
+            let detectedFoods = await self.foodDetectorManager?.detectFoodDirectlyUsingAI(image: self.selectedItemImage)
+            
+            await MainActor.run {
+                self.isLoading = false
+                if let detectedFoods, detectedFoods.count > 0 {
+                    self.detectedFoodItems = detectedFoods
+                    self.isFoodDetectedUsingAI = true
+                    self.refreshAIDetectionLeftCount()
+                }else {
+                    self.detectedFoodItems = []
+                }
+            }
+        }
+        
+    }
+    
+    func refreshAIDetectionLeftCount() {
+        self.numberOfAIDetectionLeft = UserDefaultManager.getAIDetectionLeftCount()
     }
 }

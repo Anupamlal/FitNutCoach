@@ -29,6 +29,8 @@ class DailyActivityManager: ObservableObject {
         let dailyActivity = DailyActivity(context: self.bgContext)
         newData.fillDailyActivity(dailyActivity: dailyActivity, context: self.bgContext)
         
+        await FoodDetectorFBManager.setAIDetectionLeftCount()
+        
         await bgContext.perform {
             
             do {

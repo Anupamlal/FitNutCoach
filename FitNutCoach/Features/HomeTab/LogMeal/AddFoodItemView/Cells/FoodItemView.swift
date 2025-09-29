@@ -47,11 +47,19 @@ struct FoodItemView: View {
                 onSelection?(isSelected)
                 
             } label: {
-                Image(systemName: getButtonImage())
-                    .resizable()
-                    .renderingMode(.template)
-                    .frame(width: 20, height: 20)
-                    .foregroundStyle(Color.primaryAccent)
+                Group {
+                    if !isForSelection {
+                        Image(getButtonImage())
+                            .resizable()
+                            .scaledToFit()
+                    }else {
+                        Image(systemName: getButtonImage())
+                            .resizable()
+                            .renderingMode(.template)
+                            .foregroundStyle(Color.primaryAccent)
+                    }
+                }
+                .frame(width: 20, height: 20)
             }
 
         }
@@ -66,7 +74,7 @@ struct FoodItemView: View {
             }
             
         }else {
-            return "ellipsis.circle"
+            return "more"
         }
     }
 }
