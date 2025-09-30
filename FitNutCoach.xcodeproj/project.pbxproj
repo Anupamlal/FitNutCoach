@@ -454,8 +454,8 @@
 		9741B6F02E7548A90092763D /* LogMealView */ = {
 			isa = PBXGroup;
 			children = (
-				9741B6F42E75709C0092763D /* Cells */,
 				97D780B62E76C90E004BA2AA /* ViewModel */,
+				9741B6F42E75709C0092763D /* Cells */,
 				9741B6F12E7548B00092763D /* View */,
 			);
 			path = LogMealView;

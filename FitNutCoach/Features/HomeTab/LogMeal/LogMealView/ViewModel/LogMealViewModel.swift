@@ -16,6 +16,7 @@ class LogMealViewModel: ObservableObject {
     @Published var openBottomSheetForImageSelection: Bool = false
     @Published var openImageSelectionView: Bool = false
     @Published var openImageDetectionFlow: Bool = false
+    @Published var showMenuOptions: (Bool, FoodItemModel?, MealType?) = (false, nil, nil)
 
     var selectedImage: UIImage?
     var imageSelectionType: PictureSelectorType = .camera
@@ -63,6 +64,14 @@ class LogMealViewModel: ObservableObject {
         }
         
         return meals.first(where: { $0.mealType == mealType})?.foodItems ?? []
+    }
+    
+    func deleteFoodItem(foodItemModel: FoodItemModel, mealType: MealType) async -> Bool {
+        guard let dailyActivityManager = dailyActivityManager else {
+            return false
+        }
+        
+        return await dailyActivityManager.deleteFoodItem(date: Date(), foodItem: foodItemModel, mealType: mealType)
     }
     
 }

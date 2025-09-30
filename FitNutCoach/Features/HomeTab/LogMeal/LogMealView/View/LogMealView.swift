@@ -58,8 +58,8 @@ struct LogMealView: View {
                     ForEach(MealType.allCases, id: \.self) { mealType in
                         MealTypeView(currentMealType: mealType, foodItems: logMealViewModel.getFoodItemsFor(mealType: mealType)) {
                             self.homeNavRouter.navigate(to: .addFoodItem(selectedMealType: mealType))
-                        } menuButtonCallback: {
-                            // Show action sheet
+                        } menuButtonCallback: { foodItem in
+                            logMealViewModel.showMenuOptions = (true, foodItem, mealType)
                         }
                     }
                     
@@ -104,6 +104,30 @@ struct LogMealView: View {
         .onChange(of: self.logMealViewModel.selectedImage) { oldValue, newValue in
             if oldValue != newValue && newValue != nil {
                 logMealViewModel.openImageDetectionFlow = true
+            }
+        }
+        .confirmationDialog("", isPresented: $logMealViewModel.showMenuOptions.0) {
+            Button(AppTexts.editText) {
+                logMealViewModel.showMenuOptions = (false, nil, nil)
+//                if let foodItem = logMealViewModel.showMenuOptions.1 {
+//                    homeNavRouter.navigate(to: .editFoodItem(foodItem: foodItem, mealType: foodItem.mealType ?? .breakfast))
+//                }
+            }
+            
+            Button(AppTexts.deleteText, role: .destructive) {
+                if let foodItem = logMealViewModel.showMenuOptions.1, let mealType = logMealViewModel.showMenuOptions.2 {
+                    Task {
+                        _ = await logMealViewModel.deleteFoodItem(foodItemModel: foodItem, mealType: mealType)
+                        
+                        await MainActor.run {
+                            logMealViewModel.showMenuOptions = (false, nil, nil)
+                        }
+                    }
+                }
+            }
+            
+            Button(AppTexts.cancelText, role: .cancel) {
+                logMealViewModel.showMenuOptions = (false, nil, nil)
             }
         }
     }

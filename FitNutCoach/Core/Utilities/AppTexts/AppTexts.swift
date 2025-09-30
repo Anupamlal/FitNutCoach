@@ -49,6 +49,8 @@ class AppTexts {
     static let lunchText = "Lunch"
     static let dinnerText = "Dinner"
     static let snacksText = "Snacks"
+    static let editText = "Edit"
+    static let deleteText = "Delete"
     
     static let breakFastDescriptionText = "🥖 A good day begins with breakfast — log yours now."
     static let lunchDescriptionText = "🍚 Strong afternoons need the right lunch — add it in."

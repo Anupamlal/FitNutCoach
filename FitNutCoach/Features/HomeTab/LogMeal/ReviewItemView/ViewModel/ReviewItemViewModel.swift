@@ -133,6 +133,7 @@ class ReviewItemViewModel: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink {[weak self] profileModel in
                 self?.profileModel = profileModel
+                self?.setDailyGoalsMacrosPercentage()
             }
             .store(in: &cancellables)
     }

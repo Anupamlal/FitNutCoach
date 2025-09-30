@@ -115,6 +115,16 @@ class DailyActivityManager: ObservableObject {
             meal.fillMeal(meal: mealCD, context: self.bgContext)
             mealCD.dailyActivity = dayActivity
             
+            await bgContext.perform {
+                
+                do {
+                    try self.bgContext.save()
+                }
+                catch {
+                    print("Error caused during saving DailyActivity", error.localizedDescription)
+                }
+            }
+            
             var totalCalories: Double = 0
             var totalProtien: Double = 0
             var totalCarbs: Double = 0
@@ -158,5 +168,43 @@ class DailyActivityManager: ObservableObject {
         
         return false
     }
+    
+    func deleteFoodItem(date: Date, foodItem: FoodItemModel, mealType: MealType) async -> Bool {
+        
+        if let dayActivity = await self.loadData(date: date, viewContextObj: self.bgContext) {
+            
+            let isFoodItemDeleted = await MealManager.deleteFoodItem(date: date, foodItem: foodItem, mealType: mealType, viewContext: self.bgContext)
+            
+            
+            if isFoodItemDeleted {
+                dayActivity.calories -= foodItem.calories
+                dayActivity.protein -= foodItem.protein
+                dayActivity.carbs -= foodItem.carbs
+                dayActivity.fat -= foodItem.fat
+                dayActivity.updatedAt = Date()
+            }
+            
+            await bgContext.perform {
+                
+                do {
+                    try self.bgContext.save()
+                }
+                catch {
+                    print("Error caused during saving DailyActivity", error.localizedDescription)
+                }
+            }
+            
+            let dailyActivityModel = DailyActivityModel(dailyActivity: dayActivity)
+            
+            self.publishDailyActivity(dailyActivityModel)
+            
+            return true
+            
+        }
+        
+        return false
+    }
+    
+    
 
 }

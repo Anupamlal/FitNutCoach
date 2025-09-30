@@ -12,7 +12,7 @@ struct MealTypeView: View {
     let currentMealType: MealType
     let foodItems: [FoodItemModel]
     var addButtonCallback: (()->Void)?
-    var menuButtonCallback: (()->Void)?
+    var menuButtonCallback: ((FoodItemModel)->Void)?
     
     var body: some View {
         Card(backgroundColor: Color.white) {
@@ -60,7 +60,7 @@ struct MealTypeView: View {
                 if foodItems.count > 0 {
                     ForEach(foodItems, id: \.id) { item in
                         FoodItemView(foodItemName: item.name!, brandName: item.brand, servingSize: "\(item.servingSize.formatToOneDecimalPlaces())\(item.servingUnit ?? "g")", numberOfServing: item.numberOfServing, totalCalories: "\(item.calories.formatToOneDecimalPlaces()) \(AppTexts.kcalText)", isForSelection: false, measurementUnit: item.measurementUnit?.rawValue, onSelection: {_ in
-                            menuButtonCallback?()
+                            menuButtonCallback?(item)
                         })
                         .padding(.bottom, 10)
                     }
