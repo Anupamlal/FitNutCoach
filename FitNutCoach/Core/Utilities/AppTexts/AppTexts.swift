@@ -64,6 +64,7 @@ class AppTexts {
     static let measurementUnitText = "Measurement Unit"
     static let numberOfServingsText = "Number of Servings"
     static let mealText = "Meal"
+    static let updateText = "Update"
     
     static let frequentlyTrackedFoodsText = "Frequently Tracked Foods"
     static let historyText = "History"

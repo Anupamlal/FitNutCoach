@@ -11,11 +11,13 @@ struct ReviewItemConfig: Hashable {
     let barcode: String?
     let mealType: MealType
     let foodItem: FoodItemModel?
+    let isForEdit: Bool
     
-    init(barcode: String? = nil, mealType: MealType, foodItem: FoodItemModel? = nil) {
+    init(barcode: String? = nil, mealType: MealType, foodItem: FoodItemModel? = nil, isForEdit: Bool = false) {
         self.barcode = barcode
         self.mealType = mealType
         self.foodItem = foodItem
+        self.isForEdit = isForEdit
     }
 }
 
@@ -28,7 +30,7 @@ struct ReviewItemView: View {
     var successCallback: (() -> Void)?
     
     init(reviewItemConfig: ReviewItemConfig, successCallback: (() -> Void)? = nil) {
-        _reviewItemViewModel = .init(wrappedValue: .init(barcode: reviewItemConfig.barcode, mealType: reviewItemConfig.mealType, foodItem: reviewItemConfig.foodItem))
+        _reviewItemViewModel = .init(wrappedValue: .init(barcode: reviewItemConfig.barcode, mealType: reviewItemConfig.mealType, foodItem: reviewItemConfig.foodItem, isForEdit: reviewItemConfig.isForEdit))
         self.successCallback = successCallback
     }
     
@@ -181,11 +183,16 @@ struct ReviewItemView: View {
                         .frame(height: 12)
                     
                     
-                    FNButton(buttonTitle: AppTexts.confirmAndAddText, backgroundEnable: true) {
+                    FNButton(buttonTitle: reviewItemViewModel.isForEdit ? AppTexts.updateText: AppTexts.confirmAndAddText, backgroundEnable: true) {
                         if let successCallback = self.successCallback {
                             successCallback()
                         }else {
-                            homeNavRouter.navigateBackTo(kTh: 2)
+                            if reviewItemViewModel.isForEdit {
+                                homeNavRouter.navigateBack()
+                                
+                            }else {
+                                homeNavRouter.navigateBackTo(kTh: 2)
+                            }
                         }
                         self.reviewItemViewModel.fillUpdatedServingSizes()
                         Task {

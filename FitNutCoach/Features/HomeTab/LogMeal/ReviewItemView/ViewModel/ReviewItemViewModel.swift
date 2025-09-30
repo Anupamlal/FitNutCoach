@@ -36,14 +36,20 @@ class ReviewItemViewModel: ObservableObject {
     
     let mealType: MealType
     var barcode: String?
+    var isForEdit: Bool
     
-    init(barcode: String? = nil, mealType: MealType, foodItem: FoodItemModel? = nil) {
+    init(barcode: String? = nil, mealType: MealType, foodItem: FoodItemModel? = nil, isForEdit: Bool = false) {
         self.barcode = barcode
         self.mealType = mealType
+        self.isForEdit = isForEdit
         if let foodItem = foodItem {
             self.reviewItem = foodItem
             self.imageUrl = foodItem.imageUrl
-            updateMacrosForServing()
+            if isForEdit {
+                setUpIntialMacrosInCaseOfEdit()
+            }else {
+                updateMacrosForServing()
+            }
         }
     }
     
@@ -147,6 +153,27 @@ class ReviewItemViewModel: ObservableObject {
         self.setDailyGoalsMacrosPercentage()
     }
     
+    private func setUpIntialMacrosInCaseOfEdit() {
+        self.numberOfServing = self.reviewItem?.numberOfServing ?? 1
+        
+        self.servingSize = (self.reviewItem?.servingSize ?? 0)
+        self.reviewItem?.servingSize = self.servingSize/Double(self.numberOfServing)
+        
+        self.totalCalories = (self.reviewItem?.calories ?? 0)
+        self.reviewItem?.calories = self.totalCalories/Double(self.numberOfServing)
+        
+        self.totalCarbs = (self.reviewItem?.carbs ?? 0)
+        self.reviewItem?.carbs = self.totalCarbs/Double(self.numberOfServing)
+        
+        self.totalProtien = (self.reviewItem?.protein ?? 0)
+        self.reviewItem?.protein = self.totalProtien/Double(self.numberOfServing)
+        
+        self.totalFat = (self.reviewItem?.fat ?? 0)
+        self.reviewItem?.fat = self.totalFat/Double(self.numberOfServing)
+        
+        self.setDailyGoalsMacrosPercentage()
+    }
+    
     private func setDailyGoalsMacrosPercentage() {
         guard let profile = self.profileModel else {
             return
@@ -196,12 +223,27 @@ class ReviewItemViewModel: ObservableObject {
         
         var currentMeal = await MealManager.getMealFor(date: Date(), mealType: self.mealType, viewContext: viewContext)
             
-        if currentMeal == nil {
-            currentMeal = MealModel(id: UUID().uuidString, aiConfidence: 1, createdAt: Date(), date: Date(), mealType: self.mealType, notes: nil, photoId: nil, mealSource: mealSourceType, updatedAt: Date(), foodItems: [foodItem])
+        if isForEdit {
+            
+            if let index = currentMeal?.foodItems?.firstIndex(where: {$0.id == foodItem.id}) {
+                currentMeal?.foodItems?[index] = foodItem
+                currentMeal?.updatedAt = Date()
+            }
             
         }else {
-            currentMeal?.updatedAt = Date()
-            currentMeal?.foodItems?.append(foodItem)
+            
+            if currentMeal == nil {
+                currentMeal = MealModel(id: UUID().uuidString, aiConfidence: 1, createdAt: Date(), date: Date(), mealType: self.mealType, notes: nil, photoId: nil, mealSource: mealSourceType, updatedAt: Date(), foodItems: [foodItem])
+                
+            }else {
+                currentMeal?.updatedAt = Date()
+                if currentMeal?.foodItems?.count ?? 0 > 0 {
+                    currentMeal?.foodItems?.append(foodItem)
+                    
+                }else {
+                    currentMeal?.foodItems = [foodItem]
+                }
+            }
         }
         
         return await dailyActivityManager?.addMeal(currentMeal!) ?? false

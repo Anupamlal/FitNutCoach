@@ -108,10 +108,12 @@ struct LogMealView: View {
         }
         .confirmationDialog("", isPresented: $logMealViewModel.showMenuOptions.0) {
             Button(AppTexts.editText) {
-                logMealViewModel.showMenuOptions = (false, nil, nil)
-//                if let foodItem = logMealViewModel.showMenuOptions.1 {
-//                    homeNavRouter.navigate(to: .editFoodItem(foodItem: foodItem, mealType: foodItem.mealType ?? .breakfast))
-//                }
+                if let foodItem = logMealViewModel.showMenuOptions.1, let mealType = logMealViewModel.showMenuOptions.2 {
+                    homeNavRouter.navigate(to: .reviewFoodItem(ReviewItemConfig(barcode: nil, mealType: mealType, foodItem: foodItem, isForEdit: true)))
+                    DispatchQueue.main.runInMainThread({
+                        logMealViewModel.showMenuOptions = (false, nil, nil)
+                    })
+                }
             }
             
             Button(AppTexts.deleteText, role: .destructive) {
