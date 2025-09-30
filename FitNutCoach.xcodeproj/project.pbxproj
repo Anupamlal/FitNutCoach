@@ -73,6 +73,9 @@
 		9780BD7A2E630545005227E4 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9780BD792E630545005227E4 /* ProfileManager.swift */; };
 		978CD81A2E8849070034A3C0 /* PictureSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978CD8192E8849070034A3C0 /* PictureSelectorView.swift */; };
 		978CD81D2E8865CB0034A3C0 /* FNPhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978CD81B2E8865CB0034A3C0 /* FNPhotoPickerView.swift */; };
+		979656A22E8C4EFF0096CFA5 /* WeatherDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979656A12E8C4EFF0096CFA5 /* WeatherDetailView.swift */; };
+		979656A42E8C50D60096CFA5 /* WeatherDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979656A32E8C50D60096CFA5 /* WeatherDetailViewModel.swift */; };
+		979656A82E8C55CE0096CFA5 /* WeatherConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979656A72E8C55CE0096CFA5 /* WeatherConfig.swift */; };
 		979C16D12E6468E100322BB8 /* MealManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979C16D02E6468E100322BB8 /* MealManager.swift */; };
 		979C16D32E64803600322BB8 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979C16D22E64802E00322BB8 /* WorkoutManager.swift */; };
 		979C16D82E648F1D00322BB8 /* LogWaterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979C16D72E648F1D00322BB8 /* LogWaterView.swift */; };
@@ -200,6 +203,9 @@
 		9780BD792E630545005227E4 /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
 		978CD8192E8849070034A3C0 /* PictureSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureSelectorView.swift; sourceTree = "<group>"; };
 		978CD81B2E8865CB0034A3C0 /* FNPhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FNPhotoPickerView.swift; sourceTree = "<group>"; };
+		979656A12E8C4EFF0096CFA5 /* WeatherDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailView.swift; sourceTree = "<group>"; };
+		979656A32E8C50D60096CFA5 /* WeatherDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailViewModel.swift; sourceTree = "<group>"; };
+		979656A72E8C55CE0096CFA5 /* WeatherConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherConfig.swift; sourceTree = "<group>"; };
 		979C16D02E6468E100322BB8 /* MealManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealManager.swift; sourceTree = "<group>"; };
 		979C16D22E64802E00322BB8 /* WorkoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
 		979C16D72E648F1D00322BB8 /* LogWaterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogWaterView.swift; sourceTree = "<group>"; };
@@ -500,9 +506,9 @@
 		974AFC312E660E79003302BB /* LogMeal */ = {
 			isa = PBXGroup;
 			children = (
-				978CD8182E8848EA0034A3C0 /* PictureSelectorView */,
 				9741B6F02E7548A90092763D /* LogMealView */,
 				9741B6FB2E75AD7A0092763D /* AddFoodItemView */,
+				978CD8182E8848EA0034A3C0 /* PictureSelectorView */,
 				9778FCDE2E6B079600A3EF0C /* BarcodeView */,
 				97ED164A2E6DF47300DFF623 /* ReviewItemView */,
 				9705CABC2E7DCBEA00AE7F79 /* ImageDetectionView */,
@@ -693,6 +699,48 @@
 			path = PhotoPickerView;
 			sourceTree = "<group>";
 		};
+		9796569C2E8C4EC20096CFA5 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				9796569D2E8C4EDD0096CFA5 /* WeatherDetailScreen */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		9796569D2E8C4EDD0096CFA5 /* WeatherDetailScreen */ = {
+			isa = PBXGroup;
+			children = (
+				979656A62E8C55BD0096CFA5 /* Config */,
+				979656A52E8C50DC0096CFA5 /* ViewModel */,
+				9796569E2E8C4EE60096CFA5 /* View */,
+			);
+			path = WeatherDetailScreen;
+			sourceTree = "<group>";
+		};
+		9796569E2E8C4EE60096CFA5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				979656A12E8C4EFF0096CFA5 /* WeatherDetailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		979656A52E8C50DC0096CFA5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				979656A32E8C50D60096CFA5 /* WeatherDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		979656A62E8C55BD0096CFA5 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				979656A72E8C55CE0096CFA5 /* WeatherConfig.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		979C16D42E6486B100322BB8 /* HomeTab */ = {
 			isa = PBXGroup;
 			children = (
@@ -700,6 +748,7 @@
 				97BF116F2E5A3596005FBA95 /* Home */,
 				979C16D52E6486BE00322BB8 /* LogWater */,
 				974AFC312E660E79003302BB /* LogMeal */,
+				9796569C2E8C4EC20096CFA5 /* Weather */,
 			);
 			path = HomeTab;
 			sourceTree = "<group>";
@@ -1330,6 +1379,7 @@
 				97D780C02E76EF3E004BA2AA /* FoodItemView.swift in Sources */,
 				972E9E7D2E718E82009FD7F1 /* LoginViewModel.swift in Sources */,
 				975D871B2E7D57AE00265F5C /* Router+Home.swift in Sources */,
+				979656A42E8C50D60096CFA5 /* WeatherDetailViewModel.swift in Sources */,
 				972E9E8A2E719696009FD7F1 /* ProfileSetupViewModel.swift in Sources */,
 				972E9EA32E720B27009FD7F1 /* UserDefaultManager.swift in Sources */,
 				978CD81A2E8849070034A3C0 /* PictureSelectorView.swift in Sources */,
@@ -1340,12 +1390,14 @@
 				9741B6F32E7548BA0092763D /* LogMealView.swift in Sources */,
 				97E4E5AE2E7C8F5B00A099FB /* SearchResultView.swift in Sources */,
 				975D87182E7D567800265F5C /* Router.swift in Sources */,
+				979656A82E8C55CE0096CFA5 /* WeatherConfig.swift in Sources */,
 				9780BD7A2E630545005227E4 /* ProfileManager.swift in Sources */,
 				9751F4FD2E7FD8DC001681DE /* FoodDetectorFBManager.swift in Sources */,
 				97BF11662E5A3496005FBA95 /* PersistenceController.swift in Sources */,
 				97BF11B22E5B30A6005FBA95 /* QuickRecipesView.swift in Sources */,
 				97ED164D2E6DF51500DFF623 /* ReviewItemView.swift in Sources */,
 				9780BD782E63024D005227E4 /* BaseManagerDelegate.swift in Sources */,
+				979656A22E8C4EFF0096CFA5 /* WeatherDetailView.swift in Sources */,
 				977356A12E636359007ED640 /* MealModel.swift in Sources */,
 				97BF117E2E5AB055005FBA95 /* HomeView.swift in Sources */,
 				972E9E5C2E70BD7E009FD7F1 /* FoodCatalogItemModel.swift in Sources */,

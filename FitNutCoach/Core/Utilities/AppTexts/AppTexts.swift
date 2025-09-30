@@ -88,6 +88,16 @@ class AppTexts {
     
     static let pleaseSelectTheMealTypeText = "Please select the type of meal you want to log."
     static let selectMealTypeText = "Select Meal Type"
+    
+    static let clearText = "Clear"
+    static let partlyCloudyText = "Partly Cloudy"
+    static let cloudyText = "Cloudy"
+    static let rainText = "Rain"
+    static let drizzleText = "Drizzle"
+    static let thunderstormText = "Thunderstorm"
+    static let snowText = "Snow"
+    static let mistText = "Mist"
+    static let fogText = "Fog"
 }
 
 class ErrorTexts {

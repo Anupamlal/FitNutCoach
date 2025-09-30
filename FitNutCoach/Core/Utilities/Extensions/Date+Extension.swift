@@ -11,4 +11,10 @@ extension Date {
     func getStartOfDate() -> Date {
         return Calendar.current.startOfDay(for: self)
     }
+    
+    func getDayName() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEE"
+        return dateFormatter.string(from: self)
+    }
 }

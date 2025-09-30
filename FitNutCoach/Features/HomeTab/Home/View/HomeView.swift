@@ -33,14 +33,20 @@ struct HomeView: View {
                         
                         Spacer()
                         
-                        Text("☀️ 28°C Sunny")
-                            .font(.system(size: 14, weight: .medium))
-                            .foregroundStyle(Color.textSecondary)
-                            .padding(.all, 8)
-                            .background {
-                                RoundedRectangle(cornerRadius: 12)
-                                    .foregroundStyle(Color.divider)
-                            }
+                        Button {
+                            homeNavRouter.navigate(to: .weatherDetail)
+                            
+                        } label: {
+                            Text("☀️ 28°C Sunny")
+                                .font(.system(size: 14, weight: .medium))
+                                .foregroundStyle(Color.textSecondary)
+                                .padding(.all, 8)
+                                .background {
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .foregroundStyle(Color.divider)
+                                }
+                        }
+
                     }
                     
                     ProgressRingsView(
@@ -142,6 +148,7 @@ struct HomeView: View {
             }
             .navigationDestination(for: HomeRouter.self) { homeRouter in
                 self.homeNavRouter.destination(for: homeRouter)
+                    .toolbarVisibility(.hidden, for: .tabBar)
             }
         }
         .onFirstAppear {
