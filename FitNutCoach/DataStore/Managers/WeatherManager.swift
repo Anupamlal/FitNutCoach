@@ -61,7 +61,7 @@ final class WeatherManager: ObservableObject, BaseManagerDelegate, @unchecked Se
         print("Loading weather data from Core Data")
         if let weather = await loadData(with: Date()) {
             weatherSubject.send(weather)
-            print("Loaded weather data for \(weather.cityName), \(weather.country)")
+            print("Loaded weather data for \(weather.cityName ?? ""), \(weather.country ?? "")")
             return true
         }
         print("No weather data found for today")
@@ -95,7 +95,7 @@ final class WeatherManager: ObservableObject, BaseManagerDelegate, @unchecked Se
         self.locationManager.$placeDetails
             .sink { [weak self] (placeDetails) in
                 if let placeDetails = placeDetails {
-                    print("Location updated: \(placeDetails.name), \(placeDetails.country)")
+                    print("Location updated: \(placeDetails.name ?? ""), \(placeDetails.country ?? "")")
                     self?.checkIfLocationUpdatedAndProceed(placeDetails: placeDetails)
                 }
             }
@@ -107,7 +107,7 @@ final class WeatherManager: ObservableObject, BaseManagerDelegate, @unchecked Se
         let currentWeather = weatherSubject.value
         if currentWeather.cityName != placeDetails.name || currentWeather.country != placeDetails.country {
             // Location has changed, fetch new weather details
-            print("Location changed from \(currentWeather.cityName), \(currentWeather.country) to \(placeDetails.name), \(placeDetails.country). Fetching new weather details.")
+            print("Location changed from \(currentWeather.cityName ?? ""), \(currentWeather.country ?? "") to \(placeDetails.name ?? ""), \(placeDetails.country ?? ""). Fetching new weather details.")
             fetchWeatherDetailsFromAPI(place: placeDetails)
         }
     }
