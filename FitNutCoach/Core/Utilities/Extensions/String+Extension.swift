@@ -43,4 +43,20 @@ extension String {
     func getEmailAsId() -> String {
         self.replacingOccurrences(of: ".", with: ",")
     }
+    
+    func getDateFromDateTime() -> Date? {
+        return self.asDateFormattedWith("yyyy-MM-dd'T'HH:mm")
+    }
+    
+    func getDateFromDate() -> Date? {
+        return self.asDateFormattedWith("yyyy-MM-dd")
+    }
+    
+    func asDateFormattedWith(_ format:String) -> Date? {
+        let styler = DateFormatter()
+        styler.locale = NSLocale(localeIdentifier: "en_US_POSIX") as Locale?
+        styler.dateFormat = format
+        styler.timeZone = TimeZone(identifier: "UTC")
+        return styler.date(from: self)
+    }
 }

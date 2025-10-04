@@ -13,6 +13,8 @@
 		9705CAC72E7DD4DB00AE7F79 /* FirebaseMLModelDownloader in Frameworks */ = {isa = PBXBuildFile; productRef = 9705CAC62E7DD4DB00AE7F79 /* FirebaseMLModelDownloader */; };
 		9705CACC2E7DD87F00AE7F79 /* APIName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9705CACA2E7DD87F00AE7F79 /* APIName.swift */; };
 		9719AFC32E79E83300C468D5 /* GenericFRC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719AFC22E79E83200C468D5 /* GenericFRC.swift */; };
+		97220D902E8E69CD00BBA89D /* WeatherConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97220D8C2E8E69CD00BBA89D /* WeatherConfig.swift */; };
+		97220D912E8E69CD00BBA89D /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97220D8E2E8E69CD00BBA89D /* WeatherModel.swift */; };
 		972D8B522E733351008E3D47 /* ReviewItemMacroCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972D8B512E733351008E3D47 /* ReviewItemMacroCard.swift */; };
 		972D8B542E73438D008E3D47 /* DailyGoalsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972D8B532E73438D008E3D47 /* DailyGoalsCard.swift */; };
 		972E9E522E70A063009FD7F1 /* ReviewItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972E9E512E70A063009FD7F1 /* ReviewItemViewModel.swift */; };
@@ -58,6 +60,7 @@
 		976174642E73013900A7C676 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 976174632E73013900A7C676 /* FirebaseDatabase */; };
 		976174662E73013900A7C676 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 976174652E73013900A7C676 /* FirebaseFirestore */; };
 		976174692E73014E00A7C676 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 976174682E73014E00A7C676 /* GoogleSignIn */; };
+		9770361C2E8E970600A02E18 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9770361B2E8E970600A02E18 /* WeatherManager.swift */; };
 		977356952E631982007ED640 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977356942E631982007ED640 /* ProfileModel.swift */; };
 		977356982E6334DD007ED640 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977356972E6334D8007ED640 /* Double+Extension.swift */; };
 		9773569B2E634C3E007ED640 /* OnFirstAppearViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9773569A2E634C3E007ED640 /* OnFirstAppearViewModifier.swift */; };
@@ -75,10 +78,11 @@
 		978CD81D2E8865CB0034A3C0 /* FNPhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978CD81B2E8865CB0034A3C0 /* FNPhotoPickerView.swift */; };
 		979656A22E8C4EFF0096CFA5 /* WeatherDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979656A12E8C4EFF0096CFA5 /* WeatherDetailView.swift */; };
 		979656A42E8C50D60096CFA5 /* WeatherDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979656A32E8C50D60096CFA5 /* WeatherDetailViewModel.swift */; };
-		979656A82E8C55CE0096CFA5 /* WeatherConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979656A72E8C55CE0096CFA5 /* WeatherConfig.swift */; };
 		979C16D12E6468E100322BB8 /* MealManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979C16D02E6468E100322BB8 /* MealManager.swift */; };
 		979C16D32E64803600322BB8 /* WorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979C16D22E64802E00322BB8 /* WorkoutManager.swift */; };
 		979C16D82E648F1D00322BB8 /* LogWaterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979C16D72E648F1D00322BB8 /* LogWaterView.swift */; };
+		97B463372E8DAA4500D528AA /* OpenMeteoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B463362E8DAA4500D528AA /* OpenMeteoModel.swift */; };
+		97B463392E8DAB7F00D528AA /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B463382E8DAB7F00D528AA /* LocationManager.swift */; };
 		97BF11552E5A33BF005FBA95 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97BF114C2E5A33BF005FBA95 /* Preview Assets.xcassets */; };
 		97BF11562E5A33BF005FBA95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97BF114E2E5A33BF005FBA95 /* Assets.xcassets */; };
 		97BF11582E5A33BF005FBA95 /* FitNutCoach.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 97BF11502E5A33BF005FBA95 /* FitNutCoach.xcdatamodeld */; };
@@ -147,6 +151,8 @@
 		9705CABF2E7DCC1800AE7F79 /* ImageDetectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetectionView.swift; sourceTree = "<group>"; };
 		9705CACA2E7DD87F00AE7F79 /* APIName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIName.swift; sourceTree = "<group>"; };
 		9719AFC22E79E83200C468D5 /* GenericFRC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericFRC.swift; sourceTree = "<group>"; };
+		97220D8C2E8E69CD00BBA89D /* WeatherConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherConfig.swift; sourceTree = "<group>"; };
+		97220D8E2E8E69CD00BBA89D /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		972D8B512E733351008E3D47 /* ReviewItemMacroCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewItemMacroCard.swift; sourceTree = "<group>"; };
 		972D8B532E73438D008E3D47 /* DailyGoalsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyGoalsCard.swift; sourceTree = "<group>"; };
 		972E9E512E70A063009FD7F1 /* ReviewItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewItemViewModel.swift; sourceTree = "<group>"; };
@@ -188,6 +194,7 @@
 		9751F50F2E8078F5001681DE /* DetectedItemRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectedItemRowViewModel.swift; sourceTree = "<group>"; };
 		975D87172E7D567800265F5C /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		975D871A2E7D57AE00265F5C /* Router+Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Router+Home.swift"; sourceTree = "<group>"; };
+		9770361B2E8E970600A02E18 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		977356942E631982007ED640 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		977356972E6334D8007ED640 /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 		9773569A2E634C3E007ED640 /* OnFirstAppearViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnFirstAppearViewModifier.swift; sourceTree = "<group>"; };
@@ -205,10 +212,11 @@
 		978CD81B2E8865CB0034A3C0 /* FNPhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FNPhotoPickerView.swift; sourceTree = "<group>"; };
 		979656A12E8C4EFF0096CFA5 /* WeatherDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailView.swift; sourceTree = "<group>"; };
 		979656A32E8C50D60096CFA5 /* WeatherDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailViewModel.swift; sourceTree = "<group>"; };
-		979656A72E8C55CE0096CFA5 /* WeatherConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherConfig.swift; sourceTree = "<group>"; };
 		979C16D02E6468E100322BB8 /* MealManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealManager.swift; sourceTree = "<group>"; };
 		979C16D22E64802E00322BB8 /* WorkoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
 		979C16D72E648F1D00322BB8 /* LogWaterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogWaterView.swift; sourceTree = "<group>"; };
+		97B463362E8DAA4500D528AA /* OpenMeteoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenMeteoModel.swift; sourceTree = "<group>"; };
+		97B463382E8DAB7F00D528AA /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		97BF111A2E5A3244005FBA95 /* FitNutCoach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitNutCoach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97BF112F2E5A3246005FBA95 /* FitNutCoachTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitNutCoachTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		97BF11392E5A3246005FBA95 /* FitNutCoachUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitNutCoachUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -329,6 +337,24 @@
 				9705CACA2E7DD87F00AE7F79 /* APIName.swift */,
 			);
 			path = APIS;
+			sourceTree = "<group>";
+		};
+		97220D8D2E8E69CD00BBA89D /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				97220D8C2E8E69CD00BBA89D /* WeatherConfig.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		97220D8F2E8E69CD00BBA89D /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				97B463362E8DAA4500D528AA /* OpenMeteoModel.swift */,
+				97220D8D2E8E69CD00BBA89D /* Config */,
+				97220D8E2E8E69CD00BBA89D /* WeatherModel.swift */,
+			);
+			path = Weather;
 			sourceTree = "<group>";
 		};
 		972D8B502E733335008E3D47 /* Cells */ = {
@@ -655,6 +681,8 @@
 				97FD3D192E789F150068BE69 /* FoodHistoryManager.swift */,
 				972E9EA22E720B27009FD7F1 /* UserDefaultManager.swift */,
 				9751F4FA2E7FD864001681DE /* FoodDetectorManager.swift */,
+				97B463382E8DAB7F00D528AA /* LocationManager.swift */,
+				9770361B2E8E970600A02E18 /* WeatherManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -679,6 +707,7 @@
 				972E9E572E70B3BE009FD7F1 /* BarcodeModel.swift */,
 				972E9E5B2E70BD7E009FD7F1 /* FoodCatalogItemModel.swift */,
 				9751F5022E7FE348001681DE /* AIFoodItemModel.swift */,
+				97220D8F2E8E69CD00BBA89D /* Weather */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -710,7 +739,6 @@
 		9796569D2E8C4EDD0096CFA5 /* WeatherDetailScreen */ = {
 			isa = PBXGroup;
 			children = (
-				979656A62E8C55BD0096CFA5 /* Config */,
 				979656A52E8C50DC0096CFA5 /* ViewModel */,
 				9796569E2E8C4EE60096CFA5 /* View */,
 			);
@@ -731,14 +759,6 @@
 				979656A32E8C50D60096CFA5 /* WeatherDetailViewModel.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		979656A62E8C55BD0096CFA5 /* Config */ = {
-			isa = PBXGroup;
-			children = (
-				979656A72E8C55CE0096CFA5 /* WeatherConfig.swift */,
-			);
-			path = Config;
 			sourceTree = "<group>";
 		};
 		979C16D42E6486B100322BB8 /* HomeTab */ = {
@@ -1370,6 +1390,7 @@
 				972E9E9A2E71A434009FD7F1 /* DispatchQueue+Extension.swift in Sources */,
 				972E9E9B2E71A434009FD7F1 /* Codable+Extension.swift in Sources */,
 				97BF119F2E5AE421005FBA95 /* ProgressRingsView.swift in Sources */,
+				97B463392E8DAB7F00D528AA /* LocationManager.swift in Sources */,
 				9773569B2E634C3E007ED640 /* OnFirstAppearViewModifier.swift in Sources */,
 				97ED16452E6DBF3100DFF623 /* BarcodeViewModel.swift in Sources */,
 				9738417A2E8AF44100F6546F /* AppConstants.swift in Sources */,
@@ -1390,7 +1411,6 @@
 				9741B6F32E7548BA0092763D /* LogMealView.swift in Sources */,
 				97E4E5AE2E7C8F5B00A099FB /* SearchResultView.swift in Sources */,
 				975D87182E7D567800265F5C /* Router.swift in Sources */,
-				979656A82E8C55CE0096CFA5 /* WeatherConfig.swift in Sources */,
 				9780BD7A2E630545005227E4 /* ProfileManager.swift in Sources */,
 				9751F4FD2E7FD8DC001681DE /* FoodDetectorFBManager.swift in Sources */,
 				97BF11662E5A3496005FBA95 /* PersistenceController.swift in Sources */,
@@ -1411,6 +1431,8 @@
 				972E9E972E71A35D009FD7F1 /* String+Extension.swift in Sources */,
 				9741B6FA2E7598720092763D /* FNNavigationButton.swift in Sources */,
 				977356A52E6364E6007ED640 /* FoodItemModel.swift in Sources */,
+				97220D902E8E69CD00BBA89D /* WeatherConfig.swift in Sources */,
+				97220D912E8E69CD00BBA89D /* WeatherModel.swift in Sources */,
 				977356A32E63649C007ED640 /* WorkoutModel.swift in Sources */,
 				974AFC382E660FEC003302BB /* RootTabViewModel.swift in Sources */,
 				9705CACC2E7DD87F00AE7F79 /* APIName.swift in Sources */,
@@ -1437,10 +1459,12 @@
 				97BF11912E5AB131005FBA95 /* TrendsView.swift in Sources */,
 				97D780B82E76C91E004BA2AA /* LogMealViewModel.swift in Sources */,
 				979C16D32E64803600322BB8 /* WorkoutManager.swift in Sources */,
+				97B463372E8DAA4500D528AA /* OpenMeteoModel.swift in Sources */,
 				9751F5102E8078F5001681DE /* DetectedItemRowViewModel.swift in Sources */,
 				97D780B52E76C155004BA2AA /* Date+Extension.swift in Sources */,
 				972E9E862E719659009FD7F1 /* ProfileSetupView.swift in Sources */,
 				9741B6F82E7584580092763D /* MealTypeView.swift in Sources */,
+				9770361C2E8E970600A02E18 /* WeatherManager.swift in Sources */,
 				979C16D82E648F1D00322BB8 /* LogWaterView.swift in Sources */,
 				97BF11592E5A33BF005FBA95 /* FitNutCoachApp.swift in Sources */,
 				977356952E631982007ED640 /* ProfileModel.swift in Sources */,
@@ -1626,7 +1650,8 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FitNutCoach/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs camera to detect barcode, images to log meal";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Enable Camera to scan barcodes and capture meal images for easy logging.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Enable location access to receive personalized tips and stay updated with the local weather forecast.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1663,7 +1688,8 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FitNutCoach/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs camera to detect barcode, images to log meal";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Enable Camera to scan barcodes and capture meal images for easy logging.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Enable location access to receive personalized tips and stay updated with the local weather forecast.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

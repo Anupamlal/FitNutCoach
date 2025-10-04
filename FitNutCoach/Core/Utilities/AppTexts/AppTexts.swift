@@ -96,8 +96,22 @@ class AppTexts {
     static let drizzleText = "Drizzle"
     static let thunderstormText = "Thunderstorm"
     static let snowText = "Snow"
-    static let mistText = "Mist"
     static let fogText = "Fog"
+    static let uvLowText = "Low"
+    static let uvModerateText = "Moderate"
+    static let uvHighText = "High"
+    static let uvVeryHighText = "Very High"
+    static let uvExtremeText = "Extreme"
+    static let feelsLikeText = "Feels like"
+    static let humidityText = "Humidity"
+    static let windSpeedText = "Wind Speed"
+    static let uvIndexText = "UV Index"
+    static let precipitationText = "Precipitation"
+    static let sunriseText = "Sunrise"
+    static let sunsetText = "Sunset"
+    static let currentConditionsText = "Current Conditions"
+    static let fiveDayForecastText = "5-Day Forecast"
+    
 }
 
 class ErrorTexts {

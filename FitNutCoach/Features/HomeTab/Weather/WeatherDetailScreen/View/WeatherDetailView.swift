@@ -9,17 +9,20 @@ import SwiftUI
 
 struct WeatherDetailView: View {
     
-    @StateObject var weatherDetailVM = WeatherDetailViewModel()
+    @StateObject var weatherDetailVM: WeatherDetailViewModel =  WeatherDetailViewModel()
+    @EnvironmentObject var weatherManager: WeatherManager
     
     var body: some View {
         ZStack {
-            weatherDetailVM.getWeatherBackground()
-                .ignoresSafeArea()
-                .overlay(Color.white.opacity(0.12))
+            if let gradeint = weatherDetailVM.getWeatherBackground() {
+                gradeint
+                    .ignoresSafeArea()
+                    .overlay(Color.white.opacity(0.12))
+            }
             
             VStack(alignment: .leading, spacing: 0) {
                 HStack {
-                    Text("\(weatherDetailVM.getWeatherIcon()) \(weatherDetailVM.getWeatherName())")
+                    Text(weatherDetailVM.getCurrentWeather())
                         .foregroundStyle(Color.white)
                         .font(.system(size: 24, weight: .semibold))
                     
@@ -31,14 +34,14 @@ struct WeatherDetailView: View {
                 }
                 .padding(.bottom, 10)
                 
-                Text("Mumbai, India")
+                Text(weatherDetailVM.getPlaceName())
                     .foregroundStyle(Color.white)
                     .font(.system(size: 18, weight: .medium))
                     .padding(.bottom, 7)
                 
                 HStack(spacing: 20) {
-                    Text("Feels like: 27°C")
-                    Text("Humidity: 78%")
+                    Text(weatherDetailVM.getFeelsLike())
+                    Text(weatherDetailVM.getHumidity())
                 }
                 .foregroundStyle(Color.white)
                 .font(.system(size: 16, weight: .medium))
@@ -46,25 +49,25 @@ struct WeatherDetailView: View {
                 
                 Card {
                     VStack(alignment: .leading, spacing: 15) {
-                        Text("Current Conditions")
+                        Text(AppTexts.currentConditionsText)
                             .font(.system(size: 20, weight: .semibold))
                             .foregroundStyle(Color.textPrimary)
                         
                         HStack {
                             VStack(alignment: .leading, spacing: 10) {
-                                Text("Feels Like: 27°C")
-                                Text("Humidity: 62%")
-                                Text("Wind Speed: 11 km/h")
-                                Text("UV Index: 5 (Moderate)")
+                                Text(weatherDetailVM.getFeelsLike())
+                                Text(weatherDetailVM.getHumidity())
+                                Text(weatherDetailVM.getWindSpeed())
+                                Text(weatherDetailVM.getUVIndex())
                                 
                             }
                             
                             Spacer()
                             
                             VStack(alignment: .leading, spacing: 10) {
-                                Text("Precipitation: 0.0 mm")
-                                Text("Sunrise: 6:15 AM")
-                                Text("Sunset: 6:48 PM")
+                                Text(weatherDetailVM.getPrecipitation())
+                                Text(weatherDetailVM.getSunrise())
+                                Text(weatherDetailVM.getSunset())
                             }
                         }
                         .foregroundStyle(Color.textSecondary)
@@ -73,33 +76,35 @@ struct WeatherDetailView: View {
                 }
                 .padding(.bottom, 20)
                 
-                Card {
-                    VStack(alignment: .leading, spacing: 15) {
-                        Text("5-Day Forecast")
-                            .font(.system(size: 20, weight: .semibold))
-                            .foregroundStyle(Color.textPrimary)
-                        
-                        ForEach(weatherDetailVM.getFiveDayForecast(), id: \.id) { forecast in
-                            HStack {
-                                Text(forecast.day)
-                                    .font(.system(size: 16, weight: .medium))
-                                    .frame(width: 50, alignment: .leading)
-                                
-                                Spacer()
-                                    .frame(maxWidth: 20)
-                                
-                                Text(forecast.condition.getIcon())
-                                Text(forecast.condition.getName())
-                                    .font(.system(size: 16, weight: .regular))
-                                
-                                Spacer()
-                                
-                                Text(forecast.temperature)
-                                    .font(.system(size: 16, weight: .regular))
-                                    .frame(alignment: .leading)
-                                    .frame(maxWidth: 70, alignment: .leading)
+                if weatherDetailVM.getFiveDayForecast().count > 0 {
+                    Card {
+                        VStack(alignment: .leading, spacing: 15) {
+                            Text(AppTexts.fiveDayForecastText)
+                                .font(.system(size: 20, weight: .semibold))
+                                .foregroundStyle(Color.textPrimary)
+                            
+                            ForEach(weatherDetailVM.getFiveDayForecast(), id: \.id) { forecast in
+                                HStack {
+                                    Text(forecast.dayName)
+                                        .font(.system(size: 16, weight: .medium))
+                                        .frame(width: 50, alignment: .leading)
+                                    
+                                    Spacer()
+                                        .frame(maxWidth: 20)
+                                    
+                                    Text(forecast.weatherCondition.getIcon())
+                                    Text(forecast.weatherCondition.getName())
+                                        .font(.system(size: 16, weight: .regular))
+                                    
+                                    Spacer()
+                                    
+                                    Text("\(forecast.minTemperature) / \(forecast.maxTemperature)")
+                                        .font(.system(size: 16, weight: .regular))
+                                        .frame(alignment: .leading)
+                                        .frame(maxWidth: 100, alignment: .leading)
+                                }
+                                .foregroundStyle(Color.textSecondary)
                             }
-                            .foregroundStyle(Color.textSecondary)
                         }
                     }
                 }
@@ -110,6 +115,9 @@ struct WeatherDetailView: View {
             .padding(.horizontal, 20)
         }
         .withCustomBackButton(withTitle: "", backButtonTint: .white)
+        .onFirstAppear {
+            weatherDetailVM.onAppear(weatherManager: self.weatherManager)
+        }
     }
 }
 

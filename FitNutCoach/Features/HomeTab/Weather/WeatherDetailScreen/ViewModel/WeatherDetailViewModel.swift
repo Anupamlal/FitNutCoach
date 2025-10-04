@@ -6,52 +6,85 @@
 //
 
 import SwiftUI
-
-struct WeatherForecast: Identifiable {
-    let id = UUID()
-    let day: String
-    let condition: WeatherCondition
-    let temperature: String
-}
+import Combine
 
 class WeatherDetailViewModel: ObservableObject {
     
-    @Published var weatherCondition: WeatherCondition = WeatherCondition(rawValue: Int.random(in: 1...WeatherCondition.allCases.count)) ?? .clear
+    @Published var weatherCondition: WeatherCondition = .clear
+    @Published var currentWeather: WeatherModel?
+
+    private var weatherManager: WeatherManager?
+    private var cancellables = Set<AnyCancellable>()
     
-    func getWeatherBackground() -> LinearGradient {
-        weatherCondition.getTheme().getGradient()
+    deinit {
+        cancellables.removeAll()
+        currentWeather = nil
     }
     
-    func getWeatherIcon() -> String {
-        weatherCondition.getIcon()
-    }
-    
-    func getWeatherName() -> String {
-        weatherCondition.getName()
-    }
-    
-    func getWeatherTemperature() -> String {
-        return "\(Int.random(in: 20...35))°"
-    }
-    
-    func getFiveDayForecast() -> [WeatherForecast] {
-        var forecasts: [WeatherForecast] = []
-        let conditions = WeatherCondition.allCases
-        let calendar = Calendar.current
-        let today = Date()
-        
-        for i in 1...5 {
-            if let forecastDate = calendar.date(byAdding: .day, value: i, to: today) {
-                let condition = conditions.randomElement() ?? .clear
-                let temperatureMin = Int.random(in: 15...30)
-                let temperatureMax = Int.random(in: 15...30)
-                let forecast = WeatherForecast(day: forecastDate.getDayName(), condition: condition, temperature: "\(temperatureMax)° / \(temperatureMin)°")
-                forecasts.append(forecast)
+    func onAppear(weatherManager: WeatherManager) {
+        self.weatherManager = weatherManager
+        self.weatherManager?.managerPublisher
+            .receive(on: DispatchQueue.main)
+            .sink {[weak self] weatherModel in
+                self?.currentWeather = weatherModel
             }
-        }
-        
-        return forecasts
+            .store(in: &cancellables)
     }
+    
+    func getWeatherBackground() -> LinearGradient? {
+        currentWeather?.weatherCondition.getTheme().getGradient()
+    }
+    
+    func getCurrentWeather() -> String {
+        if let currentWeather = self.currentWeather {
+            return "\(currentWeather.weatherCondition.getIcon()) \(currentWeather.weatherCondition.getName())"
+        }
+        return ""
+    }
+
+    func getWeatherTemperature() -> String {
+        return currentWeather?.temperature ?? ""
+    }
+    
+    func getPlaceName() -> String {
+        return "\(currentWeather?.cityName ?? ""), \(currentWeather?.state ?? "\(currentWeather?.country ?? "")")"
+    }
+    
+    func getFeelsLike() -> String {
+        return "\(AppTexts.feelsLikeText): \(currentWeather?.feelsLikeTemperature ?? "")"
+    }
+    
+    func getHumidity() -> String {
+        return "\(AppTexts.humidityText): \(currentWeather?.humidity ?? "")"
+    }
+    
+    func getWindSpeed() -> String {
+        return "\(AppTexts.windSpeedText): \(currentWeather?.windSpeed ?? "")"
+    }
+    
+    func getPrecipitation() -> String {
+        return "\(AppTexts.precipitationText): \(currentWeather?.precipitation ?? "")"
+    }
+    
+    func getUVIndex() -> String {
+        return "\(AppTexts.uvIndexText): \(currentWeather?.uvIndex ?? "")"
+    }
+    
+    func getSunrise() -> String {
+        return "\(AppTexts.sunriseText): \(currentWeather?.sunriseTime.getDateFromDateTime()?.getTime() ?? "")"
+    }
+    
+    func getSunset() -> String {
+        return "\(AppTexts.sunsetText): \(currentWeather?.sunsetTime.getDateFromDateTime()?.getTime() ?? "")"
+    }
+    
+    func getFiveDayForecast() -> [WeatherForecastModel] {
+        if let currentWeather = currentWeather, let weatherForecasts = currentWeather.weatherForecasts {
+            return weatherForecasts
+        }
+        return []
+    }
+
 
 }
 

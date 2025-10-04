@@ -39,7 +39,7 @@ class FoodCatalogFBHelper {
             
         }
         catch {
-            return nil
+            return foodCatalogeItems
         }
         
         return nil
@@ -86,7 +86,7 @@ class FoodCatalogFBHelper {
         }
         
         catch {
-            return nil
+            return foodCatalogeItem
         }
         
         return nil

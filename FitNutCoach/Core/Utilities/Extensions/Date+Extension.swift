@@ -12,9 +12,17 @@ extension Date {
         return Calendar.current.startOfDay(for: self)
     }
     
-    func getDayName() -> String {
+    func getDayName(timeZone: TimeZone? = .current) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEE"
+        dateFormatter.timeZone = timeZone
+        return dateFormatter.string(from: self)
+    }
+    
+    func getTime() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "hh:mm a"
+        dateFormatter.timeZone = TimeZone(identifier: "UTC")
         return dateFormatter.string(from: self)
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 import CoreData
 
-class WorkoutManager: ObservableObject {
+final class WorkoutManager: ObservableObject, @unchecked Sendable {
     
     var viewContext: NSManagedObjectContext
     var bgContext: NSManagedObjectContext

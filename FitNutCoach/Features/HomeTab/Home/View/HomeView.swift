@@ -14,6 +14,7 @@ struct HomeView: View {
     @EnvironmentObject private var rootTabViewModel: RootTabViewModel
     @EnvironmentObject private var appRootManager: AppRootManager
     @ObservedObject private var homeNavRouter = Router<HomeRouter>()
+    @Environment(\.scenePhase) private var scenePhase
     
     init(profileManager: ProfileManager, dailyActivityManager: DailyActivityManager) {
         _homeViewModel = StateObject(wrappedValue: HomeViewModel(profileManager: profileManager, dailyActivityManager: dailyActivityManager))
@@ -33,18 +34,21 @@ struct HomeView: View {
                         
                         Spacer()
                         
-                        Button {
-                            homeNavRouter.navigate(to: .weatherDetail)
-                            
-                        } label: {
-                            Text("☀️ 28°C Sunny")
-                                .font(.system(size: 14, weight: .medium))
-                                .foregroundStyle(Color.textSecondary)
-                                .padding(.all, 8)
-                                .background {
-                                    RoundedRectangle(cornerRadius: 12)
-                                        .foregroundStyle(Color.divider)
-                                }
+                        if let weatherInfo = homeViewModel.currentWeatherInfo {
+                            Button {
+                                homeNavRouter.navigate(to: .weatherDetail)
+                                
+                            } label: {
+                                Text(weatherInfo)
+                                    .font(.system(size: 14, weight: .medium))
+                                    .foregroundStyle(Color.textSecondary)
+                                    .frame(minWidth: 50, idealWidth: 100)
+                                    .padding(.all, 8)
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 12)
+                                            .foregroundStyle(Color.divider)
+                                    }
+                            }
                         }
 
                     }
@@ -160,6 +164,13 @@ struct HomeView: View {
                 .presentationDetents([.medium])
         }
         .environmentObject(homeNavRouter)
+        .onChange(of: scenePhase, { oldValue, newValue in
+            if newValue == .active {
+                print("HomeView: Active")
+                self.homeViewModel.checkWeatherUpdateOnActive()
+            }
+        })
+        .environmentObject(homeViewModel.weatherManager)
     }
 }
 

@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 import CoreData
 
-class DailyActivityManager: ObservableObject {
+final class DailyActivityManager: ObservableObject, @unchecked Sendable {
         
     var viewContext: NSManagedObjectContext
     var bgContext: NSManagedObjectContext

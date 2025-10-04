@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 import CoreData
 
-class ProfileManager: ObservableObject, BaseManagerDelegate {
+final class ProfileManager: ObservableObject, BaseManagerDelegate, @unchecked Sendable {
     typealias T = ProfileModel
     
     var viewContext: NSManagedObjectContext

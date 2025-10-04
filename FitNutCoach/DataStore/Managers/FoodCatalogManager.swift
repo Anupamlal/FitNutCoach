@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 import Combine
 
-class FoodCatalogManager: ObservableObject, BaseManagerDelegate {
+final class FoodCatalogManager: ObservableObject, BaseManagerDelegate, @unchecked Sendable {
     
     typealias T = FoodCatalogItemModel
 

@@ -15,14 +15,17 @@ class HomeViewModel: ObservableObject {
     @Published var numberOfWorkoutDays = 3
     @Published var openWaterIntakeView = false
     @Published var openLogWorkoutView = false
+    @Published var currentWeatherInfo: String? = nil
     
     private let profileManager: ProfileManager
     private let dailyActivityManager: DailyActivityManager
     private var cancellable = Set<AnyCancellable>()
+    let weatherManager: WeatherManager
     
     init(profileManager: ProfileManager, dailyActivityManager: DailyActivityManager) {
         self.profileManager = profileManager
         self.dailyActivityManager = dailyActivityManager
+        weatherManager = .init(container: PersistenceController.shared.container)
     }
     
     deinit {
@@ -34,8 +37,9 @@ class HomeViewModel: ObservableObject {
             async let profileManagerLoaded = self.profileManager.loadData()
             async let dailyActivityManagerLoaded = self.dailyActivityManager.loadTodayData()
             async let foodCatalogLoadedFromServer = foodCatalogManager.loadAllFoodCatalogFromServer()
+            async let weatherDataLoaded = self.weatherManager.setup()
             
-            let allProcessDone = await [profileManagerLoaded, dailyActivityManagerLoaded, foodCatalogLoadedFromServer]
+            let allProcessDone = await [profileManagerLoaded, dailyActivityManagerLoaded, foodCatalogLoadedFromServer, weatherDataLoaded]
             
             print("All Process Done \(allProcessDone)")
             _ = await foodCatalogManager.loadData()
@@ -55,9 +59,24 @@ class HomeViewModel: ObservableObject {
                 self?.numberOfWorkoutDays = dailyActivityModel.workouts?.count ?? 0
             }
             .store(in: &cancellable)
+        
+        self.weatherManager.managerPublisher
+            .receive(on: DispatchQueue.main)
+            .sink {[weak self] currentWeather in
+                if currentWeather.cityName != nil {
+                    self?.currentWeatherInfo = "\(currentWeather.weatherCondition.getIcon()) \(currentWeather.temperature) \(currentWeather.weatherCondition.getName())"
+                }
+            }
+            .store(in: &cancellable)
     }
     
     func getDailyActivityManager() -> DailyActivityManager {
         return self.dailyActivityManager
     }
+    
+    func checkWeatherUpdateOnActive() {
+        self.weatherManager.checkIfWeatherDataIsStale()
+    }
+    
+    
 }
