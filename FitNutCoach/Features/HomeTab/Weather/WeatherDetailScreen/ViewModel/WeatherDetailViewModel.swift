@@ -31,6 +31,13 @@ class WeatherDetailViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
+    func pullToRefresh() async -> Bool {
+        if let weatherManager = self.weatherManager {
+            return await weatherManager.manualRefreshWeatherData()
+        }
+        return false
+    }
+    
     func getWeatherBackground() -> LinearGradient? {
         currentWeather?.weatherCondition.getTheme().getGradient()
     }
@@ -71,11 +78,11 @@ class WeatherDetailViewModel: ObservableObject {
     }
     
     func getSunrise() -> String {
-        return "\(AppTexts.sunriseText): \(currentWeather?.sunriseTime.getDateFromDateTime()?.getTime() ?? "")"
+        return "\(AppTexts.sunriseText): \(currentWeather?.sunriseTime.getDateFromDateTime()?.getUTCTime() ?? "")"
     }
     
     func getSunset() -> String {
-        return "\(AppTexts.sunsetText): \(currentWeather?.sunsetTime.getDateFromDateTime()?.getTime() ?? "")"
+        return "\(AppTexts.sunsetText): \(currentWeather?.sunsetTime.getDateFromDateTime()?.getUTCTime() ?? "")"
     }
     
     func getFiveDayForecast() -> [WeatherForecastModel] {
@@ -85,6 +92,12 @@ class WeatherDetailViewModel: ObservableObject {
         return []
     }
 
+    func getLastUpdateTime() -> String {
+        if let currentWeather = currentWeather, let updateTime = currentWeather.updatedAt?.getTime() {
+            return "\(AppTexts.lastUpdatedText) \(updateTime)"
+        }
+        return ""
+    }
 
 }
 

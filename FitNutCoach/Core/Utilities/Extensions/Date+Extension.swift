@@ -19,10 +19,14 @@ extension Date {
         return dateFormatter.string(from: self)
     }
     
-    func getTime() -> String {
+    func getUTCTime() -> String {
+        self.getTime(timeZone: TimeZone(identifier: "UTC"))
+    }
+    
+    func getTime(timeZone: TimeZone? = .current) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "hh:mm a"
-        dateFormatter.timeZone = TimeZone(identifier: "UTC")
+        dateFormatter.timeZone = timeZone
         return dateFormatter.string(from: self)
     }
 }

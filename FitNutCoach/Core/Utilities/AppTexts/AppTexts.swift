@@ -111,6 +111,7 @@ class AppTexts {
     static let sunsetText = "Sunset"
     static let currentConditionsText = "Current Conditions"
     static let fiveDayForecastText = "5-Day Forecast"
+    static let lastUpdatedText = "Last updated at:"
     
 }
 

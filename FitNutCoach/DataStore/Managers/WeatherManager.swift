@@ -58,13 +58,11 @@ final class WeatherManager: ObservableObject, BaseManagerDelegate, @unchecked Se
     }
     
     func loadData() async -> Bool {
-        print("Loading weather data from Core Data")
         if let weather = await loadData(with: Date()) {
             weatherSubject.send(weather)
             print("Loaded weather data for \(weather.cityName ?? ""), \(weather.country ?? "")")
             return true
         }
-        print("No weather data found for today")
         return false
     }
     
@@ -78,7 +76,7 @@ final class WeatherManager: ObservableObject, BaseManagerDelegate, @unchecked Se
                 try self.bgContext.save()
             }
             catch {
-                print("Error caused during saving DailyActivity", error.localizedDescription)
+                print("Error caused during saving Weather", error.localizedDescription)
             }
         }
         
@@ -91,11 +89,9 @@ final class WeatherManager: ObservableObject, BaseManagerDelegate, @unchecked Se
     }
     
     private func addListnerForLocationUpdate() {
-        print("Adding listner for location update in WeatherManager")
         self.locationManager.$placeDetails
             .sink { [weak self] (placeDetails) in
                 if let placeDetails = placeDetails {
-                    print("Location updated: \(placeDetails.name ?? ""), \(placeDetails.country ?? "")")
                     self?.checkIfLocationUpdatedAndProceed(placeDetails: placeDetails)
                 }
             }
@@ -103,11 +99,8 @@ final class WeatherManager: ObservableObject, BaseManagerDelegate, @unchecked Se
     }
     
     private func checkIfLocationUpdatedAndProceed(placeDetails: PlaceDetails) {
-        print("Checking if location updated in WeatherManager")
         let currentWeather = weatherSubject.value
         if currentWeather.cityName != placeDetails.name || currentWeather.country != placeDetails.country {
-            // Location has changed, fetch new weather details
-            print("Location changed from \(currentWeather.cityName ?? ""), \(currentWeather.country ?? "") to \(placeDetails.name ?? ""), \(placeDetails.country ?? ""). Fetching new weather details.")
             fetchWeatherDetailsFromAPI(place: placeDetails)
         }
     }
@@ -117,17 +110,21 @@ final class WeatherManager: ObservableObject, BaseManagerDelegate, @unchecked Se
         if let lastUpdate = currentWeather.updatedAt {
             let hoursSinceUpdate = Calendar.current.dateComponents([.hour], from: lastUpdate, to: Date()).hour ?? 0
             if hoursSinceUpdate >= AppConstants.thresholdTime {
-                print("Weather data is stale (last updated \(hoursSinceUpdate) hours ago). Fetching new weather details.")
                 fetchWeatherDetailsFromAPI(place: PlaceDetails(latitude: currentWeather.latitude, longitude: currentWeather.longitude, name: currentWeather.cityName, state: currentWeather.state, country: currentWeather.country))
-            } else {
-                print("Weather data is fresh (last updated \(hoursSinceUpdate) hours ago). No need to fetch new data.")
             }
-        } else {
-            print("No previous weather update found. Fetching weather details from API.")
         }
     }
     
-    private func fetchWeatherDetailsFromAPI(place: PlaceDetails) {
+    func manualRefreshWeatherData() async -> Bool{
+        let currentWeather = weatherSubject.value
+        return await withCheckedContinuation { continuation in
+            fetchWeatherDetailsFromAPI(place: PlaceDetails(latitude: currentWeather.latitude, longitude: currentWeather.longitude, name: currentWeather.cityName, state: currentWeather.state, country: currentWeather.country)) { isSuccess in
+                continuation.resume(returning: isSuccess)
+            }
+        }
+    }
+    
+    private func fetchWeatherDetailsFromAPI(place: PlaceDetails, completionHandler: ((Bool) -> Void)? = nil) {
         print("Fetching weather details from API")
     
         URLSessionManager().request(urlString: String(format: APIName.weatherAPI.rawValue, "\(place.latitude)", "\(place.longitude)"))
@@ -139,6 +136,7 @@ final class WeatherManager: ObservableObject, BaseManagerDelegate, @unchecked Se
                 switch completion {
                 case .failure(let err):
                     print("GET failed:", err)
+                    completionHandler?(false)
                     
                 case .finished:
                     print("GET finished")
@@ -151,10 +149,10 @@ final class WeatherManager: ObservableObject, BaseManagerDelegate, @unchecked Se
                 newMeteoModel.place = place
                 
                 let weatherModel = WeatherModel(meteoModel: newMeteoModel)
-                print(weatherModel)
                 
                 Task{
-                    await weakSelf.addNewOrUpdateData(weatherModel)
+                    _ = await weakSelf.addNewOrUpdateData(weatherModel)
+                    completionHandler?(true)
                 }
             }
             .store(in: &cancellables)
