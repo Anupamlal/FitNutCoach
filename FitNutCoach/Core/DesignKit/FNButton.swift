@@ -16,6 +16,7 @@ struct FNButton: View {
     var isShadowEnable: Bool = false
     var buttonIconName: String? = nil
     var cornerRadius: CGFloat = 14
+    var buttonHeight: CGFloat = 48
     var buttonAction:(()->())
     
     var body: some View {
@@ -59,7 +60,7 @@ struct FNButton: View {
             
         })
         .disabled(!isEnabled)
-        .frame(height: 48)
+        .frame(height: buttonHeight)
         .shadow(radius: isShadowEnable ? 10 : 0, y: isShadowEnable ? 4 : 0)
     }
 }

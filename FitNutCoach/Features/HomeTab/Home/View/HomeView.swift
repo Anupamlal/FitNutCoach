@@ -116,17 +116,23 @@ struct HomeView: View {
                         
                     }
                     
-                    Card(backgroundColor: AppColors.waterTotalColor) {
-                        HStack{
-                            Image("bulbImage")
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                            
-                            Text("Hot today - hydrate more and shift workout to AM")
-                                .font(.system(size: 15, weight: .medium))
-                                .foregroundStyle(Color.textPrimary)
-                            
-                            Spacer()
+                    Button {
+                        
+                        
+                    } label: {
+                        Card(backgroundColor: AppColors.waterTotalColor) {
+                            HStack{
+                                Image("bulbImage")
+                                    .resizable()
+                                    .frame(width: 40, height: 40)
+                                
+                                Text("Hot today - hydrate more and shift workout to AM")
+                                    .font(.system(size: 15, weight: .medium))
+                                    .foregroundStyle(Color.textPrimary)
+                                    .multilineTextAlignment(.leading)
+                                
+                                Spacer()
+                            }
                         }
                     }
                     

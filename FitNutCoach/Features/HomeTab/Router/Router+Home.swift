@@ -15,6 +15,7 @@ enum HomeRouter: Hashable {
     case reviewImageDetection(ReviewDetectedItemConfig)
     
     case weatherDetail
+    case allNudges
 }
 
 extension Router {
@@ -41,6 +42,8 @@ extension Router {
         case .weatherDetail:
             WeatherDetailView()
             
+        case .allNudges:
+            AllNudgesView()
         }
     }
 }

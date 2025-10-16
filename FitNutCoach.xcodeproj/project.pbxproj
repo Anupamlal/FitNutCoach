@@ -13,6 +13,7 @@
 		9705CAC72E7DD4DB00AE7F79 /* FirebaseMLModelDownloader in Frameworks */ = {isa = PBXBuildFile; productRef = 9705CAC62E7DD4DB00AE7F79 /* FirebaseMLModelDownloader */; };
 		9705CACC2E7DD87F00AE7F79 /* APIName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9705CACA2E7DD87F00AE7F79 /* APIName.swift */; };
 		9719AFC32E79E83300C468D5 /* GenericFRC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719AFC22E79E83200C468D5 /* GenericFRC.swift */; };
+		971F94D82E929A2F0074F98F /* AllNudgesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971F94D62E929A2F0074F98F /* AllNudgesView.swift */; };
 		97220D902E8E69CD00BBA89D /* WeatherConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97220D8C2E8E69CD00BBA89D /* WeatherConfig.swift */; };
 		97220D912E8E69CD00BBA89D /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97220D8E2E8E69CD00BBA89D /* WeatherModel.swift */; };
 		972D8B522E733351008E3D47 /* ReviewItemMacroCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972D8B512E733351008E3D47 /* ReviewItemMacroCard.swift */; };
@@ -109,6 +110,7 @@
 		97BF11AE2E5B140E005FBA95 /* NutritionSnapshotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF11AD2E5B140E005FBA95 /* NutritionSnapshotView.swift */; };
 		97BF11B22E5B30A6005FBA95 /* QuickRecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF11B12E5B30A6005FBA95 /* QuickRecipesView.swift */; };
 		97C44E0E2E6C797E00FC0757 /* CustomBackButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C44E0D2E6C797E00FC0757 /* CustomBackButtonModifier.swift */; };
+		97C69C762E9A5EE0002BDD8F /* NudgeDetailCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C69C752E9A5EE0002BDD8F /* NudgeDetailCellView.swift */; };
 		97D780B52E76C155004BA2AA /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D780B42E76C151004BA2AA /* Date+Extension.swift */; };
 		97D780B82E76C91E004BA2AA /* LogMealViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D780B72E76C91E004BA2AA /* LogMealViewModel.swift */; };
 		97D780BB2E76CB6E004BA2AA /* AddFoodItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D780BA2E76CB6E004BA2AA /* AddFoodItemViewModel.swift */; };
@@ -151,6 +153,7 @@
 		9705CABF2E7DCC1800AE7F79 /* ImageDetectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetectionView.swift; sourceTree = "<group>"; };
 		9705CACA2E7DD87F00AE7F79 /* APIName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIName.swift; sourceTree = "<group>"; };
 		9719AFC22E79E83200C468D5 /* GenericFRC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericFRC.swift; sourceTree = "<group>"; };
+		971F94D62E929A2F0074F98F /* AllNudgesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllNudgesView.swift; sourceTree = "<group>"; };
 		97220D8C2E8E69CD00BBA89D /* WeatherConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherConfig.swift; sourceTree = "<group>"; };
 		97220D8E2E8E69CD00BBA89D /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		972D8B512E733351008E3D47 /* ReviewItemMacroCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewItemMacroCard.swift; sourceTree = "<group>"; };
@@ -246,6 +249,7 @@
 		97BF11AD2E5B140E005FBA95 /* NutritionSnapshotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionSnapshotView.swift; sourceTree = "<group>"; };
 		97BF11B12E5B30A6005FBA95 /* QuickRecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickRecipesView.swift; sourceTree = "<group>"; };
 		97C44E0D2E6C797E00FC0757 /* CustomBackButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackButtonModifier.swift; sourceTree = "<group>"; };
+		97C69C752E9A5EE0002BDD8F /* NudgeDetailCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NudgeDetailCellView.swift; sourceTree = "<group>"; };
 		97D780B42E76C151004BA2AA /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		97D780B72E76C91E004BA2AA /* LogMealViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMealViewModel.swift; sourceTree = "<group>"; };
 		97D780BA2E76CB6E004BA2AA /* AddFoodItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodItemViewModel.swift; sourceTree = "<group>"; };
@@ -337,6 +341,31 @@
 				9705CACA2E7DD87F00AE7F79 /* APIName.swift */,
 			);
 			path = APIS;
+			sourceTree = "<group>";
+		};
+		971F94D12E9299DF0074F98F /* Nudges */ = {
+			isa = PBXGroup;
+			children = (
+				971F94D22E9299E60074F98F /* AllNudges */,
+			);
+			path = Nudges;
+			sourceTree = "<group>";
+		};
+		971F94D22E9299E60074F98F /* AllNudges */ = {
+			isa = PBXGroup;
+			children = (
+				97C69C742E9A5ECC002BDD8F /* Cells */,
+				971F94D72E929A2F0074F98F /* View */,
+			);
+			path = AllNudges;
+			sourceTree = "<group>";
+		};
+		971F94D72E929A2F0074F98F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				971F94D62E929A2F0074F98F /* AllNudgesView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		97220D8D2E8E69CD00BBA89D /* Config */ = {
@@ -769,6 +798,7 @@
 				979C16D52E6486BE00322BB8 /* LogWater */,
 				974AFC312E660E79003302BB /* LogMeal */,
 				9796569C2E8C4EC20096CFA5 /* Weather */,
+				971F94D12E9299DF0074F98F /* Nudges */,
 			);
 			path = HomeTab;
 			sourceTree = "<group>";
@@ -1089,6 +1119,14 @@
 			path = AppColors;
 			sourceTree = "<group>";
 		};
+		97C69C742E9A5ECC002BDD8F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				97C69C752E9A5EE0002BDD8F /* NudgeDetailCellView.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		97D780B62E76C90E004BA2AA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1397,6 +1435,7 @@
 				9751F5032E7FE348001681DE /* AIFoodItemModel.swift in Sources */,
 				972E9E522E70A063009FD7F1 /* ReviewItemViewModel.swift in Sources */,
 				9778FCE32E6B07CE00A3EF0C /* BarcodeView.swift in Sources */,
+				971F94D82E929A2F0074F98F /* AllNudgesView.swift in Sources */,
 				97D780C02E76EF3E004BA2AA /* FoodItemView.swift in Sources */,
 				972E9E7D2E718E82009FD7F1 /* LoginViewModel.swift in Sources */,
 				975D871B2E7D57AE00265F5C /* Router+Home.swift in Sources */,
@@ -1408,6 +1447,7 @@
 				97BF11AA2E5AEE83005FBA95 /* FNButton.swift in Sources */,
 				97BF119B2E5ABA38005FBA95 /* AppTexts.swift in Sources */,
 				972E9E612E7170E8009FD7F1 /* AppDelegate.swift in Sources */,
+				97C69C762E9A5EE0002BDD8F /* NudgeDetailCellView.swift in Sources */,
 				9741B6F32E7548BA0092763D /* LogMealView.swift in Sources */,
 				97E4E5AE2E7C8F5B00A099FB /* SearchResultView.swift in Sources */,
 				975D87182E7D567800265F5C /* Router.swift in Sources */,
