@@ -117,7 +117,7 @@ struct HomeView: View {
                     }
                     
                     Button {
-                        
+                        homeNavRouter.navigate(to: .allNudges)
                         
                     } label: {
                         Card(backgroundColor: AppColors.waterTotalColor) {

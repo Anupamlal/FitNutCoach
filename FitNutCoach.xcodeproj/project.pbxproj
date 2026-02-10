@@ -111,6 +111,8 @@
 		97BF11B22E5B30A6005FBA95 /* QuickRecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF11B12E5B30A6005FBA95 /* QuickRecipesView.swift */; };
 		97C44E0E2E6C797E00FC0757 /* CustomBackButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C44E0D2E6C797E00FC0757 /* CustomBackButtonModifier.swift */; };
 		97C69C762E9A5EE0002BDD8F /* NudgeDetailCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C69C752E9A5EE0002BDD8F /* NudgeDetailCellView.swift */; };
+		97CC13CC2EA15C260013601C /* NudgeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CC13CB2EA15C260013601C /* NudgeModel.swift */; };
+		97CC13CE2EA164CF0013601C /* NudgeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CC13CD2EA164CF0013601C /* NudgeManager.swift */; };
 		97D780B52E76C155004BA2AA /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D780B42E76C151004BA2AA /* Date+Extension.swift */; };
 		97D780B82E76C91E004BA2AA /* LogMealViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D780B72E76C91E004BA2AA /* LogMealViewModel.swift */; };
 		97D780BB2E76CB6E004BA2AA /* AddFoodItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D780BA2E76CB6E004BA2AA /* AddFoodItemViewModel.swift */; };
@@ -250,6 +252,8 @@
 		97BF11B12E5B30A6005FBA95 /* QuickRecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickRecipesView.swift; sourceTree = "<group>"; };
 		97C44E0D2E6C797E00FC0757 /* CustomBackButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackButtonModifier.swift; sourceTree = "<group>"; };
 		97C69C752E9A5EE0002BDD8F /* NudgeDetailCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NudgeDetailCellView.swift; sourceTree = "<group>"; };
+		97CC13CB2EA15C260013601C /* NudgeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NudgeModel.swift; sourceTree = "<group>"; };
+		97CC13CD2EA164CF0013601C /* NudgeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NudgeManager.swift; sourceTree = "<group>"; };
 		97D780B42E76C151004BA2AA /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		97D780B72E76C91E004BA2AA /* LogMealViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMealViewModel.swift; sourceTree = "<group>"; };
 		97D780BA2E76CB6E004BA2AA /* AddFoodItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodItemViewModel.swift; sourceTree = "<group>"; };
@@ -712,6 +716,7 @@
 				9751F4FA2E7FD864001681DE /* FoodDetectorManager.swift */,
 				97B463382E8DAB7F00D528AA /* LocationManager.swift */,
 				9770361B2E8E970600A02E18 /* WeatherManager.swift */,
+				97CC13CD2EA164CF0013601C /* NudgeManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -737,6 +742,7 @@
 				972E9E5B2E70BD7E009FD7F1 /* FoodCatalogItemModel.swift */,
 				9751F5022E7FE348001681DE /* AIFoodItemModel.swift */,
 				97220D8F2E8E69CD00BBA89D /* Weather */,
+				97CC13CB2EA15C260013601C /* NudgeModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1434,6 +1440,7 @@
 				9738417A2E8AF44100F6546F /* AppConstants.swift in Sources */,
 				9751F5032E7FE348001681DE /* AIFoodItemModel.swift in Sources */,
 				972E9E522E70A063009FD7F1 /* ReviewItemViewModel.swift in Sources */,
+				97CC13CC2EA15C260013601C /* NudgeModel.swift in Sources */,
 				9778FCE32E6B07CE00A3EF0C /* BarcodeView.swift in Sources */,
 				971F94D82E929A2F0074F98F /* AllNudgesView.swift in Sources */,
 				97D780C02E76EF3E004BA2AA /* FoodItemView.swift in Sources */,
@@ -1496,6 +1503,7 @@
 				9741B6F62E7570B10092763D /* LogMealMacroView.swift in Sources */,
 				9773569D2E635552007ED640 /* DailyActivityManager.swift in Sources */,
 				972E9E952E71A344009FD7F1 /* FirebaseKey.swift in Sources */,
+				97CC13CE2EA164CF0013601C /* NudgeManager.swift in Sources */,
 				97BF11912E5AB131005FBA95 /* TrendsView.swift in Sources */,
 				97D780B82E76C91E004BA2AA /* LogMealViewModel.swift in Sources */,
 				979C16D32E64803600322BB8 /* WorkoutManager.swift in Sources */,
