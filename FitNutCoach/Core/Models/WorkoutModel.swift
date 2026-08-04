@@ -8,6 +8,15 @@
 import SwiftUI
 import CoreData
 
+enum WorkoutType: String, Codable {
+    case chest = "Chest"
+    case back = "Back"
+    case shoulders = "Shoulders"
+    case legs = "Legs"
+    case absBicepsTriceps = "Abs, Biceps & Triceps"
+    case cardio = "Cardio"
+}
+
 struct WorkoutModel: Codable {
     let id: String?
     let avgHR: Int16

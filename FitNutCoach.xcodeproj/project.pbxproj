@@ -54,6 +54,7 @@
 		9751F50B2E804C0F001681DE /* DetectedItemRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9751F50A2E804C0F001681DE /* DetectedItemRowView.swift */; };
 		9751F50E2E8072AE001681DE /* ReviewDetectedItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9751F50D2E8072AE001681DE /* ReviewDetectedItemViewModel.swift */; };
 		9751F5102E8078F5001681DE /* DetectedItemRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9751F50F2E8078F5001681DE /* DetectedItemRowViewModel.swift */; };
+		975CD5102F47851B0096B3FE /* Equipment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975CD50F2F47851B0096B3FE /* Equipment.swift */; };
 		975D87182E7D567800265F5C /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975D87172E7D567800265F5C /* Router.swift */; };
 		975D871B2E7D57AE00265F5C /* Router+Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975D871A2E7D57AE00265F5C /* Router+Home.swift */; };
 		976174602E73013900A7C676 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9761745F2E73013900A7C676 /* FirebaseAuth */; };
@@ -197,6 +198,7 @@
 		9751F50A2E804C0F001681DE /* DetectedItemRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectedItemRowView.swift; sourceTree = "<group>"; };
 		9751F50D2E8072AE001681DE /* ReviewDetectedItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetectedItemViewModel.swift; sourceTree = "<group>"; };
 		9751F50F2E8078F5001681DE /* DetectedItemRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectedItemRowViewModel.swift; sourceTree = "<group>"; };
+		975CD50F2F47851B0096B3FE /* Equipment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equipment.swift; sourceTree = "<group>"; };
 		975D87172E7D567800265F5C /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		975D871A2E7D57AE00265F5C /* Router+Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Router+Home.swift"; sourceTree = "<group>"; };
 		9770361B2E8E970600A02E18 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
@@ -732,6 +734,7 @@
 		9780BD7B2E63057E005227E4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				975CD50F2F47851B0096B3FE /* Equipment.swift */,
 				977356942E631982007ED640 /* ProfileModel.swift */,
 				9773569E2E63620E007ED640 /* DailyActivityModel.swift */,
 				977356A02E636359007ED640 /* MealModel.swift */,
@@ -1499,6 +1502,7 @@
 				9739C1122E841C3C005005FE /* FoodAIClassifier.mlpackage in Sources */,
 				972E9E8D2E71A268009FD7F1 /* ProfileFBHelper.swift in Sources */,
 				97FD3D1A2E789F180068BE69 /* FoodHistoryManager.swift in Sources */,
+				975CD5102F47851B0096B3FE /* Equipment.swift in Sources */,
 				972E9E9D2E71E26C009FD7F1 /* FoodCatalogFBHelper.swift in Sources */,
 				9741B6F62E7570B10092763D /* LogMealMacroView.swift in Sources */,
 				9773569D2E635552007ED640 /* DailyActivityManager.swift in Sources */,
