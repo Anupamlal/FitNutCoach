@@ -20,11 +20,16 @@ struct RootTabView: View {
     
     var profileManager: ProfileManager
     var dailyActivityManager: DailyActivityManager
+    @EnvironmentObject private var appRootManager: AppRootManager
     @StateObject var rootTabViewModel = RootTabViewModel()
     
     var body: some View {
         TabView(selection: $rootTabViewModel.currentTab) {
-            HomeView(profileManager: profileManager, dailyActivityManager: dailyActivityManager)
+            HomeView(
+                profileManager: profileManager,
+                dailyActivityManager: dailyActivityManager,
+                nudgeManager: appRootManager.nudgeManager
+            )
                 .tabItem { Label("Home", systemImage: "house.fill") }
                 .tag(RootTabSection.home)
 
@@ -45,5 +50,6 @@ struct RootTabView: View {
                 .tag(RootTabSection.profile)
         }
         .environmentObject(self.rootTabViewModel)
+        .environmentObject(appRootManager)
     }
 }

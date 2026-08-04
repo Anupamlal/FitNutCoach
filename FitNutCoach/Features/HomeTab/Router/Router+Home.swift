@@ -43,7 +43,15 @@ extension Router {
             WeatherDetailView()
             
         case .allNudges:
-            AllNudgesView()
+            AllNudgesViewWrapper()
         }
+    }
+}
+
+private struct AllNudgesViewWrapper: View {
+    @EnvironmentObject private var appRootManager: AppRootManager
+    
+    var body: some View {
+        AllNudgesView(nudgeManager: appRootManager.nudgeManager)
     }
 }

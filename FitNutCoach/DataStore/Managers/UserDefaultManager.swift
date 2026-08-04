@@ -13,6 +13,11 @@ class UserDefaultManager {
     static let profileSetupDone = "profileSetupDone"
     static let aiDetectionLeftCount = "AIDetectionLeftCount"
     
+    static let nudgeNotificationsEnabled = "nudgeNotificationsEnabled"
+    static let nudgeQuietHoursStart = "nudgeQuietHoursStart"
+    static let nudgeQuietHoursEnd = "nudgeQuietHoursEnd"
+    static let nudgeMaxNotificationsPerDay = "nudgeMaxNotificationsPerDay"
+    
     class func saveProfileSetupDone(_ value: Bool) {
         UserDefaults.standard.set(value, forKey: profileSetupDone)
     }
@@ -27,5 +32,26 @@ class UserDefaultManager {
     
     class func getAIDetectionLeftCount() -> Int {
         return UserDefaults.standard.integer(forKey: aiDetectionLeftCount)
+    }
+    
+    class func getNudgeNotificationPreferences() -> NudgeNotificationPreferences {
+        let defaults = UserDefaults.standard
+        if defaults.object(forKey: nudgeNotificationsEnabled) == nil {
+            return .default
+        }
+        return NudgeNotificationPreferences(
+            isEnabled: defaults.bool(forKey: nudgeNotificationsEnabled),
+            quietHoursStart: defaults.integer(forKey: nudgeQuietHoursStart),
+            quietHoursEnd: defaults.integer(forKey: nudgeQuietHoursEnd),
+            maxNotificationsPerDay: max(1, defaults.integer(forKey: nudgeMaxNotificationsPerDay))
+        )
+    }
+    
+    class func saveNudgeNotificationPreferences(_ preferences: NudgeNotificationPreferences) {
+        let defaults = UserDefaults.standard
+        defaults.set(preferences.isEnabled, forKey: nudgeNotificationsEnabled)
+        defaults.set(preferences.quietHoursStart, forKey: nudgeQuietHoursStart)
+        defaults.set(preferences.quietHoursEnd, forKey: nudgeQuietHoursEnd)
+        defaults.set(preferences.maxNotificationsPerDay, forKey: nudgeMaxNotificationsPerDay)
     }
 }

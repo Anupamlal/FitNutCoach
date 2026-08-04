@@ -21,10 +21,12 @@ class AppRootManager: ObservableObject {
     let profileManager: ProfileManager
     let dailyActivityManager: DailyActivityManager
     let foodCatalogManager: FoodCatalogManager
+    let nudgeManager: NudgeManager
     
     init(container: NSPersistentContainer) {
         self.profileManager = ProfileManager(container: container)
         self.dailyActivityManager = DailyActivityManager(container: container)
         self.foodCatalogManager = FoodCatalogManager(container: container)
+        self.nudgeManager = NudgeManager(container: container)
     }
 }

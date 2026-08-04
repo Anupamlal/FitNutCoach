@@ -16,8 +16,12 @@ struct HomeView: View {
     @ObservedObject private var homeNavRouter = Router<HomeRouter>()
     @Environment(\.scenePhase) private var scenePhase
     
-    init(profileManager: ProfileManager, dailyActivityManager: DailyActivityManager) {
-        _homeViewModel = StateObject(wrappedValue: HomeViewModel(profileManager: profileManager, dailyActivityManager: dailyActivityManager))
+    init(profileManager: ProfileManager, dailyActivityManager: DailyActivityManager, nudgeManager: NudgeManager) {
+        _homeViewModel = StateObject(wrappedValue: HomeViewModel(
+            profileManager: profileManager,
+            dailyActivityManager: dailyActivityManager,
+            nudgeManager: nudgeManager
+        ))
     }
     
     var body: some View {
@@ -119,7 +123,6 @@ struct HomeView: View {
                     
                     Button {
                         homeNavRouter.navigate(to: .allNudges)
-                        
                     } label: {
                         Card(backgroundColor: AppColors.waterTotalColor) {
                             HStack{
@@ -127,12 +130,17 @@ struct HomeView: View {
                                     .resizable()
                                     .frame(width: 40, height: 40)
                                 
-                                Text("Hot today - hydrate more and shift workout to AM")
+                                Text(homeViewModel.nudgePreviewText)
                                     .font(.system(size: 15, weight: .medium))
                                     .foregroundStyle(Color.textPrimary)
                                     .multilineTextAlignment(.leading)
                                 
                                 Spacer()
+                                
+                                if homeViewModel.primaryNudge != nil {
+                                    Image(systemName: "chevron.right")
+                                        .foregroundStyle(Color.textSecondary)
+                                }
                             }
                         }
                     }
@@ -160,6 +168,7 @@ struct HomeView: View {
             .navigationDestination(for: HomeRouter.self) { homeRouter in
                 self.homeNavRouter.destination(for: homeRouter)
                     .toolbarVisibility(.hidden, for: .tabBar)
+                    .environmentObject(appRootManager)
             }
         }
         .onFirstAppear {
@@ -171,6 +180,7 @@ struct HomeView: View {
                 .presentationDetents([.medium])
         }
         .environmentObject(homeNavRouter)
+        .environmentObject(homeViewModel)
         .onChange(of: scenePhase, { oldValue, newValue in
             if newValue == .active {
                 print("HomeView: Active")
@@ -182,5 +192,9 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView(profileManager: ProfileManager(container: PersistenceController.shared.container), dailyActivityManager: DailyActivityManager(container: PersistenceController.shared.container))
+    HomeView(
+        profileManager: ProfileManager(container: PersistenceController.shared.container),
+        dailyActivityManager: DailyActivityManager(container: PersistenceController.shared.container),
+        nudgeManager: NudgeManager(container: PersistenceController.shared.container)
+    )
 }

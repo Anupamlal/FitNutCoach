@@ -11,11 +11,14 @@ import Combine
 
 class NudgeManager: NSObject, @unchecked Sendable {
     typealias T = NudgeModel
+    
     var viewContext: NSManagedObjectContext
     var bgContext: NSManagedObjectContext
     
-    private let nudgeSubject = CurrentValueSubject<[NudgeModel], Never>([NudgeModel()])
-    var managerPublisher: AnyPublisher<[NudgeModel], Never>{
+    private let nudgeSubject = CurrentValueSubject<[NudgeModel], Never>([])
+    private let ruleEngine = NudgeRuleEngine()
+    
+    var managerPublisher: AnyPublisher<[NudgeModel], Never> {
         nudgeSubject.eraseToAnyPublisher()
     }
     
@@ -25,98 +28,166 @@ class NudgeManager: NSObject, @unchecked Sendable {
         self.bgContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
     }
     
-    func addNewOrUpdateData(_ newData: NudgeModel) async -> Bool {
-        let nudge = Nudge(context: self.bgContext)
-        newData.fill(into: nudge)
-                
-        await bgContext.perform {
-            
-            do {
-                try self.bgContext.save()
-            }
-            catch {
-                print("Error caused during saving DailyActivity", error.localizedDescription)
-            }
-        }
-        
-        return true
-    }
-    
-    func deleteData(_ deleteData: NudgeModel) async -> Bool {
-        return true
-    }
-
-    func loadData(date: Date, viewContextObj: NSManagedObjectContext? = nil) async -> [NudgeModel]? {
+    func loadData(date: Date = Date(), viewContextObj: NSManagedObjectContext? = nil) async -> [NudgeModel] {
         let fetchRequest = Nudge.fetchRequest()
         let start = date.getStartOfDate()
-        
         fetchRequest.predicate = NSPredicate(format: "date == %@", start as NSDate)
         
-        var currentViewContext = viewContextObj
-        if currentViewContext == nil {
-            currentViewContext = self.viewContext
-        }
+        let context = viewContextObj ?? viewContext
         
-        if let dailyActivity = try? currentViewContext?.fetch(fetchRequest).map({ NudgeModel(with: $0) }) {
-            return dailyActivity
+        if let nudges = try? context.fetch(fetchRequest).map({ NudgeModel(with: $0) }) {
+            return nudges
         }
-        
-        return nil
+        return []
     }
     
     func loadData() async -> Bool {
-        if let nudgeData = await loadData(date: Date(), viewContextObj: nil) {
-            nudgeSubject.send(nudgeData)
-            return true
-        }
-        return false
+        let nudges = await loadData(date: Date())
+        nudgeSubject.send(nudges)
+        return true
     }
     
-    func loadActiveNudges() -> [NudgeModel] {
-        let allNudges = nudgeSubject.value
+    func syncNudges(
+        profile: ProfileModel,
+        dailyActivity: DailyActivityModel,
+        weather: WeatherModel?
+    ) async {
+        let today = Date().getStartOfDate()
+        let generated = ruleEngine.generateNudges(
+            context: NudgeRuleContext(
+                profile: profile,
+                dailyActivity: dailyActivity,
+                weather: weather
+            )
+        )
         
-        let activeNudges = allNudges.filter { $0.state == .active }
+        let existing = await loadData(date: today, viewContextObj: bgContext)
+        var merged: [NudgeModel] = []
         
-        return activeNudges
-    }
-    
-    func updateState(nudgeModel: NudgeModel) async {
-        let fetchRequest = Nudge.fetchRequest()
-        
-        fetchRequest.predicate = NSPredicate(format: "id == %@", nudgeModel.id as CVarArg)
-        fetchRequest.fetchLimit = 1
-        
-        if let nudge = try? viewContext.fetch(fetchRequest).first {
-            nudgeModel.fill(into: nudge)
-            
-            do {
-                try viewContext.save()
+        for generatedNudge in generated {
+            if let existingNudge = existing.first(where: { $0.ruleId == generatedNudge.ruleId }) {
+                var updated = generatedNudge
+                updated = NudgeModel(
+                    id: existingNudge.id,
+                    ruleId: generatedNudge.ruleId,
+                    title: generatedNudge.title,
+                    message: generatedNudge.message,
+                    category: generatedNudge.category,
+                    priority: generatedNudge.priority,
+                    status: existingNudge.status,
+                    createdAt: existingNudge.createdAt,
+                    date: today,
+                    expiresAt: generatedNudge.expiresAt,
+                    actionType: generatedNudge.actionType,
+                    actionValue: generatedNudge.actionValue,
+                    completedAt: existingNudge.completedAt,
+                    snoozedUntil: existingNudge.snoozedUntil
+                )
                 
-                var allNudges = nudgeSubject.value
-                if let index = allNudges.firstIndex(where: { $0.id == nudgeModel.id }) {
-                    allNudges[index] = nudgeModel
-                    nudgeSubject.send(allNudges)
+                if updated.expiresAt != nil && (updated.expiresAt ?? Date()) < Date() && updated.status == .active {
+                    updated.markExpired()
                 }
                 
+                if updated.status == .active || updated.status == .completed {
+                    merged.append(updated)
+                    await upsertNudge(updated)
+                }
+            } else {
+                merged.append(generatedNudge)
+                await upsertNudge(generatedNudge)
+            }
+        }
+        
+        for existingNudge in existing where existingNudge.status == .completed {
+            if !merged.contains(where: { $0.ruleId == existingNudge.ruleId }) {
+                merged.append(existingNudge)
+            }
+        }
+        
+        let sorted = merged.sorted { lhs, rhs in
+            if lhs.priority != rhs.priority { return lhs.priority > rhs.priority }
+            return lhs.createdAt > rhs.createdAt
+        }
+        
+        await MainActor.run {
+            nudgeSubject.send(sorted)
+        }
+        
+        NudgeNotificationService.shared.scheduleNotifications(for: sorted.filter(\.isVisible))
+    }
+    
+    private func upsertNudge(_ model: NudgeModel) async {
+        await bgContext.perform {
+            let fetchRequest = Nudge.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "ruleId == %@ AND date == %@", model.ruleId, model.date as NSDate)
+            fetchRequest.fetchLimit = 1
+            
+            let nudge: Nudge
+            if let existing = try? self.bgContext.fetch(fetchRequest).first {
+                nudge = existing
+            } else {
+                nudge = Nudge(context: self.bgContext)
+            }
+            
+            model.fill(into: nudge)
+            
+            do {
+                try self.bgContext.save()
             } catch {
-                print("Error saving updated nudge:", error.localizedDescription)
+                print("Error saving nudge:", error.localizedDescription)
             }
         }
     }
     
-    func markAsDone(nudgeModel: NudgeModel) async {
-        var updatedNudge = nudgeModel
-        updatedNudge.updateState(to: .done)
-        
-        await self.updateState(nudgeModel: nudgeModel)
+    func activeNudges() -> [NudgeModel] {
+        nudgeSubject.value.filter(\.isVisible)
     }
     
-    func markSnoozed(nudgeModel: NudgeModel, duration: TimeInterval) async {
-        var updatedNudge = nudgeModel
-        updatedNudge.updateState(to: .snoozed)
-        updatedNudge.snoozedUntil = Date().addingTimeInterval(duration)
-        
-        await self.updateState(nudgeModel: nudgeModel)
+    func priorityNudges() -> [NudgeModel] {
+        activeNudges().filter { $0.priority == .high }
     }
+    
+    func nudgesByCategory() -> [NudgeCategory: [NudgeModel]] {
+        Dictionary(grouping: activeNudges(), by: \.category)
+    }
+    
+    func completedNudges() -> [NudgeModel] {
+        nudgeSubject.value
+            .filter { $0.status == .completed }
+            .sorted { ($0.completedAt ?? $0.createdAt) > ($1.completedAt ?? $1.createdAt) }
+    }
+    
+    func markCompleted(nudge: NudgeModel) async {
+        var updated = nudge
+        updated.markCompleted()
+        await updateNudge(updated)
+    }
+    
+    func markDismissed(nudge: NudgeModel) async {
+        var updated = nudge
+        updated.markDismissed()
+        await updateNudge(updated)
+    }
+    
+    private func updateNudge(_ model: NudgeModel) async {
+        await upsertNudge(model)
         
+        var allNudges = nudgeSubject.value
+        if let index = allNudges.firstIndex(where: { $0.id == model.id }) {
+            allNudges[index] = model
+        } else {
+            allNudges.append(model)
+        }
+        
+        let sorted = allNudges.sorted { lhs, rhs in
+            if lhs.priority != rhs.priority { return lhs.priority > rhs.priority }
+            return lhs.createdAt > rhs.createdAt
+        }
+        
+        await MainActor.run {
+            nudgeSubject.send(sorted)
+        }
+        
+        NudgeNotificationService.shared.scheduleNotifications(for: sorted.filter(\.isVisible))
+    }
 }
