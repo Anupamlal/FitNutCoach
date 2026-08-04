@@ -15,7 +15,8 @@ enum AddFoodSectionType {
 
 class AddFoodItemViewModel: ObservableObject {
 
-    let selectedMealType: MealType
+    @Published var selectedMealType: MealType
+    @Published var openMealTypeSelection: Bool = false
     @Published var openBarCodeScanner: Bool = false
     @Published var isSearchPresented: Bool = false
     @Published var searchText: String = ""{

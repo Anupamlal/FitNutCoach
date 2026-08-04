@@ -24,6 +24,23 @@ enum MealType: String, Codable, CaseIterable, Hashable {
             return AppTexts.snacksText
         }
     }
+    
+    /// Suggests a meal type from the current hour of day.
+    /// Breakfast: 5–11, Lunch: 11–16, Dinner: 19–24, otherwise Snacks.
+    static func suggestedForCurrentTime(date: Date = Date()) -> MealType {
+        let currentHour = Calendar.current.component(.hour, from: date)
+        
+        switch currentHour {
+        case 5..<11:
+            return .breakfast
+        case 11..<16:
+            return .lunch
+        case 19..<24:
+            return .dinner
+        default:
+            return .snacks
+        }
+    }
 }
 
 enum MealSourceType: String, Codable {

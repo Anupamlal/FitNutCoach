@@ -43,6 +43,8 @@ struct AddFoodItemView: View {
                             
                             if addFoodItemViewModel.searchText.isEmpty {
                                 
+                                mealTypeSelector
+                                
                                 BarcodeSnapView {
                                     self.addFoodItemViewModel.openBarCodeScanner = true
                                 }
@@ -134,8 +136,44 @@ struct AddFoodItemView: View {
                 homeNavRouter.navigateBack()
             }
         }
+        .sheet(isPresented: $addFoodItemViewModel.openMealTypeSelection) {
+            SelectMealTypeBottomSheet(selectedMealType: $addFoodItemViewModel.selectedMealType)
+                .presentationDragIndicator(.visible)
+                .presentationDetents([.medium])
+        }
         .onFirstAppear {
             self.addFoodItemViewModel.setup(appRootManager.dailyActivityManager, appRootManager.foodCatalogManager)
+        }
+    }
+    
+    private var mealTypeSelector: some View {
+        HStack {
+            Text(AppTexts.selectedMealType)
+                .font(.system(size: 14, weight: .medium))
+                .foregroundStyle(Color.textSecondary)
+            
+            Spacer()
+            
+            Button {
+                addFoodItemViewModel.openMealTypeSelection = true
+            } label: {
+                HStack(spacing: 4) {
+                    Text(addFoodItemViewModel.selectedMealType.getDisplayName())
+                    Image(systemName: "chevron.down")
+                        .renderingMode(.template)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 10, height: 5)
+                }
+                .font(.system(size: 14, weight: .regular))
+                .foregroundStyle(Color.textSecondary)
+                .padding(.all, 8)
+                .padding(.horizontal, 4)
+                .background {
+                    RoundedRectangle(cornerRadius: 15)
+                        .foregroundStyle(AppColors.logMealCardBGColor)
+                }
+            }
         }
     }
     

@@ -39,7 +39,7 @@ class ReviewDetectedItemViewModel: ObservableObject {
     }
     
     private func setCurrentMealType() {
-        self.currentMealType = getCurrentMealType()
+        self.currentMealType = MealType.suggestedForCurrentTime()
     }
     
     func logSelectedFood() async -> Bool {
@@ -69,21 +69,6 @@ class ReviewDetectedItemViewModel: ObservableObject {
         }
         
         return await dailyActivityManager?.addMeal(currentMeal!) ?? false
-    }
-    
-    private func getCurrentMealType() -> MealType {
-        let currentHour = Calendar.current.component(.hour, from: Date())
-        
-        switch currentHour {
-        case 5..<11:
-            return .breakfast
-        case 11..<16:
-            return .lunch
-        case 19..<24:
-            return .dinner
-        default:
-            return .snacks
-        }
     }
     
     func detectWithAI() {

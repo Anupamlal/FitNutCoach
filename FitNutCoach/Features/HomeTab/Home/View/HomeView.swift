@@ -64,6 +64,7 @@ struct HomeView: View {
                         
                         FNButton(buttonTitle: AppTexts.logMealText, backgroundEnable: true) {
                             homeNavRouter.navigate(to: .logMeal)
+                            homeNavRouter.navigate(to: .addFoodItem(selectedMealType: .suggestedForCurrentTime()))
                         }
                         
                         FNButton(buttonTitle: AppTexts.startWorkoutText, backgroundEnable: false) {
