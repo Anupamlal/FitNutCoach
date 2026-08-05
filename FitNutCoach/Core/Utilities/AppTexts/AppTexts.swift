@@ -248,6 +248,11 @@ class AppTexts {
     static let profileSaveFailedText = "Could not save profile. Please try again."
     static let profileSaveSuccessText = "Profile updated successfully."
     static let noneText = "None"
+    static let personalInfoSubtitleText = "Body metrics, diet & allergies"
+    static let dailyTargetsSubtitleText = "Calories, macros, water & steps"
+    static let accountSubtitleText = "Email & sign-in"
+    static let manageDetailsText = "View and update your details"
+    static let tapToEditText = "Tap Edit to update"
     
 }
 

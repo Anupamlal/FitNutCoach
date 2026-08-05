@@ -15,7 +15,6 @@ class ProfileViewModel: ObservableObject {
     @Published var profileModel = ProfileModel()
     @Published var userEmail: String = ""
     @Published var isLoading = false
-    @Published var showEditProfile = false
     
     private let profileManager: ProfileManager
     private var cancellables = Set<AnyCancellable>()
@@ -73,5 +72,29 @@ class ProfileViewModel: ObservableObject {
     func formattedWeight() -> String {
         guard profileModel.weightKg > 0 else { return AppTexts.noneText }
         return "\(profileModel.weightKg.formatToOneDecimalPlaces()) \(AppTexts.kgText)"
+    }
+    
+    func personalInfoSummary() -> String {
+        let weight = profileModel.weightKg > 0 ? "\(profileModel.weightKg.formatToOneDecimalPlaces()) \(AppTexts.kgText)" : nil
+        let diet = profileModel.dietType.displayName()
+        if let weight {
+            return "\(weight) · \(diet)"
+        }
+        return diet
+    }
+    
+    func dailyTargetsSummary() -> String {
+        let calories = profileModel.calorieTarget > 0 ? "\(profileModel.calorieTarget.intValue()) \(AppTexts.kcalText)" : nil
+        let steps = profileModel.stepTarget > 0 ? "\(profileModel.stepTarget) \(AppTexts.stepsText)" : nil
+        switch (calories, steps) {
+        case let (c?, s?):
+            return "\(c) · \(s)"
+        case let (c?, nil):
+            return c
+        case let (nil, s?):
+            return s
+        default:
+            return AppTexts.tapToEditText
+        }
     }
 }

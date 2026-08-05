@@ -80,6 +80,10 @@ final class ProfileManager: ObservableObject, BaseManagerDelegate, @unchecked Se
         return nil
     }
     
+    func getCurrentProfile() -> ProfileModel {
+        profileSubject.value
+    }
+    
     /// Saves profile to Core Data and Firebase.
     func saveProfile(_ profileModel: ProfileModel) async -> Bool {
         var profile = profileModel
