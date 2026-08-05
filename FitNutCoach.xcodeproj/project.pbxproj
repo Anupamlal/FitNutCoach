@@ -103,6 +103,9 @@
 		97BF118F2E5AB126005FBA95 /* RecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF118E2E5AB126005FBA95 /* RecipesView.swift */; };
 		97BF11912E5AB131005FBA95 /* TrendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF11902E5AB131005FBA95 /* TrendsView.swift */; };
 		97BF11932E5AB140005FBA95 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF11922E5AB140005FBA95 /* ProfileView.swift */; };
+		B7F002012E929A2F0074F98F /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F002022E929A2F0074F98F /* ProfileViewModel.swift */; };
+		B7F002032E929A2F0074F98F /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F002042E929A2F0074F98F /* EditProfileViewModel.swift */; };
+		B7F002052E929A2F0074F98F /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F002062E929A2F0074F98F /* EditProfileView.swift */; };
 		97BF11982E5AB9D5005FBA95 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF11972E5AB9D5005FBA95 /* HomeViewModel.swift */; };
 		97BF119B2E5ABA38005FBA95 /* AppTexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF119A2E5ABA38005FBA95 /* AppTexts.swift */; };
 		97BF119D2E5ADBF5005FBA95 /* ProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF119C2E5ADBF5005FBA95 /* ProgressRing.swift */; };
@@ -247,6 +250,9 @@
 		97BF118E2E5AB126005FBA95 /* RecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesView.swift; sourceTree = "<group>"; };
 		97BF11902E5AB131005FBA95 /* TrendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsView.swift; sourceTree = "<group>"; };
 		97BF11922E5AB140005FBA95 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		B7F002022E929A2F0074F98F /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		B7F002042E929A2F0074F98F /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
+		B7F002062E929A2F0074F98F /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		97BF11972E5AB9D5005FBA95 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		97BF119A2E5ABA38005FBA95 /* AppTexts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTexts.swift; sourceTree = "<group>"; };
 		97BF119C2E5ADBF5005FBA95 /* ProgressRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRing.swift; sourceTree = "<group>"; };
@@ -1079,13 +1085,24 @@
 			isa = PBXGroup;
 			children = (
 				97BF11922E5AB140005FBA95 /* ProfileView.swift */,
+				B7F002062E929A2F0074F98F /* EditProfileView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		B7F002072E929A2F0074F98F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B7F002022E929A2F0074F98F /* ProfileViewModel.swift */,
+				B7F002042E929A2F0074F98F /* EditProfileViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		97BF11882E5AB0A0005FBA95 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				B7F002072E929A2F0074F98F /* ViewModel */,
 				97BF11872E5AB0A0005FBA95 /* View */,
 			);
 			path = Profile;
@@ -1502,6 +1519,9 @@
 				974AFC382E660FEC003302BB /* RootTabViewModel.swift in Sources */,
 				9705CACC2E7DD87F00AE7F79 /* APIName.swift in Sources */,
 				97BF11932E5AB140005FBA95 /* ProfileView.swift in Sources */,
+				B7F002012E929A2F0074F98F /* ProfileViewModel.swift in Sources */,
+				B7F002032E929A2F0074F98F /* EditProfileViewModel.swift in Sources */,
+				B7F002052E929A2F0074F98F /* EditProfileView.swift in Sources */,
 				97BF11712E5A35A8005FBA95 /* RootTabView.swift in Sources */,
 				97BF11A62E5AE87F005FBA95 /* AppColors.swift in Sources */,
 				9751F4FB2E7FD864001681DE /* FoodDetectorManager.swift in Sources */,

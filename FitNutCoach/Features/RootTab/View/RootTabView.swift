@@ -20,6 +20,7 @@ struct RootTabView: View {
     
     var profileManager: ProfileManager
     var dailyActivityManager: DailyActivityManager
+    var nudgeManager: NudgeManager
     @EnvironmentObject private var appRootManager: AppRootManager
     @StateObject var rootTabViewModel = RootTabViewModel()
     
@@ -28,11 +29,11 @@ struct RootTabView: View {
             HomeView(
                 profileManager: profileManager,
                 dailyActivityManager: dailyActivityManager,
-                nudgeManager: appRootManager.nudgeManager
+                nudgeManager: nudgeManager
             )
-                .tabItem { Label("Home", systemImage: "house.fill") }
-                .tag(RootTabSection.home)
-
+            .tabItem { Label("Home", systemImage: "house.fill") }
+            .tag(RootTabSection.home)
+            
             WorkoutsView()
                 .tabItem { Label("Workouts", systemImage: "figure.strengthtraining.traditional") }
                 .tag(RootTabSection.workouts)
@@ -45,7 +46,7 @@ struct RootTabView: View {
                 .tabItem { Label("Trends", systemImage: "chart.line.uptrend.xyaxis") }
                 .tag(RootTabSection.trends)
             
-            ProfileView()
+            ProfileView(profileManager: profileManager)
                 .tabItem { Label("Profile", systemImage: "person.fill") }
                 .tag(RootTabSection.profile)
         }

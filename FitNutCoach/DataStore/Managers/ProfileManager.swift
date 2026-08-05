@@ -27,20 +27,29 @@ final class ProfileManager: ObservableObject, BaseManagerDelegate, @unchecked Se
     }
     
     func addNewOrUpdateData(_ newData: ProfileModel) async -> Bool {
-        let userProfile = UserProfile(context: self.bgContext)
-        newData.fillUserProfile(userProfile: userProfile)
-        
         await bgContext.perform {
+            let fetchRequest = UserProfile.fetchRequest()
+            fetchRequest.fetchLimit = 1
+            
+            let userProfile: UserProfile
+            if let existing = try? self.bgContext.fetch(fetchRequest).first {
+                userProfile = existing
+            } else {
+                userProfile = UserProfile(context: self.bgContext)
+            }
+            
+            newData.fillUserProfile(userProfile: userProfile)
             
             do {
                 try self.bgContext.save()
-            }
-            catch {
+            } catch {
                 print("Error caused during saving Userprofile", error.localizedDescription)
             }
         }
         
-        self.profileSubject.send(newData)
+        await MainActor.run {
+            self.profileSubject.send(newData)
+        }
         return true
     }
     
@@ -48,14 +57,15 @@ final class ProfileManager: ObservableObject, BaseManagerDelegate, @unchecked Se
         return false
     }
 
-    func loadData() async -> Bool{
+    func loadData() async -> Bool {
         let fetchRequest = UserProfile.fetchRequest()
-        
         fetchRequest.fetchLimit = 1
         
         if let userProfile = try? viewContext.fetch(fetchRequest).first {
             let profileModel = ProfileModel(userProfile: userProfile)
-            profileSubject.send(profileModel)
+            await MainActor.run {
+                profileSubject.send(profileModel)
+            }
             return true
         }
         
@@ -63,14 +73,23 @@ final class ProfileManager: ObservableObject, BaseManagerDelegate, @unchecked Se
     }
     
     func loadProfileFromServer() async -> ProfileModel? {
-        
         if let profileModel = await ProfileFBHelper.getUserProfile() {
             _ = await self.addNewOrUpdateData(profileModel)
-            
             return profileModel
         }
-        
         return nil
     }
-
+    
+    /// Saves profile to Core Data and Firebase.
+    func saveProfile(_ profileModel: ProfileModel) async -> Bool {
+        var profile = profileModel
+        if profile.id == nil || profile.id?.isEmpty == true {
+            profile.id = UUID().uuidString
+        }
+        
+        let coreDataSaved = await addNewOrUpdateData(profile)
+        guard coreDataSaved else { return false }
+        
+        return await ProfileFBHelper.saveUserProfile(profileModel: profile)
+    }
 }

@@ -217,6 +217,38 @@ class AppTexts {
     static let nudgeStepsGoalTitleText = "Step Goal Achieved"
     static let nudgeStepsGoalMessageText = "You've reached your step goal. Keep moving!"
     
+    // Profile
+    static let profileTitleText = "Profile"
+    static let editProfileText = "Edit Profile"
+    static let personalInfoText = "Personal Info"
+    static let dailyTargetsText = "Daily Targets"
+    static let accountText = "Account"
+    static let logoutText = "Logout"
+    static let saveProfileText = "Save Profile"
+    static let nameText = "Name"
+    static let emailText = "Email"
+    static let dateOfBirthText = "Date of Birth"
+    static let heightText = "Height"
+    static let weightText = "Weight"
+    static let dietTypeText = "Diet Type"
+    static let allergiesText = "Allergies"
+    static let calorieTargetText = "Calorie Target"
+    static let proteinTargetText = "Protein Target"
+    static let carbTargetText = "Carb Target"
+    static let fatTargetText = "Fat Target"
+    static let waterTargetText = "Water Target"
+    static let stepTargetText = "Step Target"
+    static let cmText = "cm"
+    static let kgText = "kg"
+    static let stepsText = "steps"
+    static let gramsText = "g"
+    static let dietVegText = "Vegetarian"
+    static let dietNonVegText = "Non-Vegetarian"
+    static let dietVeganText = "Vegan"
+    static let profileSaveFailedText = "Could not save profile. Please try again."
+    static let profileSaveSuccessText = "Profile updated successfully."
+    static let noneText = "None"
+    
 }
 
 class ErrorTexts {

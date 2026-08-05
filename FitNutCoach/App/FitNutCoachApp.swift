@@ -32,8 +32,12 @@ struct FitNutCoachApp: App {
                 ProfileSetupView(profileManager: appRootManager.profileManager)
                 
             case .tabview:
-                RootTabView(profileManager: appRootManager.profileManager, dailyActivityManager: appRootManager.dailyActivityManager)
-                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                RootTabView(
+                    profileManager: appRootManager.profileManager,
+                    dailyActivityManager: appRootManager.dailyActivityManager,
+                    nudgeManager: appRootManager.nudgeManager
+                )
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
             }
         }
         .environmentObject(appRootManager)

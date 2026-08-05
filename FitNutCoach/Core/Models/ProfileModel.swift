@@ -7,8 +7,16 @@
 
 import SwiftUI
 
-enum DietType: String, Codable {
+enum DietType: String, Codable, CaseIterable {
     case veg, nonVeg, vegan
+    
+    func displayName() -> String {
+        switch self {
+        case .veg: return AppTexts.dietVegText
+        case .nonVeg: return AppTexts.dietNonVegText
+        case .vegan: return AppTexts.dietVeganText
+        }
+    }
 }
 
 struct ProfileModel: Codable {

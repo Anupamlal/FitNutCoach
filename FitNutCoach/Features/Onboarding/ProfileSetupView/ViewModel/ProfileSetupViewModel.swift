@@ -33,14 +33,13 @@ class ProfileSetupViewModel: ObservableObject {
         }
    
         let profileModel = ProfileModel(allergies: nil, calorieTarget: 2000, carbTarget: 250, createdAt: Date(), dietType: .veg, dob: Date(), fatTarget: 70, id: UUID().uuidString, name: name, proteinTarget: 150, stepTarget: 10000, waterTargetLiters: 4.0, weightKg: 70, heightCm: 160)
-                
-        let fbUpdated = await ProfileFBHelper.saveUserProfile(profileModel: profileModel)
         
-        if fbUpdated {
+        let saved = await profileManager.saveProfile(profileModel)
+        
+        if saved {
             UserDefaultManager.saveProfileSetupDone(true)
-            return await profileManager.addNewOrUpdateData(profileModel)
         }
         
-        return false
+        return saved
     }
 }
