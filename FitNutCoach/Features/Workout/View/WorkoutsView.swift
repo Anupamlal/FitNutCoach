@@ -8,123 +8,62 @@
 import SwiftUI
 
 struct WorkoutsView: View {
+
+    @StateObject private var viewModel = WorkoutsViewModel()
+
     var body: some View {
         NavigationStack {
-            ZStack {
-                GeometryReader { geometry in
-                    Image("workouts_1")
-                        .resizable()
-                        .frame(width: geometry.size.width, height: geometry.size.width*2/3)
-                        .overlay {
-                            Rectangle()
-                                .foregroundStyle(Color.black.opacity(0.7))
-                        }
+            ZStack(alignment: .bottom) {
+                Color.background
+                    .ignoresSafeArea()
+
+                ScrollView(showsIndicators: false) {
+                    VStack(alignment: .leading, spacing: AppSpacing.xl) {
+                        WorkoutRoutineHeaderView()
+
+                        WorkoutOrderCardView(
+                            selectedWorkoutDays: viewModel.selectedWorkoutDays,
+                            selectedCountText: viewModel.selectedCountText,
+                            onRemove: viewModel.removeWorkoutDay
+                        )
+
+                        WorkoutDayListSectionView(
+                            availableDays: viewModel.availableWorkoutDays,
+                            isSelected: viewModel.isSelected,
+                            orderNumber: viewModel.orderNumber,
+                            onAdd: viewModel.addWorkoutDay
+                        )
+                    }
+                    .padding(.horizontal, AppSpacing.l)
+                    .padding(.top, AppSpacing.m)
+                    .padding(.bottom, 100)
                 }
-                .ignoresSafeArea()
-                
-                VStack(spacing: AppSpacing.m) {
-                    Text("Day 12")
-                        .font(.system(size: 18, weight: .semibold))
-                        .foregroundStyle(Color.white)
-                    
-                    Text("Upper Body Strength")
-                        .font(.system(size: 36, weight: .semibold))
-                        .foregroundStyle(Color.white)
-                    
-                    Spacer()
-                        .frame(height: 45)
-                    
-                    Card(borderEnable: true) {
-                        HStack(alignment: .center) {
-                            
-                            Spacer()
-                            
-                            VStack {
-                                Text("30")
-                                    .font(.system(size: 24, weight: .semibold))
-                                    .foregroundStyle(Color.textPrimary)
-                                Text("mins")
-                                    .font(.system(size: 18, weight: .medium))
-                                    .foregroundStyle(Color.textSecondary)
-                            }
-                            .frame(maxWidth: .greatestFiniteMagnitude)
-                            
-                            Spacer()
-                            
-                            Divider()
-                            
-                            Spacer()
-                            
-                            VStack {
-                                Text("220")
-                                    .font(.system(size: 24, weight: .semibold))
-                                    .foregroundStyle(Color.textPrimary)
-                                Text("kcal")
-                                    .font(.system(size: 18, weight: .medium))
-                                    .foregroundStyle(Color.textSecondary)
-                            }
-                            .frame(maxWidth: .greatestFiniteMagnitude)
-                            
-                            Spacer()
-                            
-                            Divider()
-                            
-                            Spacer()
-                            
-                            VStack {
-                                Text("6")
-                                    .font(.system(size: 24, weight: .semibold))
-                                    .foregroundStyle(Color.textPrimary)
-                                Text("Excercises")
-                                    .font(.system(size: 18, weight: .medium))
-                                    .foregroundStyle(Color.textSecondary)
-                            }
-                            .frame(maxWidth: .greatestFiniteMagnitude)
-                            
-                            Spacer()
-                            
-                        }
-                    }
-                    .frame(height: 100)
-                    
-                    
-                    if let equipments = equipmentCategories[.chest]?.equipments {
-                        Card(borderEnable: true) {
-                            VStack(alignment: .leading, spacing: AppSpacing.l) {
-                                Text("Equipments needed")
-                                    .font(.system(size: 18, weight: .semibold))
-                                
-                                ScrollView(.horizontal, showsIndicators: false) {
-                                    HStack {
-                                        ForEach(equipments) { equipment in
-                                            Text(equipment.name)
-                                                .padding(.horizontal, 14)
-                                                .padding(.vertical, 8)
-                                                .background(equipment.color)
-                                                .foregroundColor(.white)
-                                                .clipShape(Capsule())
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        .frame(height: 100)
-                    }
-                    
-                    FNButton(buttonTitle: "Start Workout", backgroundEnable: true) {
-                        
-                    }
-                    
-                    FNButton(buttonTitle: "Change Workout", backgroundEnable: false) {
-                        
-                    }
-                    
-                    Spacer()
-                    
-                }
-                .padding(.horizontal)
-                
+
+                continueButton
+                    .padding(.horizontal, AppSpacing.l)
+                    .padding(.bottom, AppSpacing.l)
             }
+            .navigationBarHidden(true)
+        }
+    }
+
+    private var continueButton: some View {
+        Button(action: viewModel.continueTapped) {
+            HStack(spacing: AppSpacing.s) {
+                Text("Continue")
+                    .font(.system(size: 16, weight: .semibold))
+
+                Image(systemName: "arrow.right")
+                    .font(.system(size: 14, weight: .semibold))
+            }
+            .foregroundStyle(.white)
+            .frame(maxWidth: .infinity)
+            .frame(height: 52)
+            .background(
+                RoundedRectangle(cornerRadius: 14)
+                    .fill(Color.primaryAccent)
+            )
+            .shadow(color: Color.primaryAccent.opacity(0.3), radius: 8, y: 4)
         }
     }
 }
