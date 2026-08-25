@@ -253,6 +253,24 @@ class AppTexts {
     static let accountSubtitleText = "Email & sign-in"
     static let manageDetailsText = "View and update your details"
     static let tapToEditText = "Tap Edit to update"
+
+    static let workoutIntroTitleText = "Build your workout week 💪"
+    static let workoutIntroSubtitleText = "Choose up to two muscle groups for each workout day and keep at least one day for recovery."
+    static let workoutIntroFeaturePersonalizedText = "Personalized for you"
+    static let workoutIntroFeatureBalancedText = "Balanced & effective"
+    static let workoutIntroFeatureEasyText = "Easy to follow"
+    static let workoutIntroLetsBuildText = "Let's Build"
+    static let workoutIntroMaybeLaterText = "Maybe later"
+    static let workoutHomeTitleText = "Your Workouts"
+    static let workoutHomeSubtitleText = "Your workout routine is ready."
+    static let continueText = "Continue"
+
+    static let workoutSetupTitleText = "Your Workout Week"
+    static let workoutSetupSubtitleText = "Tap on any day to choose muscles\nor set as Rest Day."
+    static let workoutSetupTapToAddMusclesText = "Tap to add muscles"
+    static let workoutSetupRestDayText = "Rest Day"
+    static let workoutSetupTipLabelText = "Tip:"
+    static let workoutSetupTipBodyText = "Train up to 2 muscle groups per day and take 1–2 rest days for better recovery."
     
 }
 

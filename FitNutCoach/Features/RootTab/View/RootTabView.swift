@@ -52,5 +52,8 @@ struct RootTabView: View {
         }
         .environmentObject(self.rootTabViewModel)
         .environmentObject(appRootManager)
+        .onChange(of: rootTabViewModel.currentTab) { oldValue, newValue in
+            rootTabViewModel.capturePreviousTabIfNeeded(from: oldValue, to: newValue)
+        }
     }
 }

@@ -11,6 +11,7 @@ class UserDefaultManager {
 
     static let isNewUser = "isNewUser"
     static let profileSetupDone = "profileSetupDone"
+    static let workoutSetupDone = "workoutSetupDone"
     static let aiDetectionLeftCount = "AIDetectionLeftCount"
     
     static let nudgeNotificationsEnabled = "nudgeNotificationsEnabled"
@@ -24,6 +25,14 @@ class UserDefaultManager {
     
     class func isProfileSetupDone() -> Bool {
         return UserDefaults.standard.bool(forKey: profileSetupDone)
+    }
+
+    class func saveWorkoutSetupDone(_ value: Bool) {
+        UserDefaults.standard.set(value, forKey: workoutSetupDone)
+    }
+
+    class func isWorkoutSetupDone() -> Bool {
+        return UserDefaults.standard.bool(forKey: workoutSetupDone)
     }
     
     class func saveAIDetectionLeftCount(_ count: Int) {
